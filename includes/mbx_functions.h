@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:03:51 by daemo             #+#    #+#             */
-/*   Updated: 2025/12/21 11:10:41 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/21 19:24:43 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			mbx_refresh_window(t_mbxcontext *mbx);
 void			mbx_center_window(t_mbxcontext *mbx);
 
 void			mbx_run(t_mbxcontext *mbx,
-					void (*update)(void *args), void *args);
+					void (*update)(t_mbxcontext *mbx, void *args), void *args);
 t_mbxcontext	*mbx_init(t_vec2i win_size, char *win_title, int win_mode);
 void			mbx_exit(t_mbxcontext *mbx);
 

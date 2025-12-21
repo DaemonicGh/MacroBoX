@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:12:15 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 13:34:19 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/21 19:23:15 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,34 @@ void	mbx_start_frame(t_mbxcontext *mbx)
 
 void	mbx_end_frame(t_mbxcontext *mbx)
 {
-	mbx_refresh_window(mbx);
 	mbx_flush_inputs(mbx);
 	mbx->time.frames_elapsed++;
 }
 
 static void	mbx_loop(void *rawcontext)
 {
-	struct timeval			end;
-	t__nloopcontext			*context;
+	struct timeval		end;
+	t__mbxloopcontext	*context;
 
 	context = rawcontext;
 	gettimeofday(&end, NULL);
-	context->mbx->time.delta_time = (double)(end.tv_sec - context->mbx->time.frame_start.tv_sec)
-		+ (double)(end.tv_usec - context->mbx->time.frame_start.tv_usec) / 1000000;
+	context->mbx->time.delta = (double)
+		(end.tv_sec - context->mbx->time.frame_start.tv_sec) + (double)
+		(end.tv_usec - context->mbx->time.frame_start.tv_usec) / 1000000;
 	gettimeofday(&context->mbx->time.frame_start, NULL);
 	mbx_start_frame(context->mbx);
-	context->update(context->args);
+	context->update(context->mbx, context->args);
 	mbx_end_frame(context->mbx);
 }
 
 void	mbx_run(t_mbxcontext *mbx,
-		void (*update)(void *args), void *args)
+		void (*update)(t_mbxcontext *mbx, void *args), void *args)
 {
-	t__nloopcontext	context;
+	t__mbxloopcontext	context;
 
 	context.mbx = mbx;
 	context.update = update;
 	context.args = args;
-	mlx_add_loop_hook(mbx->mlx, mbx_loop, &context);
+	mlx_add_loop_hook(mbx->mlx, &mbx_loop, &context);
 	mlx_loop(mbx->mlx);
 }

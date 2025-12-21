@@ -87,24 +87,20 @@ typedef struct s_mbxwindow
 
 typedef struct s_mbxinputs
 {
-	bool		key[MBX_KEY_SCANCODE_LENGTH];
-	bool		keyp[MBX_KEY_SCANCODE_LENGTH];
-	bool		keyr[MBX_KEY_SCANCODE_LENGTH];
+	bool		btn[MBX_INPUT_ARRAY_LENGTH];
+	bool		btnp[MBX_INPUT_ARRAY_LENGTH];
+	bool		btnr[MBX_INPUT_ARRAY_LENGTH];
 	int			last_key;
 	t_vec2i		mouse;
 	t_vec2i		prev_mouse;
-	bool		btn[MBX_BUTTON_SCANCODE_LENGTH];
-	bool		btnp[MBX_BUTTON_SCANCODE_LENGTH];
-	bool		btnr[MBX_BUTTON_SCANCODE_LENGTH];
 	int			mouse_wheel;
-	bool		window[MBX_WINDOW_SCANCODE_LENGTH];
 	bool		should_exit;
 }	t_mbxinputs;
 
 typedef struct s_mbxtime
 {
 	unsigned long	frames_elapsed;
-	double			delta_time;
+	double			delta;
 	struct timeval	frame_start;
 }	t_mbxtime;
 
@@ -121,8 +117,8 @@ typedef struct s_mbxcontext
 typedef struct s__mbxloopcontext
 {
 	t_mbxcontext	*mbx;
-	void			(*update)(void *args);
+	void			(*update)(t_mbxcontext *mbx, void *args);
 	void			*args;
-}	t__nloopcontext;
+}	t__mbxloopcontext;
 
 #endif

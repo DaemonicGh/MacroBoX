@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:18 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 10:36:09 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/21 19:05:37 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	mouse_down_hook(int button, void *param)
 {
 	t_mbxcontext	*mbx;
 
-	if (button < 0 || button > MBX_BUTTON_SCANCODE_LENGTH)
+	button += MBX_INPUT_ARRAY_MOUSE_START;
+	if (button < MBX_INPUT_ARRAY_MOUSE_START || button > MBX_INPUT_ARRAY_MOUSE_END)
 		return ;
 	mbx = param;
 	if (mbx->inputs.btn[button])
@@ -29,7 +30,8 @@ void	mouse_up_hook(int button, void *param)
 {
 	t_mbxcontext	*mbx;
 
-	if (button < 0 || button > MBX_BUTTON_SCANCODE_LENGTH)
+	button += MBX_INPUT_ARRAY_MOUSE_START;
+	if (button < MBX_INPUT_ARRAY_MOUSE_START || button > MBX_INPUT_ARRAY_MOUSE_END)
 		return ;
 	mbx = param;
 	mbx->inputs.btn[button] = false;
@@ -44,7 +46,7 @@ void	mouse_wheel_hook(int button, void *param)
 		return ;
 	mbx = param;
 	if (button == 1)
-		mbx->inputs.mouse_wheel = MBX_SCROLL_UP;
+		mbx->inputs.mouse_wheel += 1;
 	else if (button == 2)
-		mbx->inputs.mouse_wheel = MBX_SCROLL_DOWN;
+		mbx->inputs.mouse_wheel -= 1;
 }

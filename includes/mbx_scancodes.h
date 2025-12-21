@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nacho_scancodes.h                                  :+:      :+:    :+:   */
+/*   mbx_scancodes.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:25:27 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 10:20:01 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/21 19:01:18 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 
 // Simplified version of SLD2's scancodes
 // [https://wiki.libsdl.org/SDL2/SDL_Scancode]
+// Mouse and Window events are put after Keyboard ones
 
-# define MBX_KEY_SCANCODE_LENGTH 256
-# define MBX_BUTTON_SCANCODE_LENGTH 5
-# define MBX_WINDOW_SCANCODE_LENGTH 19
+# define MBX_INPUT_ARRAY_LENGTH 560
+# define MBX_INPUT_ARRAY_KEYBOARD_START 0
+# define MBX_INPUT_ARRAY_KEYBOARD_END 511
+# define MBX_INPUT_ARRAY_MOUSE_START 512
+# define MBX_INPUT_ARRAY_MOUSE_END 527
+# define MBX_INPUT_ARRAY_WINDOW_START 528
+# define MBX_INPUT_ARRAY_WINDOW_END 559
+
 
 # define MBX_KEY_NONE 0
 
@@ -138,17 +144,14 @@
 
 // Mouse events
 
-# define MBX_BUTTON_LEFT 1
-# define MBX_BUTTON_MIDDLE 2
-# define MBX_BUTTON_RIGHT 3
-# define MBX_BUTTON_X1 4
-# define MBX_BUTTON_X2 5
-
-# define MBX_SCROLL_UP 1
-# define MBX_SCROLL_DOWN -1
+# define MBX_MOUSE_BUTTON_LEFT 512
+# define MBX_MOUSE_BUTTON_MIDDLE 513
+# define MBX_MOUSE_BUTTON_RIGHT 514
+# define MBX_MOUSE_BUTTON_4 515
+# define MBX_MOUSE_BUTTON_5 516
 
 // Window events (not tested)
 
-# define MBX_WINDOW_CLOSE 0
+# define MBX_WINDOW_CLOSE 528
 
 #endif
