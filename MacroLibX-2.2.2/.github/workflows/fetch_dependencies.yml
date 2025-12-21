@@ -1,0 +1,34 @@
+name: Fetch Dependencies
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0' # Runs weekly
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Run Fetch Dependencies Script
+      run: cd scripts && bash ./fetch_dependencies.sh
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+        delete-branch: true
+        title: update dependencies
+        commit-message: "[BOT] update dependencies"
+        committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+        author: kbJeff-8 <kbJeff-8@users.noreply.github.com>
+        signoff: false
+        base: indev
+        assignees: Kbz-8
+        reviewers: Kbz-8
+        branch: auto_deps_updates
+        labels: |
+          automated
