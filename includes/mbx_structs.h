@@ -58,6 +58,7 @@ typedef struct s_mbxtime
 typedef struct s_mbxsettings
 {
 	int		fps_cap;
+	int		viewport_mode;
 }	t_mbxsettings;
 
 typedef struct s_mbxcontext

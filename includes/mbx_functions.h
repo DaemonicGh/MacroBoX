@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:03:51 by daemo             #+#    #+#             */
-/*   Updated: 2025/12/23 18:31:10 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/27 21:57:17 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "mbx_structs.h"
 # include "mbx_vectors.h"
+
+mlx_color		color(unsigned int hex);
 
 t_mbximage		mbx_make_image(t_mbxcontext *mbx, int width, int height);
 t_mbximage		mbx_make_image_from_mlx(mlx_image image, int width, int height);
@@ -27,10 +29,11 @@ t_mbxwindow		mbx_make_window_target(t_mbxcontext *mbx, t_mbximage image);
 void			mbx_refresh_window(t_mbxcontext *mbx);
 void			mbx_center_window(t_mbxcontext *mbx);
 
+t_vec2i			get_screen_size(t_mbxcontext *mbx);
+
 void			mbx_run(t_mbxcontext *mbx,
 					void (*update)(t_mbxcontext *mbx, void *args), void *args);
-t_mbxcontext	*mbx_init(t_vec2i viewport_size, t_vec2i win_size,
-					char *win_title, int win_mode);
+t_mbxcontext	*mbx_init(t_vec2i viewport_size, char *win_title, int win_mode);
 void			mbx_exit(t_mbxcontext *mbx);
 
 void			mbx_reset_settings(t_mbxcontext *mbx);

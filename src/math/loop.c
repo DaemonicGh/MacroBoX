@@ -5,32 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 17:12:15 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/27 20:58:24 by daemo            ###   ########.fr       */
+/*   Created: 2025/12/27 16:42:32 by daemo             #+#    #+#             */
+/*   Updated: 2025/12/27 17:39:51 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
-#include "../includes/mbx_internal.h"
+#include "../../includes/mbx.h"
 
-static void	mbx_loop(void *rawcontext)
+int	loop(int val, int low, int high)
 {
-	t__mbxloopcontext	*context;
-
-	context = rawcontext;
-	mbx_start_frame(context->mbx);
-	context->update(context->mbx, context->args);
-	mbx_end_frame(context->mbx);
+	while (val > high)
+		val -= high;
+	while (val < low)
+		val += low;
+	return (val);
 }
 
-void	mbx_run(t_mbxcontext *mbx,
-		void (*update)(t_mbxcontext *mbx, void *args), void *args)
+double	floop(double val, double low, double high)
 {
-	t__mbxloopcontext	context;
+	while (val > high)
+		val -= high;
+	while (val < low)
+		val += low;
+	return (val);
+}
 
-	context.mbx = mbx;
-	context.update = update;
-	context.args = args;
-	mlx_add_loop_hook(mbx->mlx, &mbx_loop, &context);
-	mlx_loop(mbx->mlx);
+float	floopf(float val, float low, float high)
+{
+	while (val > high)
+		val -= high;
+	while (val < low)
+		val += low;
+	return (val);
+}
+
+long double	floopl(long double val, long double low, long double high)
+{
+	while (val > high)
+		val -= high;
+	while (val < low)
+		val += low;
+	return (val);
 }

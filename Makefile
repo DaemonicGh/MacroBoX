@@ -6,7 +6,7 @@
 #    By: daemo <daemo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/24 19:51:36 by rprieur           #+#    #+#              #
-#    Updated: 2025/12/27 15:23:03 by daemo            ###   ########.fr        #
+#    Updated: 2025/12/27 21:57:34 by daemo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ NAME := libmbx.so
 LIB := MacroLibX-2.2.2/libmlx.so
 LIBFLAGS := -lSDL2 -lm
 
-SRCF :=	exit image init loop mouse settings window \
-		events/events events/keyboard events/mouse events/window
+SRCF :=	color exit image init loop_end loop_start loop mouse screen settings window \
+		events/events events/keyboard events/mouse events/window \
+		math/clamp math/conv math/lerp math/loop math/minmax
 
 VECF :=	add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
 		div/div_d div/div_i div/div_to_d div/div_to_i div/div_to div/div \
@@ -30,16 +31,13 @@ VECF :=	add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
 		print printi rotate round square to_vec to_veci zero
 
 VECDIR := vectors/
-VEC := $(addprefix $(VECDIR), $(VECF))
-
-SRCF += $(VEC)
-
 SRCDIR := src/
-SRC := $(addprefix $(SRCDIR), $(addsuffix .c, $(SRCF)))
-
-HDR :=	includes
-
 OBJDIR := objs/
+HDR    := includes
+
+VEC := $(addprefix $(VECDIR), $(VECF))
+SRCF += $(VEC)
+SRC := $(addprefix $(SRCDIR), $(addsuffix .c, $(SRCF)))
 OBJ := $(patsubst $(SRCDIR)%.c, $(OBJDIR)%.o, $(SRC))
 
 # **************************************************************************** #

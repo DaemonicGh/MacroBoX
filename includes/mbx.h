@@ -27,6 +27,7 @@
 # include "mbx_vectors.h"
 # include "mbx_constants.h"
 # include "mbx_scancodes.h"
+# include "mbx_math.h"
 # include "mbx_functions.h"
 
 #endif
