@@ -6,11 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:20:24 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 19:12:44 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/22 22:26:12 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/mbx.h"
+
+#include <stdio.h>
 
 static void	reset_inputs(t_mbxcontext *mbx)
 {
@@ -26,7 +28,8 @@ static void	reset_inputs(t_mbxcontext *mbx)
 	mbx->inputs.should_exit = false;
 }
 
-t_mbxcontext	*mbx_init(t_vec2i win_size, char *win_title, int win_mode)
+t_mbxcontext	*mbx_init(t_vec2i viewport_size, t_vec2i win_size,
+			char *win_title, int win_mode)
 {
 	t_mbxcontext	*mbx;
 
@@ -34,11 +37,12 @@ t_mbxcontext	*mbx_init(t_vec2i win_size, char *win_title, int win_mode)
 	mbx->mlx = mlx_init();
 	mbx->window = mbx_make_window(mbx, win_size, win_title, win_mode);
 	mbx->viewport = mbx_make_window_target(mbx,
-			mbx_make_image(mbx, win_size.x, win_size.y));
+			mbx_make_image(mbx, viewport_size.x, viewport_size.y));
 	reset_inputs(mbx);
+	mbx_reset_settings(mbx);
 	mbx_start_events(mbx);
 	mbx->time.frames_elapsed = 0;
-	mbx->time.delta = 0.05;
+	mbx->time.delta = 1.0 / mbx->settings.fps_cap;
 	gettimeofday(&mbx->time.frame_start, NULL);
 	return (mbx);
 }

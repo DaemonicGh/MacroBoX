@@ -18,10 +18,13 @@
 # include <math.h>
 # include <sys/time.h>
 
+# include <stdio.h>
+
 # include "../MacroLibX-2.2.2/includes/mlx.h"
 # include "../MacroLibX-2.2.2/includes/mlx_extended.h"
 
 # include "mbx_structs.h"
+# include "mbx_vectors.h"
 # include "mbx_constants.h"
 # include "mbx_scancodes.h"
 # include "mbx_functions.h"

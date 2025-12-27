@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:25:27 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 19:01:18 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/21 21:13:43 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define MBX_INPUT_ARRAY_MOUSE_END 527
 # define MBX_INPUT_ARRAY_WINDOW_START 528
 # define MBX_INPUT_ARRAY_WINDOW_END 559
-
 
 # define MBX_KEY_NONE 0
 

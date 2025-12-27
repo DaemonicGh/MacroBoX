@@ -15,56 +15,7 @@
 
 # include "../MacroLibX-2.2.2/includes/mlx.h"
 # include "mbx_scancodes.h"
-
-typedef struct s_vec2
-{
-	double	x;
-	double	y;
-}	t_vec2;
-
-t_vec2		vec2_new(double x, double y);
-t_vec2		vec2_add(t_vec2 p1, t_vec2 p2);
-t_vec2		vec2_addto(t_vec2 *p1, t_vec2 p2);
-t_vec2		vec2_sub(t_vec2 p1, t_vec2 p2);
-
-typedef struct s_vec2i
-{
-	int	x;
-	int	y;
-}	t_vec2i;
-
-t_vec2i		vec2i_new(int x, int y);
-t_vec2i		vec2i_add(t_vec2i p1, t_vec2i p2);
-t_vec2i		vec2i_addto(t_vec2i *p1, t_vec2i p2);
-t_vec2i		vec2i_sub(t_vec2i p1, t_vec2i p2);
-
-t_vec2i		vec2_round(t_vec2 p);
-
-typedef struct s_vec3
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_vec3;
-
-t_vec3		vec3_new(double x, double y, double z);
-t_vec3		vec3_add(t_vec3 p1, t_vec3 p2);
-t_vec3		vec3_addto(t_vec3 *p1, t_vec3 p2);
-t_vec3		vec3_sub(t_vec3 p1, t_vec3 p2);
-
-typedef struct s_vec3i
-{
-	int	x;
-	int	y;
-	int	z;
-}	t_vec3i;
-
-t_vec3i		vec3i_new(int x, int y, int z);
-t_vec3i		vec3i_add(t_vec3i p1, t_vec3i p2);
-t_vec3i		vec3i_addto(t_vec3i *p1, t_vec3i p2);
-t_vec3i		vec3i_sub(t_vec3i p1, t_vec3i p2);
-
-t_vec3i		vec3_round(t_vec3 p);
+# include "mbx_vectors.h"
 
 typedef struct s_mbximage
 {
@@ -104,10 +55,15 @@ typedef struct s_mbxtime
 	struct timeval	frame_start;
 }	t_mbxtime;
 
+typedef struct s_mbxsettings
+{
+	int		fps_cap;
+}	t_mbxsettings;
 
 typedef struct s_mbxcontext
 {
 	mlx_context		mlx;
+	t_mbxsettings	settings;
 	t_mbxwindow		window;
 	t_mbxwindow		viewport;
 	t_mbxinputs		inputs;

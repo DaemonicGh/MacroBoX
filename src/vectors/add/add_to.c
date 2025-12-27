@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector2.c                                          :+:      :+:    :+:   */
+/*   add_to.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 17:55:25 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 10:38:01 by daemo            ###   ########.fr       */
+/*   Created: 2025/12/22 23:08:27 by daemo             #+#    #+#             */
+/*   Updated: 2025/12/23 18:21:26 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/mbx.h"
+#include "../../../includes/mbx.h"
 
-t_vec2	vec2_new(double x, double y)
-{
-	return ((t_vec2){.x = x, .y = y});
-}
-
-t_vec2i	vec2_round(t_vec2 p)
-{
-	return ((t_vec2i){.x = roundf(p.x), .y = roundf(p.y)});
-}
-
-t_vec2	vec2_add(t_vec2 p1, t_vec2 p2)
-{
-	return ((t_vec2){.x = p1.x + p2.x, .y = p1.y + p2.y});
-}
-
-t_vec2	vec2_addto(t_vec2 *p1, t_vec2 p2)
+t_vec2	vec2_add_to(t_vec2 *p1, t_vec2 p2)
 {
 	p1->x += p2.x;
 	p1->y += p2.y;
 	return (*p1);
 }
 
-t_vec2	vec2_sub(t_vec2 p1, t_vec2 p2)
+t_vec2i	vec2i_add_to(t_vec2i *p1, t_vec2i p2)
 {
-	return ((t_vec2){.x = p1.x - p2.x, .y = p1.y - p2.y});
+	p1->x += p2.x;
+	p1->y += p2.y;
+	return (*p1);
+}
+
+t_vec3	vec3_add_to(t_vec3 *p1, t_vec3 p2)
+{
+	p1->x += p2.x;
+	p1->y += p2.y;
+	p1->z += p2.z;
+	return (*p1);
+}
+
+t_vec3i	vec3i_add_to(t_vec3i *p1, t_vec3i p2)
+{
+	p1->x += p2.x;
+	p1->y += p2.y;
+	p1->z += p2.z;
+	return (*p1);
 }

@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:10 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 19:04:31 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/21 21:18:23 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	key_down_hook(int key, void *param)
 	t_mbxcontext	*mbx;
 
 	key += MBX_INPUT_ARRAY_KEYBOARD_START;
-	if (key < MBX_INPUT_ARRAY_KEYBOARD_START || key > MBX_INPUT_ARRAY_KEYBOARD_END)
+	if (key < MBX_INPUT_ARRAY_KEYBOARD_START
+		|| key > MBX_INPUT_ARRAY_KEYBOARD_END)
 		return ;
 	mbx = param;
 	if (mbx->inputs.btn[key])
@@ -32,7 +33,8 @@ void	key_up_hook(int key, void *param)
 	t_mbxcontext	*mbx;
 
 	key += MBX_INPUT_ARRAY_KEYBOARD_START;
-	if (key < MBX_INPUT_ARRAY_KEYBOARD_START || key > MBX_INPUT_ARRAY_KEYBOARD_END)
+	if (key < MBX_INPUT_ARRAY_KEYBOARD_START
+		|| key > MBX_INPUT_ARRAY_KEYBOARD_END)
 		return ;
 	mbx = param;
 	mbx->inputs.btn[key] = false;

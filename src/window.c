@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:33:36 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 11:44:52 by daemo            ###   ########.fr       */
+/*   Updated: 2025/12/21 21:17:47 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_mbxwindow	mbx_make_window(t_mbxcontext *mbx,
 	win.title = title;
 	win.is_fullscreen = mode >> 1 & 1;
 	if (mode & 1)
-		write(1, "\033[1;36mMacroBoX doesn't support window resizing yet, sorry :P\033[0m\n", 66);
+		write(1, "\033[1;36mMacroBoX doesn't support window resizing yet, \
+			sorry :P\033[0m\n", 66);
 	win.is_resizable = 0;
 	win.win = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
 			NULL, win.title, win.width, win.height,
