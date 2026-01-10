@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 15:00:07 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/22 22:32:35 by daemo            ###   ########.fr       */
+/*   Created: 2025/11/26 15:00:07 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/10 01:51:53 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/mbx.h"
 
-void	mbx_exit(t_mbxcontext *mbx)
+void	mbx_exit(t_mbx *mbx)
 {
 	mlx_loop_end(mbx->mlx);
-	mlx_destroy_image(mbx->mlx, mbx->viewport.image);
-	mlx_destroy_window(mbx->mlx, mbx->viewport.win);
+	mbx_destroy_region(mbx, &mbx->viewport);
+	mbx_destroy_font(mbx, &mbx->font);
 	mlx_destroy_window(mbx->mlx, mbx->window.win);
 	mlx_destroy_context(mbx->mlx);
 	free(mbx);

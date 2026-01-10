@@ -6,23 +6,25 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 20:52:30 by daemo             #+#    #+#             */
-/*   Updated: 2025/12/27 21:00:09 by daemo            ###   ########.fr       */
+/*   Updated: 2026/01/09 05:28:38 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/mbx.h"
+#include "../includes/mbx_internal.h"
 
-static void	refresh_deltatime(t_mbxcontext *mbx)
+static void	refresh_deltatime(t_mbx *mbx)
 {
-	struct timeval	end;
+	double	time;
 
-	gettimeofday(&end, NULL);
-	mbx->time.delta = (double)(end.tv_sec - mbx->time.frame_start.tv_sec)
-		+ (double)(end.tv_usec - mbx->time.frame_start.tv_usec) / 1000000;
-	mbx->time.frame_start = end;
+	time = get_sec_since_epoch();
+	if (time == -1)
+		return ;
+	mbx->time.delta = time - mbx->time.frame_start;
+	mbx->time.frame_start = time;
 }
 
-static void	refresh_mouse(t_mbxcontext *mbx)
+static void	refresh_mouse(t_mbx *mbx)
 {
 	mbx->inputs.prev_mouse.x = mbx->inputs.mouse.x;
 	mbx->inputs.prev_mouse.y = mbx->inputs.mouse.y;
@@ -34,11 +36,11 @@ static void	refresh_mouse(t_mbxcontext *mbx)
 		/ mbx->window.height;
 }
 
-void	mbx_start_frame(t_mbxcontext *mbx)
+void	mbx_start_frame(t_mbx *mbx)
 {
 	refresh_deltatime(mbx);
 	refresh_mouse(mbx);
 	mlx_get_window_size(mbx->mlx, mbx->window.win,
 		&mbx->window.width, &mbx->window.height);
-	mlx_clear_window(mbx->mlx, mbx->window.win, (mlx_color){.rgba = 0x0});
+	mlx_clear_window(mbx->mlx, mbx->window.win, mbx->settings.background_color);
 }

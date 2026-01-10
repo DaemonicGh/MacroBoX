@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx.h                                            :+:      :+:    :+:   */
+/*   mbx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:17:20 by rprieur           #+#    #+#             */
-/*   Updated: 2025/11/25 17:17:21 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/09 01:57:10 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# include <sys/time.h>
-
-# include <stdio.h>
 
 # include "../MacroLibX-2.2.2/includes/mlx.h"
 # include "../MacroLibX-2.2.2/includes/mlx_extended.h"

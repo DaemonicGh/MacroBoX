@@ -6,13 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 21:54:33 by daemo             #+#    #+#             */
-/*   Updated: 2025/12/27 21:56:47 by daemo            ###   ########.fr       */
+/*   Updated: 2026/01/02 14:36:02 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/mbx.h"
 
-t_vec2i	get_screen_size(t_mbxcontext *mbx)
+t_vec2i	get_screen_size(t_mbx *mbx)
 {
 	t_vec2i	size;
 

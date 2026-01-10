@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 15:58:38 by daemo             #+#    #+#             */
-/*   Updated: 2025/12/27 20:24:07 by daemo            ###   ########.fr       */
+/*   Updated: 2026/01/02 17:27:20 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 int			min(int val1, int val2);
 int			max(int val1, int val2);
+
+int			sign(int val);
+int			fsign(double val);
+int			fsignf(float val);
+int			fsignl(long double val);
 
 int			lerp(int start, int end, double delta);
 double		flerp(double start, double end, double delta);

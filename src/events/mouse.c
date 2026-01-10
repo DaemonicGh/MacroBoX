@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:18 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 21:18:18 by daemo            ###   ########.fr       */
+/*   Updated: 2026/01/02 14:36:02 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mouse_down_hook(int button, void *param)
 {
-	t_mbxcontext	*mbx;
+	t_mbx	*mbx;
 
 	button += MBX_INPUT_ARRAY_MOUSE_START;
 	if (button < MBX_INPUT_ARRAY_MOUSE_START
@@ -29,7 +29,7 @@ void	mouse_down_hook(int button, void *param)
 
 void	mouse_up_hook(int button, void *param)
 {
-	t_mbxcontext	*mbx;
+	t_mbx	*mbx;
 
 	button += MBX_INPUT_ARRAY_MOUSE_START;
 	if (button < MBX_INPUT_ARRAY_MOUSE_START
@@ -42,7 +42,7 @@ void	mouse_up_hook(int button, void *param)
 
 void	mouse_wheel_hook(int button, void *param)
 {
-	t_mbxcontext	*mbx;
+	t_mbx	*mbx;
 
 	if (button < 0 || button > 2)
 		return ;

@@ -1,4 +1,2 @@
-extra math lib /
-color stuff .
-drawing lib (with viewport abstraction)
+better more specific includes in src files
 Comment everything

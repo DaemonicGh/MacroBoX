@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_structs.h                                    :+:      :+:    :+:   */
+/*   mbx_structs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:14:40 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/03 16:14:42 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/10 01:50:28 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MBX_STRUCTS_H
 # define MBX_STRUCTS_H
 
+# include <sys/time.h>
 # include "../MacroLibX-2.2.2/includes/mlx.h"
 # include "mbx_scancodes.h"
 # include "mbx_vectors.h"
@@ -36,6 +37,22 @@ typedef struct s_mbxwindow
 
 }	t_mbxwindow;
 
+typedef struct s_mbxregion
+{
+	mlx_color	*canvas;
+	mlx_image	image;
+	int			width;
+	int			height;
+}	t_mbxregion;
+
+typedef struct s_mbxfont
+{
+	t_mbxregion	region;
+	t_vec2i		glyph_size;
+	t_vec2i		grid_size;
+	mlx_color	color;
+}	t_mbxfont;
+
 typedef struct s_mbxinputs
 {
 	bool		btn[MBX_INPUT_ARRAY_LENGTH];
@@ -52,13 +69,14 @@ typedef struct s_mbxtime
 {
 	unsigned long	frames_elapsed;
 	double			delta;
-	struct timeval	frame_start;
+	double			frame_start;
+	double			sec_per_frame;
 }	t_mbxtime;
 
 typedef struct s_mbxsettings
 {
-	int		fps_cap;
-	int		viewport_mode;
+	mlx_color	background_color;
+	int			fps_cap;
 }	t_mbxsettings;
 
 typedef struct s_mbxcontext
@@ -66,16 +84,17 @@ typedef struct s_mbxcontext
 	mlx_context		mlx;
 	t_mbxsettings	settings;
 	t_mbxwindow		window;
-	t_mbxwindow		viewport;
+	t_mbxregion		viewport;
+	t_mbxfont		font;
 	t_mbxinputs		inputs;
 	t_mbxtime		time;
-}	t_mbxcontext;
+}	t_mbx;
 
 typedef struct s__mbxloopcontext
 {
-	t_mbxcontext	*mbx;
-	void			(*update)(t_mbxcontext *mbx, void *args);
-	void			*args;
+	t_mbx	*mbx;
+	void	(*update)(t_mbx *mbx, void *args);
+	void	*args;
 }	t__mbxloopcontext;
 
 #endif

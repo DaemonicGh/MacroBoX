@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 11:51:10 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 21:18:23 by daemo            ###   ########.fr       */
+/*   Created: 2025/11/27 11:51:10 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/09 02:21:01 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	key_down_hook(int key, void *param)
 {
-	t_mbxcontext	*mbx;
+	t_mbx	*mbx;
 
 	key += MBX_INPUT_ARRAY_KEYBOARD_START;
 	if (key < MBX_INPUT_ARRAY_KEYBOARD_START
@@ -30,7 +30,7 @@ void	key_down_hook(int key, void *param)
 
 void	key_up_hook(int key, void *param)
 {
-	t_mbxcontext	*mbx;
+	t_mbx	*mbx;
 
 	key += MBX_INPUT_ARRAY_KEYBOARD_START;
 	if (key < MBX_INPUT_ARRAY_KEYBOARD_START

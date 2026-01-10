@@ -6,14 +6,14 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:43 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/22 22:24:50 by daemo            ###   ########.fr       */
+/*   Updated: 2026/01/02 14:36:02 by daemo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/mbx.h"
 #include <stdio.h>
 
-void	mbx_flush_inputs(t_mbxcontext *mbx)
+void	mbx_flush_inputs(t_mbx *mbx)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ void	mbx_flush_inputs(t_mbxcontext *mbx)
 	mbx->inputs.mouse_wheel = 0;
 }
 
-void	mbx_start_events(t_mbxcontext *mbx)
+void	mbx_start_events(t_mbx *mbx)
 {
 	mlx_on_event(mbx->mlx, mbx->window.win,
 		MLX_KEYDOWN, key_down_hook, mbx);
