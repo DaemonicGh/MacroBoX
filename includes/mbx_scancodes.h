@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 17:25:27 by rprieur           #+#    #+#             */
-/*   Updated: 2025/12/21 21:13:43 by daemo            ###   ########.fr       */
+/*   Created: 2025/11/25 17:25:27 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/11 20:42:06 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,13 @@
 // Window events (not tested)
 
 # define MBX_WINDOW_CLOSE 528
+# define MBX_WINDOW_MOVE 529
+# define MBX_WINDOW_MINIMIZE 530
+# define MBX_WINDOW_MAXIMIZE 531
+# define MBX_WINDOW_ENTER 532
+# define MBX_WINDOW_FOCUS 533
+# define MBX_WINDOW_LEAVE 534
+# define MBX_WINDOW_UNFOCUS 535
+# define MBX_WINDOW_RESIZE 536
 
 #endif
