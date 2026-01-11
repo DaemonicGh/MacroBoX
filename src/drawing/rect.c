@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 14:46:52 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/09 23:41:54 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/10 14:06:14 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static inline void	format_size(t_vec2i *pos, t_vec2i *size)
 }
 
 void	mbx_set_region_rect(t_mbxregion *region,
-	t_vec2i pos, t_vec2i size, mlx_color color)
+	t_vec2i pos, t_vec2i size, mlx_color col)
 {
 	int	x;
 	int	y;
@@ -39,7 +39,7 @@ void	mbx_set_region_rect(t_mbxregion *region,
 		y = 0;
 		while (y < size.y)
 		{
-			mbx_set_region_pixel_xy(region, pos.x + x, pos.y + y, color);
+			mbx_set_region_pixel_xy(region, pos.x + x, pos.y + y, col);
 			y++;
 		}
 		x++;
@@ -47,7 +47,7 @@ void	mbx_set_region_rect(t_mbxregion *region,
 }
 
 void	mbx_set_region_rect_border(t_mbxregion *region,
-	t_vec2i pos, t_vec2i size, mlx_color color)
+	t_vec2i pos, t_vec2i size, mlx_color col)
 {
 	int	i;
 
@@ -55,26 +55,26 @@ void	mbx_set_region_rect_border(t_mbxregion *region,
 	i = 0;
 	while (i < size.x)
 	{
-		mbx_set_region_pixel_xy(region, pos.x + i, pos.y, color);
-		mbx_set_region_pixel_xy(region, pos.x + i, pos.y + size.y - 1, color);
+		mbx_set_region_pixel_xy(region, pos.x + i, pos.y, col);
+		mbx_set_region_pixel_xy(region, pos.x + i, pos.y + size.y - 1, col);
 		i++;
 	}
 	i = 1;
 	while (i + 1 < size.y)
 	{
-		mbx_set_region_pixel_xy(region, pos.x, pos.y + i, color);
-		mbx_set_region_pixel_xy(region, pos.x + size.x - 1, pos.y + i, color);
+		mbx_set_region_pixel_xy(region, pos.x, pos.y + i, col);
+		mbx_set_region_pixel_xy(region, pos.x + size.x - 1, pos.y + i, col);
 		i++;
 	}
 }
 
-void	mbx_set_rect(t_mbx *mbx, t_vec2i pos, t_vec2i size, mlx_color color)
+void	mbx_set_rect(t_mbx *mbx, t_vec2i pos, t_vec2i size, mlx_color col)
 {
-	mbx_set_region_rect(&mbx->viewport, pos, size, color);
+	mbx_set_region_rect(&mbx->viewport, pos, size, col);
 }
 
 void	mbx_set_rect_border(t_mbx *mbx,
-	t_vec2i pos, t_vec2i size, mlx_color color)
+	t_vec2i pos, t_vec2i size, mlx_color col)
 {
-	mbx_set_region_rect_border(&mbx->viewport, pos, size, color);
+	mbx_set_region_rect_border(&mbx->viewport, pos, size, col);
 }

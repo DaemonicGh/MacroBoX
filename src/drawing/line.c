@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 17:09:36 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/09 02:45:20 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/11 20:29:00 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,17 @@ static inline void	line_step(t_vec2i *step, int *err, t_vec2i d, t_vec2i s)
 	}
 }
 
-void	mbx_set_region_line(t_mbxregion *region, t_2vec2i pos, mlx_color color)
+void	mbx_set_region_line(t_mbxregion *region, t_2vec2i pos, mlx_color col)
 {
-	const t_vec2i	d = vec2i(
-			abs(pos.p2.x - pos.p1.x), abs(pos.p2.y - pos.p1.y));
+	const t_vec2i	d = vec2i_abs(vec2i_sub(pos.p2, pos.p1));
 	const t_vec2i	s = vec2i(
-			(pos.p1.x < pos.p2.x) * 2 - 1, (pos.p1.y < pos.p2.y) * 2 - 1);
+			bsign(pos.p1.x < pos.p2.x), bsign(pos.p1.y < pos.p2.y));
 	int				err;
 
 	err = d.x - d.y;
 	while (true)
 	{
-		mbx_set_region_pixel_xy(region, pos.p1.x, pos.p1.y, color);
+		mbx_set_region_pixel_xy(region, pos.p1.x, pos.p1.y, col);
 		if (pos.p1.x == pos.p2.x && pos.p1.y == pos.p2.y)
 			break ;
 		line_step(&pos.p1, &err, d, s);
@@ -48,12 +47,11 @@ void	mbx_set_region_line(t_mbxregion *region, t_2vec2i pos, mlx_color color)
 }
 
 void	mbx_set_region_line_thick(t_mbxregion *region,
-	t_2vec2i pos, unsigned int thickness, mlx_color color)
+	t_2vec2i pos, unsigned int thickness, mlx_color col)
 {
-	const t_vec2i	d = vec2i(
-			abs(pos.p2.x - pos.p1.x), abs(pos.p2.y - pos.p1.y));
+	const t_vec2i	d = vec2i_abs(vec2i_sub(pos.p2, pos.p1));
 	const t_vec2i	s = vec2i(
-			(pos.p1.x < pos.p2.x) * 2 - 1, (pos.p1.y < pos.p2.y) * 2 - 1);
+			bsign(pos.p1.x < pos.p2.x), bsign(pos.p1.y < pos.p2.y));
 	int				err;
 
 	err = d.x - d.y;
@@ -61,25 +59,25 @@ void	mbx_set_region_line_thick(t_mbxregion *region,
 	{
 		if (d.x < d.y)
 			mbx_set_region_rect(region,
-				vec2i(pos.p1.x - (float)thickness / 2 - 0.5, pos.p1.y),
-				vec2i(thickness, 1), color);
+				vec2i(pos.p1.x - thickness / 2, pos.p1.y),
+				vec2i(thickness, 1), col);
 		else
 			mbx_set_region_rect(region,
-				vec2i(pos.p1.x, pos.p1.y - (float)thickness / 2 - 0.5),
-				vec2i(1, thickness), color);
+				vec2i(pos.p1.x, pos.p1.y - thickness / 2),
+				vec2i(1, thickness), col);
 		if (pos.p1.x == pos.p2.x && pos.p1.y == pos.p2.y)
 			break ;
 		line_step(&pos.p1, &err, d, s);
 	}
 }
 
-void	mbx_set_line(t_mbx *mbx, t_2vec2i pos, mlx_color color)
+void	mbx_set_line(t_mbx *mbx, t_2vec2i pos, mlx_color col)
 {
-	mbx_set_region_line(&mbx->viewport, pos, color);
+	mbx_set_region_line(&mbx->viewport, pos, col);
 }
 
 void	mbx_set_line_thick(t_mbx *mbx,
-	t_2vec2i pos, unsigned int thickness, mlx_color color)
+	t_2vec2i pos, unsigned int thickness, mlx_color col)
 {
-	mbx_set_region_line_thick(&mbx->viewport, pos, thickness, color);
+	mbx_set_region_line_thick(&mbx->viewport, pos, thickness, col);
 }

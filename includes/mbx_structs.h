@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:14:40 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/10 01:50:28 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/10 13:33:14 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ typedef struct s_mbxinputs
 
 typedef struct s_mbxtime
 {
-	unsigned long	frames_elapsed;
 	double			delta;
 	double			frame_start;
+	double			app_start;
 	double			sec_per_frame;
+	unsigned long	frames_elapsed;
 }	t_mbxtime;
 
 typedef struct s_mbxsettings

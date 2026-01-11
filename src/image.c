@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:34:34 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 01:21:50 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/10 14:06:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,6 @@ t_mbximage	mbx_make_image_from_mlx(mlx_image image, int width, int height)
 	img.width = width;
 	img.height = height;
 	return (img);
-}
-
-void	mbx_fill_image(t_mbx *mbx, t_mbximage image, mlx_color color)
-{
-	mlx_color	*buffer;
-	int			i;
-
-	buffer = malloc(sizeof(mlx_color) * image.width * image.height);
-	i = 0;
-	while (i < image.width * image.height)
-		buffer[i++] = color;
-	mlx_set_image_region(mbx->mlx, image.img, 0, 0,
-		image.width, image.height, buffer);
-	free(buffer);
 }
 
 void	mbx_destroy_image(t_mbx *mbx, t_mbximage *image)

@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:20:24 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 01:58:05 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/10 13:33:57 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,14 @@ static int	make_window(t_mbx *mbx, t_vec2i viewport_size,
 
 static void	init_time(t_mbx *mbx)
 {
+	double	time;
+
+	time = get_sec_since_epoch();
+	mbx->time.app_start = time;
+	mbx->time.frame_start = time;
 	mbx->time.sec_per_frame = 0;
 	mbx->time.frames_elapsed = 0;
 	mbx->time.delta = 1.0 / mbx->settings.fps_cap;
-	mbx->time.frame_start = get_sec_since_epoch();
 }
 
 t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, int win_mode)
