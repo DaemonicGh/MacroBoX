@@ -6,31 +6,31 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 20:35:12 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 14:20:23 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:19:12 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
+#include "../includes/modules/types/mbx_s_color.h"
 
-mlx_color	color(unsigned int hex)
+t_mbxcolor	color(unsigned int hex)
 {
-	return ((mlx_color){.rgba = hex << 8 | 0xFF});
+	return ((t_mbxcolor){.rgba = hex << 8 | 0xFF});
 }
 
-mlx_color	color_rgba(unsigned int hex)
+t_mbxcolor	color_rgba(unsigned int hex)
 {
-	return ((mlx_color){.rgba = hex});
+	return ((t_mbxcolor){.rgba = hex});
 }
 
-mlx_color	color_opaque(mlx_color col)
+t_mbxcolor	color_opaque(t_mbxcolor col)
 {
-	return ((mlx_color){.rgba = col.rgba | 0xFF});
+	return ((t_mbxcolor){.rgba = col.rgba | 0xFF});
 }
 
-mlx_color	color_blend(mlx_color bg, mlx_color fg)
+t_mbxcolor	color_blend(t_mbxcolor bg, t_mbxcolor fg)
 {
 	const int	a = fg.a;
-	mlx_color	out;
+	t_mbxcolor	out;
 
 	out.r = bg.r + ((fg.r - bg.r) * a) / 255;
 	out.g = bg.g + ((fg.g - bg.g) * a) / 255;

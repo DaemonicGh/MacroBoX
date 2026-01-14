@@ -6,11 +6,9 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:42:32 by daemo             #+#    #+#             */
-/*   Updated: 2025/12/27 17:39:51 by daemo            ###   ########.fr       */
+/*   Updated: 2026/01/15 00:17:56 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../includes/mbx.h"
 
 int	loop(int val, int low, int high)
 {

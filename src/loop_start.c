@@ -6,12 +6,11 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 20:52:30 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/09 05:28:38 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:38:03 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
-#include "../includes/mbx_internal.h"
+#include "headers/mbx_internal.h"
 
 static void	refresh_deltatime(t_mbx *mbx)
 {

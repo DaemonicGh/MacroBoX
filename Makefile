@@ -10,52 +10,59 @@
 #                                                                              #
 # **************************************************************************** #
 
+MAKE = make --no-print-directory
+
 CC := cc
-CFLAGS := -shared -o
-OBJFLAGS := -Wall -Wextra -Werror -fPIC -g
+CFLAGS := -Wall -Wextra -Werror -fPIC -g
 
 NAME := libmbx.so
 
-LIB := MacroLibX-2.2.2/libmlx.so
-LIBFLAGS := -lSDL2 -lm
+LIB := -LMacroLibX-2.2.2 -lmlx \
+       -Wl,-rpath,'$$ORIGIN/MacroLibX-2.2.2' \
+       -lSDL2 -lm
 
 SRCF :=	color draw_viewport exit font image init loop_end loop_start loop \
 		mouse screen settings region window \
 		drawing/clear drawing/get_pixel drawing/rect drawing/region drawing/line \
 		drawing/set_pixel drawing/text \
 		events/events events/keyboard events/mouse events/window \
-		math/clamp math/conv math/lerp math/loop math/minmax math/sign \
+		math/clamp math/move_towards math/lerp math/loop math/minmax math/sign \
 		utils/bsign utils/palloc utils/time
 
-VECF :=	add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
+VECF := add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
+		conv/to_vec conv/to_veci \
 		div/div_d div/div_i div/div_to_d div/div_to_i div/div_to div/div \
-		groups/2vec groups/2vec_xy groups/3vec groups/4vec \
+		groups/vecx2 groups/vecx2_xy groups/vecx3 groups/vecx4 \
+		linear/cross linear/dist linear/dot linear/length linear/normalize linear/rotate \
+		math/abs math/eq math/is_zero math/negative math/round math/square\
 		mult/mult_d mult/mult_i mult/mult_to_d mult/mult_to_i mult/mult_to mult/mult \
+		new/implicit_new new/new new/zero \
 		sub/sub_d sub/sub_i sub/sub_to_d sub/sub_to_i sub/sub_to sub/sub \
-		abs cross dist dot eq implicit_new is_zero length negative new normalize \
-		print printi rotate round square to_vec to_veci zero
+		print/print print/printi
 
-VECDIR := vectors/
 SRCDIR := src/
+VECDIR := VecLibC/src/
 OBJDIR := objs/
-HDR    := includes
+HDR    := includes/
 
-VEC := $(addprefix $(VECDIR), $(VECF))
-SRCF += $(VEC)
+VEC := $(addprefix $(VECDIR), $(addsuffix .c, $(VECF)))
+
 SRC := $(addprefix $(SRCDIR), $(addsuffix .c, $(SRCF)))
-OBJ := $(patsubst $(SRCDIR)%.c, $(OBJDIR)%.o, $(SRC))
+SRC += $(VEC)
+
+OBJ := $(patsubst %.c, $(OBJDIR)%.o, $(SRC))
 
 # **************************************************************************** #
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(NAME) $(OBJ)
+$(NAME): lib $(OBJ)
+	@$(CC) -shared -o $(NAME) $(OBJ) $(LIB)
 	@echo "\033[1mMacroBoX Compiled Successfully!\033[0m"
 
-$(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
+$(OBJDIR)%.o: %.c | $(OBJDIR)
 	@mkdir -p $(dir $@)
-	@$(CC) -c $(OBJFLAGS) -I $(HDR) $< -o $@
+	@$(CC) -c $(CFLAGS) -I $(HDR) $< -o $@
 
 $(OBJDIR):
 	@mkdir $(OBJDIR)
@@ -69,12 +76,10 @@ fclean: clean
 
 re: fclean all
 
-mlx:
-	@$(MAKE) --no-print-directory -C MacroLibX-2.2.2 -j
-
-full: mlx all
+lib:
+	@$(MAKE) -C MacroLibX-2.2.2 -j
 
 norm:
 	@-norminette $(SRC)
 
-.PHONY: all clean fclean re mlx full norm
+.PHONY: all clean fclean re lib norm

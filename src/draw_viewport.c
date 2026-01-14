@@ -6,11 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 17:56:25 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/09 05:54:43 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:21:23 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
+#include "../includes/modules/mbx_drawing.h"
+#include "../includes/modules/mbx_math.h"
+#include "../includes/modules/mbx_mlx_ext.h"
 
 void	draw_viewport(t_mbx *mbx)
 {

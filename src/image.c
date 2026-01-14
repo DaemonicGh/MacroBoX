@@ -6,11 +6,11 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:34:34 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 14:06:54 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:25:16 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
+#include "../includes/modules/types/mbx_s_mbx.h"
 
 t_mbximage	mbx_make_image(t_mbx *mbx, int width, int height)
 {

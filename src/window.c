@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 18:33:36 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/02 19:50:03 by daemo            ###   ########.fr       */
+/*   Created: 2025/11/25 18:33:36 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/15 00:40:23 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
+#include <stddef.h>
+#include "../includes/modules/types/mbx_s_mbx.h"
 
 t_mbxwindow	mbx_make_window(t_mbx *mbx,
 		t_vec2i size, char *title, int mode)

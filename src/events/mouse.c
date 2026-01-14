@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 11:51:18 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/02 14:36:02 by daemo            ###   ########.fr       */
+/*   Created: 2025/11/27 11:51:18 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/15 00:16:40 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/mbx.h"
+#include "../../includes/modules/types/mbx_s_mbx.h"
 
 void	mouse_down_hook(int button, void *param)
 {

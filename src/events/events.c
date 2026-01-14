@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 11:51:43 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/02 14:36:02 by daemo            ###   ########.fr       */
+/*   Created: 2025/11/27 11:51:43 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/15 00:40:49 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/mbx.h"
-#include <stdio.h>
+#include "../../includes/modules/mbx_inputs.h"
 
 void	mbx_flush_inputs(t_mbx *mbx)
 {

@@ -6,11 +6,12 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:28:29 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 00:16:35 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:39:48 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
+#include "../includes/modules/types/mbx_s_mbx.h"
+#include "../includes/modules/consts/mbx_c_other.h"
 
 void	mbx_reset_settings(t_mbx *mbx)
 {

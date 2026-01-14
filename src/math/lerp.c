@@ -6,11 +6,9 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 15:39:34 by daemo             #+#    #+#             */
-/*   Updated: 2025/12/27 16:29:34 by daemo            ###   ########.fr       */
+/*   Updated: 2026/01/15 00:17:51 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../includes/mbx.h"
 
 int	lerp(int start, int end, double delta)
 {

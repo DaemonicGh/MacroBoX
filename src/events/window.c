@@ -6,11 +6,12 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:29 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/09 03:07:25 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:13:52 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/mbx.h"
+#include "../../includes/modules/types/mbx_s_mbx.h"
+#include "../../includes/modules/consts/mbx_c_scancodes.h"
 
 void	window_hook(int event, void *param)
 {

@@ -6,11 +6,14 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:00:07 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 01:51:53 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:23:09 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
+#include <stdlib.h>
+#include "../includes/modules/mbx_mlx.h"
+#include "../includes/modules/mbx_region.h"
+#include "../includes/modules/mbx_font.h"
 
 void	mbx_exit(t_mbx *mbx)
 {

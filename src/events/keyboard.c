@@ -6,11 +6,11 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:10 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/09 02:21:01 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:12:36 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/mbx.h"
+#include "../../includes/modules/types/mbx_s_mbx.h"
 
 void	key_down_hook(int key, void *param)
 {

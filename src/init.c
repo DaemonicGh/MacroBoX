@@ -6,12 +6,18 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:20:24 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 13:33:57 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:31:57 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
-#include "../includes/mbx_internal.h"
+#include <stdlib.h>
+#include "../VecLibC/includes/modules/veclc_vec2i.h"
+#include "../includes/modules/mbx_inputs.h"
+#include "../includes/modules/mbx_math.h"
+#include "../includes/modules/mbx_region.h"
+#include "../includes/modules/mbx_settings.h"
+#include "../includes/modules/mbx_window.h"
+#include "headers/mbx_internal.h"
 
 static void	reset_inputs(t_mbx *mbx)
 {

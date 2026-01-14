@@ -6,25 +6,16 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:17:20 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/09 01:57:10 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:03:44 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MBX_H
 # define MBX_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <math.h>
-
-# include "../MacroLibX-2.2.2/includes/mlx.h"
-# include "../MacroLibX-2.2.2/includes/mlx_extended.h"
-
-# include "mbx_structs.h"
-# include "mbx_vectors.h"
-# include "mbx_constants.h"
-# include "mbx_scancodes.h"
-# include "mbx_math.h"
-# include "mbx_functions.h"
+# include "../VecLibC/includes/modules/types/veclc_s_vecnxn.h"
+# include "modules/mbx_structs.h"
+# include "modules/mbx_constants.h"
+# include "modules/mbx_all_functions.h"
 
 #endif

@@ -6,16 +6,16 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 13:46:18 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/10 14:07:19 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:11:57 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/mbx.h"
+#include "../../includes/modules/mbx_drawing.h"
 
 static void	colored_subregion(t_mbxregion *dest,
-	t_3vec2i posuvwh, t_mbxregion *src, mlx_color col)
+	t_vec2ix3 posuvwh, t_mbxregion *src, t_mbxcolor col)
 {
-	mlx_color	pixel;
+	t_mbxcolor	pixel;
 	int			x;
 	int			y;
 
@@ -44,7 +44,7 @@ void	mbx_set_region_char(t_mbxregion *region,
 {
 	if (c < 0)
 		return ;
-	colored_subregion(region, t3vec2i(pos,
+	colored_subregion(region, vec2ix3(pos,
 			vec2i(c % font->grid_size.x * font->glyph_size.x,
 				c / font->grid_size.x * font->glyph_size.y),
 			font->glyph_size), &font->region, font->color);
@@ -73,9 +73,9 @@ void	mbx_set_region_text(t_mbxregion *region,
 	}
 }
 
-void	mbx_set_char(t_mbx *mbx, t_vec2i pos, char c, mlx_color col_override)
+void	mbx_set_char(t_mbx *mbx, t_vec2i pos, char c, t_mbxcolor col_override)
 {
-	const mlx_color	original_color = mbx->font.color;
+	const t_mbxcolor	original_color = mbx->font.color;
 
 	mbx->font.color = col_override;
 	mbx_set_region_char(&mbx->viewport, pos, c, &mbx->font);
@@ -83,9 +83,9 @@ void	mbx_set_char(t_mbx *mbx, t_vec2i pos, char c, mlx_color col_override)
 }
 
 void	mbx_set_text(t_mbx *mbx,
-	t_vec2i pos, const char *str, mlx_color col_override)
+	t_vec2i pos, const char *str, t_mbxcolor col_override)
 {
-	const mlx_color	original_color = mbx->font.color;
+	const t_mbxcolor	original_color = mbx->font.color;
 
 	mbx->font.color = col_override;
 	mbx_set_region_text(&mbx->viewport, pos, str, &mbx->font);

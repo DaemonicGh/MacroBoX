@@ -6,11 +6,11 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 14:46:52 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/10 14:06:14 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:09:07 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/mbx.h"
+#include "../../includes/modules/mbx_drawing.h"
 
 static inline void	format_size(t_vec2i *pos, t_vec2i *size)
 {
@@ -27,7 +27,7 @@ static inline void	format_size(t_vec2i *pos, t_vec2i *size)
 }
 
 void	mbx_set_region_rect(t_mbxregion *region,
-	t_vec2i pos, t_vec2i size, mlx_color col)
+	t_vec2i pos, t_vec2i size, t_mbxcolor col)
 {
 	int	x;
 	int	y;
@@ -47,7 +47,7 @@ void	mbx_set_region_rect(t_mbxregion *region,
 }
 
 void	mbx_set_region_rect_border(t_mbxregion *region,
-	t_vec2i pos, t_vec2i size, mlx_color col)
+	t_vec2i pos, t_vec2i size, t_mbxcolor col)
 {
 	int	i;
 
@@ -68,13 +68,13 @@ void	mbx_set_region_rect_border(t_mbxregion *region,
 	}
 }
 
-void	mbx_set_rect(t_mbx *mbx, t_vec2i pos, t_vec2i size, mlx_color col)
+void	mbx_set_rect(t_mbx *mbx, t_vec2i pos, t_vec2i size, t_mbxcolor col)
 {
 	mbx_set_region_rect(&mbx->viewport, pos, size, col);
 }
 
 void	mbx_set_rect_border(t_mbx *mbx,
-	t_vec2i pos, t_vec2i size, mlx_color col)
+	t_vec2i pos, t_vec2i size, t_mbxcolor col)
 {
 	mbx_set_region_rect_border(&mbx->viewport, pos, size, col);
 }

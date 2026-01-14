@@ -6,12 +6,14 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:12:15 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/09 02:03:55 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:36:19 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
-#include "../includes/mbx_internal.h"
+#include "../includes/modules/types/mbx_s_mbx.h"
+#include "../includes/modules/consts/mbx_c_other.h"
+#include "headers/types/mbx_s_loopcontext.h"
+#include "headers/mbx_internal.h"
 
 static bool	skip_frame(t_mbx *mbx)
 {

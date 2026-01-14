@@ -6,14 +6,16 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:02:20 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/10 14:04:04 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/15 00:25:07 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/mbx.h"
+#include "../includes/modules/types/mbx_s_mbx.h"
+#include "../includes/modules/mbx_image.h"
+#include "../includes/modules/mbx_region.h"
 
 t_mbxfont	mbx_make_font(t_mbxregion region,
-	t_vec2i glyph_size, mlx_color col)
+	t_vec2i glyph_size, t_mbxcolor col)
 {
 	t_mbxfont	font;
 
@@ -26,7 +28,7 @@ t_mbxfont	mbx_make_font(t_mbxregion region,
 }
 
 t_mbxfont	mbx_make_font_from_file(t_mbx *mbx,
-	char *path, t_vec2i glyph_size, mlx_color col)
+	char *path, t_vec2i glyph_size, t_mbxcolor col)
 {
 	t_mbximage	image;
 	t_mbxregion	region;
