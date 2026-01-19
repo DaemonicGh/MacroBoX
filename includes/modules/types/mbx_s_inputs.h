@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:02:12 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/15 00:04:02 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 13:12:55 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 # include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
 # include "../consts/mbx_c_input_arrays.h"
 
+/**
+ * Struct holding all input data.
+ *
+ * @btn array containing the active state of each button.
+ * @btnp array containing the state of each button just pressed.
+ * @btnr array containing the state of each button just released.
+ * @last_key the last key pressed.
+ * @mouse the current mouse position.
+ * @prev_mouse the mouse position during the previous frame.
+ * @mouse_wheel the current mouse wheel state
+ * (negative if scrolling down, positive if scrolling up).
+ * @should_exit whether the application has been requested to exit.
+ */
 typedef struct s_mbxinputs
 {
 	bool		btn[MBX_INPUT_ARRAY_LENGTH];

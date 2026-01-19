@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   veclc_s_vec3.h                                     :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 20:26:53 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:46:56 by rprieur          ###   ########.fr       */
+/*   Created: 2026/01/19 14:29:38 by rprieur           #+#    #+#             */
+/*   Updated: 2026/01/19 16:42:20 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECLC_S_VEC3_H
-# define VECLC_S_VEC3_H
+#include "../../includes/modules/types/mbx_s_mbx.h"
 
-/**
- * 3D vector containing doubles.
- */
-typedef struct s_vec3
+bool	mbx_key_pressed(t_mbx *mbx, int key)
 {
-	double	x;
-	double	y;
-	double	z;
-}	t_vec3;
+	return (mbx->inputs.btnp[key]);
+}
 
-/**
- * Creates a new 3D vector containing doubles.
- */
-t_vec3		vec3(double x, double y, double z);
+bool	mbx_key_held(t_mbx *mbx, int key)
+{
+	return (mbx->inputs.btn[key] || mbx->inputs.btnp[key]);
+}
 
-#endif
+bool	mbx_key_released(t_mbx *mbx, int key)
+{
+	return (mbx->inputs.btnp[key]);
+}

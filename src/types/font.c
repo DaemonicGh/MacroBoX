@@ -6,13 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:02:20 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/15 00:25:07 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 15:15:50 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/modules/types/mbx_s_mbx.h"
-#include "../includes/modules/mbx_image.h"
-#include "../includes/modules/mbx_region.h"
+#include "../../includes/modules/types/mbx_s_mbx.h"
+#include "../../includes/modules/mbx_image.h"
+#include "../../includes/modules/mbx_region.h"
 
 t_mbxfont	mbx_make_font(t_mbxregion region,
 	t_vec2i glyph_size, t_mbxcolor col)
@@ -23,7 +23,7 @@ t_mbxfont	mbx_make_font(t_mbxregion region,
 	font.glyph_size = glyph_size;
 	font.color = col;
 	font.grid_size = vec2i(
-			region.width / glyph_size.x, region.height / glyph_size.y);
+			region.size.x / glyph_size.x, region.size.y / glyph_size.y);
 	return (font);
 }
 

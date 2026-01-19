@@ -6,11 +6,12 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:43 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/15 00:40:49 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 15:27:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_inputs.h"
+#include "../../../includes/modules/mbx_inputs.h"
+#include "../../headers/mbx_internal.h"
 
 void	mbx_flush_inputs(t_mbx *mbx)
 {

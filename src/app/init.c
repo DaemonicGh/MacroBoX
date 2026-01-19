@@ -6,18 +6,20 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:20:24 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/15 00:31:57 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 17:01:07 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../VecLibC/includes/modules/veclc_vec2i.h"
-#include "../includes/modules/mbx_inputs.h"
-#include "../includes/modules/mbx_math.h"
-#include "../includes/modules/mbx_region.h"
-#include "../includes/modules/mbx_settings.h"
-#include "../includes/modules/mbx_window.h"
-#include "headers/mbx_internal.h"
+#include "../../VecLibC/includes/modules/veclc_vec2i.h"
+#include "../../includes/modules/consts/mbx_c_other.h"
+#include "../../includes/modules/mbx_inputs.h"
+#include "../../includes/modules/mbx_math.h"
+#include "../../includes/modules/mbx_region.h"
+#include "../../includes/modules/mbx_settings.h"
+#include "../../includes/modules/mbx_window.h"
+#include "../../includes/modules/mbx_mlx_ext.h"
+#include "../headers/mbx_internal.h"
 
 static void	reset_inputs(t_mbx *mbx)
 {
@@ -45,12 +47,15 @@ static int	make_window(t_mbx *mbx, t_vec2i viewport_size,
 		return (-1);
 	mlx_get_screen_size(mbx->mlx, temp_win, &size.x, &size.y);
 	mlx_destroy_window(mbx->mlx, temp_win);
-	size = vec2i_div(vec2i_div_i(size, 2), viewport_size);
+	size.x = size.x * MBX_INIT_MAX_WINDOW_COVERAGE_RATIO / viewport_size.x;
+	size.y = size.y * MBX_INIT_MAX_WINDOW_COVERAGE_RATIO / viewport_size.y;
 	mbx->window = mbx_make_window(mbx,
 			vec2i_mult_i(viewport_size, max(min(size.x, size.y), 1)),
 			win_title, win_mode);
 	if (!mbx->window.win)
 		return (-1);
+	mlx_set_window_min_size(mbx->mlx,
+		mbx->window.win, viewport_size.x, viewport_size.y);
 	mbx->viewport = mbx_make_region(viewport_size);
 	if (!mbx->viewport.canvas)
 	{
@@ -72,7 +77,7 @@ static void	init_time(t_mbx *mbx)
 	mbx->time.delta = 1.0 / mbx->settings.fps_cap;
 }
 
-t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, int win_mode)
+t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, unsigned int flags)
 {
 	t_mbx	*mbx;
 
@@ -85,7 +90,7 @@ t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, int win_mode)
 		free(mbx);
 		return (NULL);
 	}
-	if (make_window(mbx, viewport_size, win_title, win_mode) == -1)
+	if (make_window(mbx, viewport_size, win_title, flags) == -1)
 	{
 		mlx_destroy_context(mbx->mlx);
 		free(mbx);

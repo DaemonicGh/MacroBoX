@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 02:42:49 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/15 00:07:56 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/18 21:07:22 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_mbxcolor	mbx_get_region_pixel_xy(t_mbxregion *region, int x, int y)
 {
-	if (x < 0 || x >= region->width || y < 0 || y >= region->height)
+	if (x < 0 || x >= region->size.x || y < 0 || y >= region->size.y)
 		return (color(0));
-	return (region->canvas[y * region->width + x]);
+	return (region->canvas[y * region->size.x + x]);
 }
 
 t_mbxcolor	mbx_get_region_pixel(t_mbxregion *region, t_vec2i pos)

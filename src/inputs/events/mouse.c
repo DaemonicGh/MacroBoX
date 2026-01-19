@@ -6,11 +6,12 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:18 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/15 00:16:40 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 17:14:13 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
+#include "../../../includes/modules/types/mbx_s_mbx.h"
+#include "../../headers/mbx_internal.h"
 
 void	mouse_down_hook(int button, void *param)
 {
@@ -25,6 +26,7 @@ void	mouse_down_hook(int button, void *param)
 		return ;
 	mbx->inputs.btn[button] = true;
 	mbx->inputs.btnp[button] = true;
+	special_key_handler(mbx, button);
 }
 
 void	mouse_up_hook(int button, void *param)

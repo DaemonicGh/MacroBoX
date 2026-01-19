@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:35:40 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/15 00:23:58 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 13:13:16 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 # include "mbx_s_time.h"
 # include "mbx_s_image.h"
 
+/**
+ * The context structure for the MacroBoX application.
+ *
+ * @mlx			the MacroLibX context.
+ * @settings	struct containing modifiable data about the application.
+ * @window		the application window.
+ * @viewport	the image where the application is rendered.
+ * @font		the base font used for rendering text.
+ * @inputs		struct containing input-related data.
+ * @time		struct containing time-related data.
+ */
 typedef struct s_mbxcontext
 {
 	mlx_context		mlx;

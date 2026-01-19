@@ -6,14 +6,14 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 20:52:50 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/15 00:37:41 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 15:05:41 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/modules/mbx_inputs.h"
-#include "../includes/modules/mbx_loop.h"
-#include "../includes/modules/mbx_settings.h"
-#include "headers/mbx_internal.h"
+#include "../../includes/modules/mbx_inputs.h"
+#include "../../includes/modules/mbx_loop.h"
+#include "../../includes/modules/mbx_settings.h"
+#include "../headers/mbx_internal.h"
 
 static void	update_time_stuff(t_mbx *mbx)
 {

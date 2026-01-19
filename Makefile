@@ -13,7 +13,7 @@
 MAKE = make --no-print-directory
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -fPIC -g
+CFLAGS := -Wall -Wextra -Werror -fPIC -g -O2 -march=native -flto -DNDEBUG
 
 NAME := libmbx.so
 
@@ -21,12 +21,15 @@ LIB := -LMacroLibX-2.2.2 -lmlx \
        -Wl,-rpath,'$$ORIGIN/MacroLibX-2.2.2' \
        -lSDL2 -lm
 
-SRCF :=	color draw_viewport exit font image init loop_end loop_start loop \
-		mouse screen settings region window \
-		drawing/clear drawing/get_pixel drawing/rect drawing/region drawing/line \
-		drawing/set_pixel drawing/text \
-		events/events events/keyboard events/mouse events/window \
-		math/clamp math/move_towards math/lerp math/loop math/minmax math/sign \
+SRCF :=	mouse screen \
+		types/color types/font types/image types/settings types/region types/window \
+		app/draw_viewport app/exit app/init app/loop app/loop_start app/loop_end \
+		drawing/clear drawing/get_pixel drawing/rect drawing/region drawing/region_scaled \
+		drawing/line drawing/set_pixel drawing/set_pixel_raw drawing/set_pixel_tools \
+		drawing/set_pixel_unsafe drawing/text drawing/subregion_scaled \
+		inputs/check inputs/press inputs/special \
+		inputs/events/events inputs/events/keyboard inputs/events/mouse inputs/events/window \
+		math/clamp math/is_integer math/move_towards math/lerp math/wrap math/minmax math/sign \
 		utils/bsign utils/palloc utils/time
 
 VECF := add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
@@ -80,6 +83,6 @@ lib:
 	@$(MAKE) -C MacroLibX-2.2.2 -j
 
 norm:
-	@-norminette $(SRC)
+	@-norminette $(SRC) $(HDR)**
 
 .PHONY: all clean fclean re lib norm

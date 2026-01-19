@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   veclc_s_vec3.h                                     :+:      :+:    :+:   */
+/*   is_integer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 20:26:53 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:46:56 by rprieur          ###   ########.fr       */
+/*   Created: 2026/01/16 05:09:19 by rprieur           #+#    #+#             */
+/*   Updated: 2026/01/19 11:56:26 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECLC_S_VEC3_H
-# define VECLC_S_VEC3_H
+#include <math.h>
+#include <stdbool.h>
 
-/**
- * 3D vector containing doubles.
- */
-typedef struct s_vec3
+bool	is_integer(double val)
 {
-	double	x;
-	double	y;
-	double	z;
-}	t_vec3;
+	return (val == floor(val));
+}
 
-/**
- * Creates a new 3D vector containing doubles.
- */
-t_vec3		vec3(double x, double y, double z);
+bool	is_integerf(float val)
+{
+	return (val == floorf(val));
+}
 
-#endif
+bool	is_integerl(long double val)
+{
+	return (val == floorl(val));
+}

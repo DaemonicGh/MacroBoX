@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:34:58 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/15 00:27:04 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/19 16:41:42 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,87 @@
 
 # include "types/mbx_s_mbx.h"
 
-void			mbx_start_events(t_mbx *mbx);
-void			mbx_flush_inputs(t_mbx *mbx);
-void			key_down_hook(int key, void *param);
-void			key_up_hook(int key, void *param);
-void			mouse_down_hook(int button, void *param);
-void			mouse_up_hook(int button, void *param);
-void			mouse_wheel_hook(int button, void *param);
-void			window_hook(int event, void *param);
-void			mbx_warp_mouse(t_mbx *mbx, int x, int y);
+/**
+ * Returns true if a key has just been pressed.
+ *
+ * @mbx the MacroBoX context.
+ * @key the key to check.
+ *
+ * see MBX_KEY_*, MBX_MOUSE_* and MBX_WINDOW_* for key codes.
+ */
+bool	mbx_key_pressed(t_mbx *mbx, int key);
+
+/**
+ * Returns true if a key is currently held.
+ *
+ * @mbx the MacroBoX context.
+ * @key the key to check.
+ *
+ * see MBX_KEY_*, MBX_MOUSE_* and MBX_WINDOW_* for key codes.
+ */
+bool	mbx_key_held(t_mbx *mbx, int key);
+
+/**
+ * Returns true if a key has just been released.
+ *
+ * @mbx the MacroBoX context.
+ * @key the key to check.
+ *
+ * see MBX_KEY_*, MBX_MOUSE_* and MBX_WINDOW_* for key codes.
+ */
+bool	mbx_key_released(t_mbx *mbx, int key);
+
+/**
+ * Forces the press of a key for one frame.
+ *
+ * @mbx the MacroBoX context.
+ * @key the key to press.
+ *
+ * This function doesn't trigger the btn array.
+ */
+void	mbx_press_key(t_mbx *mbx, int key);
+
+/**
+ * Forces the press of a key indefinitely.
+ *
+ * @mbx the MacroBoX context.
+ * @key the key to press.
+ *
+ * Calling mbx_release_key() or releasing the physical key will stop the hold.
+ */
+void	mbx_hold_key(t_mbx *mbx, int key);
+
+/**
+ * Forces the release of a key.
+ *
+ * @mbx the MacroBoX context.
+ * @key the key to release.
+ */
+void	mbx_release_key(t_mbx *mbx, int key);
+
+/**
+ * Warps the mouse cursor to the given position.
+ *
+ * @mbx the MacroBoX context.
+ * @x the new x position.
+ * @y the new y position.
+ */
+void	mbx_warp_mouse(t_mbx *mbx, t_vec2i pos);
+
+/**
+ * Warps the mouse cursor to the given position.
+ *
+ * @mbx the MacroBoX context.
+ * @x the new x position.
+ * @y the new y position.
+ */
+void	mbx_warp_mouse_xy(t_mbx *mbx, int x, int y);
+
+/**
+ * Updates all inputs like if a frame passed.
+ *
+ * @mbx the MacroBoX context.
+ */
+void	mbx_flush_inputs(t_mbx *mbx);
 
 #endif
