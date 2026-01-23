@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 20:52:30 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 15:04:30 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/01/24 00:09:16 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ static void	refresh_deltatime(t_mbx *mbx)
 
 static void	refresh_mouse(t_mbx *mbx)
 {
-	mbx->inputs.prev_mouse.x = mbx->inputs.mouse.x;
-	mbx->inputs.prev_mouse.y = mbx->inputs.mouse.y;
+	t_vec2i	mouse_pos;
+
+	mouse_pos = mbx->inputs.mouse;
 	mlx_mouse_get_pos(mbx->mlx,
 		&mbx->inputs.mouse.x, &mbx->inputs.mouse.y);
+	mbx->inputs.mouse_delta.x = mbx->inputs.mouse.x - mouse_pos.x;
+	mbx->inputs.mouse_delta.y = mbx->inputs.mouse.y - mouse_pos.y;
 	mbx->inputs.mouse.x *= (double)mbx->viewport.size.x
 		/ mbx->window.size.x;
 	mbx->inputs.mouse.y *= (double)mbx->viewport.size.y
