@@ -22,6 +22,7 @@
 # include "mbx_math.h"
 # include "mbx_region.h"
 # include "mbx_settings.h"
+# include "mbx_viewport.h"
 # include "mbx_window.h"
 
 #endif

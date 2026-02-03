@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../includes/modules/mbx_inputs.h"
-#include "../../includes/modules/mbx_loop.h"
 #include "../../includes/modules/mbx_settings.h"
 #include "../headers/mbx_internal.h"
 

@@ -13,7 +13,7 @@
 MAKE = make --no-print-directory
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -fPIC -g -O2 -march=native -flto -DNDEBUG
+CFLAGS := -Wall -Wextra -Werror -fPIC -g -O2 -march=native -DNDEBUG
 
 NAME := libmbx.so
 
@@ -23,7 +23,7 @@ LIB := -LMacroLibX-2.2.2 -lmlx \
 
 SRCF :=	mouse screen \
 		types/color types/font types/image types/settings types/region types/window \
-		app/draw_viewport app/exit app/init app/loop app/loop_start app/loop_end \
+		app/viewport app/exit app/init app/loop app/loop_start app/loop_end \
 		drawing/clear drawing/get_pixel drawing/rect drawing/region drawing/region_scaled \
 		drawing/line drawing/set_pixel drawing/set_pixel_raw drawing/set_pixel_tools \
 		drawing/set_pixel_unsafe drawing/text drawing/subregion_scaled \

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "../../includes/modules/types/mbx_s_color.h"
 
 t_mbxcolor	color(unsigned int hex)

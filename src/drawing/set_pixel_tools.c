@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
+#include "../../includes/modules/types/mbx_s_region.h"
 
 bool	mbx_region_is_pixel_in_bounds_i(t_mbxregion *region, int i)
 {

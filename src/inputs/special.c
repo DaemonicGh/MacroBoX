@@ -12,7 +12,6 @@
 
 #include "../../includes/modules/types/mbx_s_mbx.h"
 #include "../../includes/modules/consts/mbx_c_scancodes.h"
-#include "../../includes/modules/consts/mbx_c_other.h"
 
 void	special_key_handler(t_mbx *mbx, int key)
 {

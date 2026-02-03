@@ -3,3 +3,4 @@ VeclibC/objs
 MacroLibX-2.2.2/objs
 .gitignore
 TODO
+ignore/*

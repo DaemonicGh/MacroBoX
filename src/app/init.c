@@ -23,10 +23,11 @@
 
 static void	reset_inputs(t_mbx *mbx)
 {
-	int	i;
+	t_vec2i	new_mouse;
+	int		i;
 
-	mlx_mouse_get_pos(mbx->mlx, &mbx->inputs.mouse.x, &mbx->inputs.mouse.x);
-	mbx->inputs.prev_mouse = mbx->inputs.mouse;
+	mlx_mouse_get_pos(mbx->mlx, &new_mouse.x, &new_mouse.y);
+	mbx->inputs.mouse_delta = vec2i_sub(new_mouse, mbx->inputs.mouse);
 	i = 0;
 	while (i < MBX_INPUT_ARRAY_LENGTH)
 		mbx->inputs.btn[i++] = false;

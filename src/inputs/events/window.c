@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../../includes/modules/types/mbx_s_mbx.h"
-#include "../../../includes/modules/consts/mbx_c_scancodes.h"
 #include "../../headers/mbx_internal.h"
 
 void	window_hook(int event, void *param)

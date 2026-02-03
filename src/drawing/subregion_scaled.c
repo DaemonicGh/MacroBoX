@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_color.h"
 #include "../../includes/modules/mbx_math.h"
 #include "../../VecLibC/includes/modules/veclc_vec2.h"
 

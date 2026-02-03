@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_viewport.c                                    :+:      :+:    :+:   */
+/*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,32 @@
 
 #include "../../includes/modules/types/mbx_s_mbx.h"
 #include "../../includes/modules/mbx_math.h"
+#include "../../includes/modules/mbx_region.h"
 #include "../../includes/modules/mbx_mlx_ext.h"
-#include <stdlib.h>
+
+bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
+{
+	t_mbxregion	new;
+
+	new = mbx_make_region(size);
+	if (!new.canvas)
+		return (false);
+	mbx_destroy_region(mbx, &mbx->viewport);
+	mbx->viewport = new;
+	return (true);
+}
+
+bool	mbx_resize_viewport_xy(t_mbx *mbx, int width, int height)
+{
+	t_mbxregion	new;
+
+	new = mbx_make_region_wh(width, height);
+	if (!new.canvas)
+		return (false);
+	mbx_destroy_region(mbx, &mbx->viewport);
+	mbx->viewport = new;
+	return (true);
+}
 
 void	draw_viewport(t_mbx *mbx)
 {

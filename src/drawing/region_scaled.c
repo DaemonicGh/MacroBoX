@@ -12,10 +12,8 @@
 
 #include <stdlib.h>
 #include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_color.h"
 #include "../../includes/modules/mbx_math.h"
 #include "../../VecLibC/includes/modules/veclc_vec2.h"
-#include "../../VecLibC/includes/modules/veclc_vec2i.h"
 
 static void	set_region_int_scaled(t_mbxregion *region, t_mbxregion *src,
 	t_vec2i pos, t_vec2i scale)
