@@ -19,7 +19,7 @@ LIB := -lm
 
 SRCF :=	add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
 		conv/to_vec conv/to_veci \
-		div/div_d div/div_i div/div_to_d div/div_to_i div/div_to div/div \
+		div/div_d div/div_i div/div_to_d div/div_to_i div/div_to div/div div/truediv \
 		groups/vecx2 groups/vecx2_xy groups/vecx3 groups/vecx4 \
 		linear/cross linear/dist linear/dot linear/length linear/normalize linear/rotate \
 		math/abs math/eq math/is_zero math/negative math/round math/square\

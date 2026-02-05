@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:32 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:07:00 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 04:25:25 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@
  */
 t_mbxregion		mbx_make_region(t_vec2i size);
 
+
 /**
- * Creates and returns a new region with the given width and height.
+ * Creates and returns a new region with a linked image.
  *
- * @width The width of the region to create.
- * @height The height of the region to create
+ * @mbx The macrobox context.
+ * @size The size of the region to create.
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
-t_mbxregion		mbx_make_region_wh(int width, int height);
+t_mbxregion		mbx_make_region_with_image(t_mbx *mbx, t_vec2i size);
 
 /**
  * Creates and returns a new region from the given image.

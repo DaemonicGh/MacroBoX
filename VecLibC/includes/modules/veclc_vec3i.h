@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:56:27 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 14:27:23 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 05:04:07 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_vec3i		vec3i_zero(void);
 t_vec3i		vec3i_add(t_vec3i p1, t_vec3i p2);
 
 /**
- * Adds i to both components of a 3D vector.
+ * Adds i to all components of a 3D vector.
  */
 t_vec3i		vec3i_add_i(t_vec3i p, int i);
 
@@ -44,7 +44,7 @@ t_vec3i		vec3i_add_i(t_vec3i p, int i);
 t_vec3i		vec3i_add_to(t_vec3i *p1, t_vec3i p2);
 
 /**
- * Adds i to both components of a 3D vector and stores the result in the vector.
+ * Adds i to all components of a 3D vector and stores the result in the vector.
  */
 t_vec3i		vec3i_add_to_i(t_vec3i *p, int i);
 
@@ -54,7 +54,7 @@ t_vec3i		vec3i_add_to_i(t_vec3i *p, int i);
 t_vec3i		vec3i_sub(t_vec3i p1, t_vec3i p2);
 
 /**
- * Subtracts i from both components of a 3D vector.
+ * Subtracts i from all components of a 3D vector.
  */
 t_vec3i		vec3i_sub_i(t_vec3i p, int i);
 
@@ -64,7 +64,7 @@ t_vec3i		vec3i_sub_i(t_vec3i p, int i);
 t_vec3i		vec3i_sub_to(t_vec3i *p1, t_vec3i p2);
 
 /**
- * Subtracts i from both components of a 3D vector
+ * Subtracts i from all components of a 3D vector
  * and stores the result in the vector.
  */
 t_vec3i		vec3i_sub_to_i(t_vec3i *p, int i);
@@ -75,7 +75,7 @@ t_vec3i		vec3i_sub_to_i(t_vec3i *p, int i);
 t_vec3i		vec3i_mult(t_vec3i p1, t_vec3i p2);
 
 /**
- * Multiplies both components of a 3D vector by i.
+ * Multiplies all components of a 3D vector by i.
  */
 t_vec3i		vec3i_mult_i(t_vec3i p, int i);
 
@@ -85,7 +85,7 @@ t_vec3i		vec3i_mult_i(t_vec3i p, int i);
 t_vec3i		vec3i_mult_to(t_vec3i *p1, t_vec3i p2);
 
 /**
- * Multiplies both components of a 3D vector by i
+ * Multiplies all components of a 3D vector by i
  * and stores the result in the vector.
  */
 t_vec3i		vec3i_mult_to_i(t_vec3i *p, int i);
@@ -96,7 +96,7 @@ t_vec3i		vec3i_mult_to_i(t_vec3i *p, int i);
 t_vec3i		vec3i_div(t_vec3i p1, t_vec3i p2);
 
 /**
- * Divides both components of a 3D vector by i.
+ * Divides all components of a 3D vector by i.
  */
 t_vec3i		vec3i_div_i(t_vec3i p, int i);
 
@@ -106,10 +106,21 @@ t_vec3i		vec3i_div_i(t_vec3i p, int i);
 t_vec3i		vec3i_div_to(t_vec3i *p1, t_vec3i p2);
 
 /**
- * Divides both components of a 3D vector by i
+ * Divides all components of a 3D vector by i
  * and stores the result in the vector.
  */
 t_vec3i		vec3i_div_to_i(t_vec3i *p, int i);
+
+/**
+ * Divides two 3D vectors and keeps the division float precision.
+ */
+t_vec3		vec3i_truediv(t_vec3i p1, t_vec3i p2);
+
+/**
+ * Divides all components of 3D vector by d
+ * and keeps the division float precision.
+ */
+t_vec3		vec3i_truediv_d(t_vec3i p, double d);
 
 /**
  * Negates a 3D vector.
@@ -123,17 +134,17 @@ t_vec3i		vec3i_square(t_vec3i p);
 
 /**
  * Returns a 3D vector with absolute values
- * of both components of a vector.
+ * of all components of a vector.
  */
 t_vec3i		vec3i_abs(t_vec3i p);
 
 /**
- *  Returns true if both components of two 3D vectors are equal.
+ *  Returns true if all components of two 3D vectors are equal.
  */
 bool		vec3i_eq(t_vec3i p1, t_vec3i p2);
 
 /**
- * Returns true if both components of a 3D vector are zero.
+ * Returns true if all components of a 3D vector are zero.
  */
 bool		vec3i_is_zero(t_vec3i p);
 

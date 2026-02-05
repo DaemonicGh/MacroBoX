@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:34:34 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 15:17:58 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 05:14:38 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ t_mbximage	mbx_make_image_from_file(t_mbx *mbx, char *path)
 	return (img);
 }
 
-t_mbximage	mbx_make_image_from_mlx(mlx_image image, int width, int height)
+t_mbximage	mbx_make_image_from_mlx(mlx_image image, t_vec2i size)
 {
 	t_mbximage	img;
 
 	img.img = image;
-	img.size.x = width;
-	img.size.y = height;
+	img.size = size;
 	return (img);
 }
 

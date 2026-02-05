@@ -6,29 +6,42 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:02:39 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 15:14:53 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 04:22:58 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../includes/modules/types/mbx_s_mbx.h"
 
-t_mbxregion	mbx_make_region_wh(int width, int height)
+t_mbxregion	mbx_make_region(t_vec2i size)
 {
 	t_mbxregion	region;
 
-	region.size.x = width;
-	region.size.y = height;
-	region.canvas = malloc(sizeof(t_mbxcolor) * width * height);
+	region.size.x = size.x;
+	region.size.y = size.y;
+	region.canvas = malloc(sizeof(t_mbxcolor) * size.x * size.y);
 	if (!region.canvas)
 		return ((t_mbxregion){0});
 	region.image = NULL;
 	return (region);
 }
 
-t_mbxregion	mbx_make_region(t_vec2i size)
+t_mbxregion	mbx_make_region_with_image(t_mbx *mbx, t_vec2i size)
 {
-	return (mbx_make_region_wh(size.x, size.y));
+	t_mbxregion	region;
+
+	region.size.x = size.x;
+	region.size.y = size.y;
+	region.canvas = malloc(sizeof(t_mbxcolor) * size.x * size.y);
+	if (!region.canvas)
+		return ((t_mbxregion){0});
+	region.image = mlx_new_image(mbx->mlx, size.x, size.y);
+	if (!region.image)
+	{
+		free(region.canvas);
+		return ((t_mbxregion){0});
+	}
+	return (region);
 }
 
 t_mbxregion	mbx_make_region_from_image(t_mbx *mbx, t_mbximage *image)
@@ -36,7 +49,7 @@ t_mbxregion	mbx_make_region_from_image(t_mbx *mbx, t_mbximage *image)
 	t_mbxregion	region;
 	int			i;
 
-	region = mbx_make_region_wh(image->size.x, image->size.y);
+	region = mbx_make_region(image->size);
 	if (!region.canvas)
 		return ((t_mbxregion){0});
 	region.image = image->img;

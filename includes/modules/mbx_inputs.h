@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:34:58 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 16:41:42 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 04:17:07 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,6 @@ void	mbx_release_key(t_mbx *mbx, int key);
  * @y the new y position.
  */
 void	mbx_warp_mouse(t_mbx *mbx, t_vec2i pos);
-
-/**
- * Warps the mouse cursor to the given position.
- *
- * @mbx the MacroBoX context.
- * @x the new x position.
- * @y the new y position.
- */
-void	mbx_warp_mouse_xy(t_mbx *mbx, int x, int y);
 
 /**
  * Updates all inputs like if a frame passed.

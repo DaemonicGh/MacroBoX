@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:16 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 15:18:33 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 05:15:11 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ t_mbximage		mbx_make_image_from_file(t_mbx *mbx, char *path);
  *
  * @mbx the MacroBoX context.
  * @image the MacroLibX image.
- * @width the width of the image.
- * @height the height of the image.
+ * @size the size of the image.
  */
-t_mbximage		mbx_make_image_from_mlx(mlx_image image, int width, int height);
+t_mbximage		mbx_make_image_from_mlx(mlx_image image, t_vec2i size);
 
 /**
  * Destroys and frees the content of a MacroBoX image.

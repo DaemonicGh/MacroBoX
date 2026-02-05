@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:20:24 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 17:01:07 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 04:34:05 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	make_window(t_mbx *mbx, t_vec2i viewport_size,
 		return (-1);
 	mlx_set_window_min_size(mbx->mlx,
 		mbx->window.win, viewport_size.x, viewport_size.y);
-	mbx->viewport = mbx_make_region(viewport_size);
+	mbx->viewport = mbx_make_region_with_image(mbx, viewport_size);
 	if (!mbx->viewport.canvas)
 	{
 		mlx_destroy_window(mbx->mlx, mbx->window.win);

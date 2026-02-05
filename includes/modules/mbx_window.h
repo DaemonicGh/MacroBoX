@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:22 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:16:34 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 03:43:42 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_mbxwindow		mbx_make_window_target(t_mbx *mbx, t_mbximage image);
  * @mbx			the MacroBoX context.
  * @window		the window to destroy.
  */
-void			mbx_destroy_window(t_mbx *mbx, t_mbxwindow window);
+void			mbx_destroy_window(t_mbx *mbx, t_mbxwindow *window);
 
 /**
  * Refreshes the given window's properties to match its values.

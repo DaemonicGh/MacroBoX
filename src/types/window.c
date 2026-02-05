@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:33:36 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 17:23:22 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 03:43:21 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,9 @@ void	mbx_center_window(t_mbx *mbx, t_mbxwindow *window)
 	mlx_set_window_position(mbx->mlx, window->win,
 		screen.x / 2 - window->size.x / 2,
 		screen.y / 2 - window->size.y / 2);
+}
+
+void	mbx_destroy_window(t_mbx *mbx, t_mbxwindow *window)
+{
+	mlx_destroy_window(mbx->mlx, window->win);
 }

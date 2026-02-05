@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:46:58 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/03 17:46:58 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 04:14:00 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,18 @@
  * @size	The new size of the viewport.
  *
  * This function can fail allocation, then it will return false.
- * It is recommended to call this function before any draw call
- * as the content inside the previous viewport will be discarded.
  */
 bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size);
 
 /**
- * Resizes the viewport.
+ * Resizes the viewport and its content.
  *
  * @mbx		The MacroBoX context.
- * @width	The new width of the viewport.
- * @height	The new height of the viewport.
+ * @size	The new size of the viewport.
  *
  * This function can fail allocation, then it will return false.
- * It is recommended to call this function before any draw call
- * as the content inside the previous viewport will be discarded.
+ * The content of the viewport will stretch to fit the new size.
  */
-bool	mbx_resize_viewport_xy(t_mbx *mbx, int width, int height);
+bool	mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size);
 
 #endif

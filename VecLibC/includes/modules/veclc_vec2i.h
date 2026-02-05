@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:56:23 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 14:25:44 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 05:02:46 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,17 @@ t_vec2i		vec2i_div_to(t_vec2i *p1, t_vec2i p2);
  * and stores the result in the vector.
  */
 t_vec2i		vec2i_div_to_i(t_vec2i *p, int i);
+
+/**
+ * Divides two 2D vectors and keeps the division float precision.
+ */
+t_vec2		vec2i_truediv(t_vec2i p1, t_vec2i p2);
+
+/**
+ * Divides both components of 2D vector by d
+ * and keeps the division float precision.
+ */
+t_vec2		vec2i_truediv_d(t_vec2i p, double d);
 
 /**
  * Negates a 2D vector.

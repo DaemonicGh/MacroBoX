@@ -6,14 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 18:29:49 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/14 22:05:25 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 04:37:01 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECLC_H
 # define VECLC_H
 
-# include "modules/vecn.h"
-# include "modules/vecnxn.h"
+# include "modules/veclc_all_vecs.h"
 
 #endif
