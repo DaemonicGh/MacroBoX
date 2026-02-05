@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:32 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/05 04:25:25 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/05 05:35:36 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * This function can fail allocation, then the returned region will be 0 padded.
  */
 t_mbxregion		mbx_make_region(t_vec2i size);
-
 
 /**
  * Creates and returns a new region with a linked image.
