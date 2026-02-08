@@ -6,13 +6,10 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 23:20:30 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/15 00:21:03 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_MLX_EXT_H
-# define MBX_MLX_EXT_H
+#pragma once
 
-# include "../../MacroLibX-2.2.2/includes/mlx_extended.h"
-
-#endif
+#include "../../MacroLibX-2.2.2/includes/mlx_extended.h"

@@ -6,20 +6,19 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:35:40 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:13:16 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_S_MBX_H
-# define MBX_S_MBX_H
+#pragma once
 
-# include "mbx_s_settings.h"
-# include "mbx_s_window.h"
-# include "mbx_s_region.h"
-# include "mbx_s_font.h"
-# include "mbx_s_inputs.h"
-# include "mbx_s_time.h"
-# include "mbx_s_image.h"
+#include "mbx_s_settings.h"
+#include "mbx_s_window.h"
+#include "mbx_s_region.h"
+#include "mbx_s_font.h"
+#include "mbx_s_inputs.h"
+#include "mbx_s_time.h"
+#include "mbx_s_image.h"
 
 /**
  * The context structure for the MacroBoX application.
@@ -42,5 +41,3 @@ typedef struct s_mbxcontext
 	t_mbxinputs		inputs;
 	t_mbxtime		time;
 }	t_mbx;
-
-#endif

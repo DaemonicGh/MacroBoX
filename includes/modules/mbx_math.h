@@ -6,14 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 15:58:38 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 16:44:24 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_MATH_H
-# define MBX_MATH_H
+#pragma once
 
-# include <stdbool.h>
+#include <stdbool.h>
 
 /**
  * Returns the minimum of two integers.
@@ -155,5 +154,3 @@ float		fmove_towardsf(float x, float goal, float incr);
  * If incr is negative, x will be moved away from goal.
  */
 long double	fmove_towardsl(long double x, long double goal, long double incr);
-
-#endif

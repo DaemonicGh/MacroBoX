@@ -6,15 +6,14 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:02:12 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/24 00:08:49 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_S_INPUTS_H
-# define MBX_S_INPUTS_H
+#pragma once
 
-# include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
-# include "../consts/mbx_c_input_arrays.h"
+#include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
+#include "../consts/mbx_c_input_arrays.h"
 
 /**
  * Struct holding all input data.
@@ -40,5 +39,3 @@ typedef struct s_mbxinputs
 	int			mouse_wheel;
 	bool		should_exit;
 }	t_mbxinputs;
-
-#endif

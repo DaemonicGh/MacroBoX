@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:32 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/05 05:35:36 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_REGION_H
-# define MBX_REGION_H
+#pragma once
 
-# include "types/mbx_s_mbx.h"
+#include "types/mbx_s_mbx.h"
 
 /**
  * Creates and returns a new region with the given size.
@@ -51,5 +50,3 @@ t_mbxregion		mbx_make_region_from_image(t_mbx *mbx, t_mbximage *image);
  * @region The region to destroy.
  */
 void			mbx_destroy_region(t_mbx *mbx, t_mbxregion *region);
-
-#endif

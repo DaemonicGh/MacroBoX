@@ -6,14 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:03:51 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 17:00:49 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_LOOP_H
-# define MBX_LOOP_H
+#pragma once
 
-# include "types/mbx_s_mbx.h"
+#include "types/mbx_s_mbx.h"
 
 /**
  * Run the main loop of the application.
@@ -44,5 +43,3 @@ t_mbx			*mbx_init(t_vec2i viewport_size,
  * @mbx the MacroBoX context.
  */
 void			mbx_exit(t_mbx *mbx);
-
-#endif

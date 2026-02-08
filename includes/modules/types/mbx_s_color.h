@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:13:57 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:12:34 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_S_COLOR_H
-# define MBX_S_COLOR_H
+#pragma once
 
-# include "../mbx_mlx.h"
+#include "../mbx_mlx.h"
 
 /**
  * Represents a color in the RGBA color space.
@@ -38,5 +37,3 @@ t_mbxcolor		color(unsigned int hex);
  * the hexadecimal value is expected to be in the format 0xRRGGBBAA.
  */
 t_mbxcolor		color_rgba(unsigned int hex);
-
-#endif

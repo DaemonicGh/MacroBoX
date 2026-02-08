@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:46:58 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/05 04:14:00 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_VIEWPORT_H
-# define MBX_VIEWPORT_H
+#pragma once
 
-# include "types/mbx_s_mbx.h"
+#include "types/mbx_s_mbx.h"
 
 /**
  * Resizes the viewport.
@@ -35,5 +34,3 @@ bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size);
  * The content of the viewport will stretch to fit the new size.
  */
 bool	mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size);
-
-#endif

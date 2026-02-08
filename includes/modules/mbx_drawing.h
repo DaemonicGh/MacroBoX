@@ -6,16 +6,15 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:32:17 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 15:07:09 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_DRAWING_H
-# define MBX_DRAWING_H
+#pragma once
 
-# include "../../VecLibC/includes/modules/types/veclc_s_vecnxn.h"
-# include "types/mbx_s_mbx.h"
-# include "types/mbx_s_transform.h"
+#include "../../VecLibC/includes/modules/types/veclc_s_vecnxn.h"
+#include "types/mbx_s_mbx.h"
+#include "types/mbx_s_transform.h"
 
 /**
  * Clear the viewport with the given color.
@@ -453,5 +452,3 @@ int				mbx_region_get_pixel_index(t_mbxregion *region, t_vec2i pos);
  */
 int				mbx_region_get_pixel_index_xy(t_mbxregion *region,
 					int x, int y);
-
-#endif

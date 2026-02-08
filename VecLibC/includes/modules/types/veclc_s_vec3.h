@@ -6,12 +6,11 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:26:53 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:46:56 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:50:06 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECLC_S_VEC3_H
-# define VECLC_S_VEC3_H
+#pragma once
 
 /**
  * 3D vector containing doubles.
@@ -28,4 +27,4 @@ typedef struct s_vec3
  */
 t_vec3		vec3(double x, double y, double z);
 
-#endif
+

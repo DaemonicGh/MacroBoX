@@ -6,17 +6,16 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:56:08 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 14:25:50 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECLC_VEC2_H
-# define VECLC_VEC2_H
+#pragma once
 
-# include <stdbool.h>
+#include <stdbool.h>
 
-# include "types/veclc_s_vec2.h"
-# include "types/veclc_s_vec2i.h"
+#include "types/veclc_s_vec2.h"
+#include "types/veclc_s_vec2i.h"
 
 /**
  * Creates a new 2D vector containing doubles.
@@ -176,5 +175,3 @@ int			vec2_print(int fd, t_vec2 p, int precision);
  * Converts a 2D double vector to a 2D integer vector.
  */
 t_vec2i		vec2_to_vec2i(t_vec2 p);
-
-#endif

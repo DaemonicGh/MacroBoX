@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:36:51 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:45:35 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECLC_S_VEC2IXN_H
-# define VECLC_S_VEC2IXN_H
+#pragma once
 
-# include "veclc_s_vec2i.h"
+#include "veclc_s_vec2i.h"
 
 /**
  * Group of two 2D vectors containing integers.
@@ -64,5 +63,3 @@ t_vec2ix3	vec2ix3(t_vec2i p1, t_vec2i p2, t_vec2i p3);
  * Creates a group of four 2D vectors containing integers.
  */
 t_vec2ix4	vec2ix4(t_vec2i p1, t_vec2i p2, t_vec2i p3, t_vec2i p4);
-
-#endif

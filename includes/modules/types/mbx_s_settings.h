@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:41:05 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 17:34:10 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_S_SETTINGS_H
-# define MBX_S_SETTINGS_H
+#pragma once
 
-# include "mbx_s_color.h"
+#include "mbx_s_color.h"
 
 /**
  * Struct to store a MacroBox application settings.
@@ -31,5 +30,3 @@ typedef struct s_mbxsettings
 	int			exit_key;
 	int			fullscreen_toggle_key;
 }	t_mbxsettings;
-
-#endif

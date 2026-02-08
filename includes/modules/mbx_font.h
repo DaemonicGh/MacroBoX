@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:27:39 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:15:17 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_FONT_H
-# define MBX_FONT_H
+#pragma once
 
-# include "types/mbx_s_mbx.h"
+#include "types/mbx_s_mbx.h"
 
 /**
  * Creates and returns a font.
@@ -49,5 +48,3 @@ t_mbxfont		mbx_make_font_from_file(t_mbx *mbx,
  * @font	the font to destroy.
  */
 void			mbx_destroy_font(t_mbx *mbx, t_mbxfont *font);
-
-#endif

@@ -6,15 +6,14 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:32 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:13:22 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_S_REGION_H
-# define MBX_S_REGION_H
+#pragma once
 
-# include "mbx_s_color.h"
-# include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
+#include "mbx_s_color.h"
+#include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
 
 /**
  * Struct to represent a MacroBoX image.
@@ -31,5 +30,3 @@ typedef struct s_mbxregion
 	mlx_image	image;
 	t_vec2i		size;
 }	t_mbxregion;
-
-#endif

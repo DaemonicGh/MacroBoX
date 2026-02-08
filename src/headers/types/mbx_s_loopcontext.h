@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:08:05 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/15 00:05:26 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_S_LOOPCONTEXT_H
-# define MBX_S_LOOPCONTEXT_H
+#pragma once
 
-# include "../../../includes/modules/types/mbx_s_mbx.h"
+#include "../../../includes/modules/types/mbx_s_mbx.h"
 
 typedef struct s__mbxloopcontext
 {
@@ -21,5 +20,3 @@ typedef struct s__mbxloopcontext
 	void	(*update)(t_mbx *mbx, void *args);
 	void	*args;
 }	t__mbxloopcontext;
-
-#endif

@@ -6,15 +6,14 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:16 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:08:46 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_S_IMAGE_H
-# define MBX_S_IMAGE_H
+#pragma once
 
-# include "../mbx_mlx.h"
-# include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
+#include "../mbx_mlx.h"
+#include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
 
 /**
  * Wrapper struct for a MacroLibX image.
@@ -30,5 +29,3 @@ typedef struct s_mbximage
 	mlx_image	img;
 	t_vec2i		size;
 }	t_mbximage;
-
-#endif

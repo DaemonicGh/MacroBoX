@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:22 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/05 03:43:42 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_WINDOW_H
-# define MBX_WINDOW_H
+#pragma once
 
-# include "types/mbx_s_mbx.h"
+#include "types/mbx_s_mbx.h"
 
 /**
  * Creates and returns a MacroBoX window.
@@ -76,5 +75,3 @@ void			mbx_center_window(t_mbx *mbx, t_mbxwindow *window);
  * @return 		a vector containing the size of the screen.
  */
 t_vec2i			get_screen_size(t_mbx *mbx, t_mbxwindow *window);
-
-#endif

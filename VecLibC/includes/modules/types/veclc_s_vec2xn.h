@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:36:46 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:46:22 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECLC_S_VEC2XN_H
-# define VECLC_S_VEC2XN_H
+#pragma once
 
-# include "veclc_s_vec2.h"
+#include "veclc_s_vec2.h"
 
 /**
  * Group of two 2D vectors containing doubles.
@@ -64,5 +63,3 @@ t_vec2x3	vec2x3(t_vec2 p1, t_vec2 p2, t_vec2 p3);
  * Creates a group of four 2D vectors containing doubles.
  */
 t_vec2x4	vec2x4(t_vec2 p1, t_vec2 p2, t_vec2 p3, t_vec2 p4);
-
-#endif

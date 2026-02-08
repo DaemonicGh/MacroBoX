@@ -6,17 +6,16 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:56:19 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 14:25:30 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECLC_VEC3_H
-# define VECLC_VEC3_H
+#pragma once
 
-# include <stdbool.h>
+#include <stdbool.h>
 
-# include "types/veclc_s_vec3.h"
-# include "types/veclc_s_vec3i.h"
+#include "types/veclc_s_vec3.h"
+#include "types/veclc_s_vec3i.h"
 
 /**
  * Creates a new 3D vector containing doubles.
@@ -176,5 +175,3 @@ int			vec3_print(int fd, t_vec3 p, int precision);
  * Converts a 3D double vector to a 3D integer vector.
  */
 t_vec3i		vec3_to_vec3i(t_vec3 p);
-
-#endif

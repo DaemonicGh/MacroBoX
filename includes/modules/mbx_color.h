@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:13:57 by rprieur           #+#    #+#             */
-/*   Updated: 2026/01/19 13:15:04 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_COLOR_H
-# define MBX_COLOR_H
+#pragma once
 
-# include "types/mbx_s_color.h"
+#include "types/mbx_s_color.h"
 
 /**
  * Creates and returns an opaque version of the given color.
@@ -38,5 +37,3 @@ t_mbxcolor		color_blend(t_mbxcolor bg, t_mbxcolor fg);
  * use it when you know that fg isn't either.
  */
 t_mbxcolor		color_blend_quick(t_mbxcolor bg, t_mbxcolor fg);
-
-#endif

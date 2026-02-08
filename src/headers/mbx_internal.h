@@ -6,14 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 20:50:15 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/19 17:12:49 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_INTERNAL_H
-# define MBX_INTERNAL_H
+#pragma once
 
-# include "../../includes/modules/types/mbx_s_mbx.h"
+#include "../../includes/modules/types/mbx_s_mbx.h"
 
 int		bsign(bool positive);
 void	*palloc(unsigned long size, int value);
@@ -32,5 +31,3 @@ void	mouse_wheel_hook(int button, void *param);
 void	window_hook(int event, void *param);
 
 void	special_key_handler(t_mbx *mbx, int key);
-
-#endif

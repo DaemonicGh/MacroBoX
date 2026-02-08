@@ -6,14 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:34:58 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/05 04:17:07 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MBX_INPUTS_H
-# define MBX_INPUTS_H
+#pragma once
 
-# include "types/mbx_s_mbx.h"
+#include "types/mbx_s_mbx.h"
 
 /**
  * Returns true if a key has just been pressed.
@@ -88,5 +87,3 @@ void	mbx_warp_mouse(t_mbx *mbx, t_vec2i pos);
  * @mbx the MacroBoX context.
  */
 void	mbx_flush_inputs(t_mbx *mbx);
-
-#endif
