@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include "../../includes/modules/types/mbx_s_mbx.h"
-#include "../../includes/modules/consts/mbx_c_other.h"
+#include "modules/types/mbx_s_mbx.h"
+#include "modules/consts/mbx_c_other.h"
 
 t_mbxwindow	mbx_make_window(t_mbx *mbx,
 		t_vec2i size, char *title, unsigned int flags)

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_color.h"
+#include "modules/mbx_drawing.h"
+#include "modules/mbx_color.h"
 
 void	mbx_region_clear(t_mbxregion *region, t_mbxcolor col)
 {

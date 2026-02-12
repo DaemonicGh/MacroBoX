@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
+#include "modules/types/mbx_s_mbx.h"
 
 bool	mbx_key_pressed(t_mbx *mbx, int key)
 {

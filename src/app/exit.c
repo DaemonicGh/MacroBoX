@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../includes/modules/mbx_mlx.h"
-#include "../../includes/modules/mbx_region.h"
-#include "../../includes/modules/mbx_font.h"
+#include "modules/mbx_mlx.h"
+#include "modules/mbx_region.h"
+#include "modules/mbx_font.h"
 
 void	mbx_exit(t_mbx *mbx)
 {

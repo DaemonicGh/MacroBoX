@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/modules/types/mbx_s_mbx.h"
+#include "modules/types/mbx_s_mbx.h"
 #include "../../headers/mbx_internal.h"
 
 void	mouse_down_hook(int button, void *param)

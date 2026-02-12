@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_drawing.h"
+#include "modules/mbx_drawing.h"
 
 static void	colored_subregion(t_mbxregion *dest,
 	t_vec2ix3 posuvwh, t_mbxregion *src, t_mbxcolor col)

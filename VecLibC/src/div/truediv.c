@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/veclc_s_vecn.h"
+#include "modules/types/veclc_s_vecn.h"
 
 t_vec2	vec2i_truediv(t_vec2i p1, t_vec2i p2)
 {

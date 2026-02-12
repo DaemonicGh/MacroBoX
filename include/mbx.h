@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "../VecLibC/includes/veclc.h"
+#include "veclc.h"
 #include "modules/mbx_structs.h"
 #include "modules/mbx_constants.h"
 #include "modules/mbx_all_functions.h"

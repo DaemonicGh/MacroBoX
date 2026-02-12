@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "../../VecLibC/includes/modules/types/veclc_s_vecnxn.h"
+#include "modules/types/veclc_s_vecnxn.h"
 #include "types/mbx_s_mbx.h"
 #include "types/mbx_s_transform.h"
 

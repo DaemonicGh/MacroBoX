@@ -13,7 +13,7 @@
 #pragma once
 
 #include "../mbx_mlx.h"
-#include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
+#include "modules/types/veclc_s_vec2i.h"
 
 /**
  * Wrapper struct for a MacroLibX window.

@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include "../../includes/modules/types/mbx_s_transform.h"
-#include "../../VecLibC/includes/modules/veclc_vec2.h"
-#include "../../VecLibC/includes/modules/types/veclc_s_vec2xn.h"
-#include "../../VecLibC/includes/modules/types/veclc_s_vec3xn.h"
+#include "modules/types/mbx_s_transform.h"
+#include "modules/veclc_vec2.h"
+#include "modules/types/veclc_s_vec2xn.h"
+#include "modules/types/veclc_s_vec3xn.h"
 
 t_mbxtransform	mbx_transform_id(void)
 {

@@ -13,7 +13,7 @@
 #pragma once
 
 #include "mbx_s_color.h"
-#include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
+#include "modules/types/veclc_s_vec2i.h"
 
 /**
  * Struct to represent a MacroBoX image.

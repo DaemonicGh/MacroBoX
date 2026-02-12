@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/veclc_s_vecnxn.h"
+#include "modules/types/veclc_s_vecnxn.h"
 
 t_vec2x3	vec2x3(t_vec2 p1, t_vec2 p2, t_vec2 p3)
 {

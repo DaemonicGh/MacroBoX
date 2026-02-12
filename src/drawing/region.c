@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_math.h"
+#include "modules/mbx_drawing.h"
+#include "modules/mbx_math.h"
 
 void	mbx_set_region_region(t_mbxregion *region, t_mbxregion *src,
 	t_vec2i pos)

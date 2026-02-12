@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/mbx.h"
+#include "mbx.h"
 
 t_vec2	vec2_mult_to_d(t_vec2 *p, double val)
 {

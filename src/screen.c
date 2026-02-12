@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/modules/types/mbx_s_mbx.h"
+#include "modules/types/mbx_s_mbx.h"
 
 t_vec2i	get_screen_size(t_mbx *mbx, t_mbxwindow *window)
 {

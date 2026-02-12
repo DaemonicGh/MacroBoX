@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
-#include "../../includes/modules/consts/mbx_c_input_arrays.h"
+#include "modules/types/mbx_s_mbx.h"
+#include "modules/consts/mbx_c_input_arrays.h"
 #include "../headers/mbx_internal.h"
 
 void	mbx_press_key(t_mbx *mbx, int key)

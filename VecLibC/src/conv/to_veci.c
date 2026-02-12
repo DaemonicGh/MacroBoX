@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/veclc_s_vecn.h"
+#include "modules/types/veclc_s_vecn.h"
 
 t_vec2i	vec2_to_vec2i(t_vec2 p)
 {

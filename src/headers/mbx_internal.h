@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
+#include "modules/types/mbx_s_mbx.h"
 
 int		bsign(bool positive);
 void	*palloc(unsigned long size, int value);

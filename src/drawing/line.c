@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../VecLibC/includes/modules/veclc_vec2i.h"
-#include "../../includes/modules/mbx_drawing.h"
+#include "modules/veclc_vec2i.h"
+#include "modules/mbx_drawing.h"
 #include "../headers/mbx_internal.h"
 
 static inline void	line_step(t_vec2i *step, int *err, t_vec2i d, t_vec2i s)

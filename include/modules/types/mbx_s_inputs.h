@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
+#include "modules/types/veclc_s_vec2i.h"
 #include "../consts/mbx_c_input_arrays.h"
 
 /**

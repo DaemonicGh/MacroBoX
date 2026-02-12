@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/veclc_vecn.h"
+#include "modules/veclc_vecn.h"
 
 double	vec2_dist(t_vec2 p1, t_vec2 p2)
 {

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include "../../includes/modules/mbx_math.h"
+#include "modules/mbx_math.h"
 
 int	clamp(int val, int low, int high)
 {

@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stddef.h>
-#include "../../includes/mlx.h"
-#include "../../includes/mlx_extended.h"
+#include "mlx.h"
+#include "mlx_extended.h"
 
 typedef struct
 {
@@ -89,10 +89,10 @@ int main(void)
 	mlx_loop(mlx.mlx);
 
 	mlx_destroy_window(mlx.mlx, mlx.win);
-	
+
 	mlx_destroy_window(mlx.mlx, mlx.render_target_window);
 	mlx_destroy_image(mlx.mlx, mlx.render_target);
-	
+
 	mlx_destroy_context(mlx.mlx);
 
 	return 0;

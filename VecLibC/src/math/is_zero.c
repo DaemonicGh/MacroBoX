@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include "../../includes/modules/types/veclc_s_vecn.h"
+#include "modules/types/veclc_s_vecn.h"
 
 bool	vec2_is_zero(t_vec2 p)
 {

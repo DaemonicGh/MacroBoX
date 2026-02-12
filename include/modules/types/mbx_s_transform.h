@@ -12,9 +12,9 @@
 
 #pragma once
 
-#include "../../../VecLibC/includes/modules/types/veclc_s_vec2i.h"
-#include "../../../VecLibC/includes/modules/types/veclc_s_vec2xn.h"
-#include "../../../VecLibC/includes/modules/types/veclc_s_vec3xn.h"
+#include "modules/types/veclc_s_vec2i.h"
+#include "modules/types/veclc_s_vec2xn.h"
+#include "modules/types/veclc_s_vec3xn.h"
 #include "mbx_s_color.h"
 
 /**

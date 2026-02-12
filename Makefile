@@ -43,16 +43,17 @@ VECF := add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
 		sub/sub_d sub/sub_i sub/sub_to_d sub/sub_to_i sub/sub_to sub/sub \
 		print/print print/printi
 
+HDRF := include VecLibC/include
+
 SRCDIR := src/
 VECDIR := VecLibC/src/
 OBJDIR := objs/
-HDR    := include/
 
 VEC := $(addprefix $(VECDIR), $(addsuffix .c, $(VECF)))
 
 SRC := $(addprefix $(SRCDIR), $(addsuffix .c, $(SRCF)))
 SRC += $(VEC)
-
+HDR := $(addprefix -I, $(HDRF))
 OBJ := $(patsubst %.c, $(OBJDIR)%.o, $(SRC))
 
 # **************************************************************************** #
@@ -65,7 +66,7 @@ $(NAME): lib $(OBJ)
 
 $(OBJDIR)%.o: %.c | $(OBJDIR)
 	@mkdir -p $(dir $@)
-	@$(CC) -c $(CFLAGS) -I $(HDR) $< -o $@
+	@$(CC) -c $(CFLAGS) $(HDR) $< -o $@
 
 $(OBJDIR):
 	@mkdir $(OBJDIR)

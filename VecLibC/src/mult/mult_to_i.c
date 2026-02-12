@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/veclc_s_vecn.h"
+#include "modules/types/veclc_s_vecn.h"
 
 t_vec2i	vec2i_mult_to_i(t_vec2i *p, int val)
 {

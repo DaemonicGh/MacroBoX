@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/veclc_s_vecnxn.h"
+#include "modules/types/veclc_s_vecnxn.h"
 
 t_vec2x2	vec2x2_xy(int x1, int y1, int x2, int y2)
 {

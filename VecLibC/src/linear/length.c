@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include "../../includes/modules/types/veclc_s_vecn.h"
+#include "modules/types/veclc_s_vecn.h"
 
 double	vec2_length(t_vec2 p)
 {

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_math.h"
+#include "modules/mbx_drawing.h"
+#include "modules/mbx_math.h"
 
 static void	set_rect_bounds(t_mbxregion *region,
 	t_vec2i *pos, t_vec2i *size)

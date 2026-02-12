@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_inputs.h"
-#include "../../includes/modules/mbx_settings.h"
+#include "modules/mbx_inputs.h"
+#include "modules/mbx_settings.h"
 #include "../headers/mbx_internal.h"
 
 static void	update_time_stuff(t_mbx *mbx)

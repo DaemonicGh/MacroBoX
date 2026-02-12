@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../VecLibC/includes/modules/veclc_vec2i.h"
-#include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_math.h"
-#include "../../includes/modules/mbx_region.h"
-#include "../../includes/modules/mbx_image.h"
-#include "../../includes/modules/mbx_window.h"
-#include "../../includes/modules/mbx_mlx_ext.h"
+#include "modules/veclc_vec2i.h"
+#include "modules/mbx_drawing.h"
+#include "modules/mbx_math.h"
+#include "modules/mbx_region.h"
+#include "modules/mbx_image.h"
+#include "modules/mbx_window.h"
+#include "modules/mbx_mlx_ext.h"
 
 bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
 {

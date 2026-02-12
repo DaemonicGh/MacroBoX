@@ -12,7 +12,7 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include "../../includes/modules/types/veclc_s_vecn.h"
+#include "modules/types/veclc_s_vecn.h"
 
 t_vec2	vec2_abs(t_vec2 p)
 {

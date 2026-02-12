@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_math.h"
-#include "../../VecLibC/includes/modules/veclc_vec2.h"
+#include "modules/mbx_drawing.h"
+#include "modules/mbx_math.h"
+#include "modules/veclc_vec2.h"
 
 static void	set_subregion_int_scaled(t_mbxregion *region, t_mbxregion *src,
 	t_vec2ix3 posuvwh, t_vec2i scale)

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
-#include "../../includes/modules/consts/mbx_c_other.h"
+#include "modules/types/mbx_s_mbx.h"
+#include "modules/consts/mbx_c_other.h"
 #include "../headers/types/mbx_s_loopcontext.h"
 #include "../headers/mbx_internal.h"
 

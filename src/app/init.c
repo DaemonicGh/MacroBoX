@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../VecLibC/includes/modules/veclc_vec2i.h"
-#include "../../includes/modules/consts/mbx_c_other.h"
-#include "../../includes/modules/mbx_inputs.h"
-#include "../../includes/modules/mbx_math.h"
-#include "../../includes/modules/mbx_region.h"
-#include "../../includes/modules/mbx_settings.h"
-#include "../../includes/modules/mbx_window.h"
-#include "../../includes/modules/mbx_mlx_ext.h"
+#include "modules/veclc_vec2i.h"
+#include "modules/consts/mbx_c_other.h"
+#include "modules/mbx_inputs.h"
+#include "modules/mbx_math.h"
+#include "modules/mbx_region.h"
+#include "modules/mbx_settings.h"
+#include "modules/mbx_window.h"
+#include "modules/mbx_mlx_ext.h"
 #include "../headers/mbx_internal.h"
 
 static void	reset_inputs(t_mbx *mbx)
@@ -33,7 +33,7 @@ static void	reset_inputs(t_mbx *mbx)
 		mbx->inputs.btn[i++] = false;
 	mbx_flush_inputs(mbx);
 	mbx->inputs.last_key = 0;
-	mbx->inputs.should_exit = false;
+	mbx->should_exit = false;
 }
 
 static int	make_window(t_mbx *mbx, t_vec2i viewport_size,

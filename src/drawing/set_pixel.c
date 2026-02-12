@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/mbx_drawing.h"
-#include "../../includes/modules/mbx_color.h"
+#include "modules/mbx_drawing.h"
+#include "modules/mbx_color.h"
 
 void	mbx_set_region_pixel_xy(t_mbxregion *region,
 	int x, int y, t_mbxcolor col)

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
-#include "../../includes/modules/mbx_image.h"
-#include "../../includes/modules/mbx_region.h"
+#include "modules/types/mbx_s_mbx.h"
+#include "modules/mbx_image.h"
+#include "modules/mbx_region.h"
 
 t_mbxfont	mbx_make_font(t_mbxregion region,
 	t_vec2i glyph_size, t_mbxcolor col)

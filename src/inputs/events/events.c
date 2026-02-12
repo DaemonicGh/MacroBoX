@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/modules/mbx_inputs.h"
+#include "modules/mbx_inputs.h"
 #include "../../headers/mbx_internal.h"
 
 void	mbx_flush_inputs(t_mbx *mbx)

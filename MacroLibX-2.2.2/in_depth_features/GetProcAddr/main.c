@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stddef.h>
-#include "../../includes/mlx.h"
-#include "../../includes/mlx_extended.h"
+#include "mlx.h"
+#include "mlx_extended.h"
 
 #include <vulkan/vulkan_core.h>
 

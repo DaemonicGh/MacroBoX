@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include "../../includes/modules/types/veclc_s_vecn.h"
+#include "modules/types/veclc_s_vecn.h"
 
 bool	vec2_eq(t_vec2 p1, t_vec2 p2)
 {

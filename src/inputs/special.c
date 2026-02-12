@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
-#include "../../includes/modules/consts/mbx_c_scancodes.h"
+#include "modules/types/mbx_s_mbx.h"
+#include "modules/consts/mbx_c_scancodes.h"
 
 void	special_key_handler(t_mbx *mbx, int key)
 {
 	if ((mbx->settings.do_window_cross_exit && key == MBX_WINDOW_CLOSE)
 		|| mbx->settings.exit_key == key)
-		mbx->inputs.should_exit = true;
+		mbx->should_exit = true;
 	else if (mbx->settings.fullscreen_toggle_key == key)
 	{
 		mbx->window.is_fullscreen = !mbx->window.is_fullscreen;

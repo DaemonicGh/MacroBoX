@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/modules/types/mbx_s_mbx.h"
+#include "modules/types/mbx_s_mbx.h"
 
 t_mbxcolor	mbx_get_region_pixel_xy(t_mbxregion *region, int x, int y)
 {
