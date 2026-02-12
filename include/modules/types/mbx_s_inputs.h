@@ -26,7 +26,6 @@
  * @mouse_delta the change in mouse position since the last frame.
  * @mouse_wheel the current mouse wheel state
  * (negative if scrolling down, positive if scrolling up).
- * @should_exit whether the application has been requested to exit.
  */
 typedef struct s_mbxinputs
 {
@@ -37,5 +36,4 @@ typedef struct s_mbxinputs
 	t_vec2i		mouse;
 	t_vec2i		mouse_delta;
 	int			mouse_wheel;
-	bool		should_exit;
 }	t_mbxinputs;

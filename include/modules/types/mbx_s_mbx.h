@@ -30,6 +30,7 @@
  * @font		the base font used for rendering text.
  * @inputs		struct containing input-related data.
  * @time		struct containing time-related data.
+ * @should_exit whether the application has been requested to exit.
  */
 typedef struct s_mbxcontext
 {
@@ -40,4 +41,5 @@ typedef struct s_mbxcontext
 	t_mbxfont		font;
 	t_mbxinputs		inputs;
 	t_mbxtime		time;
+	bool		should_exit;
 }	t_mbx;

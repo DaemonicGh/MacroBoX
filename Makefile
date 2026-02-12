@@ -46,7 +46,7 @@ VECF := add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add \
 SRCDIR := src/
 VECDIR := VecLibC/src/
 OBJDIR := objs/
-HDR    := includes/
+HDR    := include/
 
 VEC := $(addprefix $(VECDIR), $(addsuffix .c, $(VECF)))
 

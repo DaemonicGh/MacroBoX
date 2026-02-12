@@ -1,6 +1,5 @@
-objs/*
+objs
 VeclibC/objs
 MacroLibX-2.2.2/objs
-.gitignore
+ignore
 TODO
-ignore/*
