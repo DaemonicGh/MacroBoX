@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "modules/mbx_drawing.h"
-#include "modules/mbx_color.h"
 
-void	mbx_region_clear(t_mbxregion *region, t_mbxcolor col)
+void	mbx_clear(t_mbxregion *region, t_mbxcolor col)
 {
-	int	i;
+	int			i;
 
 	if (col.a == 0)
 		return ;
@@ -34,9 +33,4 @@ void	mbx_region_clear(t_mbxregion *region, t_mbxcolor col)
 			i++;
 		}
 	}
-}
-
-void	mbx_clear(t_mbx *mbx, t_mbxcolor col)
-{
-	mbx_region_clear(&mbx->viewport, col);
 }

@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/mbx_s_mbx.h"
-#include "../../headers/mbx_internal.h"
+#include "modules/mbx_inputs.h"
 
 void	mouse_down_hook(int button, void *param)
 {
@@ -22,11 +21,9 @@ void	mouse_down_hook(int button, void *param)
 		|| button > MBX_INPUT_ARRAY_MOUSE_END)
 		return ;
 	mbx = param;
-	if (mbx->inputs.btn[button])
+	if (mbx->presses[button] > 0)
 		return ;
-	mbx->inputs.btn[button] = true;
-	mbx->inputs.btnp[button] = true;
-	special_key_handler(mbx, button);
+	mbx_press_input(mbx, button);
 }
 
 void	mouse_up_hook(int button, void *param)
@@ -38,8 +35,7 @@ void	mouse_up_hook(int button, void *param)
 		|| button > MBX_INPUT_ARRAY_MOUSE_END)
 		return ;
 	mbx = param;
-	mbx->inputs.btn[button] = false;
-	mbx->inputs.btnr[button] = true;
+	mbx_release_input(mbx, button);
 }
 
 void	mouse_wheel_hook(int button, void *param)
@@ -50,7 +46,7 @@ void	mouse_wheel_hook(int button, void *param)
 		return ;
 	mbx = param;
 	if (button == 1)
-		mbx->inputs.mouse_wheel += 1;
+		mbx->scroll_delta += 1;
 	else if (button == 2)
-		mbx->inputs.mouse_wheel -= 1;
+		mbx->scroll_delta -= 1;
 }

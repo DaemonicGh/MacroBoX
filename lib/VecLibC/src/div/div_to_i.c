@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   div_to_i.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/23 18:04:49 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/15 00:42:45 by rprieur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "modules/types/veclc_s_vecn.h"
+
+t_vec2i	vec2i_div_to_i(t_vec2i *p, int val)
+{
+	p->x /= val;
+	p->y /= val;
+	return (*p);
+}
+
+t_vec2i	vec2i_div_to_si(double val, t_vec2i *p)
+{
+	p->x = val / p->x;
+	p->y = val / p->y;
+	return (*p);
+}
+
+t_vec3i	vec3i_div_to_i(t_vec3i *p, int val)
+{
+	p->x /= val;
+	p->y /= val;
+	p->z /= val;
+	return (*p);
+}
+
+t_vec3i	vec3i_div_to_si(double val, t_vec3i *p)
+{
+	p->x = val / p->x;
+	p->y = val / p->y;
+	p->z = val / p->z;
+	return (*p);
+}

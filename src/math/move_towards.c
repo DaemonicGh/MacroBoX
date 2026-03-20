@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "modules/mbx_math.h"
 
 int	move_towards(int val, int goal, int incr)

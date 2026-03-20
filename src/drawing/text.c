@@ -25,13 +25,13 @@ static void	colored_subregion(t_mbxregion *dest,
 		y = 0;
 		while (y < posuvwh.p3.y)
 		{
-			pixel = mbx_get_region_pixel_xy(
+			pixel = mbx_get_pixel_xy(
 					src, posuvwh.p2.x + x, posuvwh.p2.y + y);
 			pixel.r *= col.r / 255.0;
 			pixel.g *= col.g / 255.0;
 			pixel.b *= col.b / 255.0;
 			pixel.a *= col.a / 255.0;
-			mbx_set_region_pixel_xy(
+			mbx_set_pixel_xy(
 				dest, posuvwh.p1.x + x, posuvwh.p1.y + y, pixel);
 			y++;
 		}
@@ -39,7 +39,7 @@ static void	colored_subregion(t_mbxregion *dest,
 	}
 }
 
-void	mbx_set_region_char(t_mbxregion *region,
+void	mbx_set_char(t_mbxregion *region,
 	t_vec2i pos, char c, t_mbxfont *font)
 {
 	if (c < 0)
@@ -50,7 +50,7 @@ void	mbx_set_region_char(t_mbxregion *region,
 			font->glyph_size), &font->region, font->color);
 }
 
-void	mbx_set_region_text(t_mbxregion *region,
+void	mbx_set_text(t_mbxregion *region,
 	t_vec2i pos, const char *str, t_mbxfont *font)
 {
 	t_vec2i	cpos;
@@ -66,28 +66,9 @@ void	mbx_set_region_text(t_mbxregion *region,
 			cpos.x += font->glyph_size.x * 4;
 		else
 		{
-			mbx_set_region_char(region, cpos, str[i], font);
+			mbx_set_char(region, cpos, str[i], font);
 			cpos.x += font->glyph_size.x;
 		}
 		i++;
 	}
-}
-
-void	mbx_set_char(t_mbx *mbx, t_vec2i pos, char c, t_mbxcolor col_override)
-{
-	const t_mbxcolor	original_color = mbx->font.color;
-
-	mbx->font.color = col_override;
-	mbx_set_region_char(&mbx->viewport, pos, c, &mbx->font);
-	mbx->font.color = original_color;
-}
-
-void	mbx_set_text(t_mbx *mbx,
-	t_vec2i pos, const char *str, t_mbxcolor col_override)
-{
-	const t_mbxcolor	original_color = mbx->font.color;
-
-	mbx->font.color = col_override;
-	mbx_set_region_text(&mbx->viewport, pos, str, &mbx->font);
-	mbx->font.color = original_color;
 }

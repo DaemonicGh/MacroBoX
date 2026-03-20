@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/mbx_s_mbx.h"
-#include "../../headers/mbx_internal.h"
+#include "modules/mbx_inputs.h"
 
 void	window_hook(int event, void *param)
 {
@@ -22,6 +21,5 @@ void	window_hook(int event, void *param)
 		|| event > MBX_INPUT_ARRAY_WINDOW_END)
 		return ;
 	mbx = param;
-	mbx->inputs.btnp[event] = true;
-	special_key_handler(mbx, event);
+	mbx_tap_input(mbx, event);
 }

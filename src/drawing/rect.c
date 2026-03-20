@@ -42,7 +42,7 @@ static void	set_rect_bounds(t_mbxregion *region,
 	}
 }
 
-void	mbx_set_region_rect(t_mbxregion *region,
+void	mbx_set_rect(t_mbxregion *region,
 	t_vec2i pos, t_vec2i size, t_mbxcolor col)
 {
 	int	x;
@@ -55,14 +55,9 @@ void	mbx_set_region_rect(t_mbxregion *region,
 		y = pos.y;
 		while (y < size.y)
 		{
-			mbx_set_region_pixel_unsafe_xy(region, x, y, col);
+			mbx_set_pixel_unsafe_xy(region, x, y, col);
 			y++;
 		}
 		x++;
 	}
-}
-
-void	mbx_set_rect(t_mbx *mbx, t_vec2i pos, t_vec2i size, t_mbxcolor col)
-{
-	mbx_set_region_rect(&mbx->viewport, pos, size, col);
 }

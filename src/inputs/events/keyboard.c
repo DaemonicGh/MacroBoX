@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/mbx_s_mbx.h"
-#include "../../headers/mbx_internal.h"
+#include "modules/mbx_inputs.h"
 
 void	key_down_hook(int key, void *param)
 {
@@ -22,12 +21,9 @@ void	key_down_hook(int key, void *param)
 		|| key > MBX_INPUT_ARRAY_KEYBOARD_END)
 		return ;
 	mbx = param;
-	if (mbx->inputs.btn[key])
+	if (mbx->presses[key] > 0)
 		return ;
-	mbx->inputs.btn[key] = true;
-	mbx->inputs.btnp[key] = true;
-	mbx->inputs.last_key = key;
-	special_key_handler(mbx, key);
+	mbx_press_input(mbx, key);
 }
 
 void	key_up_hook(int key, void *param)
@@ -39,6 +35,5 @@ void	key_up_hook(int key, void *param)
 		|| key > MBX_INPUT_ARRAY_KEYBOARD_END)
 		return ;
 	mbx = param;
-	mbx->inputs.btn[key] = false;
-	mbx->inputs.btnr[key] = true;
+	mbx_release_input(mbx, key);
 }

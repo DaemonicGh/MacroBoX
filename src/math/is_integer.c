@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <stdbool.h>
+#include "modules/mbx_math.h"
 
 bool	is_integer(double val)
 {

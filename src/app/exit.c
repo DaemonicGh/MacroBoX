@@ -11,16 +11,15 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "modules/mbx_handlers.h"
 #include "modules/mbx_mlx.h"
-#include "modules/mbx_region.h"
-#include "modules/mbx_font.h"
 
 void	mbx_exit(t_mbx *mbx)
 {
 	mlx_loop_end(mbx->mlx);
 	mbx_destroy_region(mbx, &mbx->viewport);
-	mbx_destroy_font(mbx, &mbx->font);
-	mlx_destroy_window(mbx->mlx, mbx->window.win);
+	mbx_destroy_font(mbx, &mbx->default_font);
+	mlx_destroy_window(mbx->mlx, mbx->window.mlx);
 	mlx_destroy_context(mbx->mlx);
 	free(mbx);
 }

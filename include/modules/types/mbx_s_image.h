@@ -12,13 +12,13 @@
 
 #pragma once
 
+#include "../../../lib/VecLibC/include/veclc.h"
 #include "../mbx_mlx.h"
-#include "modules/types/veclc_s_vec2i.h"
 
 /**
  * Wrapper struct for a MacroLibX image.
  *
- * @img 	the MacroLibX image.
+ * @mlx 	the MacroLibX image.
  * @size	the size of the image.
  *
  * Do not confuse images with regions, which are MacroBoX actual images.
@@ -26,6 +26,6 @@
  */
 typedef struct s_mbximage
 {
-	mlx_image	img;
+	mlx_image	mlx;
 	t_vec2i		size;
 }	t_mbximage;

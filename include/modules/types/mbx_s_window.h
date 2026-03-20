@@ -12,8 +12,8 @@
 
 #pragma once
 
+#include "../../../lib/VecLibC/include/veclc.h"
 #include "../mbx_mlx.h"
-#include "modules/types/veclc_s_vec2i.h"
 
 /**
  * Wrapper struct for a MacroLibX window.
@@ -29,8 +29,8 @@
  */
 typedef struct s_mbxwindow
 {
-	mlx_window		win;
-	mlx_image		image;
+	mlx_window		mlx;
+	mlx_image		mlx_image;
 	t_vec2i			size;
 	char			*title;
 	bool			is_fullscreen;

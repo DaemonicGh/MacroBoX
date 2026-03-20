@@ -12,4 +12,5 @@
 
 #pragma once
 
-#include "../../MacroLibX-2.2.2/includes/mlx.h"
+#include "../../lib/MacroLibX-2.2.2/includes/mlx.h"
+#include "../../lib/MacroLibX-2.2.2/includes/mlx_extended.h"

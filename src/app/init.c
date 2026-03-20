@@ -11,74 +11,49 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "modules/veclc_vec2i.h"
-#include "modules/consts/mbx_c_other.h"
-#include "modules/mbx_inputs.h"
+#include "veclc.h"
+#include "modules/mbx_handlers.h"
 #include "modules/mbx_math.h"
-#include "modules/mbx_region.h"
-#include "modules/mbx_settings.h"
-#include "modules/mbx_window.h"
-#include "modules/mbx_mlx_ext.h"
-#include "../headers/mbx_internal.h"
-
-static void	reset_inputs(t_mbx *mbx)
-{
-	t_vec2i	new_mouse;
-	int		i;
-
-	mlx_mouse_get_pos(mbx->mlx, &new_mouse.x, &new_mouse.y);
-	mbx->inputs.mouse_delta = vec2i_sub(new_mouse, mbx->inputs.mouse);
-	i = 0;
-	while (i < MBX_INPUT_ARRAY_LENGTH)
-		mbx->inputs.btn[i++] = false;
-	mbx_flush_inputs(mbx);
-	mbx->inputs.last_key = 0;
-	mbx->should_exit = false;
-}
-
-static int	make_window(t_mbx *mbx, t_vec2i viewport_size,
-	char *win_title, int win_mode)
-{
-	mlx_window	temp_win;
-	t_vec2i		size;
-
-	temp_win = mlx_new_window(mbx->mlx,
-			&(mlx_window_create_info){.title = "", 0});
-	if (!temp_win)
-		return (-1);
-	mlx_get_screen_size(mbx->mlx, temp_win, &size.x, &size.y);
-	mlx_destroy_window(mbx->mlx, temp_win);
-	size.x = size.x * MBX_INIT_MAX_WINDOW_COVERAGE_RATIO / viewport_size.x;
-	size.y = size.y * MBX_INIT_MAX_WINDOW_COVERAGE_RATIO / viewport_size.y;
-	mbx->window = mbx_make_window(mbx,
-			vec2i_mult_i(viewport_size, max(min(size.x, size.y), 1)),
-			win_title, win_mode);
-	if (!mbx->window.win)
-		return (-1);
-	mlx_set_window_min_size(mbx->mlx,
-		mbx->window.win, viewport_size.x, viewport_size.y);
-	mbx->viewport = mbx_make_region_with_image(mbx, viewport_size);
-	if (!mbx->viewport.canvas)
-	{
-		mlx_destroy_window(mbx->mlx, mbx->window.win);
-		return (-1);
-	}
-	return (1);
-}
+#include "../_private/mbx_internal.h"
 
 static void	init_time(t_mbx *mbx)
 {
 	double	time;
 
 	time = get_sec_since_epoch();
-	mbx->time.app_start = time;
-	mbx->time.frame_start = time;
-	mbx->time.sec_per_frame = 0;
-	mbx->time.frames_elapsed = 0;
-	mbx->time.delta = 1.0 / mbx->settings.fps_cap;
+	mbx->timestamps.app_start = time;
+	mbx->timestamps.frame_start = time;
+	mbx->delta_time = 1.0 / mbx->settings.fps_cap;
+	mbx->seconds_per_frame = 0;
+	mbx->frames_elapsed = 0;
 }
 
-t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, unsigned int flags)
+bool	mbx_make_main_window(t_mbx *mbx, t_vec2i viewport_size,
+	char *win_title, unsigned int win_flags)
+{
+	mbx->screen_size = get_screen_size_windowless(mbx);
+	if (!mbx->screen_size.x || !mbx->screen_size.y)
+		return (false);
+	vec2i_mult_to_d(&mbx->screen_size, MBX_INIT_MAX_WINDOW_COVERAGE_RATIO);
+	vec2i_div_to(&mbx->screen_size, viewport_size);
+	mbx->window = mbx_make_window(mbx, vec2i_mult_i(viewport_size,
+				max(min(mbx->screen_size.x, mbx->screen_size.y), 1)),
+			win_title, win_flags);
+	if (!mbx->window.mlx)
+		return (false);
+	mlx_set_window_min_size(mbx->mlx,
+		mbx->window.mlx, viewport_size.x, viewport_size.y);
+	mbx->viewport = mbx_make_region_with_image(mbx, viewport_size);
+	if (!mbx->viewport.canvas)
+	{
+		mlx_destroy_window(mbx->mlx, mbx->window.mlx);
+		return (false);
+	}
+	mbx_start_events(mbx);
+	return (true);
+}
+
+t_mbx	*mbx_init_windowless(void)
 {
 	t_mbx	*mbx;
 
@@ -91,15 +66,24 @@ t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, unsigned int flags)
 		free(mbx);
 		return (NULL);
 	}
-	if (make_window(mbx, viewport_size, win_title, flags) == -1)
+	mbx_reset_settings(mbx);
+	reset_inputs(mbx);
+	init_time(mbx);
+	return (mbx);
+}
+
+t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, unsigned int flags)
+{
+	t_mbx	*mbx;
+
+	mbx = mbx_init_windowless();
+	if (!mbx)
+		return (NULL);
+	if (!mbx_make_main_window(mbx, viewport_size, win_title, flags))
 	{
 		mlx_destroy_context(mbx->mlx);
 		free(mbx);
 		return (NULL);
 	}
-	reset_inputs(mbx);
-	mbx_reset_settings(mbx);
-	mbx_start_events(mbx);
-	init_time(mbx);
 	return (mbx);
 }

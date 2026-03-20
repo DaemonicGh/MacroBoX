@@ -10,66 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
+#include "veclc.h"
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_math.h"
 
-void	mbx_set_region_region(t_mbxregion *region, t_mbxregion *src,
-	t_vec2i pos)
+void	mbx_set_subregion(t_mbxregion *region, t_mbxregion *src,
+	t_vec2i pos, t_vec2ix2 uvwh)
 {
-	const t_vec2ix2	bounds = vec2ix2_xy(
-			max(0, pos.x), max(0, pos.y),
-			min(region->size.x, pos.x + src->size.x),
-			min(region->size.y, pos.y + src->size.y));
-	int				x;
-	int				y;
+	const t_vec2ix2	bounds = vec2ix2(
+			vec2i(max(pos.x, 0), max(pos.y, 0)),
+			vec2i(
+				min(pos.x + abs(uvwh.p2.x), region->size.x),
+				min(pos.y + abs(uvwh.p2.y), region->size.y))
+			);
+	const t_vec2i	incr = vec2i_sign(uvwh.p2);
+	t_vec2i			uv;
 
-	x = bounds.p1.x;
-	while (x < bounds.p2.x)
+	pos.x = bounds.p1.x;
+	uv.x = uvwh.p1.x;
+	while (pos.x < bounds.p2.x)
 	{
-		y = bounds.p1.y;
-		while (y < bounds.p2.y)
+		pos.y = bounds.p1.y;
+		uv.y = uvwh.p1.y;
+		while (pos.y < bounds.p2.y)
 		{
-			mbx_set_region_pixel_unsafe_xy(region, x, y,
-				mbx_get_region_pixel_xy(
-					src, pos.x - x, pos.y - y));
-			y++;
+			mbx_set_pixel_unsafe(region, pos,
+				mbx_get_pixel_unsafe(src, uv));
+			pos.y++;
+			uv.y += incr.y;
 		}
-		x++;
+		pos.x++;
+		uv.x += incr.x;
 	}
 }
 
-void	mbx_set_region_subregion(t_mbxregion *region, t_mbxregion *src,
-	t_vec2i pos, t_vec2ix2 uvwh)
+void	mbx_set_region(t_mbxregion *region, t_mbxregion *src, t_vec2i pos)
 {
-	const t_vec2ix2	bounds = vec2ix2_xy(
-			max(0, pos.x), max(0, pos.y),
-			min(region->size.x, pos.x + uvwh.p2.x),
-			min(region->size.y, pos.y + uvwh.p2.y));
-	int				x;
-	int				y;
-
-	x = bounds.p1.x;
-	while (x < bounds.p2.x)
-	{
-		y = bounds.p1.y;
-		while (y < bounds.p2.y)
-		{
-			mbx_set_region_pixel_unsafe_xy(region, x, y,
-				mbx_get_region_pixel_xy(
-					src, pos.x - uvwh.p1.x + x, pos.y - uvwh.p1.y + y));
-			y++;
-		}
-		x++;
-	}
-}
-
-void	mbx_set_region(t_mbx *mbx, t_mbxregion *region, t_vec2i pos)
-{
-	mbx_set_region_region(&mbx->viewport, region, pos);
-}
-
-void	mbx_set_subregion(t_mbx *mbx, t_mbxregion *region,
-	t_vec2i pos, t_vec2ix2 uvwh)
-{
-	mbx_set_region_subregion(&mbx->viewport, region, pos, uvwh);
+	mbx_set_subregion(region, src, pos, vec2ix2(vec2i_zero(), src->size));
 }

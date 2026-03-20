@@ -12,34 +12,73 @@
 
 #pragma once
 
-#include "mbx_s_settings.h"
+#include <stdint.h>
+
+#include "modules/mbx_constants.h"
 #include "mbx_s_window.h"
 #include "mbx_s_region.h"
 #include "mbx_s_font.h"
-#include "mbx_s_inputs.h"
-#include "mbx_s_time.h"
 #include "mbx_s_image.h"
 
 /**
  * The context structure for the MacroBoX application.
  *
- * @mlx			the MacroLibX context.
- * @settings	struct containing modifiable data about the application.
- * @window		the application window.
- * @viewport	the image where the application is rendered.
- * @font		the base font used for rendering text.
- * @inputs		struct containing input-related data.
- * @time		struct containing time-related data.
- * @should_exit whether the application has been requested to exit.
+ * @window				the application window.
+ * @viewport			the image where the application is rendered.
+ * @screen_size			the size of the screen the window is on.
+ * @mlx					the MacroLibX context.
+ * @default_font		the base font used for rendering text.
+ *
+ * @presses				array containing the info about pressed keys.
+ * (seconds spent held if positive, seconds since release if negative)
+ * @last_press			timestamp to last recorded key press.
+ * @cursor				cursor position relative to the viewport.
+ * @cursor_delta		cursor movement since last frame.
+ * @scroll_delta		scroll wheel change since last frame.
+ *
+ * @delta_time			seconds spent showing the last frame.
+ * @seconds_per_frame	seconds spent processing the last frame.
+ * @timestamps			timestamps recording occurence of various elements.
+ * @frames_elapsed		amount of frames processed since the application's start.
+ *
+ * @settings			various modifiable values about the application.
+ * @exiting				true if the application will stop next frame.
  */
 typedef struct s_mbxcontext
 {
-	mlx_context		mlx;
-	t_mbxsettings	settings;
-	t_mbxwindow		window;
 	t_mbxregion		viewport;
-	t_mbxfont		font;
-	t_mbxinputs		inputs;
-	t_mbxtime		time;
-	bool		should_exit;
+	t_mbxwindow		window;
+	t_vec2i			screen_size;
+	mlx_context		mlx;
+	t_mbxfont		default_font;
+
+	double			presses[MBX_INPUT_ARRAY_LENGTH];
+	double			last_press;
+	t_vec2i			cursor;
+	t_vec2			cursor_delta;
+	int				scroll_delta;
+
+	double			delta_time;
+	double			seconds_per_frame;
+
+	struct s_mbxtimestamps
+	{
+		double		frame_start;
+		double		app_start;
+	}				timestamps;
+\
+	unsigned long	frames_elapsed;
+
+	struct s_mbxsettings
+	{
+		t_mbxcolor	background_color;
+		int			fps_cap;
+		bool		do_window_cross_exit;
+		int			exit_key;
+		int			fullscreen_toggle_key;
+		bool		lock_cursor;
+		bool		show_cursor;
+	}				settings;
+\
+	bool			exiting;
 }	t_mbx;

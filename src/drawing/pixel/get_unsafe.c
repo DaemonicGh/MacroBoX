@@ -1,0 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_unsafe.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/09 02:42:49 by rprieur           #+#    #+#             */
+/*   Updated: 2026/01/18 21:07:22 by rprieur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "modules/mbx_drawing.h"
+
+t_mbxcolor	mbx_get_pixel_unsafe_i(t_mbxregion *region, int i)
+{
+	return (region->canvas[i]);
+}
+
+t_mbxcolor	mbx_get_pixel_unsafe_xy(t_mbxregion *region, int x, int y)
+{
+	return (region->canvas[y * region->size.x + x]);
+}
+
+t_mbxcolor	mbx_get_pixel_unsafe(t_mbxregion *region, t_vec2i pos)
+{
+	return (region->canvas[pos.y * region->size.x + pos.x]);
+}
