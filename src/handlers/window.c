@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx_extended.h"
 #include "modules/types/mbx_s_mbx.h"
+#include "modules/types/mbx_s_window.h"
 
 t_mbxwindow	mbx_make_window(t_mbx *mbx,
 		t_vec2i size, char *title, unsigned int flags)
@@ -22,9 +24,15 @@ t_mbxwindow	mbx_make_window(t_mbx *mbx,
 	win.title = title;
 	win.is_fullscreen = flags & MBX_WINDOW_FLAG_FULLSCREEN;
 	win.is_resizable = flags & MBX_WINDOW_FLAG_RESIZABLE;
+	win.is_minimized = flags & MBX_WINDOW_FLAG_MINIMIZED;
+	win.is_maximized = false;
+	win.limits = vec2ix2(vec2i_zero(), mbx->screen_size);
 	win.mlx = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
 			NULL, win.title, win.size.x, win.size.y,
 			win.is_fullscreen, win.is_resizable});
+	mlx_get_window_position(mbx->mlx, win.mlx, &win.pos.x, &win.pos.y);
+	if (win.is_minimized)
+		mlx_minimize_window(mbx->mlx, win.mlx);
 	return (win);
 }
 
@@ -32,37 +40,18 @@ t_mbxwindow	mbx_make_window_target(t_mbx *mbx, t_mbximage image)
 {
 	t_mbxwindow	win;
 
+	win = (t_mbxwindow){0};
 	win.mlx_image = image.mlx;
 	win.size = image.size;
 	win.title = "";
-	win.is_fullscreen = false;
-	win.is_resizable = false;
 	win.mlx = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
 			win.mlx_image, win.title, win.size.x, win.size.y,
 			false, false});
 	return (win);
 }
 
-void	mbx_refresh_window(t_mbx *mbx, t_mbxwindow *window)
-{
-	mlx_set_window_size(mbx->mlx, window->mlx,
-		window->size.x, window->size.y);
-	mlx_set_window_title(mbx->mlx, window->mlx, window->title);
-	mlx_set_window_fullscreen(mbx->mlx,
-		window->mlx, window->is_fullscreen);
-}
-
-void	mbx_center_window(t_mbx *mbx, t_mbxwindow *window)
-{
-	t_vec2i	screen;
-
-	mlx_get_screen_size(mbx->mlx, window->mlx, &screen.x, &screen.y);
-	mlx_set_window_position(mbx->mlx, window->mlx,
-		screen.x / 2 - window->size.x / 2,
-		screen.y / 2 - window->size.y / 2);
-}
-
 void	mbx_destroy_window(t_mbx *mbx, t_mbxwindow *window)
 {
 	mlx_destroy_window(mbx->mlx, window->mlx);
+	*window = (t_mbxwindow){0};
 }

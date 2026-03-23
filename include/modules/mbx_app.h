@@ -34,6 +34,18 @@ t_mbx			*mbx_init(t_vec2i viewport_size,
 t_mbx			*mbx_init_windowless(void);
 
 /**
+ * Creates and returns the MacroBoX context using the given MacroLibX context.
+ *
+ * @mlx	the MacroLibX context.
+ *
+ * This function is supposed to be a rough bypass
+ * to allow multiple MacroBoX instances at once.
+ * This functions has been severely untested, use at your own risk.
+ */
+t_mbx	*mbx_init_from_mlx(mlx_context mlx);
+
+
+/**
  * Initialize the main MacroBoX window.
  *
  * @viewport_size the size of the viewport.

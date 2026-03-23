@@ -173,6 +173,14 @@ void		mbx_destroy_window(t_mbx *mbx, t_mbxwindow *window);
 void		mbx_refresh_window(t_mbx *mbx, t_mbxwindow *window);
 
 /**
+ * Refreshes the given window's data to match its properties.
+ *
+ * @mbx			the MacroBoX context.
+ * @window		the window to update.
+ */
+void		mbx_refresh_window_data(t_mbx *mbx, t_mbxwindow *window);
+
+/**
  * Centers the given window on the screen.
  *
  * @mbx			the MacroBoX context.

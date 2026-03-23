@@ -21,7 +21,7 @@ void	key_down_hook(int key, void *param)
 		|| key > MBX_INPUT_ARRAY_KEYBOARD_END)
 		return ;
 	mbx = param;
-	if (mbx->presses[key] > 0)
+	if (mbx_key_held(mbx, key))
 		return ;
 	mbx_press_input(mbx, key);
 }

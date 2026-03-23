@@ -1,5 +1,7 @@
-objs
-VeclibC/objs
-MacroLibX-2.2.2/objs
+**/build
+**/objs
+compile_flags.txt
+**.so
+.*
 ignore
 TODO

@@ -18,8 +18,6 @@ void	mbx_start_frame(t_mbx *mbx)
 {
 	refresh_deltatime(mbx);
 	refresh_cursor(mbx);
-	mlx_get_window_size(mbx->mlx, mbx->window.mlx,
-		&mbx->window.size.x, &mbx->window.size.y);
 	mlx_clear_window(mbx->mlx, mbx->window.mlx, mbx->settings.background_color);
 }
 

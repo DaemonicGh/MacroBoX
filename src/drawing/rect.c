@@ -26,8 +26,8 @@ static void	set_rect_bounds(t_mbxregion *region,
 	}
 	else
 	{
-		pos->x = max(pos->x, 0);
 		size->x = min(pos->x + size->x, region->size.x);
+		pos->x = max(pos->x, 0);
 	}
 	if (size->y < 0)
 	{
@@ -37,27 +37,26 @@ static void	set_rect_bounds(t_mbxregion *region,
 	}
 	else
 	{
-		pos->y = max(pos->y, 0);
 		size->y = min(pos->y + size->y, region->size.y);
+		pos->y = max(pos->y, 0);
 	}
 }
 
 void	mbx_set_rect(t_mbxregion *region,
 	t_vec2i pos, t_vec2i size, t_mbxcolor col)
 {
-	int	x;
-	int	y;
+	t_vec2i	xy;
 
 	set_rect_bounds(region, &pos, &size);
-	x = pos.x;
-	while (x < size.x)
+	xy.x = pos.x;
+	while (xy.x < size.x)
 	{
-		y = pos.y;
-		while (y < size.y)
+		xy.y = pos.y;
+		while (xy.y < size.y)
 		{
-			mbx_set_pixel_unsafe_xy(region, x, y, col);
-			y++;
+			mbx_set_pixel_unsafe(region, xy, col);
+			xy.y++;
 		}
-		x++;
+		xy.x++;
 	}
 }

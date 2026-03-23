@@ -321,3 +321,43 @@ t_mbxcolor	color_blend(t_mbxcolor bg, t_mbxcolor fg);
  * use it when you know that fg isn't either.
  */
 t_mbxcolor	color_blend_quick(t_mbxcolor bg, t_mbxcolor fg);
+
+/**
+ * Adds two color together, respecting transparency.
+ *
+ * @bg the background color.
+ * @fg the foreground color.
+ */
+t_mbxcolor	color_add(t_mbxcolor bg, t_mbxcolor fg);
+
+/**
+ * Subtracts two color together, respecting transparency.
+ *
+ * @bg the background color.
+ * @fg the foreground color.
+ */
+t_mbxcolor	color_sub(t_mbxcolor bg, t_mbxcolor fg);
+
+/**
+ * Average two color together.
+ *
+ * @col1 the first color.
+ * @col2 the second color.
+ */
+t_mbxcolor	color_average(t_mbxcolor col1, t_mbxcolor col2);
+
+/**
+ * Adds two color together, without respecting transparency.
+ *
+ * @bg the background color.
+ * @fg the foreground color.
+ */
+t_mbxcolor	color_add_fast(t_mbxcolor bg, t_mbxcolor fg);
+
+/**
+ * Subtracts two color together, without respecting transparency.
+ *
+ * @bg the background color.
+ * @fg the foreground color.
+ */
+t_mbxcolor	color_sub_fast(t_mbxcolor bg, t_mbxcolor fg);

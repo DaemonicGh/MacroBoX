@@ -32,7 +32,9 @@ bool	should_skip_frame(t_mbx *mbx)
 		return (false);
 	if (time < mbx->timestamps.frame_start
 		+ MBX_FRAME_SKIP_MARGIN_RATIO / mbx->settings.fps_cap)
+	{
 		return (true);
+	}
 	return (false);
 }
 

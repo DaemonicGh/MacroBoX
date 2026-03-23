@@ -14,15 +14,15 @@
 
 bool	mbx_key_pressed(t_mbx *mbx, int key)
 {
-	return (mbx->presses[key] >= 0 && mbx->presses[key] <= MBX_INPUT_EPSILON);
+	return (mbx->key_presses[key] == 0);
 }
 
 bool	mbx_key_held(t_mbx *mbx, int key)
 {
-	return (mbx->presses[key] >= 0);
+	return (mbx->key_presses[key] <= mbx->key_releases[key]);
 }
 
 bool	mbx_key_released(t_mbx *mbx, int key)
 {
-	return (mbx->presses[key] <= 0 && mbx->presses[key] >= -MBX_INPUT_EPSILON);
+	return (mbx->key_releases[key] == 0);
 }

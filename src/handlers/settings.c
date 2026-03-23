@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "modules/types/mbx_s_mbx.h"
+#include "modules/mbx_math.h"
 
 void	mbx_refresh_settings(t_mbx *mbx)
 {
 	if (mbx->settings.fps_cap <= 0)
 		mlx_set_fps_goal(mbx->mlx, INT_MAX);
 	else
-		mlx_set_fps_goal(mbx->mlx, mbx->settings.fps_cap);
+		mlx_set_fps_goal(mbx->mlx, max(mbx->settings.fps_cap, MBX_MLX_FPS_CAP));
 	if (mbx->settings.show_cursor)
 		mlx_mouse_show(mbx->mlx);
 	else

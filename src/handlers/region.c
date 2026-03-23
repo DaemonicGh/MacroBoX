@@ -47,19 +47,13 @@ t_mbxregion	mbx_make_region_with_image(t_mbx *mbx, t_vec2i size)
 t_mbxregion	mbx_make_region_from_image(t_mbx *mbx, t_mbximage *image)
 {
 	t_mbxregion	region;
-	int			i;
 
 	region = mbx_make_region(image->size);
 	if (!region.canvas)
 		return ((t_mbxregion){0});
 	region.image = image->mlx;
-	i = 0;
-	while (i < image->size.x * image->size.y)
-	{
-		region.canvas[i] = mlx_get_image_pixel(mbx->mlx,
-				image->mlx, i % image->size.x, i / image->size.x);
-		i++;
-	}
+	mlx_get_image_region(mbx->mlx, image->mlx,
+		0, 0, image->size.x, image->size.y, region.canvas);
 	return (region);
 }
 

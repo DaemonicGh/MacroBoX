@@ -43,4 +43,5 @@ t_mbxfont	mbx_make_font_from_file(t_mbx *mbx,
 void	mbx_destroy_font(t_mbx *mbx, t_mbxfont *font)
 {
 	mbx_destroy_region(mbx, &font->region);
+	*font = (t_mbxfont){0};
 }

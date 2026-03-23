@@ -21,7 +21,7 @@ void	mouse_down_hook(int button, void *param)
 		|| button > MBX_INPUT_ARRAY_MOUSE_END)
 		return ;
 	mbx = param;
-	if (mbx->presses[button] > 0)
+	if (mbx_key_held(mbx, button))
 		return ;
 	mbx_press_input(mbx, button);
 }

@@ -18,13 +18,13 @@ NAMES					:=	libvec.so libmbx.so
 libmbx.so_files			:=	\
 	app/loop/in_out app/loop/loop app/loop/start_end							\
 	app/exit app/init															\
-	color/blend color/new														\
+	color/blend color/math color/new											\
 	drawing/clear drawing/rect drawing/region drawing/region_scaled				\
 	drawing/line drawing/text 													\
 	drawing/pixel/get drawing/pixel/get_unsafe drawing/pixel/set				\
 	drawing/pixel/raw drawing/pixel/tools drawing/pixel/set_unsafe				\
 	handlers/font handlers/image handlers/region handlers/screen				\
-	handlers/settings handlers/viewport handlers/window							\
+	handlers/settings handlers/viewport handlers/window handlers/window_extras	\
 	inputs/btn inputs/check inputs/cursor inputs/events inputs/press			\
 	inputs/events/keyboard inputs/events/mouse inputs/events/window				\
 	math/clamp math/dist_to_range math/is_integer math/lerp math/minmax			\
@@ -134,6 +134,8 @@ capitalize				=	$(shell echo "$1" | sed 's/./\U&/')
 
 is_shared 				=	$(filter %.so,$1)
 is_static				=	$(filter %.a,$1)
+is_not_shared 			=	$(filter-out %.so,$1)
+is_not_static			=	$(filter-out %.a,$1)
 
 make_object				=	$(addprefix $1,$(addsuffix $(OBJECT_EXTENSION), $(basename $2)))
 make_dependency			=	$(patsubst $1%$(OBJECT_EXTENSION),$2%.d,$3)
@@ -176,7 +178,7 @@ LIBRARY_FILES			:=	$(addprefix $(LOCAL_LIBRARY_DIRECTORY),$(LOCAL_LIBRARIES))
 LIBRARY_DIRECTORIES		:=	$(dir $(LIBRARY_FILES))
 
 RE_LIBRARIES			:=	$(filter-out $(NO_REBUILD_LIBRARIES),$(LOCAL_LIBRARIES))
-RE_LIBRARY_FILES		:=	$(addprefix $(LOCAL_LIBRARY_DIRECTORY),$(REBUILD_LIBRARIES))
+RE_LIBRARY_FILES		:=	$(addprefix $(LOCAL_LIBRARY_DIRECTORY),$(RE_LIBRARIES))
 RE_LIBRARY_DIRECTORIES	:=	$(dir $(RE_LIBRARY_FILES))
 
 LIB_DIR_FLAGS			:=	$(addprefix -L,$(LIBRARY_DIRECTORIES))

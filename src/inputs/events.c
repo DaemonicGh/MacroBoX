@@ -21,8 +21,13 @@ void	reset_inputs(t_mbx *mbx)
 
 	i = 0;
 	while (i < MBX_INPUT_ARRAY_LENGTH)
-		mbx->presses[i++] = NAN;
-	mbx->last_press = NAN;
+	{
+		mbx->key_presses[i] = 1e30f;
+		mbx->key_releases[i] = 1e29f;
+		i++;
+	}
+	mbx->last_press = 1e30f;
+	mbx->last_release = 1e29f;
 	mbx->cursor = vec2i_zero();
 	mbx->cursor_delta = vec2_zero();
 	mbx->scroll_delta = 0;
@@ -35,10 +40,8 @@ void	mbx_flush_inputs(t_mbx *mbx)
 	i = 0;
 	while (i < MBX_INPUT_ARRAY_LENGTH)
 	{
-		if (signbit(mbx->presses[i]))
-			mbx->presses[i] -= mbx->delta_time;
-		else
-			mbx->presses[i] += mbx->delta_time;
+		mbx->key_presses[i] += mbx->delta_time;
+		mbx->key_releases[i] += mbx->delta_time;
 		i++;
 	}
 	mbx->cursor_delta = vec2_zero();

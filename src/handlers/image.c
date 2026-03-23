@@ -41,4 +41,5 @@ t_mbximage	mbx_make_image_from_mlx(mlx_image image, t_vec2i size)
 void	mbx_destroy_image(t_mbx *mbx, t_mbximage *image)
 {
 	mlx_destroy_image(mbx->mlx, image->mlx);
+	*image = (t_mbximage){0};
 }

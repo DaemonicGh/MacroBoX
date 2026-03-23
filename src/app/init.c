@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "mlx.h"
 #include "veclc.h"
 #include "modules/mbx_handlers.h"
 #include "modules/mbx_math.h"
@@ -31,18 +32,18 @@ static void	init_time(t_mbx *mbx)
 bool	mbx_make_main_window(t_mbx *mbx, t_vec2i viewport_size,
 	char *win_title, unsigned int win_flags)
 {
+	t_vec2i	scale;
+
 	mbx->screen_size = get_screen_size_windowless(mbx);
 	if (!mbx->screen_size.x || !mbx->screen_size.y)
 		return (false);
-	vec2i_mult_to_d(&mbx->screen_size, MBX_INIT_MAX_WINDOW_COVERAGE_RATIO);
-	vec2i_div_to(&mbx->screen_size, viewport_size);
+	scale = vec2i_mult_d(mbx->screen_size, MBX_INIT_MAX_WINDOW_COVERAGE_RATIO);
+	vec2i_div_to(&scale, viewport_size);
 	mbx->window = mbx_make_window(mbx, vec2i_mult_i(viewport_size,
-				max(min(mbx->screen_size.x, mbx->screen_size.y), 1)),
+				max(min(scale.x, scale.y), 1)),
 			win_title, win_flags);
 	if (!mbx->window.mlx)
 		return (false);
-	mlx_set_window_min_size(mbx->mlx,
-		mbx->window.mlx, viewport_size.x, viewport_size.y);
 	mbx->viewport = mbx_make_region_with_image(mbx, viewport_size);
 	if (!mbx->viewport.canvas)
 	{
@@ -60,12 +61,28 @@ t_mbx	*mbx_init_windowless(void)
 	mbx = malloc(sizeof(t_mbx));
 	if (!mbx)
 		return (NULL);
+	*mbx = (t_mbx){0};
 	mbx->mlx = mlx_init();
 	if (!mbx->mlx)
 	{
 		free(mbx);
 		return (NULL);
 	}
+	mbx_reset_settings(mbx);
+	reset_inputs(mbx);
+	init_time(mbx);
+	return (mbx);
+}
+
+t_mbx	*mbx_init_from_mlx(mlx_context mlx)
+{
+	t_mbx	*mbx;
+
+	mbx = malloc(sizeof(t_mbx));
+	if (!mbx)
+		return (NULL);
+	*mbx = (t_mbx){0};
+	mbx->mlx = mlx;
 	mbx_reset_settings(mbx);
 	reset_inputs(mbx);
 	init_time(mbx);

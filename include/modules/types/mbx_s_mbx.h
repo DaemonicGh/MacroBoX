@@ -29,9 +29,10 @@
  * @mlx					the MacroLibX context.
  * @default_font		the base font used for rendering text.
  *
- * @presses				array containing the info about pressed keys.
- * (seconds spent held if positive, seconds since release if negative)
+ * @key_presses			array containing the time passed since each key press.
+ * @key_releases		array containing the time passed since each key release.
  * @last_press			timestamp to last recorded key press.
+ * @last_release			timestamp to last recorded key release.
  * @cursor				cursor position relative to the viewport.
  * @cursor_delta		cursor movement since last frame.
  * @scroll_delta		scroll wheel change since last frame.
@@ -52,8 +53,10 @@ typedef struct s_mbxcontext
 	mlx_context		mlx;
 	t_mbxfont		default_font;
 
-	double			presses[MBX_INPUT_ARRAY_LENGTH];
+	double			key_presses[MBX_INPUT_ARRAY_LENGTH];
+	double			key_releases[MBX_INPUT_ARRAY_LENGTH];
 	double			last_press;
+	double			last_release;
 	t_vec2i			cursor;
 	t_vec2			cursor_delta;
 	int				scroll_delta;

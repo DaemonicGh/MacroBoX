@@ -1,9 +1,3 @@
 If:
   PathExclude:
     - MacroLibX-2.2.2/*
-
-CompileFlags:
-  Add:
-    - -Iinclude
-    - -Ilib/VecLibC/include
-    - -Ilib/MacroLibX-2.2.2/includes
