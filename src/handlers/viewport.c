@@ -18,7 +18,7 @@
 
 bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
 {
-	t_mbxregion	new;
+	t_mbx_region	new;
 
 	size.x = clamp(size.x, 0, mbx->window.size.x);
 	size.y = clamp(size.y, 0, mbx->window.size.y);
@@ -27,13 +27,14 @@ bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
 		return (false);
 	mbx_destroy_region(mbx, &mbx->viewport);
 	mbx->viewport = new;
-	mbx_warp_cursor(mbx, vec2i_div_i(mbx->cursor, 2));
+	if (mbx->settings.lock_cursor)
+		mbx_warp_cursor(mbx, vec2i_div_i(mbx->cursor, 2));
 	return (true);
 }
 
 bool	mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size)
 {
-	t_mbxregion			new;
+	t_mbx_region			new;
 
 	size.x = clamp(size.x, 0, mbx->window.size.x);
 	size.y = clamp(size.y, 0, mbx->window.size.y);
@@ -44,21 +45,7 @@ bool	mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size)
 		vec2i_truediv(size, mbx->viewport.size));
 	mbx_destroy_region(mbx, &mbx->viewport);
 	mbx->viewport = new;
-	mbx_warp_cursor(mbx, vec2i_div_i(mbx->cursor, 2));
+	if (mbx->settings.lock_cursor)
+		mbx_warp_cursor(mbx, vec2i_div_i(mbx->cursor, 2));
 	return (true);
-}
-
-void	draw_viewport(t_mbx *mbx)
-{
-	const int			scale = min(
-			mbx->window.size.x / mbx->viewport.size.x,
-			mbx->window.size.y / mbx->viewport.size.y);
-	const t_vec2i		size = vec2i(mbx->viewport.size.x * scale,
-			mbx->viewport.size.y * scale);
-
-	mlx_set_image_region(mbx->mlx, mbx->viewport.image, 0, 0,
-		mbx->viewport.size.x, mbx->viewport.size.y, mbx->viewport.canvas);
-	mlx_put_transformed_image_to_window(mbx->mlx, mbx->window.mlx,
-		mbx->viewport.image, (mbx->window.size.x - (size.x)) / 2,
-		(mbx->window.size.y - (size.y)) / 2, scale, scale, 0);
 }

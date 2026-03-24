@@ -14,7 +14,7 @@
 #include "mlx_extended.h"
 #include "modules/types/mbx_s_mbx.h"
 
-void	mbx_refresh_window(t_mbx *mbx, t_mbxwindow *window)
+void	mbx_refresh_window(t_mbx *mbx, t_mbx_window *window)
 {
 	mlx_set_window_position(
 		mbx->mlx, window->mlx, window->pos.x, window->pos.y);
@@ -33,7 +33,7 @@ void	mbx_refresh_window(t_mbx *mbx, t_mbxwindow *window)
 		mlx_restore_window(mbx->mlx, window->mlx);
 }
 
-void	mbx_refresh_window_data(t_mbx *mbx, t_mbxwindow *window)
+void	mbx_refresh_window_data(t_mbx *mbx, t_mbx_window *window)
 {
 	mlx_get_window_position(
 		mbx->mlx, window->mlx, &window->pos.x, &window->pos.y);
@@ -41,7 +41,7 @@ void	mbx_refresh_window_data(t_mbx *mbx, t_mbxwindow *window)
 		mbx->mlx, window->mlx, &window->size.x, &window->size.y);
 }
 
-void	mbx_center_window(t_mbx *mbx, t_mbxwindow *window)
+void	mbx_center_window(t_mbx *mbx, t_mbx_window *window)
 {
 	mlx_set_window_position(mbx->mlx, window->mlx,
 		mbx->screen_size.x / 2 - window->size.x / 2,

@@ -17,8 +17,8 @@
 #include "modules/mbx_constants.h"
 #include "modules/mbx_scancodes.h"
 
+#include "modules/types/mbx_s_atlas.h"
 #include "modules/types/mbx_s_color.h"
-#include "modules/types/mbx_s_font.h"
 #include "modules/types/mbx_s_image.h"
 #include "modules/types/mbx_s_mbx.h"
 #include "modules/types/mbx_s_region.h"

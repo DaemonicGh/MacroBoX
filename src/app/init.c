@@ -39,7 +39,8 @@ bool	mbx_make_main_window(t_mbx *mbx, t_vec2i viewport_size,
 		return (false);
 	scale = vec2i_mult_d(mbx->screen_size, MBX_INIT_MAX_WINDOW_COVERAGE_RATIO);
 	vec2i_div_to(&scale, viewport_size);
-	mbx->window = mbx_make_window(mbx, vec2i_mult_i(viewport_size,
+	mbx->window = mbx_make_window(mbx,
+			vec2i_mult_i(viewport_size,
 				max(min(scale.x, scale.y), 1)),
 			win_title, win_flags);
 	if (!mbx->window.mlx)

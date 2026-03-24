@@ -11,25 +11,22 @@
 /* ************************************************************************** */
 
 #include "modules/types/mbx_s_color.h"
-#include "modules/mbx_math.h"
 
-t_mbxcolor	color_blend_quick(t_mbxcolor bg, t_mbxcolor fg)
+t_mbx_color	color_blend_quick(t_mbx_color bg, t_mbx_color fg)
 {
-	const double	v = (fg.a + (255 - bg.a)) / 255.0;
-
-	return ((t_mbxcolor){
-		.r = bg.r + (fg.r - bg.r) * v,
-		.g = bg.g + (fg.g - bg.g) * v,
-		.b = bg.b + (fg.b - bg.b) * v,
-		.a = bg.a + fg.a * (255 - bg.a) / 255
+	return ((t_mbx_color){
+		.r = bg.r + (((fg.r - bg.r) * fg.a + 128) >> 8),
+		.g = bg.g + (((fg.g - bg.g) * fg.a + 128) >> 8),
+		.b = bg.b + (((fg.b - bg.b) * fg.a + 128) >> 8),
+		.a = fg.a + ((bg.a * (255 - fg.a) + 128) >> 8)
 	});
 }
 
-t_mbxcolor	color_blend(t_mbxcolor bg, t_mbxcolor fg)
+t_mbx_color	color_blend(t_mbx_color bg, t_mbx_color fg)
 {
 	if (fg.a == 0)
 		return (bg);
-	if (fg.a == 255)
+	if (fg.a == 255 || bg.a == 0)
 		return (fg);
 	return (color_blend_quick(bg, fg));
 }

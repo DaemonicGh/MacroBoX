@@ -24,8 +24,8 @@
  * Do not confuse images with regions, which are MacroBoX actual images.
  * This struct must be destroyed manually using mbx_destroy_image().
  */
-typedef struct s_mbximage
+typedef struct s_mbx_image
 {
 	mlx_image	mlx;
 	t_vec2i		size;
-}	t_mbximage;
+}	t_mbx_image;

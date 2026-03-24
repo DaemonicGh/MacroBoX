@@ -30,7 +30,8 @@ static inline void	line_step(t_vec2i *step, int *err, t_vec2i d, t_vec2i s)
 	}
 }
 
-void	mbx_set_line(t_mbxregion *region, t_vec2ix2 pos, t_mbxcolor col)
+void	mbx_set_line(t_mbx_region *restrict region,
+	t_vec2ix2 pos, t_mbx_color col)
 {
 	const t_vec2i	d = vec2i_abs(vec2i_sub(pos.p2, pos.p1));
 	const t_vec2i	s = vec2i(
@@ -48,8 +49,8 @@ void	mbx_set_line(t_mbxregion *region, t_vec2ix2 pos, t_mbxcolor col)
 	}
 }
 
-void	mbx_set_line_thick(t_mbxregion *region,
-	t_vec2ix2 pos, unsigned int thickness, t_mbxcolor col)
+void	mbx_set_line_thick(t_mbx_region *restrict region,
+	t_vec2ix2 pos, unsigned int thickness, t_mbx_color col)
 {
 	const t_vec2i	d = vec2i_abs(vec2i_sub(pos.p2, pos.p1));
 	const t_vec2i	s = vec2i(

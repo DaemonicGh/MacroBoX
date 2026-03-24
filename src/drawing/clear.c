@@ -11,26 +11,20 @@
 /* ************************************************************************** */
 
 #include "modules/mbx_drawing.h"
+#include "../_private/mbx_simd.h"
 
-void	mbx_clear(t_mbxregion *region, t_mbxcolor col)
+void	mbx_clear(t_mbx_region *restrict region, t_mbx_color col)
 {
-	int			i;
+	const t_col4	vcol = {col.rgba, col.rgba, col.rgba, col.rgba};
+	const int		size = region->size.x * region->size.y;
+	int				i;
 
-	if (col.a == 0)
-		return ;
-	if (col.a == 255)
+	i = 0;
+	while (i < size - 4)
 	{
-		i = 0;
-		while (i < region->size.x * region->size.y)
-			region->canvas[i++] = col;
+		*(t_col4 *)(region->canvas + i) = vcol;
+		i += 4;
 	}
-	else
-	{
-		i = 0;
-		while (i < region->size.x * region->size.y)
-		{
-			region->canvas[i] = color_blend_quick(region->canvas[i], col);
-			i++;
-		}
-	}
+	while (i < size)
+		region->canvas[i++] = col;
 }

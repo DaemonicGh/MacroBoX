@@ -17,7 +17,6 @@
 #include "modules/mbx_constants.h"
 #include "mbx_s_window.h"
 #include "mbx_s_region.h"
-#include "mbx_s_font.h"
 #include "mbx_s_image.h"
 
 /**
@@ -27,7 +26,6 @@
  * @viewport			the image where the application is rendered.
  * @screen_size			the size of the screen the window is on.
  * @mlx					the MacroLibX context.
- * @default_font		the base font used for rendering text.
  *
  * @key_presses			array containing the time passed since each key press.
  * @key_releases		array containing the time passed since each key release.
@@ -45,43 +43,43 @@
  * @settings			various modifiable values about the application.
  * @exiting				true if the application will stop next frame.
  */
-typedef struct s_mbxcontext
+typedef struct s_mbx_context
 {
-	t_mbxregion		viewport;
-	t_mbxwindow		window;
-	t_vec2i			screen_size;
-	mlx_context		mlx;
-	t_mbxfont		default_font;
+	t_mbx_region			viewport;
+	t_mbx_window			window;
+	t_vec2i					screen_size;
+	mlx_context				mlx;
 
-	double			key_presses[MBX_INPUT_ARRAY_LENGTH];
-	double			key_releases[MBX_INPUT_ARRAY_LENGTH];
-	double			last_press;
-	double			last_release;
-	t_vec2i			cursor;
-	t_vec2			cursor_delta;
-	int				scroll_delta;
+	float					key_presses[MBX_INPUT_ARRAY_LENGTH];
+	float					key_releases[MBX_INPUT_ARRAY_LENGTH];
+	float					last_press;
+	float					last_release;
+	t_vec2i					cursor;
+	t_vec2					cursor_delta;
+	int						scroll_delta;
 
-	double			delta_time;
-	double			seconds_per_frame;
+	double					delta_time;
+	double					seconds_per_frame;
 
-	struct s_mbxtimestamps
+	struct s_mbx_timestamps
 	{
-		double		frame_start;
-		double		app_start;
-	}				timestamps;
+		double					frame_start;
+		double					app_start;
+	}						timestamps;
 \
-	unsigned long	frames_elapsed;
+	unsigned long			frames_elapsed;
 
-	struct s_mbxsettings
+	struct s_mbx_settings
 	{
-		t_mbxcolor	background_color;
-		int			fps_cap;
-		bool		do_window_cross_exit;
-		int			exit_key;
-		int			fullscreen_toggle_key;
-		bool		lock_cursor;
-		bool		show_cursor;
-	}				settings;
+		t_mbx_viewport_render	viewport_render;
+		t_mbx_color				background_color;
+		int						fps_cap;
+		bool					do_window_cross_exit;
+		int						exit_key;
+		int						fullscreen_toggle_key;
+		bool					lock_cursor;
+		bool					show_cursor;
+	}						settings;
 \
-	bool			exiting;
+	bool					exiting;
 }	t_mbx;

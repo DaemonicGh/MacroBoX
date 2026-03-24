@@ -20,10 +20,10 @@ libmbx.so_files			:=	\
 	app/exit app/init															\
 	color/blend color/math color/new											\
 	drawing/clear drawing/rect drawing/region drawing/region_scaled				\
-	drawing/line drawing/text 													\
+	drawing/line drawing/render drawing/text 									\
 	drawing/pixel/get drawing/pixel/get_unsafe drawing/pixel/set				\
 	drawing/pixel/raw drawing/pixel/tools drawing/pixel/set_unsafe				\
-	handlers/font handlers/image handlers/region handlers/screen				\
+	handlers/atlas handlers/image handlers/region handlers/screen				\
 	handlers/settings handlers/viewport handlers/window handlers/window_extras	\
 	inputs/btn inputs/check inputs/cursor inputs/events inputs/press			\
 	inputs/events/keyboard inputs/events/mouse inputs/events/window				\

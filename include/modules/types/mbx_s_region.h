@@ -24,9 +24,9 @@
  *
  * This struct must be destroyed manually using mbx_destroy_region().
  */
-typedef struct s_mbxregion
+typedef struct s_mbx_region
 {
-	t_mbxcolor	*canvas;
+	t_mbx_color	*canvas;
 	mlx_image	image;
 	t_vec2i		size;
-}	t_mbxregion;
+}	t_mbx_region;

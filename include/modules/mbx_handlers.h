@@ -13,6 +13,7 @@
 #pragma once
 
 #include "types/mbx_s_mbx.h"
+#include "types/mbx_s_atlas.h"
 
 /**
  * Creates and returns a new region with the given size.
@@ -21,7 +22,9 @@
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
-t_mbxregion	mbx_make_region(t_vec2i size);
+t_mbx_region
+mbx_make_region(
+	t_vec2i size);
 
 /**
  * Creates and returns a new region with a linked image.
@@ -31,7 +34,9 @@ t_mbxregion	mbx_make_region(t_vec2i size);
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
-t_mbxregion	mbx_make_region_with_image(t_mbx *mbx, t_vec2i size);
+t_mbx_region
+mbx_make_region_with_image(
+	t_mbx *mbx, t_vec2i size);
 
 /**
  * Creates and returns a new region from the given image.
@@ -41,7 +46,9 @@ t_mbxregion	mbx_make_region_with_image(t_mbx *mbx, t_vec2i size);
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
-t_mbxregion	mbx_make_region_from_image(t_mbx *mbx, t_mbximage *image);
+t_mbx_region
+mbx_make_region_from_image(
+	t_mbx *mbx, t_mbx_image *image);
 
 /**
  * Creates and returns a new region from the given image path.
@@ -51,7 +58,9 @@ t_mbxregion	mbx_make_region_from_image(t_mbx *mbx, t_mbximage *image);
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
-t_mbxregion	mbx_make_region_from_file(t_mbx *mbx, char *filename);
+t_mbx_region
+mbx_make_region_from_file(
+	t_mbx *mbx, char *filename);
 
 /**
  * Destroys and frees the contents of the given region.
@@ -59,7 +68,9 @@ t_mbxregion	mbx_make_region_from_file(t_mbx *mbx, char *filename);
  * @mbx The macrobox context.
  * @region The region to destroy.
  */
-void		mbx_destroy_region(t_mbx *mbx, t_mbxregion *region);
+void
+mbx_destroy_region(
+	t_mbx *mbx, t_mbx_region *region);
 
 /**
  * Creates an returns a MacroBoX image.
@@ -67,7 +78,9 @@ void		mbx_destroy_region(t_mbx *mbx, t_mbxregion *region);
  * @mbx the MacroBoX context.
  * @size the size of the image.
  */
-t_mbximage	mbx_make_image(t_mbx *mbx, t_vec2i size);
+t_mbx_image
+mbx_make_image(
+	t_mbx *mbx, t_vec2i size);
 
 /**
  * Creates an returns a MacroBoX image from a file.
@@ -75,7 +88,9 @@ t_mbximage	mbx_make_image(t_mbx *mbx, t_vec2i size);
  * @mbx the MacroBoX context.
  * @path the path to the image file.
  */
-t_mbximage	mbx_make_image_from_file(t_mbx *mbx, char *path);
+t_mbx_image
+mbx_make_image_from_file(
+	t_mbx *mbx, char *path);
 
 /**
  * Creates an returns a MacroBoX image from its MacroLibX equivalent.
@@ -84,7 +99,9 @@ t_mbximage	mbx_make_image_from_file(t_mbx *mbx, char *path);
  * @image the MacroLibX image.
  * @size the size of the image.
  */
-t_mbximage	mbx_make_image_from_mlx(mlx_image image, t_vec2i size);
+t_mbx_image
+mbx_make_image_from_mlx(
+	mlx_image image, t_vec2i size);
 
 /**
  * Destroys and frees the content of a MacroBoX image.
@@ -92,34 +109,22 @@ t_mbximage	mbx_make_image_from_mlx(mlx_image image, t_vec2i size);
  * @mbx the MacroBoX context.
  * @image the MacroBoX image to destroy.
  */
-void		mbx_destroy_image(t_mbx *mbx, t_mbximage *image);
+void
+mbx_destroy_image(
+	t_mbx *mbx, t_mbx_image *image);
 
 /**
  * Creates and returns a font.
  *
- * @region	the source image atlas of the font.
- * @glyph_size	the size of a glyph	in pixels.
- * @col		the base color of the font.
+ * @atlas		the source region for the atlas.
+ * @region_size	the size of a region in the atlas in pixels.
  *
  * MacroBoX currently only supports monospace fonts,
  * make sure that the image's glyphs are white for color to work properly.
  */
-t_mbxfont	mbx_make_font(t_mbxregion region,
-				t_vec2i glyph_size, t_mbxcolor col);
-
-/**
- * Creates and returns a font from a file.
- *
- * @mbx	the macrobox instance
- * @path	the path to the font file containing the image atlas.
- * @glyph_size	the size of a glyph	in pixels.
- * @col		the base color of the font.
- *
- * MacroBoX currently only supports monospace fonts,
- * make sure that the image's glyphs are white for color to work properly.
- */
-t_mbxfont	mbx_make_font_from_file(t_mbx *mbx,
-				char *path, t_vec2i glyph_size, t_mbxcolor col);
+t_mbx_atlas
+mbx_make_atlas(
+	t_mbx_region region, t_vec2i region_size);
 
 /**
  * Destroys and frees the content of the given font.
@@ -127,7 +132,9 @@ t_mbxfont	mbx_make_font_from_file(t_mbx *mbx,
  * @mbx		the MacrBoX context.
  * @font	the font to destroy.
  */
-void		mbx_destroy_font(t_mbx *mbx, t_mbxfont *font);
+void
+mbx_destroy_atlas(
+	t_mbx *mbx, t_mbx_atlas *atlas);
 
 /**
  * Creates and returns a MacroBoX window.
@@ -139,7 +146,23 @@ void		mbx_destroy_font(t_mbx *mbx, t_mbxfont *font);
  *
  * This function can fail allocation, then the result will be 0 padded.
  */
-t_mbxwindow	mbx_make_window(t_mbx *mbx, t_vec2i size, char *title, int flags);
+t_mbx_window
+mbx_make_window(
+	t_mbx *mbx, t_vec2i size, char *title, unsigned int flags);
+
+/**
+ * Creates and returns a MacroBoX window that contains a target.
+ *
+ * @mbx			the MacroBoX context.
+ * @size		the size in pixels of the window.
+ * @title		the title of the window.
+ * @flags		bit mask of the window's behavior flags, see MBX_WINDOW_FLAG_*
+ *
+ * This function can fail allocation, then the result will be 0 padded.
+ */
+t_mbx_window
+mbx_make_window_with_target(
+	t_mbx *mbx, t_vec2i size, char *title, unsigned int flags);
 
 /**
  * Creates and returns a MacroBoX window that targets to a given image.
@@ -152,7 +175,9 @@ t_mbxwindow	mbx_make_window(t_mbx *mbx, t_vec2i size, char *title, int flags);
  *
  * This function can fail allocation, then the result will be 0 padded.
  */
-t_mbxwindow	mbx_make_window_target(t_mbx *mbx, t_mbximage image);
+t_mbx_window
+mbx_make_window_target(
+	t_mbx *mbx, t_mbx_image image);
 
 /**
  * Destroys and frees the contents of the given MacroBoX window.
@@ -160,7 +185,9 @@ t_mbxwindow	mbx_make_window_target(t_mbx *mbx, t_mbximage image);
  * @mbx			the MacroBoX context.
  * @window		the window to destroy.
  */
-void		mbx_destroy_window(t_mbx *mbx, t_mbxwindow *window);
+void
+mbx_destroy_window(
+	t_mbx *mbx, t_mbx_window *window);
 
 /**
  * Refreshes the given window's properties to match its values.
@@ -170,7 +197,9 @@ void		mbx_destroy_window(t_mbx *mbx, t_mbxwindow *window);
  *
  * This function is very unstable and may result in unexpected behavior.
  */
-void		mbx_refresh_window(t_mbx *mbx, t_mbxwindow *window);
+void
+mbx_refresh_window(
+	t_mbx *mbx, t_mbx_window *window);
 
 /**
  * Refreshes the given window's data to match its properties.
@@ -178,7 +207,9 @@ void		mbx_refresh_window(t_mbx *mbx, t_mbxwindow *window);
  * @mbx			the MacroBoX context.
  * @window		the window to update.
  */
-void		mbx_refresh_window_data(t_mbx *mbx, t_mbxwindow *window);
+void
+mbx_refresh_window_data(
+	t_mbx *mbx, t_mbx_window *window);
 
 /**
  * Centers the given window on the screen.
@@ -188,7 +219,9 @@ void		mbx_refresh_window_data(t_mbx *mbx, t_mbxwindow *window);
  *
  * This function is very unstable and may result in unexpected behavior.
  */
-void		mbx_center_window(t_mbx *mbx, t_mbxwindow *window);
+void
+mbx_center_window(
+	t_mbx *mbx, t_mbx_window *window);
 
 /**
  * Resizes the viewport.
@@ -198,7 +231,9 @@ void		mbx_center_window(t_mbx *mbx, t_mbxwindow *window);
  *
  * This function can fail allocation, then it will return false.
  */
-bool		mbx_resize_viewport(t_mbx *mbx, t_vec2i size);
+bool
+mbx_resize_viewport(
+	t_mbx *mbx, t_vec2i size);
 
 /**
  * Resizes the viewport and its content.
@@ -209,7 +244,9 @@ bool		mbx_resize_viewport(t_mbx *mbx, t_vec2i size);
  * This function can fail allocation, then it will return false.
  * The content of the viewport will stretch to fit the new size.
  */
-bool		mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size);
+bool
+mbx_resize_viewport_with_content(
+	t_mbx *mbx, t_vec2i size);
 
 /**
  * Gets the size of the main screen without requiring an open window.
@@ -219,18 +256,24 @@ bool		mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size);
  * This function creates a temporary window.
  * This function can fail allocation, then the result will be 0 padded.
  */
-t_vec2i		get_screen_size_windowless(t_mbx *mbx);
+t_vec2i
+get_screen_size_windowless(
+	t_mbx *mbx);
 
 /**
  * Resets the settings to their default values.
  *
  * @mbx the MacroBox context.
  */
-void		mbx_reset_settings(t_mbx *mbx);
+void
+mbx_reset_settings(
+	t_mbx *mbx);
 
 /**
  * Updates the elements affected by settings.
  *
  * @mbx the MacroBox context.
  */
-void		mbx_refresh_settings(t_mbx *mbx);
+void
+mbx_refresh_settings(
+	t_mbx *mbx);

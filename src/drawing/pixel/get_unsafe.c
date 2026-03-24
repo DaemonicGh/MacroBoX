@@ -12,17 +12,17 @@
 
 #include "modules/mbx_drawing.h"
 
-t_mbxcolor	mbx_get_pixel_unsafe_i(t_mbxregion *region, int i)
+t_mbx_color	mbx_get_pixel_unsafe_i(t_mbx_region *restrict region, int i)
 {
 	return (region->canvas[i]);
 }
 
-t_mbxcolor	mbx_get_pixel_unsafe_xy(t_mbxregion *region, int x, int y)
+t_mbx_color	mbx_get_pixel_unsafe_xy(t_mbx_region *restrict region, int x, int y)
 {
 	return (region->canvas[y * region->size.x + x]);
 }
 
-t_mbxcolor	mbx_get_pixel_unsafe(t_mbxregion *region, t_vec2i pos)
+t_mbx_color	mbx_get_pixel_unsafe(t_mbx_region *restrict region, t_vec2i pos)
 {
 	return (region->canvas[pos.y * region->size.x + pos.x]);
 }

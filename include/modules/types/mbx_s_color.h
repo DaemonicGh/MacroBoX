@@ -18,7 +18,7 @@
  * Represents a color in the RGBA color space.
  * works the same way as MacroLibX's color.
  */
-typedef mlx_color	t_mbxcolor;
+typedef mlx_color	t_mbx_color;
 
 /**
  * Creates an opaque color from a hexadecimal value.
@@ -27,7 +27,7 @@ typedef mlx_color	t_mbxcolor;
  *
  * the hexadecimal value is expected to be in the format 0xRRGGBB.
  */
-t_mbxcolor		color(unsigned int hex);
+t_mbx_color		color(unsigned int hex);
 
 /**
  * Creates a color from a hexadecimal value.
@@ -36,4 +36,4 @@ t_mbxcolor		color(unsigned int hex);
  *
  * the hexadecimal value is expected to be in the format 0xRRGGBBAA.
  */
-t_mbxcolor		color_rgba(unsigned int hex);
+t_mbx_color		color_rgba(unsigned int hex);

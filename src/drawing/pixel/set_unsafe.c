@@ -12,8 +12,8 @@
 
 #include "modules/mbx_drawing.h"
 
-void	mbx_set_pixel_unsafe_i(t_mbxregion *region,
-	int i, t_mbxcolor col)
+void	mbx_set_pixel_unsafe_i(t_mbx_region *restrict region,
+	int i, t_mbx_color col)
 {
 	if (col.a == 0)
 		return ;
@@ -23,8 +23,8 @@ void	mbx_set_pixel_unsafe_i(t_mbxregion *region,
 		region->canvas[i] = color_blend_quick(region->canvas[i], col);
 }
 
-void	mbx_set_pixel_unsafe_xy(t_mbxregion *region,
-	int x, int y, t_mbxcolor col)
+void	mbx_set_pixel_unsafe_xy(t_mbx_region *restrict region,
+	int x, int y, t_mbx_color col)
 {
 	const int	i = (y * region->size.x + x);
 
@@ -36,8 +36,8 @@ void	mbx_set_pixel_unsafe_xy(t_mbxregion *region,
 		region->canvas[i] = color_blend_quick(region->canvas[i], col);
 }
 
-void	mbx_set_pixel_unsafe(t_mbxregion *region,
-	t_vec2i pos, t_mbxcolor col)
+void	mbx_set_pixel_unsafe(t_mbx_region *restrict region,
+	t_vec2i pos, t_mbx_color col)
 {
 	const int	i = (pos.y * region->size.x + pos.x);
 

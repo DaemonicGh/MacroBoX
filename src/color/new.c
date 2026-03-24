@@ -12,17 +12,17 @@
 
 #include "modules/types/mbx_s_color.h"
 
-t_mbxcolor	color(unsigned int hex)
+t_mbx_color	color(unsigned int hex)
 {
-	return ((t_mbxcolor){.rgba = hex << 8 | 0xFF});
+	return ((t_mbx_color){.rgba = hex << 8 | 0xFF});
 }
 
-t_mbxcolor	color_rgba(unsigned int hex)
+t_mbx_color	color_rgba(unsigned int hex)
 {
-	return ((t_mbxcolor){.rgba = hex});
+	return ((t_mbx_color){.rgba = hex});
 }
 
-t_mbxcolor	color_opaque(t_mbxcolor col)
+t_mbx_color	color_opaque(t_mbx_color col)
 {
-	return ((t_mbxcolor){.rgba = col.rgba | 0xFF});
+	return ((t_mbx_color){.rgba = col.rgba | 0xFF});
 }

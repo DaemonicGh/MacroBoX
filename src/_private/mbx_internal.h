@@ -33,7 +33,6 @@ void	reset_inputs(t_mbx *mbx);
 void	mbx_start_events(t_mbx *mbx);
 void	mbx_start_frame(t_mbx *mbx);
 void	mbx_end_frame(t_mbx *mbx);
-void	draw_viewport(t_mbx *mbx);
 
 void	key_down_hook(int key, void *param);
 void	key_up_hook(int key, void *param);

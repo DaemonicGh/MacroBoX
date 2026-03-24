@@ -12,8 +12,9 @@
 
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_math.h"
+#include "../_private/mbx_simd.h"
 
-static void	set_rect_bounds(t_mbxregion *region,
+static void	set_rect_bounds(t_mbx_region *restrict region,
 	t_vec2i *pos, t_vec2i *size)
 {
 	int	ppos;
@@ -42,21 +43,58 @@ static void	set_rect_bounds(t_mbxregion *region,
 	}
 }
 
-void	mbx_set_rect(t_mbxregion *region,
-	t_vec2i pos, t_vec2i size, t_mbxcolor col)
+static void	set_rect_opaque(t_mbx_region *restrict region,
+	t_vec2i pos, t_vec2i size, t_mbx_color col)
 {
-	t_vec2i	xy;
+	const t_col4	vcol = {col.rgba, col.rgba, col.rgba, col.rgba};
+	t_vec2i			xy;
+	t_mbx_color		*row;
 
-	set_rect_bounds(region, &pos, &size);
-	xy.x = pos.x;
-	while (xy.x < size.x)
+	xy.y = pos.y;
+	row = region->canvas + (xy.y * region->size.x);
+	while (xy.y < size.y)
 	{
-		xy.y = pos.y;
-		while (xy.y < size.y)
+		xy.x = pos.x;
+		while (xy.x < size.x - 4)
 		{
-			mbx_set_pixel_unsafe(region, xy, col);
-			xy.y++;
+			*(t_col4 *)(row + xy.x) = vcol;
+			xy.x += 4;
 		}
-		xy.x++;
+		while (xy.x < size.x)
+		{
+			row[xy.x] = col;
+			xy.x++;
+		}
+		xy.y++;
+		row += region->size.x;
+	}
+}
+
+void	mbx_set_rect(t_mbx_region *restrict region,
+	t_vec2i pos, t_vec2i size, t_mbx_color col)
+{
+	t_vec2i		xy;
+	t_mbx_color	*row;
+
+	if (col.a == 0)
+		return ;
+	set_rect_bounds(region, &pos, &size);
+	if (col.a == 0xFF)
+	{
+		set_rect_opaque(region, pos, size, col);
+		return ;
+	}
+	xy.y = pos.y;
+	row = region->canvas + (xy.y * region->size.x);
+	while (xy.y < size.y)
+	{
+		xy.x = pos.x;
+		while (xy.x < size.x)
+		{
+			row[xy.x] = color_blend_quick(row[xy.x], col);
+			xy.x++;
+		}
+		xy.y++;
+		row += region->size.x;
 	}
 }

@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   veclc_vecn.h                                       :+:      :+:    :+:   */
+/*   mbx_simd.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 21:04:09 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/03/23 15:43:24 by rprieur           #+#    #+#             */
+/*   Updated: 2026/03/23 15:44:00 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "veclc_vec2.h"
-#include "veclc_vec2i.h"
-#include "veclc_vec3.h"
-#include "veclc_vec3i.h"
+#include <stdint.h>
+
+typedef uint32_t __attribute__((vector_size(16), aligned(1)))	t_col4;

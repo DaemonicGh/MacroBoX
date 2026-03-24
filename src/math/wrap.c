@@ -13,35 +13,35 @@
 int	wrap(int val, int low, int high)
 {
 	while (val >= high)
-		val -= high;
+		val -= high - low;
 	while (val < low)
-		val += low;
+		val += high - low;
 	return (val);
 }
 
 double	fwrap(double val, double low, double high)
 {
 	while (val >= high)
-		val -= high;
+		val -= high - low;
 	while (val < low)
-		val += low;
+		val += high - low;
 	return (val);
 }
 
 float	fwrapf(float val, float low, float high)
 {
 	while (val >= high)
-		val -= high;
+		val -= high - low;
 	while (val < low)
-		val += low;
+		val += high - low;
 	return (val);
 }
 
 long double	fwrapl(long double val, long double low, long double high)
 {
 	while (val >= high)
-		val -= high;
+		val -= high - low;
 	while (val < low)
-		val += low;
+		val += high - low;
 	return (val);
 }

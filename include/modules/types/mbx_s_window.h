@@ -30,9 +30,9 @@
  * @is_maximized	true if the window is maximized.
  *
  * This struct must be destroyed manually using mbx_destroy_window().
- * WARNING: Resizing is VERY unsafe on what i'd guess is X11
+ * WARNING: Resizing is VERY unsafe
  */
-typedef struct s_mbxwindow
+typedef struct s_mbx_window
 {
 	mlx_window		mlx;
 	mlx_image		mlx_image;
@@ -44,4 +44,4 @@ typedef struct s_mbxwindow
 	bool			is_resizable;
 	bool			is_minimized;
 	bool			is_maximized;
-}	t_mbxwindow;
+}	t_mbx_window;

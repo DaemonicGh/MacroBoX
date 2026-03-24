@@ -24,14 +24,16 @@
  *
  * The actual window size will scale the viewport to fit the screen.
  */
-t_mbx			*mbx_init(t_vec2i viewport_size,
-					char *win_title, unsigned int flags);
+t_mbx
+*mbx_init(
+	t_vec2i viewport_size, char *win_title, unsigned int flags);
 
 /**
  * Initialize the MacroLibX, creates and returns the MacroBoX context
  * without opening a window.
  */
-t_mbx			*mbx_init_windowless(void);
+t_mbx
+*mbx_init_windowless(void);
 
 /**
  * Creates and returns the MacroBoX context using the given MacroLibX context.
@@ -42,8 +44,9 @@ t_mbx			*mbx_init_windowless(void);
  * to allow multiple MacroBoX instances at once.
  * This functions has been severely untested, use at your own risk.
  */
-t_mbx	*mbx_init_from_mlx(mlx_context mlx);
-
+t_mbx
+*mbx_init_from_mlx(
+	mlx_context mlx);
 
 /**
  * Initialize the main MacroBoX window.
@@ -55,8 +58,9 @@ t_mbx	*mbx_init_from_mlx(mlx_context mlx);
  * The actual window size will scale the viewport to fit the screen.
  * This function is meant to be used along mbx_init_windowless
  */
-bool			mbx_make_main_window(t_mbx *mbx, t_vec2i viewport_size,
-					char *win_title, unsigned int win_flags);
+bool
+mbx_make_main_window(
+	t_mbx *mbx, t_vec2i viewport_size, char *win_title, unsigned int win_flags);
 
 /**
  * Run the main loop of the application.
@@ -65,12 +69,15 @@ bool			mbx_make_main_window(t_mbx *mbx, t_vec2i viewport_size,
  * @update the update function to call at each frame.
  * @args the arguments to pass to the update function.
  */
-void			mbx_run(t_mbx *mbx,
-					void (*update)(t_mbx *mbx, void *args), void *args);
+void
+mbx_run(
+	t_mbx *mbx, void (*update)(t_mbx *mbx, void *args), void *args);
 
 /**
  * Exit the MacroLibX, closes the window and frees the MacroBoX context.
  *
  * @mbx the MacroBoX context.
  */
-void			mbx_exit(t_mbx *mbx);
+void
+mbx_exit(
+	t_mbx *mbx);

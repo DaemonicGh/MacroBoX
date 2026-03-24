@@ -12,4 +12,8 @@
 
 #pragma once
 
-#include "modules/veclc_all_vecs.h"
+#include "modules/types/veclc_s_vecnxn.h"
+#include "modules/veclc_vec2.h"
+#include "modules/veclc_vec2i.h"
+#include "modules/veclc_vec3.h"
+#include "modules/veclc_vec3i.h"
