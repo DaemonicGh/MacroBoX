@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/mbx_inputs.h"
 #include "veclc.h"
 #include "../../_private/mbx_internal.h"
 

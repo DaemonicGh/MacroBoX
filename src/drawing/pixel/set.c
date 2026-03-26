@@ -17,8 +17,10 @@ void	mbx_set_pixel_xy(t_mbx_region *restrict region,
 {
 	const int	i = (y * region->size.x + x);
 
-	if (col.a == 0
-		|| !(x >= 0 && x < region->size.x && y >= 0 && y < region->size.y))
+	if (!(x >= 0 && x < region->size.x && y >= 0 && y < region->size.y))
+		return ;
+	col = region->color_setter(region->color_modifier_data, col);
+	if (col.a == 0)
 		return ;
 	if (col.a == 0xFF)
 		region->canvas[i] = col;
@@ -30,9 +32,11 @@ void	mbx_set_pixel(
 {
 	const int	i = (pos.y * region->size.x + pos.x);
 
-	if (col.a == 0
-		|| !(pos.x >= 0 && pos.x < region->size.x
+	if (!(pos.x >= 0 && pos.x < region->size.x
 			&& pos.y >= 0 && pos.y < region->size.y))
+		return ;
+	col = region->color_setter(region->color_modifier_data, col);
+	if (col.a == 0)
 		return ;
 	if (col.a == 0xFF)
 		region->canvas[i] = col;

@@ -14,7 +14,7 @@
 
 #include "veclc.h"
 #include "modules/mbx_drawing.h"
-#include "modules/mbx_math.h"
+#include "modules/mbx_utils.h"
 
 static void	set_subregion_scaled(t_mbx_region *restrict region,
 	t_mbx_region *restrict src, t_vec2ix3 bounds, t_vec2 scale)
@@ -22,24 +22,26 @@ static void	set_subregion_scaled(t_mbx_region *restrict region,
 	const t_vec2i	scale_up = vec2i(trunc_up(scale.x), trunc_up(scale.y));
 	t_vec2			xy;
 	t_vec2i			uv;
-	t_mbx_color		*row;
+	int				i;
 
 	xy.y = bounds.p1.y;
 	uv.y = bounds.p2.y;
-	row = src->canvas + (uv.y * src->size.x);
+	i = bounds.p2.y * src->size.x + bounds.p2.x;
 	while (uv.y < bounds.p3.y)
 	{
 		xy.x = bounds.p1.x;
 		uv.x = bounds.p2.x;
 		while (uv.x < bounds.p3.x)
 		{
-			mbx_set_rect(region, vec2_to_vec2i(xy), scale_up, row[uv.x]);
+			mbx_set_rect(region, vec2_to_vec2i(xy), scale_up,
+				mbx_get_pixel_unsafe_i(src, i));
 			xy.x += scale.x;
 			uv.x++;
+			i++;
 		}
 		xy.y += scale.y;
 		uv.y++;
-		row += src->size.x;
+		i += src->size.x - (bounds.p3.x - bounds.p2.x);
 	}
 }
 

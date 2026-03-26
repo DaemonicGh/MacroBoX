@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_mlx.h                                          :+:      :+:    :+:   */
+/*   wrap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 18:23:59 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/03/26 03:17:11 by rprieur           #+#    #+#             */
+/*   Updated: 2026/03/26 03:17:11 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+int	wrap(int val, int low, int high)
+{
+	while (val >= high)
+		val -= high - low;
+	while (val < low)
+		val += high - low;
+	return (val);
+}
 
-#include "../../lib/MacroLibX/includes/mlx.h"
-#include "../../lib/MacroLibX/includes/mlx_extended.h"
+double	fwrap(double val, double low, double high)
+{
+	while (val >= high)
+		val -= high - low;
+	while (val < low)
+		val += high - low;
+	return (val);
+}

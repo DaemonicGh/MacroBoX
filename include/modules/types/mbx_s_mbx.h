@@ -18,6 +18,7 @@
 #include "mbx_s_window.h"
 #include "mbx_s_region.h"
 #include "mbx_s_image.h"
+#include "modules/types/mbx_s_color.h"
 
 /**
  * The context structure for the MacroBoX application.
@@ -74,9 +75,14 @@ typedef struct s_mbx_context
 		t_mbx_viewport_render	viewport_render;
 		t_mbx_color				background_color;
 		int						fps_cap;
-		bool					do_window_cross_exit;
+		t_mbx_color				(*default_color_getter)(
+			void *data, t_mbx_region * region, int i);
+		t_mbx_color				(*default_color_setter)(
+			void *data, t_mbx_color col);
+		void					*default_color_modifier_data;
 		int						exit_key;
 		int						fullscreen_toggle_key;
+		bool					do_window_cross_exit;
 		bool					lock_cursor;
 		bool					show_cursor;
 	}						settings;

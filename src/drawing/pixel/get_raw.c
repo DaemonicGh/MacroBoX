@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear.c                                            :+:      :+:    :+:   */
+/*   get_unsafe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/07 18:15:30 by rprieur           #+#    #+#             */
+/*   Created: 2026/01/09 02:42:49 by rprieur           #+#    #+#             */
 /*   Updated: 2026/01/18 21:07:22 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "modules/mbx_drawing.h"
-#include "../_private/mbx_simd.h"
 
-void	mbx_clear(t_mbx_region *restrict region, t_mbx_color col)
+t_mbx_color	mbx_get_pixel_raw_i(t_mbx_region *restrict region, int i)
 {
-	const t_mbx_color	mcol = region->color_setter(
-			region->color_modifier_data, col);
-	const t_col4		vcol = {mcol.rgba, mcol.rgba, mcol.rgba, mcol.rgba};
-	const int			size = region->size.x * region->size.y;
-	int					i;
+	return (region->canvas[i]);
+}
 
-	i = 0;
-	while (i < size - 4)
-	{
-		*(t_col4 *)(region->canvas + i) = vcol;
-		i += 4;
-	}
-	while (i < size)
-		region->canvas[i++] = mcol;
+t_mbx_color	mbx_get_pixel_raw_xy(t_mbx_region *restrict region, int x, int y)
+{
+	return (region->canvas[y * region->size.x + x]);
+}
+
+t_mbx_color	mbx_get_pixel_raw(t_mbx_region *restrict region, t_vec2i pos)
+{
+	return (region->canvas[pos.y * region->size.x + pos.x]);
 }

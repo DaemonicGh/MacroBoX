@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "modules/types/mbx_s_color.h"
-#include "modules/mbx_math.h"
+#include "modules/mbx_utils.h"
 
 t_mbx_color	color_add(t_mbx_color bg, t_mbx_color fg)
 {

@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/mbx_constants.h"
-#include "modules/types/mbx_s_mbx.h"
-#include "modules/mbx_math.h"
+#include "modules/mbx_drawing.h"
+#include "modules/mbx_utils.h"
 
 void	mbx_refresh_settings(t_mbx *mbx)
 {
@@ -32,9 +31,12 @@ void	mbx_reset_settings(t_mbx *mbx)
 		= (t_mbx_viewport_render)MBX_DEFAULT_VIEWPORT_RENDER;
 	mbx->settings.background_color = color(MBX_DEFAULT_BACKGROUND_COLOR);
 	mbx->settings.fps_cap = MBX_DEFAULT_FPS_CAP;
-	mbx->settings.do_window_cross_exit = MBX_DEFAULT_DO_WINDOW_CROSS_EXIT;
+	mbx->settings.default_color_getter = &mbx_color_getter_ignore;
+	mbx->settings.default_color_setter = &mbx_color_setter_ignore;
+	mbx->settings.default_color_modifier_data = mbx;
 	mbx->settings.exit_key = MBX_DEFAULT_EXIT_KEY;
 	mbx->settings.fullscreen_toggle_key = MBX_DEFAULT_FULLSCREEN_TOGGLE_KEY;
+	mbx->settings.do_window_cross_exit = MBX_DEFAULT_DO_WINDOW_CROSS_EXIT;
 	mbx->settings.lock_cursor = MBX_DEFAULT_LOCK_CURSOR;
 	mbx->settings.show_cursor = MBX_DEFAULT_SHOW_CURSOR;
 	mbx_refresh_settings(mbx);

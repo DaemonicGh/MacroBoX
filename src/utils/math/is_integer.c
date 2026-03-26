@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_mlx.h                                          :+:      :+:    :+:   */
+/*   is_integer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 18:23:59 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/01/16 05:09:19 by rprieur           #+#    #+#             */
+/*   Updated: 2026/01/19 11:56:26 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "modules/mbx_utils.h"
 
-#include "../../lib/MacroLibX/includes/mlx.h"
-#include "../../lib/MacroLibX/includes/mlx_extended.h"
+bool	is_integer(double val)
+{
+	return (val == floor(val));
+}

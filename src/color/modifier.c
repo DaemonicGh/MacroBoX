@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_mlx.h                                          :+:      :+:    :+:   */
+/*   modifier.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 18:23:59 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/03/25 15:09:31 by rprieur           #+#    #+#             */
+/*   Updated: 2026/03/25 15:09:31 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "modules/types/mbx_s_mbx.h"
 
-#include "../../lib/MacroLibX/includes/mlx.h"
-#include "../../lib/MacroLibX/includes/mlx_extended.h"
+t_mbx_color	mbx_color_setter_ignore(void *data, t_mbx_color col)
+{
+	(void)data;
+	return (col);
+}
+
+t_mbx_color	mbx_color_getter_ignore(
+	void *data, t_mbx_region *region, int index)
+{
+	(void)data;
+	return (region->canvas[index]);
+}

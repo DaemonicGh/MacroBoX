@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_mlx.h                                          :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 18:23:59 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/03/25 21:37:13 by rprieur           #+#    #+#             */
+/*   Updated: 2026/03/25 21:37:13 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include <sys/time.h>
 
-#include "../../lib/MacroLibX/includes/mlx.h"
-#include "../../lib/MacroLibX/includes/mlx_extended.h"
+double	mbx_get_timestamp(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, 0) == -1)
+		return (-1);
+	return ((double)time.tv_sec + (double)time.tv_usec / 1000000.0);
+}

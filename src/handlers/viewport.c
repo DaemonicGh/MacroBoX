@@ -11,10 +11,9 @@
 /* ************************************************************************** */
 
 #include "veclc.h"
-#include "modules/mbx_inputs.h"
 #include "modules/mbx_drawing.h"
-#include "modules/mbx_math.h"
 #include "modules/mbx_handlers.h"
+#include "modules/mbx_utils.h"
 
 bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
 {
@@ -25,10 +24,9 @@ bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
 	new = mbx_make_region_with_image(mbx, size);
 	if (!new.canvas)
 		return (false);
+	vec2i_mult_to_vd(&mbx->cursor, vec2i_truediv(size, mbx->viewport.size));
 	mbx_destroy_region(mbx, &mbx->viewport);
 	mbx->viewport = new;
-	if (mbx->settings.lock_cursor)
-		mbx_warp_cursor(mbx, vec2i_div_i(mbx->cursor, 2));
 	return (true);
 }
 
@@ -41,11 +39,10 @@ bool	mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size)
 	new = mbx_make_region_with_image(mbx, size);
 	if (!new.canvas)
 		return (false);
+	vec2i_mult_to_vd(&mbx->cursor, vec2i_truediv(size, mbx->viewport.size));
 	mbx_set_region_scaled(&new, &mbx->viewport, vec2i(0, 0),
 		vec2i_truediv(size, mbx->viewport.size));
 	mbx_destroy_region(mbx, &mbx->viewport);
 	mbx->viewport = new;
-	if (mbx->settings.lock_cursor)
-		mbx_warp_cursor(mbx, vec2i_div_i(mbx->cursor, 2));
 	return (true);
 }

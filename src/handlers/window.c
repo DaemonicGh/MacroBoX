@@ -10,21 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "mlx_extended.h"
+#include "modules/mbx_mlx.h"
 #include "modules/types/mbx_s_mbx.h"
-#include "modules/types/mbx_s_window.h"
 
 t_mbx_window	mbx_make_window(t_mbx *mbx,
-		t_vec2i size, char *title, unsigned int flags)
+		t_vec2i size, char *title, t_mbx_window_flags flags)
 {
 	t_mbx_window	win;
 
 	win.mlx_image = NULL;
 	win.size = size;
 	win.title = title;
-	win.is_fullscreen = flags & MBX_WINDOW_FLAG_FULLSCREEN;
 	win.is_resizable = flags & MBX_WINDOW_FLAG_RESIZABLE;
+	win.is_fullscreen = flags & MBX_WINDOW_FLAG_FULLSCREEN;
 	win.is_minimized = flags & MBX_WINDOW_FLAG_MINIMIZED;
 	win.is_maximized = false;
 	win.limits = vec2ix2(vec2i_zero(), mbx->screen_size);
@@ -38,7 +36,7 @@ t_mbx_window	mbx_make_window(t_mbx *mbx,
 }
 
 t_mbx_window	mbx_make_window_with_target(t_mbx *mbx,
-		t_vec2i size, char *title, unsigned int flags)
+		t_vec2i size, char *title, t_mbx_window_flags flags)
 {
 	t_mbx_window	win;
 

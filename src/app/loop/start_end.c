@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_inputs.h"
 #include "modules/mbx_handlers.h"
@@ -25,8 +24,8 @@ void	mbx_start_frame(t_mbx *mbx)
 
 void	mbx_end_frame(t_mbx *mbx)
 {
-	if (mbx->settings.viewport_render != MBX_VIEWPORT_RENDER_SKIP)
-		mbx_render_region_as_viewport(mbx, &mbx->viewport);
+	mbx_render_region_as_viewport(mbx,
+		&mbx->viewport, mbx->settings.viewport_render);
 	mbx_flush_inputs(mbx);
 	mbx_refresh_settings(mbx);
 	update_time_values(mbx);

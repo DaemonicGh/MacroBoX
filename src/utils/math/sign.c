@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_mlx.h                                          :+:      :+:    :+:   */
+/*   sign.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 18:23:59 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/01/02 17:24:30 by daemo             #+#    #+#             */
+/*   Updated: 2026/01/15 00:18:32 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+int	sign(int val)
+{
+	if (val > 0)
+		return (1);
+	if (val < 0)
+		return (-1);
+	return (0);
+}
 
-#include "../../lib/MacroLibX/includes/mlx.h"
-#include "../../lib/MacroLibX/includes/mlx_extended.h"
+double	fsign(double val)
+{
+	if (val > 0)
+		return (1);
+	if (val < 0)
+		return (-1);
+	return (0);
+}

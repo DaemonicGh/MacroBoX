@@ -23,6 +23,15 @@ void	mbx_warp_cursor(t_mbx *mbx, t_vec2i pos)
 		round((double)pos.y * mbx->window.size.y / mbx->viewport.size.y));
 }
 
+void	mbx_move_cursor(t_mbx *mbx, t_vec2i pos)
+{
+	vec2_add_to(&mbx->cursor_delta, vec2i_to_vec2(vec2i_sub(pos, mbx->cursor)));
+	mbx->cursor = pos;
+	mlx_mouse_move(mbx->mlx, mbx->window.mlx,
+		round((double)pos.x * mbx->window.size.x / mbx->viewport.size.x),
+		round((double)pos.y * mbx->window.size.y / mbx->viewport.size.y));
+}
+
 void	refresh_cursor(t_mbx *mbx)
 {
 	const t_vec2i	prev_pos = mbx->cursor;

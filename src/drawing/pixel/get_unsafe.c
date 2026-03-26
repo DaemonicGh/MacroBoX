@@ -14,15 +14,18 @@
 
 t_mbx_color	mbx_get_pixel_unsafe_i(t_mbx_region *restrict region, int i)
 {
-	return (region->canvas[i]);
+	return (region->color_getter(region->color_modifier_data,
+			region, i));
 }
 
 t_mbx_color	mbx_get_pixel_unsafe_xy(t_mbx_region *restrict region, int x, int y)
 {
-	return (region->canvas[y * region->size.x + x]);
+	return (region->color_getter(region->color_modifier_data,
+			region, y * region->size.x + x));
 }
 
 t_mbx_color	mbx_get_pixel_unsafe(t_mbx_region *restrict region, t_vec2i pos)
 {
-	return (region->canvas[pos.y * region->size.x + pos.x]);
+	return (region->color_getter(region->color_modifier_data,
+			region, pos.y * region->size.x + pos.x));
 }

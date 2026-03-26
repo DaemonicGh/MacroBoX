@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_mlx.h                                          :+:      :+:    :+:   */
+/*   easing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 18:23:59 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/03/26 03:03:45 by rprieur           #+#    #+#             */
+/*   Updated: 2026/03/26 03:03:45 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "modules/mbx_utils.h"
 
-#include "../../lib/MacroLibX/includes/mlx.h"
-#include "../../lib/MacroLibX/includes/mlx_extended.h"
+double	mbx_ease_in(double x)
+{
+	return (x * x);
+}
+
+double	mbx_ease_out(double x)
+{
+	return (1 - (1 - x) * (1 - x));
+}
+
+double	mbx_ease_in_out(double x)
+{
+	if (x < 0.5)
+		return (2 * x * x);
+	else
+		return ((-2 * x + 2) * (-2 * x + 2) / 2);
+}

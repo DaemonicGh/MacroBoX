@@ -15,14 +15,16 @@
 t_mbx_color	mbx_get_pixel_xy(t_mbx_region *restrict region, int x, int y)
 {
 	if (!(x >= 0 && x < region->size.x && y >= 0 && y < region->size.y))
-		return (color_rgba(0xFF));
-	return (region->canvas[y * region->size.x + x]);
+		return (color_rgba(0x0));
+	return (region->color_getter(region->color_modifier_data,
+			region, y * region->size.x + x));
 }
 
 t_mbx_color	mbx_get_pixel(t_mbx_region *restrict region, t_vec2i pos)
 {
 	if (!(pos.x >= 0 && pos.x < region->size.x
 			&& pos.y >= 0 && pos.y < region->size.y))
-		return (color_rgba(0xFF));
-	return (region->canvas[pos.y * region->size.x + pos.x]);
+		return (color_rgba(0x0));
+	return (region->color_getter(region->color_modifier_data,
+			region, pos.y * region->size.x + pos.x));
 }

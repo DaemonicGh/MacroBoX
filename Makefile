@@ -16,20 +16,24 @@
 NAMES					:=	libvec.so libmbx.so
 
 libmbx.so_files			:=	\
-	app/loop/in_out app/loop/loop app/loop/start_end							\
 	app/exit app/init															\
-	color/blend color/math color/new											\
+	app/loop/in_out app/loop/loop app/loop/start_end							\
+	color/blend color/math color/modifier color/new								\
 	drawing/clear drawing/rect drawing/region drawing/region_scaled				\
 	drawing/line drawing/render drawing/text 									\
-	drawing/pixel/get drawing/pixel/get_unsafe drawing/pixel/set				\
-	drawing/pixel/raw drawing/pixel/tools drawing/pixel/set_unsafe				\
-	handlers/atlas handlers/image handlers/region handlers/screen				\
-	handlers/settings handlers/viewport handlers/window handlers/window_extras	\
+	drawing/pixel/get drawing/pixel/get_raw drawing/pixel/get_unsafe			\
+	drawing/pixel/set drawing/pixel/set_raw drawing/pixel/set_unsafe			\
+	drawing/pixel/tools 														\
+	handlers/atlas handlers/image handlers/region handlers/region_extras		\
+	handlers/screen handlers/settings handlers/viewport handlers/window			\
+	handlers/window_extras														\
 	inputs/btn inputs/check inputs/cursor inputs/events inputs/press			\
 	inputs/events/keyboard inputs/events/mouse inputs/events/window				\
-	math/clamp math/dist_to_range math/is_integer math/lerp math/minmax			\
-	math/move_towards math/sign math/trunc_up math/wrap 						\
-	math/vector/len_clamp math/vector/len_move_towards math/vector/sign			\
+	utils/time																	\
+	utils/math/clamp utils/math/dist_to_range utils/math/easing					\
+	utils/math/is_integer utils/math/lerp utils/math/minmax						\
+	utils/math/move_towards utils/math/sign utils/math/trunc utils/math/wrap	\
+	utils/vector/len_clamp utils/vector/len_move_towards utils/vector/sign		\
 	_private/time
 
 libvec.so_files			:=	\
@@ -47,12 +51,12 @@ libvec.so_files			:=	\
 	sub/sub_d sub/sub_i sub/sub_to_d sub/sub_to_i sub/sub_to sub/sub			\
 	print/print print/printi
 
-LOCAL_LIBRARIES			:=	MacroLibX-2.2.2/libmlx.so
-NO_REBUILD_LIBRARIES	:=	MacroLibX-2.2.2/libmlx.so
+LOCAL_LIBRARIES			:=	MacroLibX/libmlx.so
+NO_REBUILD_LIBRARIES	:=	MacroLibX/libmlx.so
 OTHER_LIBRARIES			:=	m SDL2
 
 INCLUDE_DIRECTORIES		:=	include \
-	lib/MacroLibX-2.2.2/includes lib/VecLibC/include
+	lib/MacroLibX/includes lib/VecLibC/include
 
 # ***** FILE SETTINGS *********
 

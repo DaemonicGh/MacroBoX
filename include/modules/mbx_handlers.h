@@ -18,19 +18,19 @@
 /**
  * Creates and returns a new region with the given size.
  *
- * @size The size of the region to create.
+ * @size	The size of the region to create.
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
 t_mbx_region
 mbx_make_region(
-	t_vec2i size);
+	t_mbx *mbx, t_vec2i size);
 
 /**
  * Creates and returns a new region with a linked image.
  *
- * @mbx The macrobox context.
- * @size The size of the region to create.
+ * @mbx		The macrobox context.
+ * @size	The size of the region to create.
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
@@ -41,8 +41,8 @@ mbx_make_region_with_image(
 /**
  * Creates and returns a new region from the given image.
  *
- * @mbx The macrobox context.
- * @image The image to create the region from.
+ * @mbx		The macrobox context.
+ * @image	The image to create the region from.
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
@@ -53,8 +53,8 @@ mbx_make_region_from_image(
 /**
  * Creates and returns a new region from the given image path.
  *
- * @mbx The macrobox context.
- * @filename The path to the image.
+ * @mbx 		The macrobox context.
+ * @filename	The path to the image.
  *
  * This function can fail allocation, then the returned region will be 0 padded.
  */
@@ -65,18 +65,61 @@ mbx_make_region_from_file(
 /**
  * Destroys and frees the contents of the given region.
  *
- * @mbx The macrobox context.
- * @region The region to destroy.
+ * @mbx 	The macrobox context.
+ * @region	The region to destroy.
  */
 void
 mbx_destroy_region(
 	t_mbx *mbx, t_mbx_region *region);
 
 /**
+ * Modifies the given region's content using the provided color modifiers.
+ *
+ * @dest				The region to modify.
+ * @color_modifier_data	The data pointer to pass to the modifers.
+ * @color_getter		The getter modifier function.
+ * @color_setter		The setter modifier function.
+ *
+ * If the data pointer is set to NULL, the region's will be used.
+ * If set to NULL, the getter and setter modifiers will do nothing.
+ */
+void
+mbx_modify_region(t_mbx_region *dest, void *color_modifier_data,
+	t_mbx_color (*color_getter)(void *data, t_mbx_region *region, int i),
+	t_mbx_color (*color_setter)(void *data, t_mbx_color col));
+
+/**
+ * Resizes the given region.
+ *
+ * @mbx		The MacroBoX context.
+ * @region	The region to resize.
+ * @size	The new size of the viewport.
+ *
+ * This function can fail allocation, then it will return false.
+ */
+bool
+mbx_resize_region(
+	t_mbx *mbx, t_mbx_region *region, t_vec2i size);
+
+/**
+ * Resizes the given region and its content.
+ *
+ * @mbx		The MacroBoX context.
+ * @region	The region to resize.
+ * @size	The new size of the viewport.
+ *
+ * This function can fail allocation, then it will return false.
+ * The contents of the mlx image will not be copied (it will still be resized).
+ */
+bool
+mbx_resize_region_with_content(
+	t_mbx *mbx, t_mbx_region *region, t_vec2i size);
+
+/**
  * Creates an returns a MacroBoX image.
  *
- * @mbx the MacroBoX context.
- * @size the size of the image.
+ * @mbx		the MacroBoX context.
+ * @size	the size of the image.
  */
 t_mbx_image
 mbx_make_image(
@@ -85,8 +128,8 @@ mbx_make_image(
 /**
  * Creates an returns a MacroBoX image from a file.
  *
- * @mbx the MacroBoX context.
- * @path the path to the image file.
+ * @mbx		the MacroBoX context.
+ * @path	the path to the image file.
  */
 t_mbx_image
 mbx_make_image_from_file(
@@ -95,9 +138,9 @@ mbx_make_image_from_file(
 /**
  * Creates an returns a MacroBoX image from its MacroLibX equivalent.
  *
- * @mbx the MacroBoX context.
- * @image the MacroLibX image.
- * @size the size of the image.
+ * @mbx		the MacroBoX context.
+ * @image	the MacroLibX image.
+ * @size	the size of the image.
  */
 t_mbx_image
 mbx_make_image_from_mlx(
@@ -106,8 +149,8 @@ mbx_make_image_from_mlx(
 /**
  * Destroys and frees the content of a MacroBoX image.
  *
- * @mbx the MacroBoX context.
- * @image the MacroBoX image to destroy.
+ * @mbx		the MacroBoX context.
+ * @image	the MacroBoX image to destroy.
  */
 void
 mbx_destroy_image(
@@ -148,7 +191,7 @@ mbx_destroy_atlas(
  */
 t_mbx_window
 mbx_make_window(
-	t_mbx *mbx, t_vec2i size, char *title, unsigned int flags);
+	t_mbx *mbx, t_vec2i size, char *title, t_mbx_window_flags flags);
 
 /**
  * Creates and returns a MacroBoX window that contains a target.
@@ -162,7 +205,7 @@ mbx_make_window(
  */
 t_mbx_window
 mbx_make_window_with_target(
-	t_mbx *mbx, t_vec2i size, char *title, unsigned int flags);
+	t_mbx *mbx, t_vec2i size, char *title, t_mbx_window_flags flags);
 
 /**
  * Creates and returns a MacroBoX window that targets to a given image.

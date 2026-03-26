@@ -20,7 +20,7 @@
  * Clears the given region with the given color.
  *
  * @region	the region to query.
- * @col	the color to clear the region with.
+ * @col		the color to clear the region with.
  */
 void
 mbx_clear(
@@ -40,20 +40,8 @@ mbx_get_pixel(
  * Returns the color of a pixel on a region at the given position.
  *
  * @region	the region to query.
- * @pos		the position of the pixel.
- *
- * This version does not perform bounds checking.
- */
-t_mbx_color
-mbx_get_pixel_unsafe(
-	t_mbx_region *restrict region, t_vec2i pos);
-
-/**
- * Returns the color of a pixel on a region at the given position.
- *
- * @region	the region to query.
- * @x	the x-coordinate of the pixel.
- * @y	the y-coordinate of the pixel.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
  */
 t_mbx_color
 mbx_get_pixel_xy(
@@ -63,21 +51,85 @@ mbx_get_pixel_xy(
  * Returns the color of a pixel on a region at the given position.
  *
  * @region	the region to query.
- * @x	the x-coordinate of the pixel.
- * @y	the y-coordinate of the pixel.
+ * @pos		the position of the pixel.
  *
- * This version does not perform bounds checking.
+ * This version doesn't perform bounds checking.
+ */
+t_mbx_color
+mbx_get_pixel_unsafe(
+	t_mbx_region *restrict region, t_vec2i pos);
+
+/**
+ * Returns the color of a pixel on a region at the given position.
+ *
+ * @region	the region to query.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
+ *
+ * This version doesn't perform bounds checking.
  */
 t_mbx_color
 mbx_get_pixel_unsafe_xy(
 	t_mbx_region *restrict region, int x, int y);
 
 /**
+ * Returns the color of a pixel on a region at the given position.
+ *
+ * @region	the region to query.
+ * @i		the index of the pixel.
+ *
+ * This version doesn't perform bounds checking.
+ */
+t_mbx_color
+mbx_get_pixel_unsafe_i(
+	t_mbx_region *restrict region, int i);
+
+/**
+ * Returns the color of a pixel on a region at the given position.
+ *
+ * @region	the region to query.
+ * @pos		the position of the pixel.
+ *
+ * This version doesn't perform bounds checking
+ * and isn't affected by color modifiers.
+ */
+t_mbx_color
+mbx_get_pixel_raw(
+	t_mbx_region *restrict region, t_vec2i pos);
+
+/**
+ * Returns the color of a pixel on a region at the given position.
+ *
+ * @region	the region to query.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
+ *
+ * This version doesn't perform bounds checking
+ * and isn't affected by color modifiers.
+ */
+t_mbx_color
+mbx_get_pixel_raw_xy(
+	t_mbx_region *restrict region, int x, int y);
+
+/**
+ * Returns the color of a pixel on a region at the given position.
+ *
+ * @region	the region to query.
+ * @i		the index of the pixel.
+ *
+ * This version doesn't perform bounds checking
+ * and isn't affected by color modifiers.
+ */
+t_mbx_color
+mbx_get_pixel_raw_i(
+	t_mbx_region *restrict region, int i);
+
+/**
  * Sets the color of a pixel on a region at the given position.
  *
  * @region	the region to draw on.
- * @pos	the position of the pixel.
- * @col	the color of the pixel.
+ * @pos		the position of the pixel.
+ * @col		the color of the pixel.
  *
  * It will be blended with the current pixel color if the color is not opaque.
  */
@@ -89,9 +141,9 @@ mbx_set_pixel(
  * Sets the color of a pixel on a region at the given position.
  *
  * @region	the region to draw on.
- * @x	the x-coordinate of the pixel.
- * @y	the y-coordinate of the pixel.
- * @col	the color of the pixel.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
+ * @col		the color of the pixel.
  *
  * It will be blended with the current pixel color if the color is not opaque.
  */
@@ -103,11 +155,11 @@ mbx_set_pixel_xy(
  * Sets the color of a pixel on a region at the given position.
  *
  * @region	the region to draw on.
- * @x	the x-coordinate of the pixel.
- * @y	the y-coordinate of the pixel.
- * @col	the color of the pixel.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
+ * @col		the color of the pixel.
  *
- * This version does not perform bounds checking.
+ * This version doesn't perform bounds checking.
  * Color blending is still performed.
  */
 void
@@ -118,11 +170,11 @@ mbx_set_pixel_unsafe(
  * Sets the color of a pixel on a region at the given position.
  *
  * @region	the region to draw on.
- * @x	the x-coordinate of the pixel.
- * @y	the y-coordinate of the pixel.
- * @col	the color of the pixel.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
+ * @col		the color of the pixel.
  *
- * This version does not perform bounds checking.
+ * This version doesn't perform bounds checking.
  * Color blending is still performed.
  */
 void
@@ -133,10 +185,10 @@ mbx_set_pixel_unsafe_xy(
  * Sets the color of a pixel on a region at the given index.
  *
  * @region	the region to draw on.
- * @i	the index of the pixel.
- * @col	the color of the pixel.
+ * @i		the index of the pixel.
+ * @col		the color of the pixel.
  *
- * This version does not perform bounds checking.
+ * This version doesn't perform bounds checking.
  * Color blending is still performed.
  */
 void
@@ -144,13 +196,61 @@ mbx_set_pixel_unsafe_i(
 	t_mbx_region *restrict region, int i, t_mbx_color col);
 
 /**
+ * Sets the color of a pixel on a region at the given position.
+ *
+ * @region	the region to draw on.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
+ * @col		the color of the pixel.
+ *
+ * This version doesn't perform bounds checking
+ * and isn't affected by color modifiers.
+ * Color blending is still performed.
+ */
+void
+mbx_set_pixel_direct(
+	t_mbx_region *restrict region, t_vec2i pos, t_mbx_color col);
+
+/**
+ * Sets the color of a pixel on a region at the given position.
+ *
+ * @region	the region to draw on.
+ * @x		the x-coordinate of the pixel.
+ * @y		the y-coordinate of the pixel.
+ * @col		the color of the pixel.
+ *
+ * This version doesn't perform bounds checking
+ * and isn't affected by color modifiers.
+ * Color blending is still performed.
+ */
+void
+mbx_set_pixel_direct_xy(
+	t_mbx_region *restrict region, int x, int y, t_mbx_color col);
+
+/**
+ * Sets the color of a pixel on a region at the given index.
+ *
+ * @region	the region to draw on.
+ * @i		the index of the pixel.
+ * @col		the color of the pixel.
+ *
+ * This version doesn't perform bounds checking
+ * and isn't affected by color modifiers.
+ * Color blending is still performed.
+ */
+void
+mbx_set_pixel_direct_i(
+	t_mbx_region *restrict region, int i, t_mbx_color col);
+
+/**
 * Sets the color of a pixel on a region at the given index.
 *
 * @region	the region to draw on.
-* @i	the index of the pixel.
-* @col	the color of the pixel.
+* @i		the index of the pixel.
+* @col		the color of the pixel.
 *
-* This version does not perform bounds checking nor color blending.
+* This version doesn't perform bounds checking nor color blending
+* and isn't affected by color modifiers.
  */
 void
 mbx_set_pixel_raw(
@@ -160,10 +260,11 @@ mbx_set_pixel_raw(
 * Sets the color of a pixel on a region at the given index.
 *
 * @region	the region to draw on.
-* @i	the index of the pixel.
-* @col	the color of the pixel.
+* @i		the index of the pixel.
+* @col		the color of the pixel.
 *
-* This version does not perform bounds checking nor color blending.
+* This version doesn't perform bounds checking nor color blending
+* and isn't affected by color modifiers.
  */
 void
 mbx_set_pixel_raw_xy(
@@ -173,10 +274,11 @@ mbx_set_pixel_raw_xy(
 * Sets the color of a pixel on a region at the given index.
 *
 * @region	the region to draw on.
-* @i	the index of the pixel.
-* @col	the color of the pixel.
+* @i		the index of the pixel.
+* @col		the color of the pixel.
 *
-* This version does not perform bounds checking nor color blending.
+* This version doesn't perform bounds checking nor color blending
+* and isn't affected by color modifiers.
  */
 void
 mbx_set_pixel_raw_i(
@@ -186,9 +288,9 @@ mbx_set_pixel_raw_i(
  * Draws a rectangle on a region.
  *
  * @region	the region to draw on.
- * @pos	the position of the top-left corner of the rectangle.
+ * @pos		the position of the top-left corner of the rectangle.
  * @size	the size of the rectangle in pixels.
- * @col	the color of the rectangle.
+ * @col		the color of the rectangle.
  */
 void
 mbx_set_rect(
@@ -198,8 +300,8 @@ mbx_set_rect(
  * Draws a line on a region.
  *
  * @region	the region to draw on.
- * @pos the position of the two endpoints of the line.
- * @col	the color of the line.
+ * @pos		the position of the two endpoints of the line.
+ * @col		the color of the line.
  *
  * Bresenham's line algorithm is used to draw the line.
  */
@@ -210,10 +312,10 @@ mbx_set_line(
 /**
  * Draws a line on a region with a specified thickness.
  *
- * @region	the region to draw on.
- * @pos the position of the two endpoints of the line.
+ * @region		the region to draw on.
+ * @pos			the position of the two endpoints of the line.
  * @thickness	the thickness of the line in pixels.
- * @col	the color of the line.
+ * @col			the color of the line.
  */
 void
 mbx_set_line_thick(
@@ -250,8 +352,8 @@ mbx_set_text(
  * Draws a region on a region.
  *
  * @region	the region to draw on.
- * @pos the position of the region.
- * @src	the region to draw.
+ * @pos 	the position of the region.
+ * @src		the region to draw.
  */
 void
 mbx_set_region(
@@ -261,9 +363,9 @@ mbx_set_region(
  * Draws a part of a region on a region.
  *
  * @region	the region to draw on.
- * @pos the position of the subregion.
+ * @pos 	the position of the subregion.
  * @uvwh	the uvwh of the subregion.
- * @src	the region to draw.
+ * @src		the region to draw.
  */
 void
 mbx_set_subregion(
@@ -274,9 +376,9 @@ mbx_set_subregion(
  * Draws a scaled region on a region.
  *
  * @region	the region to draw on.
- * @pos the position of the region.
+ * @pos 	the position of the region.
  * @scale	the scale to use.
- * @src	the region to draw.
+ * @src		the region to draw.
  */
 void
 mbx_set_region_scaled(
@@ -289,7 +391,7 @@ mbx_set_region_scaled(
  * @region	the region to draw on.
  * @posuvwh	the position and uvwh of the subregion.
  * @scale	the scale to use.
- * @src	the region to draw.
+ * @src		the region to draw.
  */
 void
 mbx_set_subregion_scaled(
@@ -300,7 +402,7 @@ mbx_set_subregion_scaled(
  * Returns true if a pixel is within the bounds of a region.
  *
  * @region	the region to check.
- * @pos	the position of the pixel.
+ * @pos		the position of the pixel.
  */
 bool
 mbx_is_pixel_in_bounds(
@@ -310,8 +412,8 @@ mbx_is_pixel_in_bounds(
  * Returns true if a pixel is within the bounds of a region.
  *
  * @region	the region to check.
- * @x	the x position of the pixel.
- * @y	the y position of the pixel.
+ * @x		the x position of the pixel.
+ * @y		the y position of the pixel.
  */
 bool
 mbx_is_pixel_in_bounds_xy(
@@ -321,7 +423,7 @@ mbx_is_pixel_in_bounds_xy(
  * Returns true if a pixel is within the bounds of a region.
  *
  * @region	the region to check.
- * @i	the index of the pixel.
+ * @i		the index of the pixel.
  */
 bool
 mbx_is_pixel_in_bounds_i(
@@ -331,7 +433,7 @@ mbx_is_pixel_in_bounds_i(
  * Returns the index of a pixel in a region.
  *
  * @region	the region to check.
- * @pos	the position of the pixel.
+ * @pos		the position of the pixel.
  */
 int
 mbx_get_pixel_index(
@@ -341,8 +443,8 @@ mbx_get_pixel_index(
  * Returns the index of a pixel in a region.
  *
  * @region	the region to check.
- * @x	the x position of the pixel.
- * @y	the y position of the pixel.
+ * @x		the x position of the pixel.
+ * @y		the y position of the pixel.
  */
 int
 mbx_get_pixel_index_xy(
@@ -364,7 +466,7 @@ color_blend(
  * @bg the background color.
  * @fg the foreground color.
  *
- * this version does not optimize if fg is fully opaque or transparent,
+ * this version doesn't optimize if fg is fully opaque or transparent,
  * use it when you know that fg isn't either.
  */
 t_mbx_color
@@ -412,6 +514,28 @@ color_average(
 	t_mbx_color col1, t_mbx_color col2);
 
 /**
+ * Default color setter function for regions, does nothing.
+ *
+ * @col	the color to be modified.
+ *
+ * This function can be overloaded for each region using region.color_setter
+ */
+t_mbx_color
+mbx_color_setter_ignore(
+	void *data, t_mbx_color col);
+
+/**
+ * Default color getter function for regions, does nothing.
+ *
+ * @col	the color to be modified.
+ *
+ * This function can be overloaded for each region using region.color_getter
+ */
+t_mbx_color
+mbx_color_getter_ignore(
+	void *data, t_mbx_region *region, int index);
+
+/**
  * Forces the rendering of the given region on the window.
  *
  * @mbx	the MacroBoX context.
@@ -431,4 +555,4 @@ mbx_render_region(
  */
 void
 mbx_render_region_as_viewport(
-	t_mbx *mbx, t_mbx_region *region);
+	t_mbx *mbx, t_mbx_region *region, t_mbx_viewport_render render_mode);

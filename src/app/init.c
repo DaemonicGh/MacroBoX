@@ -11,17 +11,16 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx.h"
 #include "veclc.h"
 #include "modules/mbx_handlers.h"
-#include "modules/mbx_math.h"
+#include "modules/mbx_utils.h"
 #include "../_private/mbx_internal.h"
 
 static void	init_time(t_mbx *mbx)
 {
 	double	time;
 
-	time = get_sec_since_epoch();
+	time = mbx_get_timestamp();
 	mbx->timestamps.app_start = time;
 	mbx->timestamps.frame_start = time;
 	mbx->delta_time = 1.0 / mbx->settings.fps_cap;

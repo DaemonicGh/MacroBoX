@@ -10,24 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/time.h>
-
 #include "modules/types/mbx_s_mbx.h"
-
-double	get_sec_since_epoch(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, 0) == -1)
-		return (-1);
-	return ((double)time.tv_sec + (double)time.tv_usec / 1000000.0);
-}
+#include "modules/mbx_utils.h"
 
 bool	should_skip_frame(t_mbx *mbx)
 {
 	double	time;
 
-	time = get_sec_since_epoch();
+	time = mbx_get_timestamp();
 	if (time == -1)
 		return (false);
 	if (time < mbx->timestamps.frame_start
@@ -42,7 +32,7 @@ void	update_time_values(t_mbx *mbx)
 {
 	double	time;
 
-	time = get_sec_since_epoch();
+	time = mbx_get_timestamp();
 	if (time != -1)
 		mbx->seconds_per_frame = time - mbx->timestamps.frame_start;
 	mbx->frames_elapsed++;
@@ -52,7 +42,7 @@ void	refresh_deltatime(t_mbx *mbx)
 {
 	double	time;
 
-	time = get_sec_since_epoch();
+	time = mbx_get_timestamp();
 	if (time == -1)
 		return ;
 	mbx->delta_time = time - mbx->timestamps.frame_start;

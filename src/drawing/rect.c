@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #include "modules/mbx_drawing.h"
-#include "modules/mbx_math.h"
+#include "modules/mbx_utils.h"
 #include "../_private/mbx_simd.h"
 
-static void	set_rect_bounds(t_mbx_region *restrict region,
+static inline void	set_rect_bounds(t_mbx_region *restrict region,
 	t_vec2i *pos, t_vec2i *size)
 {
 	int	ppos;
@@ -43,58 +43,62 @@ static void	set_rect_bounds(t_mbx_region *restrict region,
 	}
 }
 
-static void	set_rect_opaque(t_mbx_region *restrict region,
-	t_vec2i pos, t_vec2i size, t_mbx_color col)
+static inline void	set_rect_opaque(t_mbx_region *restrict region,
+	t_vec2i start, t_vec2i end, t_mbx_color col)
 {
 	const t_col4	vcol = {col.rgba, col.rgba, col.rgba, col.rgba};
 	t_vec2i			xy;
 	t_mbx_color		*row;
 
-	xy.y = pos.y;
-	row = region->canvas + (xy.y * region->size.x);
-	while (xy.y < size.y)
+	xy.y = start.y;
+	row = region->canvas + xy.y * region->size.x;
+	while (xy.y++ < end.y)
 	{
-		xy.x = pos.x;
-		while (xy.x < size.x - 4)
+		xy.x = start.x;
+		while (xy.x < end.x - 4)
 		{
 			*(t_col4 *)(row + xy.x) = vcol;
 			xy.x += 4;
 		}
-		while (xy.x < size.x)
-		{
-			row[xy.x] = col;
-			xy.x++;
-		}
-		xy.y++;
+		while (xy.x < end.x)
+			row[xy.x++] = col;
 		row += region->size.x;
+	}
+}
+
+static inline void	set_rect_transparent(t_mbx_region *restrict region,
+	t_vec2i start, t_vec2i end, t_mbx_color col)
+{
+	t_vec2i				xy;
+	int					i;
+
+	xy.y = start.y;
+	i = start.y * region->size.x + start.x;
+	while (xy.y++ < end.y)
+	{
+		xy.x = start.x;
+		while (xy.x < end.x)
+		{
+			region->canvas[i] = color_blend_quick(
+					mbx_get_pixel_unsafe_i(region, i), col);
+			xy.x++;
+			i++;
+		}
+		i += region->size.x - (end.x - start.x);
 	}
 }
 
 void	mbx_set_rect(t_mbx_region *restrict region,
 	t_vec2i pos, t_vec2i size, t_mbx_color col)
 {
-	t_vec2i		xy;
-	t_mbx_color	*row;
+	const t_mbx_color	mcol = region->color_setter(
+			region->color_modifier_data, col);
 
 	if (col.a == 0)
 		return ;
 	set_rect_bounds(region, &pos, &size);
 	if (col.a == 0xFF)
-	{
-		set_rect_opaque(region, pos, size, col);
-		return ;
-	}
-	xy.y = pos.y;
-	row = region->canvas + (xy.y * region->size.x);
-	while (xy.y < size.y)
-	{
-		xy.x = pos.x;
-		while (xy.x < size.x)
-		{
-			row[xy.x] = color_blend_quick(row[xy.x], col);
-			xy.x++;
-		}
-		xy.y++;
-		row += region->size.x;
-	}
+		set_rect_opaque(region, pos, size, mcol);
+	else
+		set_rect_transparent(region, pos, size, mcol);
 }

@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_mlx.h                                          :+:      :+:    :+:   */
+/*   dist_to_range.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 18:23:59 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Created: 2026/03/07 01:58:23 by rprieur           #+#    #+#             */
+/*   Updated: 2026/03/07 01:58:23 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+int	dist_to_range(int x, int low, int high)
+{
+	if (x < low)
+		return (low - x);
+	if (x > high)
+		return (x - high);
+	return (0);
+}
 
-#include "../../lib/MacroLibX/includes/mlx.h"
-#include "../../lib/MacroLibX/includes/mlx_extended.h"
+double	fdist_to_range(double x, double low, double high)
+{
+	if (x < low)
+		return (low - x);
+	if (x > high)
+		return (x - high);
+	return (0);
+}

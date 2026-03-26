@@ -13,6 +13,8 @@
 #pragma once
 
 #include <stdbool.h>
+#include "types/mbx_s_color.h"
+#include "types/mbx_s_region.h"
 #include "mbx_scancodes.h"
 
 #define MBX_INPUT_ARRAY_START				0
@@ -41,19 +43,19 @@ typedef enum u_mbx_viewport_render
 {
 	MBX_VIEWPORT_RENDER_SKIP,
 	MBX_VIEWPORT_RENDER_NO_SCALING,
-	MBX_VIEWPORT_RENDER_KEEP_INT,
 	MBX_VIEWPORT_RENDER_KEEP,
+	MBX_VIEWPORT_RENDER_KEEP_INT,
 	MBX_VIEWPORT_RENDER_STRETCH,
 }	t_mbx_viewport_render;
 
 typedef enum u_mbx_setting_defaults
 {
-	MBX_DEFAULT_VIEWPORT_RENDER			=	MBX_VIEWPORT_RENDER_KEEP_INT,
+	MBX_DEFAULT_VIEWPORT_RENDER			=	MBX_VIEWPORT_RENDER_KEEP,
 	MBX_DEFAULT_BACKGROUND_COLOR		=	0x020204,
 	MBX_DEFAULT_FPS_CAP					=	60,
-	MBX_DEFAULT_DO_WINDOW_CROSS_EXIT	=	true,
 	MBX_DEFAULT_EXIT_KEY				=	MBX_KEY_ESCAPE,
 	MBX_DEFAULT_FULLSCREEN_TOGGLE_KEY	=	MBX_KEY_F11,
+	MBX_DEFAULT_DO_WINDOW_CROSS_EXIT	=	true,
 	MBX_DEFAULT_LOCK_CURSOR				=	false,
 	MBX_DEFAULT_SHOW_CURSOR				=	true,
 }	t_mbx_setting_defaults;

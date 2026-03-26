@@ -12,6 +12,16 @@
 
 #pragma once
 
+#define MBX_INPUT_ARRAY_START				0
+#define MBX_INPUT_ARRAY_END					559
+#define MBX_INPUT_ARRAY_LENGTH				560
+#define MBX_INPUT_ARRAY_KEYBOARD_START		0
+#define MBX_INPUT_ARRAY_KEYBOARD_END		511
+#define MBX_INPUT_ARRAY_MOUSE_START			512
+#define MBX_INPUT_ARRAY_MOUSE_END			527
+#define MBX_INPUT_ARRAY_WINDOW_START		528
+#define MBX_INPUT_ARRAY_WINDOW_END			559
+
 // Simplified version of SLD2's scancodes
 // [https://wiki.libsdl.org/SDL2/SDL_Scancode]
 // Mouse and Window events are put after Keyboard ones

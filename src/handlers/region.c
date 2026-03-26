@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "modules/types/mbx_s_mbx.h"
 
-t_mbx_region	mbx_make_region(t_vec2i size)
+t_mbx_region	mbx_make_region(t_mbx *mbx, t_vec2i size)
 {
 	t_mbx_region	region;
 
@@ -23,6 +23,9 @@ t_mbx_region	mbx_make_region(t_vec2i size)
 	if (!region.canvas)
 		return ((t_mbx_region){0});
 	region.image = NULL;
+	region.color_getter = mbx->settings.default_color_getter;
+	region.color_setter = mbx->settings.default_color_setter;
+	region.color_modifier_data = mbx->settings.default_color_modifier_data;
 	return (region);
 }
 
@@ -41,6 +44,9 @@ t_mbx_region	mbx_make_region_with_image(t_mbx *mbx, t_vec2i size)
 		free(region.canvas);
 		return ((t_mbx_region){0});
 	}
+	region.color_getter = mbx->settings.default_color_getter;
+	region.color_setter = mbx->settings.default_color_setter;
+	region.color_modifier_data = mbx->settings.default_color_modifier_data;
 	return (region);
 }
 
@@ -48,7 +54,7 @@ t_mbx_region	mbx_make_region_from_image(t_mbx *mbx, t_mbx_image *image)
 {
 	t_mbx_region	region;
 
-	region = mbx_make_region(image->size);
+	region = mbx_make_region(mbx, image->size);
 	if (!region.canvas)
 		return ((t_mbx_region){0});
 	region.image = image->mlx;

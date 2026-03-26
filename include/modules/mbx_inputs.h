@@ -108,8 +108,23 @@ void	mbx_release_input(t_mbx *mbx, int key);
  * @mbx the MacroBoX context.
  * @x the new x position.
  * @y the new y position.
+ *
+ * The warp won't update cursor_delta, use
+ * mbx_move_cursor if it should
  */
 void	mbx_warp_cursor(t_mbx *mbx, t_vec2i pos);
+
+/**
+ * Warps the mouse cursor to the given position.
+ *
+ * @mbx the MacroBoX context.
+ * @x the new x position.
+ * @y the new y position.
+ *
+ * The movement will update cursor_delta, use
+ * mbx_warp_cursor if it shouldn't
+ */
+void	mbx_move_cursor(t_mbx *mbx, t_vec2i pos);
 
 /**
  * Updates all inputs like if a frame passed.

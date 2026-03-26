@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "mlx_extended.h"
+#include "modules/mbx_mlx.h"
 #include "modules/types/mbx_s_mbx.h"
 
 void	mbx_refresh_window(t_mbx *mbx, t_mbx_window *window)
