@@ -41,12 +41,12 @@ libmbx.a_files				:=	$(libmbx.so_files)
 
 common_files				:=	$(shell $(MAKE) -pC lib/VecLibC | sed -n 's/^common_files :=//p')
 
+INCLUDE_DIRECTORIES			:=	include \
+	lib/MacroLibX/includes lib/VecLibC/include
+
 LOCAL_LIBRARIES				:=	MacroLibX/libmlx.so VecLibC/libvec.so
 NO_REBUILD_LIBRARIES		:=	MacroLibX/libmlx.so
 OTHER_LIBRARIES				:=	m SDL2
-
-INCLUDE_DIRECTORIES			:=	include \
-	lib/MacroLibX/includes lib/VecLibC/include
 
 # ***** FILE SETTINGS *********
 
@@ -151,6 +151,8 @@ make_ld_report				=	$(patsubst %,$($1_report_directory)%.lst,$1)
 make_hard_ld_report			=	$(patsubst %,$($1_report_directory)%.opt.ld.yaml,$1)
 make_hard_ld_report_linker	=	$(patsubst %,$($1_report_directory)%,$1)
 
+get_lib_subfolder			=	$(patsubst $(LOCAL_LIBRARY_DIRECTORY)%,%,$(dir $1))
+
 # ***** PREPROCESS ************
 
 reports							:=	\
@@ -192,7 +194,6 @@ LIBRARY_DIRECTORIES			:=	$(dir $(LIBRARY_FILES))
 RE_LIBRARIES				:=	$(filter-out $(NO_REBUILD_LIBRARIES),$(LOCAL_LIBRARIES))
 RE_LIBRARY_FILES			:=	$(addprefix $(LOCAL_LIBRARY_DIRECTORY),$(RE_LIBRARIES))
 RE_LIBRARY_DIRECTORIES		:=	$(dir $(RE_LIBRARY_FILES))
-FORCED_LIBRARY_FILES		:=	$(patsubst %,force_%,$(RE_LIBRARIES))
 
 LIB_DIR_FLAGS				:=	$(addprefix -L,$(LIBRARY_DIRECTORIES))
 LIB_NAME_FLAGS				:=	$(addprefix -l,$(patsubst lib%,%,$(basename $(notdir $(LOCAL_LIBRARIES)))) $(OTHER_LIBRARIES))
@@ -240,22 +241,22 @@ ifeq ($(call is_not_static,$(call is_not_shared,$(NAMES))),)
     COMPILER_FLAGS			+=	$(PROGRAM_COMPILER_FLAGS)
 endif
 
+# ***** PRE-EXEC **************
+
 $(eval $(LATE_EXEC))
 
 # ***** RECIPES ***************
 
-.PHONY: all $(FORCED_LIBRARY_FILES) clean fclean re lib dist
-.NOTPARALLEL: re lib
+.PHONY: all clean fclean re lib dist
+.NOTPARALLEL: re
 
 all: $(NAMES)
 
 -include $(DEPENDENCIES)
 
 $(LIBRARY_FILES):
+	git submodule update --init --recursive $(dir $@)
 	$(MAKE) -C $(dir $@) -j
-
-$(FORCED_LIBRARY_FILES):
-	$(MAKE) -C $(dir $(patsubst force_%,$(LOCAL_LIBRARY_DIRECTORY)%,$@))
 
 clean:
 	$(LIB_CLEAN_CALLS)
@@ -268,11 +269,13 @@ fclean:
 
 re: fclean all
 
-lib: $(FORCED_LIBRARY_FILES) all
+lib:
+	$(MAKE) $(LIBRARY_FILES) $(addprefix -W ,$(LIBRARY_FILES))
+	$(MAKE) all
 
 dist:
-	$(MAKE) d=0 san=0 no-reports= clean
-	$(MAKE) d=0 san=0 no-reports= hard-reports=0 re
+	$(MAKE) d=0 san=0 no-reports=1 hard-reports=0 re
+	$(MAKE) d=0 san=0 no-reports=1 hard-reports=0 clean
 
 # ***** RECIPE MACROS *********
 
