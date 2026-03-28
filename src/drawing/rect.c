@@ -14,7 +14,7 @@
 #include "modules/mbx_utils.h"
 #include "../_private/mbx_simd.h"
 
-static inline void	set_rect_bounds(t_mbx_region *restrict region,
+static void	set_rect_bounds(t_mbx_region *restrict region,
 	t_vec2i *pos, t_vec2i *size)
 {
 	int	ppos;
@@ -43,7 +43,7 @@ static inline void	set_rect_bounds(t_mbx_region *restrict region,
 	}
 }
 
-static inline void	set_rect_opaque(t_mbx_region *restrict region,
+static void	set_rect_opaque(t_mbx_region *restrict region,
 	t_vec2i start, t_vec2i end, t_mbx_color col)
 {
 	const t_col4	vcol = {col.rgba, col.rgba, col.rgba, col.rgba};
@@ -66,7 +66,7 @@ static inline void	set_rect_opaque(t_mbx_region *restrict region,
 	}
 }
 
-static inline void	set_rect_transparent(t_mbx_region *restrict region,
+static void	set_rect_transparent(t_mbx_region *restrict region,
 	t_vec2i start, t_vec2i end, t_mbx_color col)
 {
 	t_vec2i				xy;

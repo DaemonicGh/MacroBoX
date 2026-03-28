@@ -19,15 +19,17 @@ t_mbx_window	mbx_make_window(t_mbx *mbx,
 	t_mbx_window	win;
 
 	win.mlx_image = NULL;
-	win.size = size;
-	win.title = title;
 	win.is_resizable = flags & MBX_WINDOW_FLAG_RESIZABLE;
 	win.is_fullscreen = flags & MBX_WINDOW_FLAG_FULLSCREEN;
 	win.is_minimized = flags & MBX_WINDOW_FLAG_MINIMIZED;
 	win.is_maximized = false;
+	win.size = size;
+	if (win.is_fullscreen)
+		win.size = mbx->screen_size;
+	win.title = title;
 	win.limits = vec2ix2(vec2i_zero(), mbx->screen_size);
 	win.mlx = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
-			NULL, win.title, win.size.x, win.size.y,
+			NULL, win.title, size.x, size.y,
 			win.is_fullscreen, win.is_resizable});
 	mlx_get_window_position(mbx->mlx, win.mlx, &win.pos.x, &win.pos.y);
 	if (win.is_minimized)

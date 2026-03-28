@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/veclc_vecn.h"
+#include "veclc.h"
 
 t_vec2	vec2_normalize(t_vec2 p)
 {

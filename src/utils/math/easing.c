@@ -12,20 +12,20 @@
 
 #include "modules/mbx_utils.h"
 
-double	mbx_ease_in(double x)
+double	mbx_ease_in(double t)
 {
-	return (x * x);
+	return (t * t);
 }
 
-double	mbx_ease_out(double x)
+double	mbx_ease_out(double t)
 {
-	return (1 - (1 - x) * (1 - x));
+	return (1 - (1 - t) * (1 - t));
 }
 
-double	mbx_ease_in_out(double x)
+double	mbx_ease_in_out(double t)
 {
-	if (x < 0.5)
-		return (2 * x * x);
-	else
-		return ((-2 * x + 2) * (-2 * x + 2) / 2);
+	if (t < 0.5)
+		return (2 * t * t);
+	t -= 0.5;
+	return (2 * t * (1 - t) + 0.5);
 }

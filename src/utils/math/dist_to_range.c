@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	dist_to_range(int x, int low, int high)
+int	range_dist(int x, int low, int high)
 {
 	if (x < low)
 		return (low - x);
@@ -19,7 +19,7 @@ int	dist_to_range(int x, int low, int high)
 	return (0);
 }
 
-double	fdist_to_range(double x, double low, double high)
+double	frange_dist(double x, double low, double high)
 {
 	if (x < low)
 		return (low - x);

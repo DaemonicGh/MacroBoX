@@ -105,29 +105,67 @@ double		fmove_towards(double x, double goal, double incr);
  * If x is inside the range, return 0.
  * Undefined behavior if high is inferior to low.
  */
-int			dist_to_range(int x, int low, int high);
+int			range_dist(int x, int low, int high);
 
 /**
  * Returns the absolute difference between x and the range between low and high.
  * If x is inside the range, return 0.
  * Undefined behavior if high is inferior to low.
  */
-double		fdist_to_range(double x, double low, double high);
+double		frange_dist(double x, double low, double high);
 
 /**
- * Modifies x within the range [0, 1] to have a quad ease in curve
+ * Eases t to smoothly accelerate.
+ * Values of t oustside of [0, 1] are undefined.
  */
-double		mbx_ease_in(double x);
+double		mbx_ease_in(double t);
+
 
 /**
- * Modifies x within the range [0, 1] to have a quad ease out curve
+ * Eases t to smoothly decelerate.
+ * Values of t oustside of [0, 1] are undefined.
  */
-double		mbx_ease_out(double x);
+double		mbx_ease_out(double t);
 
 /**
- * Modifies x within the range [0, 1] to have a quad ease in-out curve
+ * Eases t to smoothly accelerate and decelerate.
+ * Values of t oustside of [0, 1] are undefined.
  */
-double		mbx_ease_in_out(double x);
+double		mbx_ease_in_out(double t);
+
+/**
+ * Eases t to smoothly accelerate or decelerate.
+ * If strength is positive the curve will ease in.
+ * If strength is negative the curve will ease out.
+ * Higher values will amplify the curve's shape.
+ *
+ * Values of t oustside of [0, 1] are undefined.
+ *
+ * You can test it at:
+ * https://www.desmos.com/calculator/mmgc13zvfk
+ */
+double		mbx_ease_poly(double t, double strength);
+
+/**
+ * Eases t according to various parameters.
+ * I can't be bothered to properly explain how it works here,
+ * but you can test it at:
+ * https://www.desmos.com/calculator/mmgc13zvfk
+ *
+ * Values of t oustside of [0, 1] are undefined.
+ * Values of bias oustside of [-1, 1] are undefined.
+ */
+double		mbx_ease_bias(double t, double bias, double tension);
+
+/**
+ * Eases t according to various parameters.
+ * I can't be bothered to properly explain how it works here,
+ * but you can test it at:
+ * https://www.desmos.com/calculator/mmgc13zvfk
+ *
+ * Values of t oustside of [0, 1] are undefined.
+ */
+double		mbx_ease_poly_bias(double t, double bias, double tension);
 
 /**
  * Returns the sign of each component of a 2D vector.

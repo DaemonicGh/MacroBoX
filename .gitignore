@@ -2,6 +2,5 @@
 **/objs
 compile_flags.txt
 **.so
+**.a
 .*
-ignore
-TODO
