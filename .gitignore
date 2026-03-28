@@ -1,6 +1,0 @@
-**/build
-**/objs
-.clangd
-compile_flags.txt
-**.so
-**.a
