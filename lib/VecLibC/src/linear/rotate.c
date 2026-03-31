@@ -15,16 +15,22 @@
 
 t_vec2	vec2_rotate(t_vec2 p, double radians)
 {
+	const double	c = cos(radians);
+	const double	s = sin(radians);
+
 	return ((t_vec2){
-		.x = p.x * cos(radians) + p.y * sin(radians),
-		.y = p.x * sin(radians) - p.y * cos(radians)
+		.x = p.x * c - p.y * s,
+		.y = p.x * s + p.y * c
 	});
 }
 
 t_vec2i	vec2i_rotate(t_vec2i p, double radians)
 {
+	const double	c = cos(radians);
+	const double	s = sin(radians);
+
 	return ((t_vec2i){
-		.x = p.x * cos(radians) + p.y * sin(radians),
-		.y = p.x * sin(radians) - p.y * cos(radians)
+		.x = p.x * c - p.y * s,
+		.y = p.x * s + p.y * c
 	});
 }

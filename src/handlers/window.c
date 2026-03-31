@@ -23,6 +23,7 @@ t_mbx_window	mbx_make_window(t_mbx *mbx,
 	win.is_fullscreen = flags & MBX_WINDOW_FLAG_FULLSCREEN;
 	win.is_minimized = flags & MBX_WINDOW_FLAG_MINIMIZED;
 	win.is_maximized = false;
+	win.is_focused = true;
 	win.size = size;
 	if (win.is_fullscreen)
 		win.size = mbx->screen_size;
@@ -51,6 +52,7 @@ t_mbx_window	mbx_make_window_with_target(t_mbx *mbx,
 	win.is_resizable = false;
 	win.is_minimized = flags & MBX_WINDOW_FLAG_MINIMIZED;
 	win.is_maximized = false;
+	win.is_focused = true;
 	win.limits = vec2ix2(vec2i_zero(), mbx->screen_size);
 	win.mlx = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
 			win.mlx_image, win.title, win.size.x, win.size.y,

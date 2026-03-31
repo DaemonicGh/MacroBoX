@@ -44,4 +44,5 @@ typedef struct s_mbx_window
 	bool			is_resizable;
 	bool			is_minimized;
 	bool			is_maximized;
+	bool			is_focused;
 }	t_mbx_window;

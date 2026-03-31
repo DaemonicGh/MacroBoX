@@ -46,6 +46,7 @@ INCLUDE_DIRECTORIES			:=	include \
 
 LOCAL_LIBRARIES				:=	MacroLibX/libmlx.so VecLibC/libvec.so
 NO_REBUILD_LIBRARIES		:=	MacroLibX/libmlx.so
+GIT_LIBRARIES				:=	MacroLibX
 OTHER_LIBRARIES				:=	m SDL2
 
 # ***** FILE SETTINGS *********
@@ -106,9 +107,12 @@ d							?=	$(debug)
 sanitize					?=	0
 san							?=	$(sanitize)
 
-ifneq ($(sanitize),0)
+ifneq ($(san),0)
 	debug					:=	1
 endif
+
+force						?=	0
+f							?=	$(force)
 
 verbose						?=	0
 v							?=	$(verbose)
@@ -123,7 +127,7 @@ hard-reports				?=	0
 # ***** MAKE ******************
 
 MAKE						+=	\
-d=$(d) san=$(san) v=$(v) no-deps=$(no-deps)\
+d=$(d) san=$(san) f=$(f) v=$(v) no-deps=$(no-deps)\
 no-reports=$(no-reports) hard-reports=$(hard-reports)
 
 ifeq ($(v),0)
@@ -151,7 +155,7 @@ make_ld_report				=	$(patsubst %,$($1_report_directory)%.lst,$1)
 make_hard_ld_report			=	$(patsubst %,$($1_report_directory)%.opt.ld.yaml,$1)
 make_hard_ld_report_linker	=	$(patsubst %,$($1_report_directory)%,$1)
 
-get_lib_subfolder			=	$(patsubst $(LOCAL_LIBRARY_DIRECTORY)%,%,$(dir $1))
+get_lib_subfolder			=	$(patsubst $(LOCAL_LIBRARY_DIRECTORY)%/,%,$(dir $1))
 
 # ***** PREPROCESS ************
 
@@ -231,6 +235,10 @@ ifneq ($(san),0)
 	SUCCESS_MESSAGE			+=	$(SANITIZE_SUCCESS_MESSAGE)
 endif
 
+ifneq ($(f), 0)
+	FORCE					:=	FORCE
+endif
+
 ifneq ($(call is_static,$(NAMES))),)
     COMPILER_FLAGS			+=	$(STATIC_COMPILER_FLAGS)
 endif
@@ -252,11 +260,15 @@ $(eval $(LATE_EXEC))
 
 all: $(NAMES)
 
+FORCE:
+
 -include $(DEPENDENCIES)
 
-$(LIBRARY_FILES):
-	git submodule update --init --recursive $(dir $@)
-	$(MAKE) -C $(dir $@) -j
+$(LIBRARY_FILES): $(FORCE)
+	$(if $(filter $(call get_lib_subfolder,$@),$(GIT_LIBRARIES)),\
+		git submodule update --init --recursive $(dir $@)\
+	,)
+	$(MAKE) f=0 -C $(dir $@) -j
 
 clean:
 	$(LIB_CLEAN_CALLS)
@@ -270,7 +282,7 @@ fclean:
 re: fclean all
 
 lib:
-	$(MAKE) $(LIBRARY_FILES) $(addprefix -W ,$(LIBRARY_FILES))
+	$(MAKE) f=1 $(LIBRARY_FILES)
 	$(MAKE) all
 
 dist:
@@ -280,7 +292,7 @@ dist:
 # ***** RECIPE MACROS *********
 
 define NAMES_RECIPE
-$1: $(LIBRARY_FILES) $(common_objects) $$($1_objects)
+$1: $(LIBRARY_FILES) $(common_objects) $$($1_objects) $(FORCE)
 	$(if $(call is_static,$1),
 		$(STATIC_LINKER) $1 $(common_objects) $($1_objects),
 
@@ -307,7 +319,7 @@ $1: $(LIBRARY_FILES) $(common_objects) $$($1_objects)
 endef
 
 define OBJECTS_RECIPE
-$$($1_object_directory)%$(OBJECT_EXTENSION): $$($1_source_directory)%$(SOURCE_EXTENSION)
+$$($1_object_directory)%$(OBJECT_EXTENSION): $$($1_source_directory)%$(SOURCE_EXTENSION) $(FORCE)
 	mkdir -p $$(dir $$@)
 
 	$(if $(call is_zero,$(no-deps)),

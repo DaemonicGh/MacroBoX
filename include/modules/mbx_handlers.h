@@ -245,13 +245,23 @@ mbx_refresh_window(
 	t_mbx *mbx, t_mbx_window *window);
 
 /**
- * Refreshes the given window's data to match its properties.
+ * Refreshes the given window's position to match its properties.
  *
  * @mbx			the MacroBoX context.
  * @window		the window to update.
  */
 void
-mbx_refresh_window_data(
+mbx_refresh_window_pos(
+	t_mbx *mbx, t_mbx_window *window);
+
+/**
+ * Refreshes the given window's size to match its properties.
+ *
+ * @mbx			the MacroBoX context.
+ * @window		the window to update.
+ */
+void
+mbx_refresh_window_size(
 	t_mbx *mbx, t_mbx_window *window);
 
 /**

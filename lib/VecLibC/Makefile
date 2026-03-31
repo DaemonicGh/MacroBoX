@@ -90,7 +90,7 @@ d							?=	$(debug)
 sanitize					?=	0
 san							?=	$(sanitize)
 
-ifneq ($(sanitize),0)
+ifneq ($(san),0)
 	debug					:=	1
 endif
 

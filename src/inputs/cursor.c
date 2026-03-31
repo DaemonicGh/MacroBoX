@@ -43,6 +43,6 @@ void	refresh_cursor(t_mbx *mbx)
 	mbx->cursor = vec2_to_vec2i(pos);
 	mbx->cursor_delta.x = pos.x - prev_pos.x;
 	mbx->cursor_delta.y = pos.y - prev_pos.y;
-	if (mbx->settings.lock_cursor)
+	if (mbx->settings.lock_cursor && mbx->window.is_focused)
 		mbx_warp_cursor(mbx, vec2i_div_i(mbx->viewport.size, 2));
 }
