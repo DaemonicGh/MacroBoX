@@ -106,8 +106,7 @@ void	mbx_release_input(t_mbx *mbx, int key);
  * Warps the mouse cursor to the given position.
  *
  * @mbx the MacroBoX context.
- * @x the new x position.
- * @y the new y position.
+ * @pos the new cursor position.
  *
  * The warp won't update cursor_delta, use
  * mbx_move_cursor if it should
@@ -118,13 +117,22 @@ void	mbx_warp_cursor(t_mbx *mbx, t_vec2i pos);
  * Warps the mouse cursor to the given position.
  *
  * @mbx the MacroBoX context.
- * @x the new x position.
- * @y the new y position.
+ * @pos the new cursor position.
  *
  * The movement will update cursor_delta, use
  * mbx_warp_cursor if it shouldn't
  */
 void	mbx_move_cursor(t_mbx *mbx, t_vec2i pos);
+
+/**
+ * Warps the mouse cursor to the center of the window.
+ *
+ * @mbx the MacroBoX context.
+ *
+ * The position is adapted to always be in the center
+ * of the visible part of the window.
+ */
+void	mbx_center_cursor(t_mbx *mbx);
 
 /**
  * Updates all inputs like if a frame passed.
