@@ -26,7 +26,7 @@ t_vec3i		vec3i_zero(void);
 /**
  * Creates a new 3D vector containing the given integer for all components.
  */
-t_vec3i		vec3i_d(int xyz);
+t_vec3i		vec3i_i(int xyz);
 
 /**
  * Adds two 3D vectors.

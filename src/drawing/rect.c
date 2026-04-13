@@ -12,7 +12,6 @@
 
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_utils.h"
-#include "../_private/mbx_simd.h"
 
 static void	set_rect_bounds(t_mbx_region *restrict region,
 	t_vec2i *pos, t_vec2i *size)
@@ -46,23 +45,17 @@ static void	set_rect_bounds(t_mbx_region *restrict region,
 static void	set_rect_opaque(t_mbx_region *restrict region,
 	t_vec2i start, t_vec2i end, t_mbx_color col)
 {
-	const t_col4	vcol = {col.rgba, col.rgba, col.rgba, col.rgba};
 	t_vec2i			xy;
-	t_mbx_color		*row;
+	int				i;
 
 	xy.y = start.y;
-	row = region->canvas + xy.y * region->size.x;
+	i = xy.y * region->size.x + start.x;
 	while (xy.y++ < end.y)
 	{
 		xy.x = start.x;
-		while (xy.x < end.x - 4)
-		{
-			*(t_col4 *)(row + xy.x) = vcol;
-			xy.x += 4;
-		}
-		while (xy.x < end.x)
-			row[xy.x++] = col;
-		row += region->size.x;
+		while (xy.x++ < end.x)
+			region->canvas[i++] = col;
+		i += start.x - end.x + region->size.x;
 	}
 }
 
@@ -77,14 +70,13 @@ static void	set_rect_transparent(t_mbx_region *restrict region,
 	while (xy.y++ < end.y)
 	{
 		xy.x = start.x;
-		while (xy.x < end.x)
+		while (xy.x++ < end.x)
 		{
 			region->canvas[i] = color_blend_quick(
 					mbx_get_pixel_unsafe_i(region, i), col);
-			xy.x++;
 			i++;
 		}
-		i += region->size.x - (end.x - start.x);
+		i += start.x - end.x + region->size.x;
 	}
 }
 

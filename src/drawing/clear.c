@@ -11,22 +11,15 @@
 /* ************************************************************************** */
 
 #include "modules/mbx_drawing.h"
-#include "../_private/mbx_simd.h"
 
 void	mbx_clear(t_mbx_region *restrict region, t_mbx_color col)
 {
 	const t_mbx_color	mcol = region->color_setter(
 			region->color_modifier_data, col);
-	const t_col4		vcol = {mcol.rgba, mcol.rgba, mcol.rgba, mcol.rgba};
 	const int			size = region->size.x * region->size.y;
 	int					i;
 
 	i = 0;
-	while (i < size - 4)
-	{
-		*(t_col4 *)(region->canvas + i) = vcol;
-		i += 4;
-	}
 	while (i < size)
 		region->canvas[i++] = mcol;
 }
