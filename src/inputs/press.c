@@ -18,12 +18,12 @@ static void	window_events_handler(t_mbx *mbx, int event)
 {
 	if (event == MBX_WINDOW_MOVE)
 	{
-		mbx_refresh_window_pos(mbx, &mbx->window);
+		mbx_refresh_window(mbx, &mbx->window);
 		if (mbx->window.pos.x != 0 && mbx->window.pos.y != 60)
 			mbx->window.is_maximized = false;
 	}
 	else if (event == MBX_WINDOW_RESIZE)
-		mbx_refresh_window_size(mbx, &mbx->window);
+		mbx_refresh_window(mbx, &mbx->window);
 	else if (event == MBX_WINDOW_MAXIMIZE)
 		mbx->window.is_maximized = true;
 	else if (event == MBX_WINDOW_MINIMIZE)

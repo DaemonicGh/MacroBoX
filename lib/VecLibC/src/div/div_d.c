@@ -12,22 +12,22 @@
 
 #include "modules/types/veclc_s_vecn.h"
 
-t_vec2	vec2_div_d(t_vec2 p, double value)
+t_vec2	vec2_div_d(t_vec2 p, double d)
 {
-	return ((t_vec2){.x = p.x / value, .y = p.y / value});
+	return ((t_vec2){.x = p.x / d, .y = p.y / d});
 }
 
-t_vec2	vec2_div_rd(double value, t_vec2 p)
+t_vec2	vec2_div_rd(double d, t_vec2 p)
 {
-	return ((t_vec2){.x = value / p.x, .y = value / p.y});
+	return ((t_vec2){.x = d / p.x, .y = d / p.y});
 }
 
-t_vec3	vec3_div_d(t_vec3 p, double value)
+t_vec3	vec3_div_d(t_vec3 p, double d)
 {
-	return ((t_vec3){.x = p.x / value, .y = p.y / value, .z = p.z / value});
+	return ((t_vec3){.x = p.x / d, .y = p.y / d, .z = p.z / d});
 }
 
-t_vec3	vec3_div_rd(double value, t_vec3 p)
+t_vec3	vec3_div_rd(double d, t_vec3 p)
 {
-	return ((t_vec3){.x = value / p.x, .y = value / p.y, .z = value / p.z});
+	return ((t_vec3){.x = d / p.x, .y = d / p.y, .z = d / p.z});
 }

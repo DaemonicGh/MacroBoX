@@ -19,18 +19,19 @@
  * Wrapper struct for a MacroLibX window.
  *
  * @win				the MacroLibX window.
- * @image			the target image if one is provided, else NULL
+ * @image			the target image if one is provided.
  * @pos				the position of the window.
  * @limits			the minimum and maximum size of the window.
  * @size			the size of the window.
  * @title			the title of the window.
+ * @screen_size		the size of the screen the window is on.
  * @is_fullscreen	true if the window is fullscreen.
  * @is_resizable	true if the window is resizable.
  * @is_minimized	true if the window is minimized.
  * @is_maximized	true if the window is maximized.
  *
  * This struct must be destroyed manually using mbx_destroy_window().
- * WARNING: Resizing is VERY unsafe
+ * WARNING: Resizing is VERY unsafe !
  */
 typedef struct s_mbx_window
 {
@@ -39,6 +40,7 @@ typedef struct s_mbx_window
 	t_vec2i			pos;
 	t_vec2i			size;
 	t_vec2ix2		limits;
+	t_vec2i			screen_size;
 	char			*title;
 	bool			is_fullscreen;
 	bool			is_resizable;

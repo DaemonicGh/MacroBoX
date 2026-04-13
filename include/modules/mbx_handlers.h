@@ -241,39 +241,17 @@ mbx_destroy_window(
  * This function is very unstable and may result in unexpected behavior.
  */
 void
+mbx_update_window(
+	t_mbx *mbx, t_mbx_window *window);
+
+/**
+ * Refreshes the given window to match its properties.
+ *
+ * @mbx			the MacroBoX context.
+ * @window		the window to update.
+ */
+void
 mbx_refresh_window(
-	t_mbx *mbx, t_mbx_window *window);
-
-/**
- * Refreshes the given window's position to match its properties.
- *
- * @mbx			the MacroBoX context.
- * @window		the window to update.
- */
-void
-mbx_refresh_window_pos(
-	t_mbx *mbx, t_mbx_window *window);
-
-/**
- * Refreshes the given window's size to match its properties.
- *
- * @mbx			the MacroBoX context.
- * @window		the window to update.
- */
-void
-mbx_refresh_window_size(
-	t_mbx *mbx, t_mbx_window *window);
-
-/**
- * Centers the given window on the screen.
- *
- * @mbx			the MacroBoX context.
- * @window		the window to center.
- *
- * This function is very unstable and may result in unexpected behavior.
- */
-void
-mbx_center_window(
 	t_mbx *mbx, t_mbx_window *window);
 
 /**
@@ -310,7 +288,7 @@ mbx_resize_viewport_with_content(
  * This function can fail allocation, then the result will be 0 padded.
  */
 t_vec2i
-get_screen_size_windowless(
+mbx_get_screen_size_windowless(
 	t_mbx *mbx);
 
 /**

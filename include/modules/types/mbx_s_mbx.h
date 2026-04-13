@@ -24,8 +24,7 @@
  * The context structure for the MacroBoX application.
  *
  * @window				the application window.
- * @viewport			the image where the application is rendered.
- * @screen_size			the size of the screen the window is on.
+ * @viewport			the region where the application is rendered.
  * @mlx					the MacroLibX context.
  *
  * @key_presses			array containing the time passed since each key press.
@@ -48,7 +47,6 @@ typedef struct s_mbx_context
 {
 	t_mbx_region			viewport;
 	t_mbx_window			window;
-	t_vec2i					screen_size;
 	mlx_context				mlx;
 
 	float					key_presses[MBX_INPUT_ARRAY_LENGTH];

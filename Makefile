@@ -34,7 +34,8 @@ libmbx.so_files				:=	\
 	utils/math/easing utils/math/easing_special									\
 	utils/math/is_integer utils/math/lerp utils/math/minmax						\
 	utils/math/move_towards utils/math/sign utils/math/trunc utils/math/wrap	\
-	utils/vector/len_clamp utils/vector/len_move_towards utils/vector/sign		\
+	utils/vector/clamp utils/vector/len_clamp utils/vector/len_move_towards		\
+	utils/vector/sign															\
 	_private/time
 
 libmbx.a_files				:=	$(libmbx.so_files)
@@ -101,15 +102,13 @@ REPORT_BUILDER				:=	llvm-opt-report-14
 
 # ***** COMMAND VARIABLES *****
 
-debug						?=	0
-d							?=	$(debug)
-
 sanitize					?=	0
 san							?=	$(sanitize)
 
-ifneq ($(san),0)
-	debug					:=	1
-endif
+debug						?=	$(san)
+d							?=	$(debug)
+
+reports						?=	$(d)
 
 force						?=	0
 f							?=	$(force)
@@ -120,15 +119,10 @@ v							?=	$(verbose)
 no-dependencies				?=	0
 no-deps						?=	$(no-dependencies)
 
-no-reports					?=	0
-
-hard-reports				?=	0
-
 # ***** MAKE ******************
 
 MAKE						+=	\
-d=$(d) san=$(san) f=$(f) v=$(v) no-deps=$(no-deps)\
-no-reports=$(no-reports) hard-reports=$(hard-reports)
+d=$(d) san=$(san) f=$(f) v=$(v) no-deps=$(no-deps) reports=$(reports)
 
 ifeq ($(v),0)
 	MAKEFLAGS				+=	--silent
@@ -145,7 +139,7 @@ is_static					=	$(filter %.a,$1)
 is_not_shared 				=	$(filter-out %.so,$1)
 is_not_static				=	$(filter-out %.a,$1)
 is_zero						=	$(filter 0,$1)
-is_not_zero					=	$(filter-out 0,$1)
+is_not_zero					=	$(filter-out 0,$(if $1,$1,1))
 
 make_object					=	$(patsubst %,$($1_object_directory)%$(OBJECT_EXTENSION),$(basename $2))
 make_dependency				=	$(patsubst $($1_object_directory)%,$($1_dependency_directory)%.d,$(basename $2))
@@ -158,10 +152,6 @@ make_hard_ld_report_linker	=	$(patsubst %,$($1_report_directory)%,$1)
 get_lib_subfolder			=	$(patsubst $(LOCAL_LIBRARY_DIRECTORY)%/,%,$(dir $1))
 
 # ***** PREPROCESS ************
-
-reports							:=	\
-$(if $(or $(call is_zero,$(no-reports)),\
-$(call is_not_zero,$(if $(hard-reports),$(hard-reports),1))),1,0)
 
 define NAME_BUILDER
 $1_source_directory				?=	$(SOURCE_DIRECTORY)
@@ -286,8 +276,8 @@ lib:
 	$(MAKE) all
 
 dist:
-	$(MAKE) d=0 san=0 no-reports=1 hard-reports=0 re
-	$(MAKE) d=0 san=0 no-reports=1 hard-reports=0 clean
+	$(MAKE) d=0 san=0 reports=0 re
+	$(MAKE) d=0 san=0 reports=0 clean
 
 # ***** RECIPE MACROS *********
 
@@ -304,13 +294,10 @@ $1: $(LIBRARY_FILES) $(common_objects) $$($1_objects) $(FORCE)
 		$(LINKER_FLAGS) $$(VPATH) $(common_objects) $($1_objects)\
 		$(LIB_DIR_FLAGS) $(LIB_NAME_FLAGS) -o $1
 
-		$(if $(call is_zero,$(no-reports)),
+		$(if $(call is_not_zero,$(reports)),
 			-$(REPORT_BUILDER) $(call make_hard_ld_report,$1) -o\
-			$(call make_ld_report,$1,$1) 2>/dev/null
-
-			$(if $(call is_zero,$(hard-reports)),
-				rm -f $(call make_hard_ld_report,$1)
-			,)
+			$(call make_ld_report,$1,$1)\
+			$(if $(call is_zero,$(v)),2>/dev/null,)
 		,)
 	)
 	$(if $(filter $1, $(SILENT_NAMES)),,
@@ -331,13 +318,10 @@ $$($1_object_directory)%$(OBJECT_EXTENSION): $$($1_source_directory)%$(SOURCE_EX
 
 	$(COMPILER) $(COMPILER_FLAGS) $(INCLUDES) -c $$< -o $$@
 
-	$(if $(call is_zero,$(no-reports)),
+	$(if $(call is_not_zero,$(no-reports)),
 		-$(REPORT_BUILDER) $$(call make_hard_report,$1,$$@) -o\
-		$$(call make_report,$1,$$@) 2>/dev/null
-
-		$(if $(call is_zero,$(hard-reports)),
-			rm -f $$(call make_hard_report,$1,$$@)
-		,)
+		$$(call make_report,$1,$$@)\
+		$(if $(call is_zero,$(v)),2>/dev/null,)
 	,)
 endef
 

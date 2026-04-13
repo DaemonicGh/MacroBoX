@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   div_vd.c                                           :+:      :+:    :+:   */
+/*   truediv_d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,22 +12,30 @@
 
 #include "modules/types/veclc_s_vecn.h"
 
-t_vec2i	vec2i_div_vd(t_vec2i p1, t_vec2 p2)
+t_vec2	vec2i_truediv_d(t_vec2i p, double d)
 {
-	return ((t_vec2i){.x = p1.x / p2.x, .y = p1.y / p2.y});
+	return ((t_vec2){.x = (double)p.x / d, .y = (double)p.y / d});
 }
 
-t_vec3i	vec3i_div_vd(t_vec3i p1, t_vec3 p2)
+t_vec3	vec3i_truediv_d(t_vec3i p, double d)
 {
-	return ((t_vec3i){.x = p1.x / p2.x, .y = p1.y / p2.y, .z = p1.z / p2.z});
+	return ((t_vec3){
+		.x = (double)p.x / d,
+		.y = (double)p.y / d,
+		.z = (double)p.z / d
+	});
 }
 
-t_vec2i	vec2i_div_rvd(t_vec2 p1, t_vec2i p2)
+t_vec2	vec2i_truediv_rd(double d, t_vec2i p)
 {
-	return ((t_vec2i){.x = p1.x / p2.x, .y = p1.y / p2.y});
+	return ((t_vec2){.x = d / (double)p.x, .y = d / (double)p.y});
 }
 
-t_vec3i	vec3i_div_rvd(t_vec3 p1, t_vec3i p2)
+t_vec3	vec3i_truediv_rd(double d, t_vec3i p)
 {
-	return ((t_vec3i){.x = p1.x / p2.x, .y = p1.y / p2.y, .z = p1.z / p2.z});
+	return ((t_vec3){
+		.x = d / (double)p.x,
+		.y = d / (double)p.y,
+		.z = d / (double)p.z
+	});
 }

@@ -45,7 +45,7 @@ void	mbx_render_region_as_viewport(
 		scale = vec2i_truediv(mbx->window.size, region->size);
 	else
 		scale = vec2_d(1);
-	pos = vec2i_div_i(vec2i_sub(mbx->window.size,
+	pos = vec2i_div_d(vec2i_sub(mbx->window.size,
 				vec2i_mult_vd(region->size, scale)), 2);
 	mbx_render_region(mbx, region, pos, scale);
 }

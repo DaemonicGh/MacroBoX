@@ -18,7 +18,8 @@ void	mbx_refresh_settings(t_mbx *mbx)
 	if (mbx->settings.fps_cap <= 0)
 		mlx_set_fps_goal(mbx->mlx, INT_MAX);
 	else
-		mlx_set_fps_goal(mbx->mlx, max(mbx->settings.fps_cap, MBX_MLX_FPS_CAP));
+		mlx_set_fps_goal(mbx->mlx,
+			mbx->settings.fps_cap * MBX_MLX_FPS_CAP_RATIO);
 	if (mbx->settings.show_cursor)
 		mlx_mouse_show(mbx->mlx);
 	else

@@ -18,7 +18,7 @@ void	enter_loop(t_mbx *mbx)
 {
 	update_time_values(mbx);
 	if (mbx->settings.lock_cursor)
-		mbx_warp_cursor(mbx, vec2i_div_i(mbx->viewport.size, 2));
+		mbx_warp_cursor(mbx, vec2i_div_d(mbx->viewport.size, 2));
 }
 
 void	exit_loop(t_mbx *mbx)

@@ -34,19 +34,9 @@ t_vec3i		vec3i_d(int xyz);
 t_vec3i		vec3i_add(t_vec3i p1, t_vec3i p2);
 
 /**
- * Adds i to all components of a 3D vector.
+ * Adds d to all components of a 3D vector.
  */
-t_vec3i		vec3i_add_i(t_vec3i p, int i);
-
-/**
- * Adds two 3D vectors and stores the result in the first vector.
- */
-t_vec3i		vec3i_add_to(t_vec3i *p1, t_vec3i p2);
-
-/**
- * Adds i to all components of a 3D vector and stores the result in the vector.
- */
-t_vec3i		vec3i_add_to_i(t_vec3i *p, int i);
+t_vec3i		vec3i_add_d(t_vec3i p, double d);
 
 /**
  * Subtracts two 3D vectors.
@@ -54,20 +44,14 @@ t_vec3i		vec3i_add_to_i(t_vec3i *p, int i);
 t_vec3i		vec3i_sub(t_vec3i p1, t_vec3i p2);
 
 /**
- * Subtracts i from all components of a 3D vector.
+ * Subtracts all components of a 3D vector by d.
  */
-t_vec3i		vec3i_sub_i(t_vec3i p, int i);
+t_vec3i		vec3i_sub_d(t_vec3i p, double d);
 
 /**
- * Subtracts two 3D vectors and stores the result in the first vector.
+ * Subtracts d to all components of a 3D vector.
  */
-t_vec3i		vec3i_sub_to(t_vec3i *p1, t_vec3i p2);
-
-/**
- * Subtracts i from all components of a 3D vector
- * and stores the result in the vector.
- */
-t_vec3i		vec3i_sub_to_i(t_vec3i *p, int i);
+t_vec3i		vec3i_sub_rd(double d, t_vec3i p);
 
 /**
  * Multiplies two 3D vectors.
@@ -75,20 +59,9 @@ t_vec3i		vec3i_sub_to_i(t_vec3i *p, int i);
 t_vec3i		vec3i_mult(t_vec3i p1, t_vec3i p2);
 
 /**
- * Multiplies all components of a 3D vector by i.
+ * Multiplies all components of a 3D vector by d.
  */
-t_vec3i		vec3i_mult_i(t_vec3i p, int i);
-
-/**
- * Multiplies two 3D vectors and stores the result in the first vector.
- */
-t_vec3i		vec3i_mult_to(t_vec3i *p1, t_vec3i p2);
-
-/**
- * Multiplies all components of a 3D vector by i
- * and stores the result in the vector.
- */
-t_vec3i		vec3i_mult_to_i(t_vec3i *p, int i);
+t_vec3i		vec3i_mult_d(t_vec3i p, double d);
 
 /**
  * Multiplies two 3D vectors, one having float precision.
@@ -96,53 +69,19 @@ t_vec3i		vec3i_mult_to_i(t_vec3i *p, int i);
 t_vec3i		vec3i_mult_vd(t_vec3i p1, t_vec3 p2);
 
 /**
- * Multiplies two 3D vectors, one having float precision, and
- * stores the result in the first vector.
- */
-t_vec3i		vec3i_mult_to_vd(t_vec3i *p1, t_vec3 p2);
-
-/**
- * Multiplies all components of a 3D vector by d.
- */
-t_vec3i		vec3i_mult_d(t_vec3i p, double d);
-
-/**
- * Multiplies all components of a 3D vector by d
- * and stores the result in the vector.
- */
-t_vec3i		vec3i_mult_to_d(t_vec3i *p, double d);
-
-/**
  * Divides two 3D vectors.
  */
 t_vec3i		vec3i_div(t_vec3i p1, t_vec3i p2);
 
 /**
- * Divides all components of a 3D vector by i.
+ * Divides all components of a 3D vector by d.
  */
-t_vec3i		vec3i_div_i(t_vec3i p, int i);
+t_vec3i		vec3i_div_d(t_vec3i p, double d);
 
 /**
- * Divides i by all components of a 3D vector.
+ * Divides d by all components of a 3D vector.
  */
-t_vec3i		vec3i_div_ri(int value, t_vec3i p);
-
-/**
- * Divides two 3D vectors and stores the result in the first vector.
- */
-t_vec3i		vec3i_div_to(t_vec3i *p1, t_vec3i p2);
-
-/**
- * Divides all components of a 3D vector by i
- * and stores the result in the vector.
- */
-t_vec3i		vec3i_div_to_i(t_vec3i *p, int i);
-
-/**
- * Divides i by all components of a 3D vector
- * and stores the result in the vector.
- */
-t_vec3i		vec3i_div_to_ri(double val, t_vec3i *p);
+t_vec3i		vec3i_div_rd(double value, t_vec3i p);
 
 /**
  * Divides two 3D vectors, one having float precision.
@@ -150,10 +89,9 @@ t_vec3i		vec3i_div_to_ri(double val, t_vec3i *p);
 t_vec3i		vec3i_div_vd(t_vec3i p1, t_vec3 p2);
 
 /**
- * Divides two 3D vectors, one having float precision, and
- * stores the result in the first vector.
+ * Divides two 3D vectors, one having float precision.
  */
-t_vec3i		vec3i_div_to_vd(t_vec3i *p1, t_vec3 p2);
+t_vec3i		vec3i_div_rvd(t_vec3 p1, t_vec3i p2);
 
 /**
  * Divides two 3D vectors and keeps the result's float precision.
@@ -165,6 +103,41 @@ t_vec3		vec3i_truediv(t_vec3i p1, t_vec3i p2);
  * and keeps the result's float precision.
  */
 t_vec3		vec3i_truediv_d(t_vec3i p, double d);
+
+/**
+ * Divides d by all components of a 3D vector
+ * and keeps the result's float precision.
+ */
+t_vec3		vec3i_truediv_rd(double d, t_vec3i p);
+
+/**
+ * Returns the remainder of the division between two 3D vectors.
+ */
+t_vec2i		vec2i_mod(t_vec2i p1, t_vec2i p2);
+
+/**
+ * Returns the remainder of the division between
+ * all components of a 3D vector and i.
+ */
+t_vec3i		vec3i_mod_i(t_vec3i p, int i);
+
+/**
+ * Returns the remainder of the division between
+ * i and all components of a 3D vector.
+ */
+t_vec3i		vec3i_mod_ri(int i, t_vec3i p);
+
+/**
+ * Returns the remainder of the division between
+ * all components of a 3D vector and d.
+ */
+t_vec3i		vec3i_mod_d(t_vec3i p, double d);
+
+/**
+ * Returns the remainder of the division between
+ * d and all components of a 3D vector.
+ */
+t_vec3i		vec3i_mod_rd(double d, t_vec3i p);
 
 /**
  * Negates a 3D vector.

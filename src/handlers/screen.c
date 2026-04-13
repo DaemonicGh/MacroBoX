@@ -12,7 +12,15 @@
 
 #include "modules/types/mbx_s_mbx.h"
 
-t_vec2i	get_screen_size_windowless(t_mbx *mbx)
+t_vec2i	mbx_get_screen_size(t_mbx *mbx, t_mbx_window window)
+{
+	t_vec2i		size;
+
+	mlx_get_screen_size(mbx->mlx, window.mlx, &size.x, &size.y);
+	return (size);
+}
+
+t_vec2i	mbx_get_screen_size_windowless(t_mbx *mbx)
 {
 	mlx_window	temp_win;
 	t_vec2i		size;

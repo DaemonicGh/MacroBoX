@@ -9,26 +9,25 @@
 #    Updated: 2026/02/21 00:14:39 by rprieur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-# V5.1
+# V5.3
 
 # ***** PROJECT ***************
 
 NAMES					:=	libvec.so
 
 common_files			:=	\
-	add/add_d add/add_i add/add_to_d add/add_to_i add/add_to add/add			\
+	add/add add/add_d															\
 	conv/to_vec conv/to_vec2 conv/to_veci										\
-	div/div_d div/div_i div/div_to_d div/div_to_i div/div_to div/div			\
-	div/div_vd div/truediv														\
+	div/div div/div_d div/div_vd div/i_div_d div/truediv div/truediv_d			\
 	groups/vecx2 groups/vecx2_xy groups/vecx3 groups/vecx4						\
 	linear/cross linear/dist linear/dot linear/length linear/normalize			\
 	linear/rotate																\
 	math/abs math/eq math/is_zero math/negative math/round math/square			\
-	mult/mult_d mult/mult_i mult/mult_to_d mult/mult_to_i mult/mult_to			\
-	mult/mult mult/mult_vd														\
+	mod/mod mod/mod_d mod/mod_i mod/mod_rd										\
+	mult/mult mult/mult_d mult/mult_vd											\
 	new/from_angle new/new new/new_i new/zero									\
-	sub/sub_d sub/sub_i sub/sub_to_d sub/sub_to_i sub/sub_to sub/sub			\
-	print/print print/printi
+	print/print print/printi													\
+	sub/sub sub/sub_d sub/sub_rd												\
 
 LOCAL_LIBRARIES			:=
 OTHER_LIBRARIES			:=	m
@@ -84,15 +83,13 @@ REPORT_BUILDER				:=	llvm-opt-report-14
 
 # ***** COMMAND VARIABLES *****
 
-debug						?=	0
-d							?=	$(debug)
-
 sanitize					?=	0
 san							?=	$(sanitize)
 
-ifneq ($(san),0)
-	debug					:=	1
-endif
+debug						?=	$(san)
+d							?=	$(debug)
+
+reports						?=	$(d)
 
 verbose						?=	0
 v							?=	$(verbose)
@@ -100,15 +97,10 @@ v							?=	$(verbose)
 no-dependencies				?=	0
 no-deps						?=	$(no-dependencies)
 
-no-reports					?=	0
-
-hard-reports				?=	0
-
 # ***** MAKE ******************
 
 MAKE						+=	\
-d=$(d) san=$(san) v=$(v) no-deps=$(no-deps)\
-no-reports=$(no-reports) hard-reports=$(hard-reports)
+d=$(d) san=$(san) v=$(v) no-deps=$(no-deps) reports=$(reports)
 
 ifeq ($(v),0)
 	MAKEFLAGS				+=	--silent
@@ -125,7 +117,7 @@ is_static					=	$(filter %.a,$1)
 is_not_shared 				=	$(filter-out %.so,$1)
 is_not_static				=	$(filter-out %.a,$1)
 is_zero						=	$(filter 0,$1)
-is_not_zero					=	$(filter-out 0,$1)
+is_not_zero					=	$(filter-out 0,$(if $1,$1,1))
 
 make_object					=	$(patsubst %,$($1_object_directory)%$(OBJECT_EXTENSION),$(basename $2))
 make_dependency				=	$(patsubst $($1_object_directory)%,$($1_dependency_directory)%.d,$(basename $2))
@@ -136,10 +128,6 @@ make_hard_ld_report			=	$(patsubst %,$($1_report_directory)%.opt.ld.yaml,$1)
 make_hard_ld_report_linker	=	$(patsubst %,$($1_report_directory)%,$1)
 
 # ***** PREPROCESS ************
-
-reports							:=	\
-$(if $(or $(call is_zero,$(no-reports)),\
-$(call is_not_zero,$(if $(hard-reports),$(hard-reports),1))),1,0)
 
 define NAME_BUILDER
 $1_source_directory				?=	$(SOURCE_DIRECTORY)
@@ -255,8 +243,8 @@ re: fclean all
 lib: $(FORCED_LIBRARY_FILES) all
 
 dist:
-	$(MAKE) d=0 san=0 no-reports= clean
-	$(MAKE) d=0 san=0 no-reports= hard-reports=0 re
+	$(MAKE) d=0 san=0 reports=0 re
+	$(MAKE) d=0 san=0 reports=0 clean
 
 # ***** RECIPE MACROS *********
 
@@ -274,13 +262,10 @@ $1: $(LIBRARY_FILES) $(common_objects) $$($1_objects)
 		$(common_objects) $($1_objects)\
 		$(LIB_DIR_FLAGS) $(LIB_NAME_FLAGS) -o $1
 
-		$(if $(call is_zero,$(no-reports)),
+		$(if $(call is_not_zero,$(reports)),
 			-$(REPORT_BUILDER) $(call make_hard_ld_report,$1) -o\
-			$(call make_ld_report,$1,$1) 2>/dev/null
-
-			$(if $(call is_zero,$(hard-reports)),
-				rm -f $(call make_hard_ld_report,$1)
-			,)
+			$(call make_ld_report,$1,$1)\
+			$(if $(call is_zero,$(v)),2>/dev/null,)
 		,)
 	)
 	$(if $(filter $1, $(SILENT_NAMES)),,
@@ -301,13 +286,10 @@ $$($1_object_directory)%$(OBJECT_EXTENSION): $$($1_source_directory)%$(SOURCE_EX
 
 	$(COMPILER) $(COMPILER_FLAGS) $(INCLUDES) -c $$< -o $$@
 
-	$(if $(call is_zero,$(no-reports)),
+	$(if $(call is_not_zero,$(no-reports)),
 		-$(REPORT_BUILDER) $$(call make_hard_report,$1,$$@) -o\
-		$$(call make_report,$1,$$@) 2>/dev/null
-
-		$(if $(call is_zero,$(hard-reports)),
-			rm -f $$(call make_hard_report,$1,$$@)
-		,)
+		$$(call make_report,$1,$$@)\
+		$(if $(call is_zero,$(v)),2>/dev/null,)
 	,)
 endef
 

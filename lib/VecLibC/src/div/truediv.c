@@ -25,17 +25,3 @@ t_vec3	vec3i_truediv(t_vec3i p1, t_vec3i p2)
 		.z = (double)p1.z / p2.z
 	});
 }
-
-t_vec2	vec2i_truediv_d(t_vec2i p, double value)
-{
-	return ((t_vec2){.x = (double)p.x / value, .y = (double)p.y / value});
-}
-
-t_vec3	vec3i_truediv_d(t_vec3i p, double value)
-{
-	return ((t_vec3){
-		.x = (double)p.x / value,
-		.y = (double)p.y / value,
-		.z = (double)p.z / value
-	});
-}

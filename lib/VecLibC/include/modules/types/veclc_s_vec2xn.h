@@ -52,7 +52,7 @@ t_vec2x2	vec2x2(t_vec2 p1, t_vec2 p2);
 /**
  * Creates a group of two 2D vectors containing doubles.
  */
-t_vec2x2	vec2x2_xy(int x1, int y1, int x2, int y2);
+t_vec2x2	vec2x2_xy(double x1, double y1, double x2, double y2);
 
 /**
  * Creates a group of three 2D vectors containing doubles.

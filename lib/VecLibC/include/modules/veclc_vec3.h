@@ -43,35 +43,19 @@ t_vec3		vec3_add(t_vec3 p1, t_vec3 p2);
 t_vec3		vec3_add_d(t_vec3 p, double d);
 
 /**
- * Adds two 3D vectors and stores the result in the first vector.
- */
-t_vec3		vec3_add_to(t_vec3 *p1, t_vec3 p2);
-
-/**
- * Adds d to all components of a 3D vector and stores the result in the vector.
- */
-t_vec3		vec3_add_to_d(t_vec3 *p, double d);
-
-/**
  * Subtracts two 3D vectors.
  */
 t_vec3		vec3_sub(t_vec3 p1, t_vec3 p2);
 
 /**
- * Subtracts d from all components of a 3D vector.
+ * Subtracts all components of a 3D vector by d.
  */
 t_vec3		vec3_sub_d(t_vec3 p, double d);
 
 /**
- * Subtracts two 3D vectors and stores the result in the first vector.
+ * Subtracts d to all components of a 3D vector.
  */
-t_vec3		vec3_sub_to(t_vec3 *p1, t_vec3 p2);
-
-/**
- * Subtracts d from all components of a 3D vector
- * and stores the result in the vector.
- */
-t_vec3		vec3_sub_to_d(t_vec3 *p, double d);
+t_vec3		vec3_sub_rd(double d, t_vec3 p);
 
 /**
  * Multiplies two 3D vectors.
@@ -82,17 +66,6 @@ t_vec3		vec3_mult(t_vec3 p1, t_vec3 p2);
  * Multiplies all components of a 3D vector by d.
  */
 t_vec3		vec3_mult_d(t_vec3 p, double d);
-
-/**
- * Multiplies two 3D vectors and stores the result in the first vector.
- */
-t_vec3		vec3_mult_to(t_vec3 *p1, t_vec3 p2);
-
-/**
- * Multiplies all components of a 3D vector by d
- * and stores the result in the vector.
- */
-t_vec3		vec3_mult_to_d(t_vec3 *p, double d);
 
 /**
  * Divides two 3D vectors.
@@ -107,24 +80,24 @@ t_vec3		vec3_div_d(t_vec3 p, double d);
 /**
  * Divides d by all components of a 3D vector.
  */
-t_vec3		vec3_div_rd(double value, t_vec3 p);
+t_vec3		vec3_div_rd(double d, t_vec3 p);
 
 /**
- * Divides two 3D vectors and stores the result in the first vector.
+ * Returns the remainder of the division between two 3D vectors.
  */
-t_vec3		vec3_div_to(t_vec3 *p1, t_vec3 p2);
+t_vec3		vec3_mod(t_vec3 p1, t_vec3 p2);
 
 /**
- * Divides all components of a 3D vector by d
- * and stores the result in the vector.
+ * Returns the remainder of the division between
+ * all components of a 3D vector and d.
  */
-t_vec3		vec3_div_to_d(t_vec3 *p, double d);
+t_vec3		vec3_mod_d(t_vec3 p, double d);
 
-/**
- * Divides d by all components of a 3D vector
- * and stores the result in the vector.
+/**value
+ * Returns the remainder of the division between
+ * d and all components of a 3D vector.
  */
-t_vec3		vec3_div_to_rd(double val, t_vec3 *p);
+t_vec3		vec3_mod_rd(double d, t_vec3 p);
 
 /**
  * Negates a 3D vector.

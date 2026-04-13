@@ -28,7 +28,7 @@
 #define MBX_INPUT_ARRAY_WINDOW_END			559
 
 #define MBX_FRAME_SKIP_MARGIN_RATIO			0.95
-#define MBX_MLX_FPS_CAP						-1
+#define MBX_MLX_FPS_CAP_RATIO				3
 #define MBX_INIT_MAX_WINDOW_COVERAGE_RATIO	0.75
 
 typedef enum u_mbx_window_flags

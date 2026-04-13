@@ -21,18 +21,3 @@ t_vec3i	vec3i_mult_vd(t_vec3i p1, t_vec3 p2)
 {
 	return ((t_vec3i){.x = p1.x * p2.x, .y = p1.y * p2.y, .z = p1.z * p2.z});
 }
-
-t_vec2i	vec2i_mult_to_vd(t_vec2i *p1, t_vec2 p2)
-{
-	p1->x *= p2.x;
-	p1->y *= p2.y;
-	return (*p1);
-}
-
-t_vec3i	vec3i_mult_to_vd(t_vec3i *p1, t_vec3 p2)
-{
-	p1->x *= p2.x;
-	p1->y *= p2.y;
-	p1->z *= p2.z;
-	return (*p1);
-}

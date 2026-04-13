@@ -33,17 +33,19 @@ bool	mbx_make_main_window(t_mbx *mbx, t_vec2i viewport_size,
 {
 	t_vec2i	scale;
 
-	mbx->screen_size = get_screen_size_windowless(mbx);
-	if (!mbx->screen_size.x || !mbx->screen_size.y)
-		return (false);
-	scale = vec2i_mult_d(mbx->screen_size, MBX_INIT_MAX_WINDOW_COVERAGE_RATIO);
-	vec2i_div_to(&scale, viewport_size);
-	mbx->window = mbx_make_window(mbx,
-			vec2i_mult_i(viewport_size,
-				max(min(scale.x, scale.y), 1)),
-			win_title, win_flags);
+	mbx->window = mbx_make_window(mbx, vec2i_zero(), win_title, win_flags);
 	if (!mbx->window.mlx)
 		return (false);
+	scale = vec2i_div(vec2i_mult_d(mbx->window.screen_size,
+				MBX_INIT_MAX_WINDOW_COVERAGE_RATIO), viewport_size);
+	mbx->window.size = vec2i_mult_d(viewport_size,
+			max(min(scale.x, scale.y), 1));
+	mbx->window.pos = vec2i_div_d(vec2i_sub(
+				mbx->window.screen_size, mbx->window.size), 2);
+	mlx_set_window_size(mbx->mlx, mbx->window.mlx,
+		mbx->window.size.x, mbx->window.size.y);
+	mlx_set_window_position(mbx->mlx, mbx->window.mlx,
+		mbx->window.pos.x, mbx->window.pos.y);
 	mbx->viewport = mbx_make_region_with_image(mbx, viewport_size);
 	if (!mbx->viewport.canvas)
 	{

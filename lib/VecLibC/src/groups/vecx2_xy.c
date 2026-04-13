@@ -12,7 +12,7 @@
 
 #include "modules/types/veclc_s_vecnxn.h"
 
-t_vec2x2	vec2x2_xy(int x1, int y1, int x2, int y2)
+t_vec2x2	vec2x2_xy(double x1, double y1, double x2, double y2)
 {
 	return ((t_vec2x2){.p1 = vec2(x1, y1), .p2 = vec2(x2, y2)});
 }

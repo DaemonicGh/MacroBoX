@@ -43,35 +43,19 @@ t_vec2		vec2_add(t_vec2 p1, t_vec2 p2);
 t_vec2		vec2_add_d(t_vec2 p, double d);
 
 /**
- * Adds two 2D vectors and stores the result in the first vector.
- */
-t_vec2		vec2_add_to(t_vec2 *p1, t_vec2 p2);
-
-/**
- * Adds d to both components of a 2D vector and stores the result in the vector.
- */
-t_vec2		vec2_add_to_d(t_vec2 *p, double d);
-
-/**
  * Subtracts two 2D vectors.
  */
 t_vec2		vec2_sub(t_vec2 p1, t_vec2 p2);
 
 /**
- * Subtracts d from both components of a 2D vector.
+ * Subtracts both components of a 2D vector by d.
  */
 t_vec2		vec2_sub_d(t_vec2 p, double d);
 
 /**
- * Subtracts two 2D vectors and stores the result in the first vector.
+ * Subtracts d to both components of a 2D vector.
  */
-t_vec2		vec2_sub_to(t_vec2 *p1, t_vec2 p2);
-
-/**
- * Subtracts d from both components of a 2D vector
- * and stores the result in the vector.
- */
-t_vec2		vec2_sub_to_d(t_vec2 *p, double d);
+t_vec2		vec2_sub_rd(double d, t_vec2 p);
 
 /**
  * Multiplies two 2D vectors.
@@ -82,17 +66,6 @@ t_vec2		vec2_mult(t_vec2 p1, t_vec2 p2);
  * Multiplies both components of a 2D vector by d.
  */
 t_vec2		vec2_mult_d(t_vec2 p, double d);
-
-/**
- * Multiplies two 2D vectors and stores the result in the first vector.
- */
-t_vec2		vec2_mult_to(t_vec2 *p1, t_vec2 p2);
-
-/**
- * Multiplies both components of a 2D vector by d
- * and stores the result in the vector.
- */
-t_vec2		vec2_mult_to_d(t_vec2 *p, double d);
 
 /**
  * Divides two 2D vectors.
@@ -107,24 +80,24 @@ t_vec2		vec2_div_d(t_vec2 p, double d);
 /**
  * Divides d by both components of a 2D vector.
  */
-t_vec2		vec2_div_rd(double value, t_vec2 p);
+t_vec2		vec2_div_rd(double d, t_vec2 p);
 
 /**
- * Divides two 2D vectors and stores the result in the first vector.
+ * Returns the remainder of the division between two 2D vectors.
  */
-t_vec2		vec2_div_to(t_vec2 *p1, t_vec2 p2);
+t_vec2		vec2_mod(t_vec2 p1, t_vec2 p2);
 
 /**
- * Divides both components of a 2D vector by d
- * and stores the result in the vector.
+ * Returns the remainder of the division between
+ * both components of a 2D vector and d.
  */
-t_vec2		vec2_div_to_d(t_vec2 *p, double d);
+t_vec2		vec2_mod_d(t_vec2 p, double d);
 
 /**
- * Divides d by both components of a 2D vector
- * and stores the result in the vector.
+ * Returns the remainder of the division between
+ * d and both components of a 2D vector.
  */
-t_vec2		vec2_div_to_rd(double val, t_vec2 *p);
+t_vec2		vec2_mod_rd(double d, t_vec2 p);
 
 /**
  * Negates a 2D vector.

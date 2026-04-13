@@ -10,42 +10,61 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include "veclc.h"
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_utils.h"
 
-static void	set_subregion_scaled(t_mbx_region *restrict region,
-	t_mbx_region *restrict src, t_vec2ix3 bounds, t_vec2 scale)
+static void	set_subregion_upscaled(t_mbx_region *restrict region,
+	t_mbx_region *restrict src, t_vec2ix3 start_end_uv, t_vec2 scale)
 {
-	const t_vec2i	scale_up = vec2i(trunc_up(scale.x), trunc_up(scale.y));
+	const t_vec2i	xy_scale_up = vec2i(ceil(scale.x), ceil(scale.y));
 	t_vec2			xy;
-	t_vec2i			uv;
+	int				row;
 	int				i;
 
-	xy.y = bounds.p1.y;
-	uv.y = bounds.p2.y;
-	i = bounds.p2.y * src->size.x + bounds.p2.x;
-	while (uv.y < bounds.p3.y)
+	xy.y = start_end_uv.p1.y;
+	row = start_end_uv.p3.y * src->size.x;
+	while (xy.y < start_end_uv.p2.y)
 	{
-		xy.x = bounds.p1.x;
-		uv.x = bounds.p2.x;
-		while (uv.x < bounds.p3.x)
+		xy.x = start_end_uv.p1.x;
+		i = row + start_end_uv.p3.x;
+		while (xy.x < start_end_uv.p2.x)
 		{
-			mbx_set_rect(region, vec2_to_vec2i(xy), scale_up,
+			mbx_set_rect(region, vec2_to_vec2i(xy), xy_scale_up,
 				mbx_get_pixel_unsafe_i(src, i));
 			xy.x += scale.x;
-			uv.x++;
 			i++;
 		}
 		xy.y += scale.y;
-		uv.y++;
-		i += src->size.x - (bounds.p3.x - bounds.p2.x);
+		row += src->size.x;
 	}
 }
 
-static t_vec2i	set_invertable_pos(t_vec2ix3 *pos_uv_wh, t_vec2 *scale)
+static void	set_subregion_downscaled(t_mbx_region *restrict region,
+	t_mbx_region *restrict src, t_vec2ix2 start_end, t_vec2x2 uv_scale)
+{
+	t_vec2i		xy;
+	double		row;
+	double		i;
+
+	xy.y = start_end.p1.y;
+	row = uv_scale.p1.y;
+	while (xy.y < start_end.p2.y)
+	{
+		xy.x = start_end.p1.x;
+		i = (int)row * src->size.x + uv_scale.p1.x;
+		while (xy.x < start_end.p2.x)
+		{
+			mbx_set_pixel_unsafe(region, xy,
+				mbx_get_pixel_unsafe_i(src, i));
+			xy.x++;
+			i += uv_scale.p2.x;
+		}
+		xy.y++;
+		row += uv_scale.p2.y;
+	}
+}
+
+static t_vec2i	invert_scale_pos(t_vec2ix3 *pos_uv_wh, t_vec2 *scale)
 {
 	t_vec2i	pos;
 
@@ -63,65 +82,35 @@ static t_vec2i	set_invertable_pos(t_vec2ix3 *pos_uv_wh, t_vec2 *scale)
 	return (pos);
 }
 
-static t_vec2i	get_xy_min(
-	t_vec2i pos, t_vec2i size, t_vec2 scale, t_vec2 ascale)
+void	mbx_set_subregion_scaled(t_mbx_region *restrict region,
+	t_mbx_region *restrict src, t_vec2ix3 pos_uv_wh, t_vec2 scale)
 {
-	t_vec2i	xy_min;
+	const t_vec2i	pos = invert_scale_pos(&pos_uv_wh, &scale);
+	const t_vec2ix2	start_end = vec2ix2(
+			vec2i_clamp(pos, vec2i_zero(), region->size),
+			vec2i_clamp(
+				vec2i_add(pos, vec2i_mult_vd(vec2i_abs(pos_uv_wh.p3), scale)),
+				vec2i_neg(vec2_to_vec2i(scale)), region->size));
+	const t_vec2	uv = vec2(
+			pos_uv_wh.p2.x + fabs((pos.x - start_end.p1.x) / scale.x),
+			pos_uv_wh.p2.y + fabs((pos.y - start_end.p1.y) / scale.y));
 
-	xy_min = pos;
-	if (pos.x < -ascale.x)
-		xy_min.x = fmod(pos.x, scale.x);
-	else if (pos.x > size.x + ascale.x)
-		xy_min.x = size.x + fmod(pos.x - size.x, scale.x);
-	if (pos.y < -ascale.y)
-		xy_min.y = fmod(pos.y, scale.y);
-	else if (pos.y > size.y + ascale.y)
-		xy_min.y = size.y + fmod(pos.y - size.y, scale.y);
-	return (xy_min);
+	if (scale.x == 0 || scale.y == 0)
+		return ;
+	if (max(abs((int)scale.x), abs((int)scale.y)) > 1)
+		set_subregion_upscaled(region, src, vec2ix3(
+				vec2i_sub(start_end.p1, vec2_to_vec2i(vec2_mult(vec2_sub(
+								uv, vec2((int)uv.x, (int)uv.y)), scale))),
+				start_end.p2, vec2_to_vec2i(uv)), scale);
+	else
+		set_subregion_downscaled(region, src, start_end,
+			vec2x2(uv, vec2_div_rd(1.0, scale)));
 }
 
 void	mbx_set_region_scaled(t_mbx_region *restrict region,
 	t_mbx_region *restrict src, t_vec2i pos, t_vec2 scale)
 {
-	const t_vec2	ascale = vec2_abs(scale);
-	t_vec2ix3		bounds;
-
-	if (scale.x == 0 || scale.y == 0)
-		return ;
-	bounds.p1 = get_xy_min(pos, region->size, scale, ascale);
-	bounds.p2 = vec2i(
-			abs(bounds.p1.x - pos.x) / ascale.x,
-			abs(bounds.p1.y - pos.y) / ascale.y);
-	bounds.p3 = vec2i(
-			(clamp(pos.x + src->size.x * scale.x,
-					-ascale.x, region->size.x + ascale.x)
-				- pos.x) / scale.x,
-			(clamp(pos.y + src->size.y * scale.y,
-					-ascale.y, region->size.y + ascale.y)
-				- pos.y) / scale.y);
-	set_subregion_scaled(region, src, bounds, scale);
-}
-
-void	mbx_set_subregion_scaled(t_mbx_region *restrict region,
-	t_mbx_region *restrict src, t_vec2ix3 pos_uv_wh, t_vec2 scale)
-{
-	const t_vec2	ascale = vec2_abs(scale);
-	t_vec2ix3		bounds;
-	t_vec2i			pos;
-
-	if (scale.x == 0 || scale.y == 0)
-		return ;
-	pos = set_invertable_pos(&pos_uv_wh, &scale);
-	bounds.p1 = get_xy_min(pos, region->size, scale, ascale);
-	bounds.p2 = vec2i_add(pos_uv_wh.p2, vec2i(
-				abs(bounds.p1.x - pos.x) / ascale.x,
-				abs(bounds.p1.y - pos.y) / ascale.y));
-	bounds.p3 = vec2i_add(pos_uv_wh.p2, vec2i(
-				(clamp(pos.x + abs(pos_uv_wh.p3.x) * scale.x,
-						-ascale.x, region->size.x + ascale.x)
-					- pos.x) / scale.x,
-				(clamp(pos.y + abs(pos_uv_wh.p3.y) * scale.y,
-						-ascale.y, region->size.y + ascale.y)
-					- pos.y) / scale.y));
-	set_subregion_scaled(region, src, bounds, scale);
+	mbx_set_subregion_scaled(region, src,
+		vec2ix3(pos, vec2i_zero(), src->size),
+		scale);
 }

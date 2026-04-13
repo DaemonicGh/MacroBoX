@@ -13,6 +13,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdlib.h>
 #include <math.h>
 
 #include "../lib/VecLibC/include/veclc.h"
@@ -120,7 +121,6 @@ double		frange_dist(double x, double low, double high);
  */
 double		mbx_ease_in(double t);
 
-
 /**
  * Eases t to smoothly decelerate.
  * Values of t oustside of [0, 1] are undefined.
@@ -190,6 +190,26 @@ t_vec3		vec3_sign(t_vec3 p);
  * (0 if component is 0)
  */
 t_vec3i		vec3i_sign(t_vec3i p);
+
+/**
+ * Returns a 2D vector with its respective components between low and high.
+ */
+t_vec2		vec2_clamp(t_vec2 p, t_vec2 low, t_vec2 high);
+
+/**
+ * Returns a 2D vector with its respective components between low and high.
+ */
+t_vec2i		vec2i_clamp(t_vec2i p, t_vec2i low, t_vec2i high);
+
+/**
+ * Returns a 3D vector with its respective components between low and high.
+ */
+t_vec3		vec3_clamp(t_vec3 p, t_vec3 low, t_vec3 high);
+
+/**
+ * Returns a 3D vector with its respective components between low and high.
+ */
+t_vec3i		vec3i_clamp(t_vec3i p, t_vec3i low, t_vec3i high);
 
 /**
  * Returns a 2D vector resized to have its length between low and high.

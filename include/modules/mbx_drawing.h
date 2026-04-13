@@ -51,6 +51,16 @@ mbx_get_pixel_xy(
  * Returns the color of a pixel on a region at the given position.
  *
  * @region	the region to query.
+ * @i		the index of the pixel.
+ */
+t_mbx_color
+mbx_get_pixel_i(
+	t_mbx_region *restrict region, int i);
+
+/**
+ * Returns the color of a pixel on a region at the given position.
+ *
+ * @region	the region to query.
  * @pos		the position of the pixel.
  *
  * This version doesn't perform bounds checking.

@@ -33,19 +33,9 @@ t_vec2i		vec2i_i(int xy);
 t_vec2i		vec2i_add(t_vec2i p1, t_vec2i p2);
 
 /**
- * Adds i to both components of a 2D vector.
+ * Adds d to both components of a 2D vector.
  */
-t_vec2i		vec2i_add_i(t_vec2i p, int i);
-
-/**
- * Adds two 2D vectors and stores the result in the first vector.
- */
-t_vec2i		vec2i_add_to(t_vec2i *p1, t_vec2i p2);
-
-/**
- * Adds i to both components of a 2D vector and stores the result in the vector.
- */
-t_vec2i		vec2i_add_to_i(t_vec2i *p, int i);
+t_vec2i		vec2i_add_d(t_vec2i p, double d);
 
 /**
  * Subtracts two 2D vectors.
@@ -53,20 +43,14 @@ t_vec2i		vec2i_add_to_i(t_vec2i *p, int i);
 t_vec2i		vec2i_sub(t_vec2i p1, t_vec2i p2);
 
 /**
- * Subtracts i from both components of a 2D vector.
+ * Subtracts both components of a 2D vector by d.
  */
-t_vec2i		vec2i_sub_i(t_vec2i p, int i);
+t_vec2i		vec2i_sub_d(t_vec2i p, double d);
 
 /**
- * Subtracts two 2D vectors and stores the result in the first vector.
+ * Subtracts d to both components of a 2D vector.
  */
-t_vec2i		vec2i_sub_to(t_vec2i *p1, t_vec2i p2);
-
-/**
- * Subtracts i from both components of a 2D vector
- * and stores the result in the vector.
- */
-t_vec2i		vec2i_sub_to_i(t_vec2i *p, int i);
+t_vec2i		vec2i_sub_rd(double d, t_vec2i p);
 
 /**
  * Multiplies two 2D vectors.
@@ -74,20 +58,9 @@ t_vec2i		vec2i_sub_to_i(t_vec2i *p, int i);
 t_vec2i		vec2i_mult(t_vec2i p1, t_vec2i p2);
 
 /**
- * Multiplies both components of a 2D vector by i.
+ * Multiplies both components of a 2D vector by d.
  */
-t_vec2i		vec2i_mult_i(t_vec2i p, int i);
-
-/**
- * Multiplies two 2D vectors and stores the result in the first vector.
- */
-t_vec2i		vec2i_mult_to(t_vec2i *p1, t_vec2i p2);
-
-/**
- * Multiplies both components of a 2D vector by i
- * and stores the result in the vector.
- */
-t_vec2i		vec2i_mult_to_i(t_vec2i *p, int i);
+t_vec2i		vec2i_mult_d(t_vec2i p, double d);
 
 /**
  * Multiplies two 2D vectors, one having float precision.
@@ -95,59 +68,19 @@ t_vec2i		vec2i_mult_to_i(t_vec2i *p, int i);
 t_vec2i		vec2i_mult_vd(t_vec2i p1, t_vec2 p2);
 
 /**
- * Multiplies two 2D vectors, one having float precision, and
- * stores the result in the first vector.
- */
-t_vec2i		vec2i_mult_to_vd(t_vec2i *p1, t_vec2 p2);
-
-/**
- * Multiplies both components of a 2D vector by d.
- */
-t_vec2i		vec2i_mult_d(t_vec2i p, double d);
-
-/**
- * Multiplies both components of a 2D vector by d
- * and stores the result in the vector.
- */
-t_vec2i		vec2i_mult_to_d(t_vec2i *p, double d);
-
-/**
- * Multiplies two 2D vectors, one having float precision, and
- * stores the result in the first vector.
- */
-t_vec2i		vec2i_div(t_vec2i p1, t_vec2i p2);
-
-/**
  * Divides two 2D vectors.
  */
 t_vec2i		vec2i_div(t_vec2i p1, t_vec2i p2);
 
 /**
- * Divides both components of a 2D vector by i.
+ * Divides both components of a 2D vector by d.
  */
-t_vec2i		vec2i_div_i(t_vec2i p, int i);
+t_vec2i		vec2i_div_d(t_vec2i p, double d);
 
 /**
- * Divides i by both components of a 2D vector.
+ * Divides d by both components of a 2D vector.
  */
-t_vec2i		vec2i_div_ri(int value, t_vec2i p);
-
-/**
- * Divides two 2D vectors and stores the result in the first vector.
- */
-t_vec2i		vec2i_div_to(t_vec2i *p1, t_vec2i p2);
-
-/**
- * Divides both components of a 2D vector by i
- * and stores the result in the vector.
- */
-t_vec2i		vec2i_div_to_i(t_vec2i *p, int i);
-
-/**
- * Divides i by both components of a 2D vector
- * and stores the result in the vector.
- */
-t_vec2i		vec2i_div_to_ri(double val, t_vec2i *p);
+t_vec2i		vec2i_div_rd(double d, t_vec2i p);
 
 /**
  * Divides two 2D vectors, one having float precision.
@@ -155,10 +88,9 @@ t_vec2i		vec2i_div_to_ri(double val, t_vec2i *p);
 t_vec2i		vec2i_div_vd(t_vec2i p1, t_vec2 p2);
 
 /**
- * Divides two 2D vectors, one having float precision, and
- * stores the result in the first vector.
+ * Divides two 2D vectors, one having float precision.
  */
-t_vec2i		vec2i_div_to_vd(t_vec2i *p1, t_vec2 p2);
+t_vec2i		vec2i_div_rvd(t_vec2 p1, t_vec2i p2);
 
 /**
  * Divides two 2D vectors and keeps the result's float precision.
@@ -170,6 +102,41 @@ t_vec2		vec2i_truediv(t_vec2i p1, t_vec2i p2);
  * and keeps the result's float precision.
  */
 t_vec2		vec2i_truediv_d(t_vec2i p, double d);
+
+/**
+ * Divides d by both components of a 2D vector
+ * and keeps the result's float precision.
+ */
+t_vec2		vec2i_truediv_rd(double d, t_vec2i p);
+
+/**
+ * Returns the remainder of the division between two 2D vectors.
+ */
+t_vec2i		vec2i_mod(t_vec2i p1, t_vec2i p2);
+
+/**
+ * Returns the remainder of the division between
+ * both components of a 2D vector and i.
+ */
+t_vec2i		vec2i_mod_i(t_vec2i p, int i);
+
+/**
+ * Returns the remainder of the division between
+ * i and both components of a 2D vector.
+ */
+t_vec2i		vec2i_mod_ri(int i, t_vec2i p);
+
+/**
+ * Returns the remainder of the division between
+ * both components of a 2D vector and d.
+ */
+t_vec2i		vec2i_mod_d(t_vec2i p, double d);
+
+/**
+ * Returns the remainder of the division between
+ * d and both components of a 2D vector.
+ */
+t_vec2i		vec2i_mod_rd(double d, t_vec2i p);
 
 /**
  * Negates a 2D vector.
