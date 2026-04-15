@@ -45,7 +45,7 @@
  */
 typedef struct s_mbx_context
 {
-	t_mbx_region			viewport;
+	t_mbx_region			*viewport;
 	t_mbx_window			window;
 	mlx_context				mlx;
 

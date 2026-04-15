@@ -11,40 +11,45 @@
 /* ************************************************************************** */
 
 #include "modules/mbx_drawing.h"
+#include "modules/mbx_handlers.h"
 
 void	mbx_set_char(t_mbx_region *restrict region,
 	char c, t_vec2i pos, t_mbx_atlas *font)
 {
-	const t_vec2i	uv = vec2i(
-			c * font->region_size.x % font->atlas.size.x,
-			c / (font->atlas.size.x / font->region_size.x)
-			* font->region_size.y);
+	t_vec2i	uv;
 
-	if (uv.y > font->atlas.size.y)
+	if (!mbx_is_atlas(font) || c < 0)
 		return ;
-	mbx_set_subregion(region, &font->atlas, pos,
-		vec2ix2(uv, font->region_size));
+	uv = vec2i(
+			c * font->subregion_size.x % font->size.x,
+			c / (font->size.x / font->subregion_size.x)
+			* font->subregion_size.y);
+	if (uv.y + font->subregion_size.y > font->size.y)
+		return ;
+	mbx_set_subregion(region, font, pos, vec2ix2(uv, font->subregion_size));
 }
 
 void	mbx_set_text(t_mbx_region *restrict region,
 	const char *str, t_vec2i pos, t_mbx_atlas *font)
 {
-	const int	regx4 = font->region_size.x * 4;
+	const int	regx4 = font->subregion_size.x * 4;
 	t_vec2i		cpos;
 	int			i;
 
+	if (!mbx_is_atlas(font))
+		return ;
 	cpos = pos;
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\n')
-			cpos = vec2i(pos.x, cpos.y + font->region_size.y);
+			cpos = vec2i(pos.x, cpos.y + font->subregion_size.y);
 		else if (str[i] == '\t')
 			cpos.x = (((cpos.x - pos.x) / regx4 + 1) * regx4 + pos.x);
 		else
 		{
 			mbx_set_char(region, str[i], cpos, font);
-			cpos.x += font->region_size.x;
+			cpos.x += font->subregion_size.x;
 		}
 		i++;
 	}

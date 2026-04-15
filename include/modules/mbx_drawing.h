@@ -14,7 +14,6 @@
 
 #include "../../lib/VecLibC/include/veclc.h"
 #include "types/mbx_s_mbx.h"
-#include "types/mbx_s_atlas.h"
 
 /**
  * Clears the given region with the given color.
@@ -339,6 +338,8 @@ mbx_set_line_thick(
  * @pos 	the position of the character.
  * @c		the character to draw.
  * @font	the font to use.
+ *
+ * If the font is not an atlas, nothing will be drawn.
  */
 void
 mbx_set_char(
@@ -352,6 +353,8 @@ mbx_set_char(
  * @pos 	the position of the string.
  * @str		the string to draw.
  * @font	the font to use.
+ *
+ * If the font is not an atlas, nothing will be drawn.
  */
 void
 mbx_set_text(

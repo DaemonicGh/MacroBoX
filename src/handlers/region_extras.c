@@ -35,49 +35,49 @@ void	mbx_modify_region(t_mbx_region *dest, void *color_modifier_data,
 	}
 }
 
-bool	mbx_resize_region(t_mbx *mbx, t_mbx_region *region, t_vec2i size)
+bool	mbx_resize_region(t_mbx *mbx, t_mbx_region **region, t_vec2i size)
 {
-	t_mbx_region	new;
+	t_mbx_region	*new;
 
-	if (region->image)
+	if ((*region)->image)
 		new = mbx_make_region_with_image(mbx, size);
 	else
 		new = mbx_make_region(mbx, size);
-	if (!new.canvas)
+	if (!new)
 		return (false);
-	new.color_getter = region->color_getter;
-	new.color_setter = region->color_setter;
-	new.color_modifier_data = region->color_modifier_data;
-	mbx_destroy_region(mbx, region);
+	new->color_getter = (*region)->color_getter;
+	new->color_setter = (*region)->color_setter;
+	new->color_modifier_data = (*region)->color_modifier_data;
+	mbx_destroy_region(mbx, *region);
 	*region = new;
 	return (true);
 }
 
 bool	mbx_resize_region_with_content(
-	t_mbx *mbx, t_mbx_region *region, t_vec2i size)
+	t_mbx *mbx, t_mbx_region **region, t_vec2i size)
 {
-	t_mbx_region	new;
+	t_mbx_region	*new;
 	void			*getter;
 	void			*setter;
 
-	if (region->image)
+	if ((*region)->image)
 		new = mbx_make_region_with_image(mbx, size);
 	else
 		new = mbx_make_region(mbx, size);
-	if (!new.canvas)
+	if (!new)
 		return (false);
-	getter = region->color_getter;
-	setter = region->color_setter;
-	region->color_getter = &mbx_color_getter_ignore;
-	region->color_setter = &mbx_color_setter_ignore;
-	new.color_getter = &mbx_color_getter_ignore;
-	new.color_setter = &mbx_color_setter_ignore;
-	new.color_modifier_data = region->color_modifier_data;
-	mbx_set_region_scaled(&new, region,
-		vec2i_zero(), vec2i_truediv(size, region->size));
-	mbx_destroy_region(mbx, region);
-	new.color_getter = getter;
-	new.color_setter = setter;
+	getter = (*region)->color_getter;
+	setter = (*region)->color_setter;
+	(*region)->color_getter = &mbx_color_getter_ignore;
+	(*region)->color_setter = &mbx_color_setter_ignore;
+	new->color_getter = &mbx_color_getter_ignore;
+	new->color_setter = &mbx_color_setter_ignore;
+	new->color_modifier_data = (*region)->color_modifier_data;
+	mbx_set_region_scaled(new, *region,
+		vec2i_zero(), vec2i_truediv(size, (*region)->size));
+	mbx_destroy_region(mbx, *region);
+	new->color_getter = getter;
+	new->color_setter = setter;
 	*region = new;
 	return (true);
 }

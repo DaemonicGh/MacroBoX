@@ -47,7 +47,7 @@ bool	mbx_make_main_window(t_mbx *mbx, t_vec2i viewport_size,
 	mlx_set_window_position(mbx->mlx, mbx->window.mlx,
 		mbx->window.pos.x, mbx->window.pos.y);
 	mbx->viewport = mbx_make_region_with_image(mbx, viewport_size);
-	if (!mbx->viewport.canvas)
+	if (!mbx->viewport)
 	{
 		mlx_destroy_window(mbx->mlx, mbx->window.mlx);
 		return (false);

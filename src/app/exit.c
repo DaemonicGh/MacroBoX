@@ -17,7 +17,7 @@
 void	mbx_exit(t_mbx *mbx)
 {
 	mlx_loop_end(mbx->mlx);
-	mbx_destroy_region(mbx, &mbx->viewport);
+	mbx_destroy_region(mbx, mbx->viewport);
 	if (mbx->window.mlx)
 		mlx_destroy_window(mbx->mlx, mbx->window.mlx);
 	mlx_destroy_context(mbx->mlx);

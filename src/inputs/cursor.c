@@ -16,10 +16,12 @@
 
 void	mbx_warp_cursor(t_mbx *mbx, t_vec2i pos)
 {
-	mbx->cursor = pos;
 	mlx_mouse_move(mbx->mlx, mbx->window.mlx,
-		round((double)pos.x * mbx->window.size.x / mbx->viewport.size.x),
-		round((double)pos.y * mbx->window.size.y / mbx->viewport.size.y));
+		round((double)pos.x * mbx->window.size.x / mbx->viewport->size.x),
+		round((double)pos.y * mbx->window.size.y / mbx->viewport->size.y));
+	mlx_mouse_get_pos(mbx->mlx, &mbx->cursor.x, &mbx->cursor.y);
+	mbx->cursor = vec2i_div(vec2i_mult(
+				mbx->cursor, mbx->viewport->size), mbx->window.size);
 }
 
 void	mbx_move_cursor(t_mbx *mbx, t_vec2i pos)
@@ -43,7 +45,7 @@ void	mbx_center_cursor(t_mbx *mbx)
 					0, mbx->window.screen_size.y), 0.5) - mbx->window.pos.y);
 
 	mbx_warp_cursor(mbx, vec2i_div(vec2i_mult(
-				pos, mbx->viewport.size), mbx->window.size));
+				pos, mbx->viewport->size), mbx->window.size));
 }
 
 void	refresh_cursor(t_mbx *mbx)
@@ -53,7 +55,7 @@ void	refresh_cursor(t_mbx *mbx)
 
 	mlx_mouse_get_pos(mbx->mlx, &mbx->cursor.x, &mbx->cursor.y);
 	pos = vec2_mult(vec2i_to_vec2(mbx->cursor),
-			vec2i_truediv(mbx->viewport.size, mbx->window.size));
+			vec2i_truediv(mbx->viewport->size, mbx->window.size));
 	mbx->cursor = vec2_to_vec2i(pos);
 	mbx->cursor_delta.x = pos.x - prev_pos.x;
 	mbx->cursor_delta.y = pos.y - prev_pos.y;

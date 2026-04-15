@@ -13,17 +13,17 @@
 #pragma once
 
 #include "types/mbx_s_mbx.h"
-#include "types/mbx_s_atlas.h"
+#include <stdbool.h>
 
 /**
  * Creates and returns a new region with the given size.
  *
  * @size	The size of the region to create.
  *
- * This function can fail allocation, then the returned region will be 0 padded.
+ * This function can fail allocation, then the returned region will NULL.
  */
 t_mbx_region
-mbx_make_region(
+*mbx_make_region(
 	t_mbx *mbx, t_vec2i size);
 
 /**
@@ -32,10 +32,10 @@ mbx_make_region(
  * @mbx		The macrobox context.
  * @size	The size of the region to create.
  *
- * This function can fail allocation, then the returned region will be 0 padded.
+ * This function can fail allocation, then the returned region will be NULL.
  */
 t_mbx_region
-mbx_make_region_with_image(
+*mbx_make_region_with_image(
 	t_mbx *mbx, t_vec2i size);
 
 /**
@@ -44,10 +44,10 @@ mbx_make_region_with_image(
  * @mbx		The macrobox context.
  * @image	The image to create the region from.
  *
- * This function can fail allocation, then the returned region will be 0 padded.
+ * This function can fail allocation, then the returned region will be NULL.
  */
 t_mbx_region
-mbx_make_region_from_image(
+*mbx_make_region_from_image(
 	t_mbx *mbx, t_mbx_image *image);
 
 /**
@@ -56,10 +56,10 @@ mbx_make_region_from_image(
  * @mbx 		The macrobox context.
  * @filename	The path to the image.
  *
- * This function can fail allocation, then the returned region will be 0 padded.
+ * This function can fail allocation, then the returned region will be NULL.
  */
 t_mbx_region
-mbx_make_region_from_file(
+*mbx_make_region_from_file(
 	t_mbx *mbx, char *filename);
 
 /**
@@ -92,20 +92,20 @@ mbx_modify_region(t_mbx_region *dest, void *color_modifier_data,
  * Resizes the given region.
  *
  * @mbx		The MacroBoX context.
- * @region	The region to resize.
+ * @region	A pointer to the region to resize.
  * @size	The new size of the viewport.
  *
  * This function can fail allocation, then it will return false.
  */
 bool
 mbx_resize_region(
-	t_mbx *mbx, t_mbx_region *region, t_vec2i size);
+	t_mbx *mbx, t_mbx_region **region, t_vec2i size);
 
 /**
  * Resizes the given region and its content.
  *
  * @mbx		The MacroBoX context.
- * @region	The region to resize.
+ * @region	A pointer to the region to resize.
  * @size	The new size of the viewport.
  *
  * This function can fail allocation, then it will return false.
@@ -113,7 +113,15 @@ mbx_resize_region(
  */
 bool
 mbx_resize_region_with_content(
-	t_mbx *mbx, t_mbx_region *region, t_vec2i size);
+	t_mbx *mbx, t_mbx_region **region, t_vec2i size);
+
+/**
+ * Returns true if the given region is a valid atlas.
+ *
+ * @region	The region to check.
+ */
+bool
+mbx_is_atlas(t_mbx_region *region);
 
 /**
  * Creates an returns a MacroBoX image.
@@ -155,29 +163,6 @@ mbx_make_image_from_mlx(
 void
 mbx_destroy_image(
 	t_mbx *mbx, t_mbx_image *image);
-
-/**
- * Creates and returns a font.
- *
- * @atlas		the source region for the atlas.
- * @region_size	the size of a region in the atlas in pixels.
- *
- * MacroBoX currently only supports monospace fonts,
- * make sure that the image's glyphs are white for color to work properly.
- */
-t_mbx_atlas
-mbx_make_atlas(
-	t_mbx_region region, t_vec2i region_size);
-
-/**
- * Destroys and frees the content of the given font.
- *
- * @mbx		the MacrBoX context.
- * @font	the font to destroy.
- */
-void
-mbx_destroy_atlas(
-	t_mbx *mbx, t_mbx_atlas *atlas);
 
 /**
  * Creates and returns a MacroBoX window.
