@@ -20,7 +20,7 @@ void	mbx_render_region(
 	if (!region->image)
 		region->image = mlx_new_image(mbx->mlx, region->size.x, region->size.y);
 	mlx_set_image_region(mbx->mlx, region->image, 0, 0,
-		region->size.x, region->size.y, region->canvas);
+		region->size.x, region->size.y, region->pixels);
 	mlx_put_transformed_image_to_window(mbx->mlx, mbx->window.mlx,
 		region->image, pos.x, pos.y, scale.x, scale.y, 0);
 }

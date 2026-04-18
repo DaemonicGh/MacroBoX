@@ -22,5 +22,5 @@ t_mbx_color	mbx_color_getter_ignore(
 	void *data, t_mbx_region *region, int index)
 {
 	(void)data;
-	return (region->canvas[index]);
+	return (region->pixels[index]);
 }

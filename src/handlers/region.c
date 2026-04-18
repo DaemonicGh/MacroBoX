@@ -55,7 +55,7 @@ t_mbx_region	*mbx_make_region_from_image(t_mbx *mbx, t_mbx_image *image)
 		return (NULL);
 	region->image = image->mlx;
 	mlx_get_image_region(mbx->mlx, image->mlx,
-		0, 0, image->size.x, image->size.y, region->canvas);
+		0, 0, image->size.x, image->size.y, region->pixels);
 	return (region);
 }
 

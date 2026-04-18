@@ -18,9 +18,9 @@ void	mbx_set_pixel_direct_i(t_mbx_region *restrict region,
 	if (col.a == 0)
 		return ;
 	if (col.a == 0xFF)
-		region->canvas[i] = col;
+		region->pixels[i] = col;
 	else
-		region->canvas[i] = color_blend_quick(region->canvas[i], col);
+		region->pixels[i] = color_blend_quick(region->pixels[i], col);
 }
 
 void	mbx_set_pixel_direct_xy(t_mbx_region *restrict region,
@@ -31,9 +31,9 @@ void	mbx_set_pixel_direct_xy(t_mbx_region *restrict region,
 	if (col.a == 0)
 		return ;
 	if (col.a == 0xFF)
-		region->canvas[i] = col;
+		region->pixels[i] = col;
 	else
-		region->canvas[i] = color_blend_quick(region->canvas[i], col);
+		region->pixels[i] = color_blend_quick(region->pixels[i], col);
 }
 
 void	mbx_set_pixel_direct(t_mbx_region *restrict region,
@@ -44,7 +44,7 @@ void	mbx_set_pixel_direct(t_mbx_region *restrict region,
 	if (col.a == 0)
 		return ;
 	if (col.a == 0xFF)
-		region->canvas[i] = col;
+		region->pixels[i] = col;
 	else
-		region->canvas[i] = color_blend_quick(region->canvas[i], col);
+		region->pixels[i] = color_blend_quick(region->pixels[i], col);
 }

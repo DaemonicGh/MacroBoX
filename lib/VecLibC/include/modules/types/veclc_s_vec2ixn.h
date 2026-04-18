@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:36:51 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/03/18 12:57:45 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * Group of two 2D vectors containing integers.
  */
-typedef struct
+typedef struct s_mbx_vector2ix2
 {
 	t_vec2i	p1;
 	t_vec2i	p2;
@@ -26,7 +26,7 @@ typedef struct
 /**
  * Group of three 2D vectors containing integers.
  */
-typedef struct
+typedef struct s_mbx_vector2ix3
 {
 	t_vec2i	p1;
 	t_vec2i	p2;
@@ -36,7 +36,7 @@ typedef struct
 /**
  * Group of four 2D vectors containing integers.
  */
-typedef struct
+typedef struct s_mbx_vector2ix4
 {
 	t_vec2i	p1;
 	t_vec2i	p2;

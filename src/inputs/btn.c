@@ -14,15 +14,15 @@
 
 bool	mbx_btnp(t_mbx *mbx, int key)
 {
-	return (mbx->key_presses[key] == 0);
+	return (mbx->keys[key].press == 0);
 }
 
 bool	mbx_btn(t_mbx *mbx, int key)
 {
-	return (mbx->key_presses[key] <= mbx->key_releases[key]);
+	return (mbx->keys[key].press <= mbx->keys[key].release);
 }
 
 bool	mbx_btnr(t_mbx *mbx, int key)
 {
-	return (mbx->key_releases[key] == 0);
+	return (mbx->keys[key].release == 0);
 }

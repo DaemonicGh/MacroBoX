@@ -18,14 +18,15 @@
 /**
  * Struct to represent a MacroBoX image.
  *
- * @image				an optional slot to store the region
+ * @image					an optional slot to store the region
  * as a MacroLibX image.
- * @size				the size of the region.
- * @subregion_size		the size of a subregion, used for atlases.
- * @color_getter		the function used to get a color from the buffer.
- * @color_setter		the function used to set a color on the buffer.
- * @color_modifier_data	the data pointer passed to the setter and getter.
- * @canvas				the array (FAM) containing the pixel data.
+ * @size					the size of the region.
+ * @subregion_size			the size of a subregion, used for atlases.
+ * @color_getter/cgf		the function used to get a color from the buffer.
+ * @color_setter/csf		the function used to set a color on the buffer.
+ * @color_modifier_data/cmf_data
+ * the data pointer passed to the color setter and getter.
+ * @pixels					the array (FAM) containing the pixel data.
  *
  * This struct must be destroyed manually using mbx_destroy_region().
  */
@@ -36,10 +37,23 @@ typedef struct s_mbx_region
 	mlx_image	image;
 	t_vec2i		size;
 	t_vec2i		subregion_size;
-	t_mbx_color	(*color_getter)(void *data, t_mbx_region * region, int index);
-	t_mbx_color	(*color_setter)(void *data, t_mbx_color col);
-	void		*color_modifier_data;
-	t_mbx_color	canvas[];
+	union
+	{
+		t_mbx_color	(*color_getter)(
+			void *data, t_mbx_region * region, int index);
+		t_mbx_color	(*cgf)(void *data, t_mbx_region * region, int index);
+	};
+	union
+	{
+		t_mbx_color	(*color_setter)(void *data, t_mbx_color col);
+		t_mbx_color	(*csf)(void *data, t_mbx_color col);
+	};
+	union
+	{
+		void		*color_modifier_data;
+		void		*cmf_data;
+	};
+	t_mbx_color	pixels[];
 }	t_mbx_region;
 
 /**

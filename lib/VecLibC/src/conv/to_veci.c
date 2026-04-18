@@ -6,18 +6,18 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 17:24:52 by daemo             #+#    #+#             */
-/*   Updated: 2026/01/15 00:42:45 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/04/16 17:22:14 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "modules/types/veclc_s_vecn.h"
 
-t_vec2i	vec2_to_vec2i(t_vec2 p)
+t_vec2i	vec2i_vd(t_vec2 p)
 {
 	return ((t_vec2i){.x = p.x, .y = p.y});
 }
 
-t_vec3i	vec3_to_vec3i(t_vec3 p)
+t_vec3i	vec3i_vd(t_vec3 p)
 {
 	return ((t_vec3i){.x = p.x, .y = p.y, .z = p.z});
 }

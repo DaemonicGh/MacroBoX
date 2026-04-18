@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_vec2.c                                          :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/18 15:23:44 by rprieur           #+#    #+#             */
-/*   Updated: 2026/03/21 04:40:40 by rprieur          ###   ########.fr       */
+/*   Created: 2026/04/18 03:51:01 by rprieur           #+#    #+#             */
+/*   Updated: 2026/04/18 03:51:01 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "modules/types/veclc_s_vecn.h"
 
-t_vec2i	vec3i_xy(t_vec3i p)
+t_vec2i	vec2i_exec(t_vec2i p, int (*f)(int))
 {
-	return ((t_vec2i){.x = p.x, .y = p.y});
+	return ((t_vec2i){.x = f(p.x), .y = f(p.y)});
 }
 
-t_vec2i	vec3i_yz(t_vec3i p)
+t_vec2	vec2_exec(t_vec2 p, double (*f) (double))
 {
-	return ((t_vec2i){.x = p.y, .y = p.z});
+	return ((t_vec2){.x = f(p.x), .y = f(p.y)});
 }
 
-t_vec2	vec3_xy(t_vec3 p)
+t_vec3i	vec3i_exec(t_vec3i p, int (*f)(int))
 {
-	return ((t_vec2){.x = p.x, .y = p.y});
+	return ((t_vec3i){.x = f(p.x), .y = f(p.y), .z = f(p.z)});
 }
 
-t_vec2	vec3_yz(t_vec3 p)
+t_vec3	vec3_exec(t_vec3 p, double (*f) (double))
 {
-	return ((t_vec2){.x = p.y, .y = p.z});
+	return ((t_vec3){.x = f(p.x), .y = f(p.y), .z = f(p.z)});
 }

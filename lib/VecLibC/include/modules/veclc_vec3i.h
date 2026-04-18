@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:56:27 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/04/16 17:22:00 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,35 @@ t_vec3i		vec3i_square(t_vec3i p);
 t_vec3i		vec3i_abs(t_vec3i p);
 
 /**
+ * Returns a 3D vector with the result
+ * of all components of a vector through f.
+ */
+t_vec3i		vec3i_exec(t_vec3i p, int (*f)(int));
+
+/**
+ * Returns a 3D vector with the result
+ * of all components of two vectors through f.
+ */
+t_vec3i		vec3i_exec2(t_vec3i p1, t_vec3i p2, int (*f)(int, int));
+
+/**
+ * Returns a 3D vector with the result
+ * of all components of three vectors through f.
+ */
+t_vec3i		vec3i_exec3(t_vec3i p1, t_vec3i p2, t_vec3i p3,
+				int (*f)(int, int, int));
+
+/**
+ * Returns the result all components of a vector through f.
+ */
+int			vec3i_exec_xyz(t_vec3i p1, int (*f)(int, int, int));
+
+/**
+ * Returns the result all components of a vector through f ((x, y), z).
+ */
+int			vec3i_exec_xy_yz(t_vec3i p1, int (*f)(int, int));
+
+/**
  *  Returns true if all components of two 3D vectors are equal.
  */
 bool		vec3i_eq(t_vec3i p1, t_vec3i p2);
@@ -198,7 +227,7 @@ int			vec3i_print(int fd, t_vec3i p);
 /**
  * Converts a 3D integer vector to a 3D double vector.
  */
-t_vec3		vec3i_to_vec3(t_vec3i p);
+t_vec3		vec3_vi(t_vec3i p);
 
 /**
  * Converts a 3D vector to a 2D vector containing it's x and y components.

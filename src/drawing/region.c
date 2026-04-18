@@ -51,3 +51,11 @@ void	mbx_set_region(t_mbx_region *restrict region,
 {
 	mbx_set_subregion(region, src, pos, vec2ix2(vec2i_zero(), src->size));
 }
+
+void	mbx_set_region_scaled(t_mbx_region *restrict region,
+	t_mbx_region *restrict src, t_vec2i pos, t_vec2 scale)
+{
+	mbx_set_subregion_scaled(region, src,
+		vec2ix3(pos, vec2i_zero(), src->size),
+		scale);
+}

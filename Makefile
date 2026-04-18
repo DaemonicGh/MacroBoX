@@ -19,7 +19,7 @@ libmbx.so_files				:=	\
 	app/exit app/init															\
 	app/loop/in_out app/loop/loop app/loop/start_end							\
 	color/blend color/math color/modifier color/new								\
-	drawing/clear drawing/rect drawing/region drawing/region_scaled				\
+	drawing/clear drawing/rect drawing/region drawing/subregion_scaled				\
 	drawing/line drawing/render drawing/text 									\
 	drawing/pixel/get drawing/pixel/get_raw drawing/pixel/get_unsafe			\
 	drawing/pixel/set drawing/pixel/set_raw drawing/pixel/set_unsafe			\
@@ -40,7 +40,7 @@ libmbx.so_files				:=	\
 
 libmbx.a_files				:=	$(libmbx.so_files)
 
-common_files				:=	$(shell $(MAKE) -pC lib/VecLibC | sed -n 's/^common_files :=//p')
+common_files				+=	$(shell $(MAKE) -pC lib/VecLibC | sed -n 's/^common_files :=//p')
 
 INCLUDE_DIRECTORIES			:=	include \
 	lib/MacroLibX/includes lib/VecLibC/include

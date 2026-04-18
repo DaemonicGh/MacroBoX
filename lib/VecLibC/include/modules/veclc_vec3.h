@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:56:19 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/04/16 17:22:14 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,35 @@ t_vec3		vec3_abs(t_vec3 p);
 t_vec3i		vec3_round(t_vec3 p);
 
 /**
+ * Returns a 3D vector with the result
+ * of all components of a vector through f.
+ */
+t_vec3		vec3_exec(t_vec3 p, double (*f)(double));
+
+/**
+ * Returns a 3D vector with the result
+ * of all components of two vectors through f.
+ */
+t_vec3		vec3_exec2(t_vec3 p1, t_vec3 p2, double (*f)(double, double));
+
+/**
+ * Returns a 3D vector with the result
+ * of all components of three vectors through f.
+ */
+t_vec3		vec3_exec3(t_vec3 p1, t_vec3 p2, t_vec3 p3,
+				double (*f)(double, double, double));
+
+/**
+ * Returns the result all components of a vector through f.
+ */
+double		vec3_exec_xyz(t_vec3 p1, double (*f)(double, double, double));
+
+/**
+ * Returns the result all components of a vector through f ((x, y), z).
+ */
+double		vec3_exec_xy_yz(t_vec3 p1, double (*f)(double, double));
+
+/**
  * Returns true if all components of two 3D vectors are equal.
  */
 bool		vec3_eq(t_vec3 p1, t_vec3 p2);
@@ -163,7 +192,7 @@ int			vec3_print(int fd, t_vec3 p, int precision);
 /**
  * Converts a 3D double vector to a 3D integer vector.
  */
-t_vec3i		vec3_to_vec3i(t_vec3 p);
+t_vec3i		vec3i_vd(t_vec3 p);
 
 /**
  * Converts a 3D vector to a 2D vector containing it's x and y components.

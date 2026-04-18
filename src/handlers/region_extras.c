@@ -29,7 +29,7 @@ void	mbx_modify_region(t_mbx_region *dest, void *color_modifier_data,
 	i = 0;
 	while (i < dest->size.x * dest->size.y)
 	{
-		dest->canvas[i] = color_setter(color_modifier_data,
+		dest->pixels[i] = color_setter(color_modifier_data,
 				color_getter(color_modifier_data, dest, i));
 		i++;
 	}

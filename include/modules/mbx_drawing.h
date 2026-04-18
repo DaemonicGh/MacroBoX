@@ -332,12 +332,12 @@ mbx_set_line_thick(
 	unsigned int thickness, t_mbx_color col);
 
 /**
- * Draws a single character on a region.
+ * Draws a single character scaled on a region.
  *
- * @region	the region to draw on.
- * @pos 	the position of the character.
- * @c		the character to draw.
- * @font	the font to use.
+ * @region		the region to draw on.
+ * @c			the character to draw.
+ * @pos_scaled 	the position and scale of the character.
+ * @font		the font to use.
  *
  * If the font is not an atlas, nothing will be drawn.
  */
@@ -346,12 +346,17 @@ mbx_set_char(
 	t_mbx_region *restrict region,
 	char c, t_vec2i pos, t_mbx_atlas *font);
 
+void
+mbx_set_char_scaled(
+	t_mbx_region *restrict region,
+	char c, t_vec2ix2 pos_scale, t_mbx_atlas *font);
+
 /**
  * Draws a string on a region.
  *
  * @region	the region to draw on.
- * @pos 	the position of the string.
  * @str		the string to draw.
+ * @pos 	the position of the string.
  * @font	the font to use.
  *
  * If the font is not an atlas, nothing will be drawn.
@@ -360,6 +365,21 @@ void
 mbx_set_text(
 	t_mbx_region *restrict region,
 	const char *str, t_vec2i pos, t_mbx_atlas *font);
+
+/**
+ * Draws a string scaled on a region.
+ *
+ * @region		the region to draw on.
+ * @str			the string to draw.
+ * @pos_scale 	the position and scale of the string.
+ * @font		the font to use.
+ *
+ * If the font is not an atlas, nothing will be drawn.
+ */
+void
+mbx_set_text_scaled(
+	t_mbx_region *restrict region,
+	const char *str, t_vec2ix2 pos_scale, t_mbx_atlas *font);
 
 /**
  * Draws a region on a region.

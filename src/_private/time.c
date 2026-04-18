@@ -20,7 +20,7 @@ bool	should_skip_frame(t_mbx *mbx)
 	time = mbx_get_timestamp();
 	if (time == -1)
 		return (false);
-	if (time < mbx->timestamps.frame_start
+	if (time < mbx->now
 		+ MBX_FRAME_SKIP_MARGIN_RATIO / mbx->settings.fps_cap)
 	{
 		return (true);
@@ -34,7 +34,7 @@ void	update_time_values(t_mbx *mbx)
 
 	time = mbx_get_timestamp();
 	if (time != -1)
-		mbx->seconds_per_frame = time - mbx->timestamps.frame_start;
+		mbx->seconds_per_frame = time - mbx->now;
 	mbx->frames_elapsed++;
 }
 
@@ -45,6 +45,6 @@ void	refresh_deltatime(t_mbx *mbx)
 	time = mbx_get_timestamp();
 	if (time == -1)
 		return ;
-	mbx->delta_time = time - mbx->timestamps.frame_start;
-	mbx->timestamps.frame_start = time;
+	mbx->delta_time = time - mbx->now;
+	mbx->now = time;
 }

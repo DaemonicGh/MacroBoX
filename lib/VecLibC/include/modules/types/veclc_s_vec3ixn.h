@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:37:04 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/03/18 12:58:06 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * Group of two 3D vectors containing integers.
  */
-typedef struct
+typedef struct s_mbx_vector3ix2
 {
 	t_vec3i	p1;
 	t_vec3i	p2;
@@ -26,7 +26,7 @@ typedef struct
 /**
  * Group of three 3D vectors containing integers.
  */
-typedef struct
+typedef struct s_mbx_vector3ix3
 {
 	t_vec3i	p1;
 	t_vec3i	p2;
@@ -36,7 +36,7 @@ typedef struct
 /**
  * Group of four 3D vectors containing integers.
  */
-typedef struct
+typedef struct s_mbx_vector3ix4
 {
 	t_vec3i	p1;
 	t_vec3i	p2;

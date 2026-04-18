@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:56:08 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/04/16 17:21:29 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,30 @@ t_vec2		vec2_abs(t_vec2 p);
 t_vec2i		vec2_round(t_vec2 p);
 
 /**
+ * Returns a 2D vector with the result
+ * of both components of a vector through f.
+ */
+t_vec2		vec2_exec(t_vec2 p, double (*f)(double));
+
+/**
+ * Returns a 2D vector with the result
+ * of both components of two vectors through f.
+ */
+t_vec2		vec2_exec2(t_vec2 p1, t_vec2 p2, double (*f)(double, double));
+
+/**
+ * Returns a 2D vector with the result
+ * of both components of three vectors through f.
+ */
+t_vec2		vec2_exec3(t_vec2 p1, t_vec2 p2, t_vec2 p3,
+				double (*f)(double, double, double));
+
+/**
+ * Returns the result of both components of a vector through f.
+ */
+double		vec2_exec_xy(t_vec2 p1, double (*f)(double, double));
+
+/**
  * Returns true if both components of two 2D vectors are equal.
  */
 bool		vec2_eq(t_vec2 p1, t_vec2 p2);
@@ -163,4 +187,4 @@ int			vec2_print(int fd, t_vec2 p, int precision);
 /**
  * Converts a 2D double vector to a 2D integer vector.
  */
-t_vec2i		vec2_to_vec2i(t_vec2 p);
+t_vec2i		vec2i_vd(t_vec2 p);

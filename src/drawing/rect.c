@@ -54,7 +54,7 @@ static void	set_rect_opaque(t_mbx_region *restrict region,
 	{
 		xy.x = start.x;
 		while (xy.x++ < end.x)
-			region->canvas[i++] = col;
+			region->pixels[i++] = col;
 		i += start.x - end.x + region->size.x;
 	}
 }
@@ -72,7 +72,7 @@ static void	set_rect_transparent(t_mbx_region *restrict region,
 		xy.x = start.x;
 		while (xy.x++ < end.x)
 		{
-			region->canvas[i] = color_blend_quick(
+			region->pixels[i] = color_blend_quick(
 					mbx_get_pixel_unsafe_i(region, i), col);
 			i++;
 		}

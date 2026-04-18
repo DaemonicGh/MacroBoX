@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:26:43 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:49:53 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/03/18 12:57:30 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * 2D vector containing doubles.
  */
-typedef struct
+typedef struct s_mbx_vector2
 {
 	double	x;
 	double	y;
@@ -25,5 +25,3 @@ typedef struct
  * Creates a new 2D vector containing doubles.
  */
 t_vec2		vec2(double x, double y);
-
-

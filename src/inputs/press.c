@@ -59,10 +59,10 @@ void	mbx_tap_input(t_mbx *mbx, int key)
 	if (key < MBX_INPUT_ARRAY_START
 		|| key > MBX_INPUT_ARRAY_END)
 		return ;
-	mbx->key_presses[key] = 0;
-	mbx->key_releases[key] = 0;
-	mbx->last_press = mbx->timestamps.frame_start;
-	mbx->last_release = mbx->timestamps.frame_start;
+	mbx->keys[key].press = 0;
+	mbx->keys[key].release = 0;
+	mbx->last_press = mbx->now;
+	mbx->last_release = mbx->now;
 	special_key_handler(mbx, key);
 }
 
@@ -71,8 +71,8 @@ void	mbx_press_input(t_mbx *mbx, int key)
 	if (key < MBX_INPUT_ARRAY_START
 		|| key > MBX_INPUT_ARRAY_END)
 		return ;
-	mbx->key_presses[key] = 0;
-	mbx->last_press = mbx->timestamps.frame_start;
+	mbx->keys[key].press = 0;
+	mbx->last_press = mbx->now;
 	special_key_handler(mbx, key);
 }
 
@@ -81,6 +81,6 @@ void	mbx_release_input(t_mbx *mbx, int key)
 	if (key < MBX_INPUT_ARRAY_START
 		|| key > MBX_INPUT_ARRAY_END)
 		return ;
-	mbx->key_releases[key] = 0;
-	mbx->last_release = mbx->timestamps.frame_start;
+	mbx->keys[key].release = 0;
+	mbx->last_release = mbx->now;
 }

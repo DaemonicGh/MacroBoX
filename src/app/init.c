@@ -21,8 +21,8 @@ static void	init_time(t_mbx *mbx)
 	double	time;
 
 	time = mbx_get_timestamp();
-	mbx->timestamps.app_start = time;
-	mbx->timestamps.frame_start = time;
+	mbx->app_timestamp = time;
+	mbx->now = time;
 	mbx->delta_time = 1.0 / mbx->settings.fps_cap;
 	mbx->seconds_per_frame = 0;
 	mbx->frames_elapsed = 0;

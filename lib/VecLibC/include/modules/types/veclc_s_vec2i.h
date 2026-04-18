@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:26:48 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:49:58 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/03/18 12:57:36 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * 2D vector containing integers.
  */
-typedef struct
+typedef struct s_mbx_vector2i
 {
 	int	x;
 	int	y;
@@ -25,5 +25,3 @@ typedef struct
  * Creates a new 2D vector containing integers.
  */
 t_vec2i		vec2i(int x, int y);
-
-

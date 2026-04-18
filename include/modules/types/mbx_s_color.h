@@ -37,3 +37,14 @@ t_mbx_color		color(unsigned int hex);
  * the hexadecimal value is expected to be in the format 0xRRGGBBAA.
  */
 t_mbx_color		color_rgba(unsigned int hex);
+
+/**
+ * Creates a color from its four channels.
+ *
+ * @r	The red channel of the color.
+ * @g	The green channel of the color.
+ * @b	The blue channel of the color.
+ * @a	The alpha channel of the color.
+ */
+t_mbx_color		color_r_g_b_a(
+					uint8_t r, uint8_t g, uint8_t b, uint8_t a);

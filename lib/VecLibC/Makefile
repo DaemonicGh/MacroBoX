@@ -19,6 +19,7 @@ common_files			:=	\
 	add/add add/add_d															\
 	conv/to_vec conv/to_vec2 conv/to_veci										\
 	div/div div/div_d div/div_vd div/i_div_d div/truediv div/truediv_d			\
+	exec/exec exec/exec2 exec/exec3 exec/exec_xy exec/exec_xyz					\
 	groups/vecx2 groups/vecx2_xy groups/vecx3 groups/vecx4						\
 	linear/cross linear/dist linear/dot linear/length linear/normalize			\
 	linear/rotate																\

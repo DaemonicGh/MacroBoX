@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 20:36:46 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/08 08:54:24 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/04/12 16:02:58 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * Group of two 2D vectors containing doubles.
  */
-typedef struct
+typedef struct s_mbx_vector2x2
 {
 	t_vec2	p1;
 	t_vec2	p2;
@@ -26,7 +26,7 @@ typedef struct
 /**
  * Group of three 2D vectors containing doubles.
  */
-typedef struct
+typedef struct s_mbx_vector2x3
 {
 	t_vec2	p1;
 	t_vec2	p2;
@@ -36,7 +36,7 @@ typedef struct
 /**
  * Group of four 2D vectors containing doubles.
  */
-typedef struct
+typedef struct s_mbx_vector2x4
 {
 	t_vec2	p1;
 	t_vec2	p2;

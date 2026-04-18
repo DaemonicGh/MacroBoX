@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vecx2.c                                            :+:      :+:    :+:   */
+/*   exec_xyz.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/09 22:53:39 by rprieur           #+#    #+#             */
-/*   Updated: 2026/02/12 17:22:34 by rprieur          ###   ########.fr       */
+/*   Created: 2026/04/18 03:51:01 by rprieur           #+#    #+#             */
+/*   Updated: 2026/04/18 03:51:01 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/veclc_s_vecnxn.h"
+#include "modules/types/veclc_s_vecn.h"
 
-t_vec2x2	vec2x2(t_vec2 p1, t_vec2 p2)
+int	vec3i_exec_xyz(t_vec3i p1, int (*f)(int, int, int))
 {
-	return ((t_vec2x2){.p1 = p1, .p2 = p2});
+	return (f(p1.x, p1.y, p1.z));
 }
 
-t_vec2ix2	vec2ix2(t_vec2i p1, t_vec2i p2)
+double	vec3_exec_xyz(t_vec3 p1, double (*f) (double, double, double))
 {
-	return ((t_vec2ix2){.p1 = p1, .p2 = p2});
+	return (f(p1.x, p1.y, p1.z));
 }
 
-t_vec3x2	vec3x2(t_vec3 p1, t_vec3 p2)
+int	vec3i_exec_xy_yz(t_vec3i p1, int (*f)(int, int))
 {
-	return ((t_vec3x2){.p1 = p1, .p2 = p2});
+	return (f(f(p1.x, p1.y), p1.z));
 }
 
-t_vec3ix2	vec3ix2(t_vec3i p1, t_vec3i p2)
+double	vec3_exec_xy_yz(t_vec3 p1, double (*f) (double, double))
 {
-	return ((t_vec3ix2){.p1 = p1, .p2 = p2});
+	return (f(f(p1.x, p1.y), p1.z));
 }

@@ -21,5 +21,5 @@ void	mbx_clear(t_mbx_region *restrict region, t_mbx_color col)
 
 	i = 0;
 	while (i < size)
-		region->canvas[i++] = mcol;
+		region->pixels[i++] = mcol;
 }
