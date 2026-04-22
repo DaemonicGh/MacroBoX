@@ -73,22 +73,6 @@ mbx_destroy_region(
 	t_mbx *mbx, t_mbx_region *region);
 
 /**
- * Modifies the given region's content using the provided color modifiers.
- *
- * @dest				The region to modify.
- * @color_modifier_data	The data pointer to pass to the modifers.
- * @color_getter		The getter modifier function.
- * @color_setter		The setter modifier function.
- *
- * If the data pointer is set to NULL, the region's will be used.
- * If set to NULL, the getter and setter modifiers will do nothing.
- */
-void
-mbx_modify_region(t_mbx_region *dest, void *color_modifier_data,
-	t_mbx_color (*color_getter)(void *data, t_mbx_region *region, int i),
-	t_mbx_color (*color_setter)(void *data, t_mbx_color col));
-
-/**
  * Resizes the given region.
  *
  * @mbx		The MacroBoX context.
@@ -122,6 +106,67 @@ mbx_resize_region_with_content(
  */
 bool
 mbx_is_atlas(t_mbx_region *region);
+
+/**
+ * Default color getter function for regions.
+ *
+ * @data	a customizable data pointer, MacroBoX context by default.
+ * @region	the region to get the pixel from.
+ * @index	the index of the pixel in the region.
+ *
+ * For performance reasons, the index is given rather than the xy position.
+ * MacroBoX uses this function for color getting by default,
+ * it can be overloaded for each region using region.pipeline.get.
+ */
+t_mbx_color
+mbx_default_pipeline_get(
+	void *restrict data, t_mbx_region *restrict region, int index);
+
+/**
+ * Color getter function for regions, does nothing.
+ *
+ * @data		a customizable data pointer, MacroBoX context by default.
+ * @background	the background color.
+ * @foreground	the foreground color.
+ *
+ * This function is not the default color blender,
+ * MacroBoX uses mbx_color_blend_quick by default.
+ */
+t_mbx_color
+mbx_pipeline_blend_ignore(
+	void *restrict data, t_mbx_color background, t_mbx_color foreground);
+
+/**
+ * Default color getter function for regions.
+ *
+ * @data		a customizable data pointer, MacroBoX context by default.
+ * @background	the background color.
+ * @foreground	the foreground color.
+ *
+ * The function will never be ran for fully opaque or transparent foregrounds.
+ * MacroBoX uses this function for color blending by default,
+ * it can be overloaded for each region using region.pipeline.blend.
+ */
+t_mbx_color
+mbx_default_pipeline_blend(
+	void *restrict data, t_mbx_color background, t_mbx_color foreground);
+
+/**
+ * Default color setter function for regions.
+ *
+ * @data	a customizable data pointer, MacroBoX context by default.
+ * @region	the region to set the pixel to.
+ * @index	the index of the target pixel in the region.
+ * @color	the color to be modified.
+ *
+ * For performance reasons, the destination position cannot be passed on.
+ * MacroBoX uses this function for color setting by default,
+ * it can be overloaded for each region using region.pipeline.set.
+ */
+void
+mbx_default_pipeline_set(
+	void *restrict data, t_mbx_region *restrict region,
+	int index, t_mbx_color color);
 
 /**
  * Creates an returns a MacroBoX image.

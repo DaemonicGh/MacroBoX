@@ -20,6 +20,8 @@
  *
  * @region	the region to query.
  * @col		the color to clear the region with.
+ *
+ * Color blending won't be performed
  */
 void
 mbx_clear(
@@ -205,60 +207,13 @@ mbx_set_pixel_unsafe_i(
 	t_mbx_region *restrict region, int i, t_mbx_color col);
 
 /**
- * Sets the color of a pixel on a region at the given position.
- *
- * @region	the region to draw on.
- * @x		the x-coordinate of the pixel.
- * @y		the y-coordinate of the pixel.
- * @col		the color of the pixel.
- *
- * This version doesn't perform bounds checking
- * and isn't affected by color modifiers.
- * Color blending is still performed.
- */
-void
-mbx_set_pixel_direct(
-	t_mbx_region *restrict region, t_vec2i pos, t_mbx_color col);
-
-/**
- * Sets the color of a pixel on a region at the given position.
- *
- * @region	the region to draw on.
- * @x		the x-coordinate of the pixel.
- * @y		the y-coordinate of the pixel.
- * @col		the color of the pixel.
- *
- * This version doesn't perform bounds checking
- * and isn't affected by color modifiers.
- * Color blending is still performed.
- */
-void
-mbx_set_pixel_direct_xy(
-	t_mbx_region *restrict region, int x, int y, t_mbx_color col);
-
-/**
- * Sets the color of a pixel on a region at the given index.
- *
- * @region	the region to draw on.
- * @i		the index of the pixel.
- * @col		the color of the pixel.
- *
- * This version doesn't perform bounds checking
- * and isn't affected by color modifiers.
- * Color blending is still performed.
- */
-void
-mbx_set_pixel_direct_i(
-	t_mbx_region *restrict region, int i, t_mbx_color col);
-
-/**
 * Sets the color of a pixel on a region at the given index.
 *
 * @region	the region to draw on.
 * @i		the index of the pixel.
 * @col		the color of the pixel.
 *
-* This version doesn't perform bounds checking nor color blending
+* This version doesn't perform bounds checking
 * and isn't affected by color modifiers.
  */
 void
@@ -272,7 +227,7 @@ mbx_set_pixel_raw(
 * @i		the index of the pixel.
 * @col		the color of the pixel.
 *
-* This version doesn't perform bounds checking nor color blending
+* This version doesn't perform bounds checking
 * and isn't affected by color modifiers.
  */
 void
@@ -286,7 +241,7 @@ mbx_set_pixel_raw_xy(
 * @i		the index of the pixel.
 * @col		the color of the pixel.
 *
-* This version doesn't perform bounds checking nor color blending
+* This version doesn't perform bounds checking
 * and isn't affected by color modifiers.
  */
 void
@@ -499,7 +454,7 @@ color_blend(
  * @bg the background color.
  * @fg the foreground color.
  *
- * this version doesn't optimize if fg is fully opaque or transparent,
+ * This version doesn't optimize if fg is fully opaque or transparent,
  * use it when you know that fg isn't either.
  */
 t_mbx_color
@@ -545,28 +500,6 @@ color_mult(
 t_mbx_color
 color_average(
 	t_mbx_color col1, t_mbx_color col2);
-
-/**
- * Default color setter function for regions, does nothing.
- *
- * @col	the color to be modified.
- *
- * This function can be overloaded for each region using region.color_setter
- */
-t_mbx_color
-mbx_color_setter_ignore(
-	void *data, t_mbx_color col);
-
-/**
- * Default color getter function for regions, does nothing.
- *
- * @col	the color to be modified.
- *
- * This function can be overloaded for each region using region.color_getter
- */
-t_mbx_color
-mbx_color_getter_ignore(
-	void *data, t_mbx_region *region, int index);
 
 /**
  * Forces the rendering of the given region on the window.

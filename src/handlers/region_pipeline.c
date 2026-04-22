@@ -10,15 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/mbx_s_mbx.h"
+#include "modules/mbx_drawing.h"
 
-t_mbx_color	mbx_color_setter_ignore(void *data, t_mbx_color col)
+void	mbx_default_pipeline_set(
+	void *data, t_mbx_region *region, int index, t_mbx_color col)
 {
 	(void)data;
-	return (col);
+	region->pixels[index] = col;
 }
 
-t_mbx_color	mbx_color_getter_ignore(
+t_mbx_color	mbx_pipeline_blend_ignore(
+	void *data, t_mbx_color bg, t_mbx_color fg)
+{
+	(void)data;
+	(void)bg;
+	return (fg);
+}
+
+t_mbx_color	mbx_default_pipeline_blend(
+	void *data, t_mbx_color bg, t_mbx_color fg)
+{
+	(void)data;
+	return (color_blend_quick(bg, fg));
+}
+
+t_mbx_color	mbx_default_pipeline_get(
 	void *data, t_mbx_region *region, int index)
 {
 	(void)data;

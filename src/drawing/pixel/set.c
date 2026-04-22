@@ -19,12 +19,12 @@ void	mbx_set_pixel_xy(t_mbx_region *restrict region,
 
 	if (!(x >= 0 && x < region->size.x && y >= 0 && y < region->size.y))
 		return ;
-	col = region->color_setter(region->color_modifier_data, col);
-	if (col.a == 0)
+	if (!col.a)
 		return ;
-	if (col.a == 0xFF)
-		region->pixels[i] = col;
-	region->pixels[i] = color_blend_quick(region->pixels[i], col);
+	if (col.a != 0xFF)
+		col = region->pipeline.blend(region->pipeline.data,
+				region->pipeline.get(region->pipeline.data, region, i), col);
+	region->pipeline.set(region->pipeline.data, region, i, col);
 }
 
 void	mbx_set_pixel(
@@ -35,11 +35,10 @@ void	mbx_set_pixel(
 	if (!(pos.x >= 0 && pos.x < region->size.x
 			&& pos.y >= 0 && pos.y < region->size.y))
 		return ;
-	col = region->color_setter(region->color_modifier_data, col);
-	if (col.a == 0)
+	if (!col.a)
 		return ;
-	if (col.a == 0xFF)
-		region->pixels[i] = col;
-	else
-		region->pixels[i] = color_blend_quick(region->pixels[i], col);
+	if (col.a != 0xFF)
+		col = region->pipeline.blend(region->pipeline.data,
+				region->pipeline.get(region->pipeline.data, region, i), col);
+	region->pipeline.set(region->pipeline.data, region, i, col);
 }

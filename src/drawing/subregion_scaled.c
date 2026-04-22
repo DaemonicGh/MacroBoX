@@ -56,10 +56,10 @@ static void	set_subregion_downscaled(t_mbx_region *restrict region,
 		{
 			mbx_set_pixel_unsafe(region, xy,
 				mbx_get_pixel_unsafe_i(src, uv.x));
-			xy.x ++;
+			xy.x++;
 			uv.x += rscale.x;
 		}
-		xy.y ++;
+		xy.y++;
 		uv.y += rscale.y;
 	}
 }

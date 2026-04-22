@@ -14,12 +14,10 @@
 
 void	mbx_clear(t_mbx_region *restrict region, t_mbx_color col)
 {
-	const t_mbx_color	mcol = region->color_setter(
-			region->color_modifier_data, col);
 	const int			size = region->size.x * region->size.y;
 	int					i;
 
 	i = 0;
 	while (i < size)
-		region->pixels[i++] = mcol;
+		mbx_set_pixel_raw_i(region, i++, col);
 }

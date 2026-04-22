@@ -54,7 +54,10 @@ static void	set_rect_opaque(t_mbx_region *restrict region,
 	{
 		xy.x = start.x;
 		while (xy.x++ < end.x)
-			region->pixels[i++] = col;
+		{
+			region->pipeline.set(region->pipeline.data, region, i, col);
+			i++;
+		}
 		i += start.x - end.x + region->size.x;
 	}
 }
@@ -72,8 +75,10 @@ static void	set_rect_transparent(t_mbx_region *restrict region,
 		xy.x = start.x;
 		while (xy.x++ < end.x)
 		{
-			region->pixels[i] = color_blend_quick(
-					mbx_get_pixel_unsafe_i(region, i), col);
+			region->pipeline.set(region->pipeline.data, region, i,
+				region->pipeline.blend(region->pipeline.data,
+					region->pipeline.get(region->pipeline.data, region, i),
+					col));
 			i++;
 		}
 		i += start.x - end.x + region->size.x;
@@ -83,14 +88,11 @@ static void	set_rect_transparent(t_mbx_region *restrict region,
 void	mbx_set_rect(t_mbx_region *restrict region,
 	t_vec2i pos, t_vec2i size, t_mbx_color col)
 {
-	const t_mbx_color	mcol = region->color_setter(
-			region->color_modifier_data, col);
-
-	if (col.a == 0)
+	if (!col.a)
 		return ;
 	set_rect_bounds(region, &pos, &size);
 	if (col.a == 0xFF)
-		set_rect_opaque(region, pos, size, mcol);
+		set_rect_opaque(region, pos, size, col);
 	else
-		set_rect_transparent(region, pos, size, mcol);
+		set_rect_transparent(region, pos, size, col);
 }

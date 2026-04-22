@@ -18,15 +18,16 @@ NAMES						:=	libmbx.so libmbx.a
 libmbx.so_files				:=	\
 	app/exit app/init															\
 	app/loop/in_out app/loop/loop app/loop/start_end							\
-	color/blend color/math color/modifier color/new								\
-	drawing/clear drawing/rect drawing/region drawing/subregion_scaled				\
+	color/blend color/math color/new											\
+	drawing/clear drawing/rect drawing/region drawing/subregion_scaled			\
 	drawing/line drawing/render drawing/text 									\
 	drawing/pixel/get drawing/pixel/get_raw drawing/pixel/get_unsafe			\
 	drawing/pixel/set drawing/pixel/set_raw drawing/pixel/set_unsafe			\
 	drawing/pixel/tools 														\
 	handlers/atlas handlers/image handlers/region handlers/region_extras		\
-	handlers/screen handlers/settings handlers/viewport handlers/window			\
-	handlers/window_extras														\
+	handlers/region_pipeline													\
+	handlers/screen handlers/settings handlers/viewport							\
+	handlers/window handlers/window_extras										\
 	inputs/btn inputs/check inputs/cursor inputs/events inputs/press			\
 	inputs/events/keyboard inputs/events/mouse inputs/events/window				\
 	utils/time																	\
@@ -40,7 +41,7 @@ libmbx.so_files				:=	\
 
 libmbx.a_files				:=	$(libmbx.so_files)
 
-common_files				+=	$(shell $(MAKE) -pC lib/VecLibC | sed -n 's/^common_files :=//p')
+common_files				:=	$(shell $(MAKE) -pC lib/VecLibC | sed -n 's/^common_files :=//p')
 
 INCLUDE_DIRECTORIES			:=	include \
 	lib/MacroLibX/includes lib/VecLibC/include
@@ -68,13 +69,13 @@ OBJECT_EXTENSION			:=	.o
 # ***** OUTPUT ****************
 
 SUCCESS_MESSAGE				=	\
-\\033[0;1;2m[\\033[0;1;31m$(call uppercase,$1)\\033[0;1;2m] \
+\\033[0;1;2m[\\033[0;1;31mMacroBoX\\033[0;1;2m] \
 \\033[0;1mCompiled successfully!\\033[0m
 
 DEBUG_SUCCESS_MESSAGE		=	\\033[0;2m(debug)\\033[0m
 SANITIZE_SUCCESS_MESSAGE	=	\\033[0;2m(sanitized)\\033[0m
 
-SILENT_NAMES				:=
+SILENT_NAMES				:=	libmbx.a
 
 # ***** FORMAT ****************
 

@@ -24,9 +24,7 @@ t_mbx_region	*mbx_make_region(t_mbx *mbx, t_vec2i size)
 		return (NULL);
 	*region = (t_mbx_region){0};
 	region->size = size;
-	region->color_getter = mbx->settings.default_color_getter;
-	region->color_setter = mbx->settings.default_color_setter;
-	region->color_modifier_data = mbx->settings.default_color_modifier_data;
+	region->pipeline = mbx->settings.default_pipeline;
 	return (region);
 }
 

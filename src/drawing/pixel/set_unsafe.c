@@ -15,13 +15,13 @@
 void	mbx_set_pixel_unsafe_i(t_mbx_region *restrict region,
 	int i, t_mbx_color col)
 {
-	col = region->color_setter(region->color_modifier_data, col);
-	if (col.a == 0)
+	if (!col.a)
 		return ;
-	if (col.a == 0xFF)
-		region->pixels[i] = col;
-	else
-		region->pixels[i] = color_blend_quick(region->pixels[i], col);
+	if (col.a != 0xFF)
+		col = region->pipeline.blend(region->pipeline.data,
+				region->pipeline.get(region->pipeline.data, region, i),
+				col);
+	region->pipeline.set(region->pipeline.data, region, i, col);
 }
 
 void	mbx_set_pixel_unsafe_xy(t_mbx_region *restrict region,
@@ -29,13 +29,12 @@ void	mbx_set_pixel_unsafe_xy(t_mbx_region *restrict region,
 {
 	const int	i = (y * region->size.x + x);
 
-	col = region->color_setter(region->color_modifier_data, col);
-	if (col.a == 0)
+	if (!col.a)
 		return ;
-	if (col.a == 0xFF)
-		region->pixels[i] = col;
-	else
-		region->pixels[i] = color_blend_quick(region->pixels[i], col);
+	if (col.a != 0xFF)
+		col = region->pipeline.blend(region->pipeline.data,
+				region->pipeline.get(region->pipeline.data, region, i), col);
+	region->pipeline.set(region->pipeline.data, region, i, col);
 }
 
 void	mbx_set_pixel_unsafe(t_mbx_region *restrict region,
@@ -43,11 +42,10 @@ void	mbx_set_pixel_unsafe(t_mbx_region *restrict region,
 {
 	const int	i = (pos.y * region->size.x + pos.x);
 
-	col = region->color_setter(region->color_modifier_data, col);
-	if (col.a == 0)
+	if (!col.a)
 		return ;
-	if (col.a == 0xFF)
-		region->pixels[i] = col;
-	else
-		region->pixels[i] = color_blend_quick(region->pixels[i], col);
+	if (col.a != 0xFF)
+		col = region->pipeline.blend(region->pipeline.data,
+				region->pipeline.get(region->pipeline.data, region, i), col);
+	region->pipeline.set(region->pipeline.data, region, i, col);
 }
