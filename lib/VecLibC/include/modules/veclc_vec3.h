@@ -124,30 +124,30 @@ t_vec3i		vec3_round(t_vec3 p);
  * Returns a 3D vector with the result
  * of all components of a vector through f.
  */
-t_vec3		vec3_exec(t_vec3 p, double (*f)(double));
+t_vec3		vec3_exec(double (*f)(double), t_vec3 p);
 
 /**
  * Returns a 3D vector with the result
  * of all components of two vectors through f.
  */
-t_vec3		vec3_exec2(t_vec3 p1, t_vec3 p2, double (*f)(double, double));
+t_vec3		vec3_exec2(double (*f)(double, double), t_vec3 p1, t_vec3 p2);
 
 /**
  * Returns a 3D vector with the result
  * of all components of three vectors through f.
  */
-t_vec3		vec3_exec3(t_vec3 p1, t_vec3 p2, t_vec3 p3,
-				double (*f)(double, double, double));
+t_vec3		vec3_exec3(double (*f)(double, double, double),
+				t_vec3 p1, t_vec3 p2, t_vec3 p3);
 
 /**
  * Returns the result all components of a vector through f.
  */
-double		vec3_exec_xyz(t_vec3 p1, double (*f)(double, double, double));
+double		vec3_exec_xyz(double (*f)(double, double, double), t_vec3 p1);
 
 /**
  * Returns the result all components of a vector through f ((x, y), z).
  */
-double		vec3_exec_xy_yz(t_vec3 p1, double (*f)(double, double));
+double		vec3_exec_xy_yz(double (*f)(double, double), t_vec3 p1);
 
 /**
  * Returns true if all components of two 3D vectors are equal.

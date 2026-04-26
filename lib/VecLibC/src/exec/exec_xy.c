@@ -12,12 +12,12 @@
 
 #include "modules/types/veclc_s_vecn.h"
 
-int	vec2i_exec_xy(t_vec2i p1, int (*f)(int, int))
+int	vec2i_exec_xy(int (*f)(int, int), t_vec2i p1)
 {
 	return (f(p1.x, p1.y));
 }
 
-double	vec2_exec_xy(t_vec2 p1, double (*f) (double, double))
+double	vec2_exec_xy(double (*f) (double, double), t_vec2 p1)
 {
 	return (f(p1.x, p1.y));
 }

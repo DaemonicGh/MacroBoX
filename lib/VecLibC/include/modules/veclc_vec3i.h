@@ -159,30 +159,30 @@ t_vec3i		vec3i_abs(t_vec3i p);
  * Returns a 3D vector with the result
  * of all components of a vector through f.
  */
-t_vec3i		vec3i_exec(t_vec3i p, int (*f)(int));
+t_vec3i		vec3i_exec(int (*f)(int), t_vec3i p);
 
 /**
  * Returns a 3D vector with the result
  * of all components of two vectors through f.
  */
-t_vec3i		vec3i_exec2(t_vec3i p1, t_vec3i p2, int (*f)(int, int));
+t_vec3i		vec3i_exec2(int (*f)(int, int), t_vec3i p1, t_vec3i p2);
 
 /**
  * Returns a 3D vector with the result
  * of all components of three vectors through f.
  */
-t_vec3i		vec3i_exec3(t_vec3i p1, t_vec3i p2, t_vec3i p3,
-				int (*f)(int, int, int));
+t_vec3i		vec3i_exec3(int (*f)(int, int, int),
+				t_vec3i p1, t_vec3i p2, t_vec3i p3);
 
 /**
  * Returns the result all components of a vector through f.
  */
-int			vec3i_exec_xyz(t_vec3i p1, int (*f)(int, int, int));
+int			vec3i_exec_xyz(int (*f)(int, int, int), t_vec3i p1);
 
 /**
  * Returns the result all components of a vector through f ((x, y), z).
  */
-int			vec3i_exec_xy_yz(t_vec3i p1, int (*f)(int, int));
+int			vec3i_exec_xy_yz(int (*f)(int, int), t_vec3i p1);
 
 /**
  *  Returns true if all components of two 3D vectors are equal.

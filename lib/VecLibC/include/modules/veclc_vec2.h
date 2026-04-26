@@ -124,25 +124,25 @@ t_vec2i		vec2_round(t_vec2 p);
  * Returns a 2D vector with the result
  * of both components of a vector through f.
  */
-t_vec2		vec2_exec(t_vec2 p, double (*f)(double));
+t_vec2		vec2_exec(double (*f)(double), t_vec2 p);
 
 /**
  * Returns a 2D vector with the result
  * of both components of two vectors through f.
  */
-t_vec2		vec2_exec2(t_vec2 p1, t_vec2 p2, double (*f)(double, double));
+t_vec2		vec2_exec2(double (*f)(double, double), t_vec2 p1, t_vec2 p2);
 
 /**
  * Returns a 2D vector with the result
  * of both components of three vectors through f.
  */
-t_vec2		vec2_exec3(t_vec2 p1, t_vec2 p2, t_vec2 p3,
-				double (*f)(double, double, double));
+t_vec2		vec2_exec3(double (*f)(double, double, double),
+				t_vec2 p1, t_vec2 p2, t_vec2 p3);
 
 /**
  * Returns the result of both components of a vector through f.
  */
-double		vec2_exec_xy(t_vec2 p1, double (*f)(double, double));
+double		vec2_exec_xy( double (*f)(double, double), t_vec2 p1);
 
 /**
  * Returns true if both components of two 2D vectors are equal.

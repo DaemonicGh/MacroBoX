@@ -12,22 +12,22 @@
 
 #include "modules/types/veclc_s_vecn.h"
 
-t_vec2i	vec2i_exec(t_vec2i p, int (*f)(int))
+t_vec2i	vec2i_exec(int (*f)(int), t_vec2i p)
 {
 	return ((t_vec2i){.x = f(p.x), .y = f(p.y)});
 }
 
-t_vec2	vec2_exec(t_vec2 p, double (*f) (double))
+t_vec2	vec2_exec(double (*f) (double), t_vec2 p)
 {
 	return ((t_vec2){.x = f(p.x), .y = f(p.y)});
 }
 
-t_vec3i	vec3i_exec(t_vec3i p, int (*f)(int))
+t_vec3i	vec3i_exec(int (*f)(int), t_vec3i p)
 {
 	return ((t_vec3i){.x = f(p.x), .y = f(p.y), .z = f(p.z)});
 }
 
-t_vec3	vec3_exec(t_vec3 p, double (*f) (double))
+t_vec3	vec3_exec(double (*f) (double), t_vec3 p)
 {
 	return ((t_vec3){.x = f(p.x), .y = f(p.y), .z = f(p.z)});
 }
