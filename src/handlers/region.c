@@ -74,6 +74,8 @@ t_mbx_region	*mbx_make_region_from_file(t_mbx *mbx, char *filename)
 
 void	mbx_destroy_region(t_mbx *mbx, t_mbx_region *region)
 {
+	if (!region)
+		return ;
 	if (region->image)
 		mlx_destroy_image(mbx->mlx, region->image);
 	*region = (t_mbx_region){0};

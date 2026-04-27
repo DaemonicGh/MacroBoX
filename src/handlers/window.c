@@ -86,6 +86,8 @@ t_mbx_window	mbx_make_window_target(t_mbx *mbx, t_mbx_image image)
 
 void	mbx_destroy_window(t_mbx *mbx, t_mbx_window *window)
 {
-	mlx_destroy_window(mbx->mlx, window->mlx);
+	if (!window)
+		return ;
 	*window = (t_mbx_window){0};
+	mlx_destroy_window(mbx->mlx, window->mlx);
 }
