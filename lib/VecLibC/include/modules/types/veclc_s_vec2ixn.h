@@ -17,31 +17,43 @@
 /**
  * Group of two 2D vectors containing integers.
  */
-typedef struct s_mbx_vector2ix2
+typedef union u_mbx_vector2ix2
 {
-	t_vec2i	p1;
-	t_vec2i	p2;
+	struct
+	{
+		t_vec2i	p1;
+		t_vec2i	p2;
+	};
+	t_vec2i	vecs[2];
 }	t_vec2ix2;
 
 /**
  * Group of three 2D vectors containing integers.
  */
-typedef struct s_mbx_vector2ix3
+typedef union u_mbx_vector2ix3
 {
-	t_vec2i	p1;
-	t_vec2i	p2;
-	t_vec2i	p3;
+	struct
+	{
+		t_vec2i	p1;
+		t_vec2i	p2;
+		t_vec2i	p3;
+	};
+	t_vec2i	vecs[3];
 }	t_vec2ix3;
 
 /**
  * Group of four 2D vectors containing integers.
  */
-typedef struct s_mbx_vector2ix4
+typedef union u_mbx_vector2ix4
 {
-	t_vec2i	p1;
-	t_vec2i	p2;
-	t_vec2i	p3;
-	t_vec2i	p4;
+	struct
+	{
+		t_vec2i	p1;
+		t_vec2i	p2;
+		t_vec2i	p3;
+		t_vec2i	p4;
+	};
+	t_vec2i	vecs[4];
 }	t_vec2ix4;
 
 /**

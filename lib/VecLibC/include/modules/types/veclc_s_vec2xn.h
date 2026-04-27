@@ -17,31 +17,43 @@
 /**
  * Group of two 2D vectors containing doubles.
  */
-typedef struct s_mbx_vector2x2
+typedef union u_mbx_vector2x2
 {
-	t_vec2	p1;
-	t_vec2	p2;
+	struct
+	{
+		t_vec2	p1;
+		t_vec2	p2;
+	};
+	t_vec2	vecs[2];
 }	t_vec2x2;
 
 /**
  * Group of three 2D vectors containing doubles.
  */
-typedef struct s_mbx_vector2x3
+typedef union u_mbx_vector2x3
 {
-	t_vec2	p1;
-	t_vec2	p2;
-	t_vec2	p3;
+	struct
+	{
+		t_vec2	p1;
+		t_vec2	p2;
+		t_vec2	p3;
+	};
+	t_vec2	vecs[3];
 }	t_vec2x3;
 
 /**
  * Group of four 2D vectors containing doubles.
  */
-typedef struct s_mbx_vector2x4
+typedef union u_mbx_vector2x4
 {
-	t_vec2	p1;
-	t_vec2	p2;
-	t_vec2	p3;
-	t_vec2	p4;
+	struct
+	{
+		t_vec2	p1;
+		t_vec2	p2;
+		t_vec2	p3;
+		t_vec2	p4;
+	};
+	t_vec2	vecs[4];
 }	t_vec2x4;
 
 /**

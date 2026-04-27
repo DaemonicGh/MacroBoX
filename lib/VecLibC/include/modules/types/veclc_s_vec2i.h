@@ -15,10 +15,14 @@
 /**
  * 2D vector containing integers.
  */
-typedef struct s_mbx_vector2i
+typedef union u_mbx_vector2i
 {
-	int	x;
-	int	y;
+	struct
+	{
+		int		x;
+		int		y;
+	};
+	int		comp[2];
 }	t_vec2i;
 
 /**

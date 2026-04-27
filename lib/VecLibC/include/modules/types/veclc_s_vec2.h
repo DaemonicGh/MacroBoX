@@ -15,10 +15,14 @@
 /**
  * 2D vector containing doubles.
  */
-typedef struct s_mbx_vector2
+typedef union u_mbx_vector2
 {
-	double	x;
-	double	y;
+	struct
+	{
+		double	x;
+		double	y;
+	};
+	double	comp[2];
 }	t_vec2;
 
 /**

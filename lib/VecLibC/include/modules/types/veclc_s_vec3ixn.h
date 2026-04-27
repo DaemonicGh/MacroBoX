@@ -17,31 +17,43 @@
 /**
  * Group of two 3D vectors containing integers.
  */
-typedef struct s_mbx_vector3ix2
+typedef union u_mbx_vector3ix2
 {
-	t_vec3i	p1;
-	t_vec3i	p2;
+	struct
+	{
+		t_vec3i	p1;
+		t_vec3i	p2;
+	};
+	t_vec3i	vecs[2];
 }	t_vec3ix2;
 
 /**
  * Group of three 3D vectors containing integers.
  */
-typedef struct s_mbx_vector3ix3
+typedef union u_mbx_vector3ix3
 {
-	t_vec3i	p1;
-	t_vec3i	p2;
-	t_vec3i	p3;
+	struct
+	{
+		t_vec3i	p1;
+		t_vec3i	p2;
+		t_vec3i	p3;
+	};
+	t_vec3i	vecs[3];
 }	t_vec3ix3;
 
 /**
  * Group of four 3D vectors containing integers.
  */
-typedef struct s_mbx_vector3ix4
+typedef union u_mbx_vector3ix4
 {
-	t_vec3i	p1;
-	t_vec3i	p2;
-	t_vec3i	p3;
-	t_vec3i	p4;
+	struct
+	{
+		t_vec3i	p1;
+		t_vec3i	p2;
+		t_vec3i	p3;
+		t_vec3i	p4;
+	};
+	t_vec3i	vecs[4];
 }	t_vec3ix4;
 
 /**

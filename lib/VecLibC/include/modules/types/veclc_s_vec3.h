@@ -15,11 +15,15 @@
 /**
  * 3D vector containing doubles.
  */
-typedef struct s_mbx_vector3
+typedef union u_mbx_vector3
 {
-	double	x;
-	double	y;
-	double	z;
+	struct
+	{
+		double	x;
+		double	y;
+		double	z;
+	};
+	double	comp[3];
 }	t_vec3;
 
 /**

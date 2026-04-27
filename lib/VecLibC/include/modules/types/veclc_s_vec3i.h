@@ -15,11 +15,15 @@
 /**
  * 3D vector containing integers.
  */
-typedef struct s_mbx_vector3i
+typedef union u_mbx_vector3i
 {
-	int	x;
-	int	y;
-	int	z;
+	struct
+	{
+		int		x;
+		int		y;
+		int		z;
+	};
+	int		comp[3];
 }	t_vec3i;
 
 /**
