@@ -33,7 +33,7 @@ libmbx.so_files				:=	\
 	utils/time																	\
 	utils/math/clamp utils/math/dist_to_range									\
 	utils/math/easing utils/math/easing_special									\
-	utils/math/is_integer utils/math/lerp utils/math/minmax						\
+	utils/math/fract utils/math/is_integer utils/math/lerp utils/math/minmax	\
 	utils/math/move_towards utils/math/sign utils/math/trunc utils/math/wrap	\
 	utils/vector/clamp utils/vector/len_clamp utils/vector/len_move_towards		\
 	utils/vector/sign															\

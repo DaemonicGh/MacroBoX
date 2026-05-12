@@ -88,6 +88,7 @@ typedef struct s_mbx_context
 	}					settings;
 	float				last_press;
 	float				last_release;
+	float				last_window_event;
 	t_vec2i				cursor;
 	t_vec2				cursor_delta;
 	int					scroll_delta;
@@ -95,5 +96,5 @@ typedef struct s_mbx_context
 	{
 		float			press;
 		float			release;
-	}					keys[MBX_INPUT_ARRAY_LENGTH];
+	}					keys[MBX_SCANCODES_LENGTH];
 }	t_mbx;

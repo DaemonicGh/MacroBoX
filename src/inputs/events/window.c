@@ -16,9 +16,9 @@ void	window_hook(int event, void *param)
 {
 	t_mbx	*mbx;
 
-	event += MBX_INPUT_ARRAY_WINDOW_START;
-	if (event < MBX_INPUT_ARRAY_WINDOW_START
-		|| event > MBX_INPUT_ARRAY_WINDOW_END)
+	event += MBX_SCANCODES_WINDOW_START;
+	if (event < MBX_SCANCODES_WINDOW_START
+		|| event > MBX_SCANCODES_WINDOW_END)
 		return ;
 	mbx = param;
 	mbx_tap_input(mbx, event);

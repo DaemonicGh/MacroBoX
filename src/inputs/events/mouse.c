@@ -16,9 +16,9 @@ void	mouse_down_hook(int button, void *param)
 {
 	t_mbx	*mbx;
 
-	button += MBX_INPUT_ARRAY_MOUSE_START;
-	if (button < MBX_INPUT_ARRAY_MOUSE_START
-		|| button > MBX_INPUT_ARRAY_MOUSE_END)
+	button += MBX_SCANCODES_MOUSE_START;
+	if (button < MBX_SCANCODES_MOUSE_START
+		|| button > MBX_SCANCODES_MOUSE_END)
 		return ;
 	mbx = param;
 	if (mbx_key_held(mbx, button))
@@ -30,9 +30,9 @@ void	mouse_up_hook(int button, void *param)
 {
 	t_mbx	*mbx;
 
-	button += MBX_INPUT_ARRAY_MOUSE_START;
-	if (button < MBX_INPUT_ARRAY_MOUSE_START
-		|| button > MBX_INPUT_ARRAY_MOUSE_END)
+	button += MBX_SCANCODES_MOUSE_START;
+	if (button < MBX_SCANCODES_MOUSE_START
+		|| button > MBX_SCANCODES_MOUSE_END)
 		return ;
 	mbx = param;
 	mbx_release_input(mbx, button);

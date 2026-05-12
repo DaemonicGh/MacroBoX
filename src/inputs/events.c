@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
-#include "veclc.h"
 #include "../_private/mbx_internal.h"
 
 void	reset_inputs(t_mbx *mbx)
@@ -20,7 +17,7 @@ void	reset_inputs(t_mbx *mbx)
 	int		i;
 
 	i = 0;
-	while (i < MBX_INPUT_ARRAY_LENGTH)
+	while (i < MBX_SCANCODES_LENGTH)
 	{
 		mbx->keys[i].press = 1e30f;
 		mbx->keys[i].release = 1e29f;
@@ -28,6 +25,7 @@ void	reset_inputs(t_mbx *mbx)
 	}
 	mbx->last_press = 1e30f;
 	mbx->last_release = 1e29f;
+	mbx->last_window_event = 1e30f;
 	mbx->cursor = vec2i_zero();
 	mbx->cursor_delta = vec2_zero();
 	mbx->scroll_delta = 0;
@@ -38,12 +36,15 @@ void	mbx_flush_inputs(t_mbx *mbx)
 	int	i;
 
 	i = 0;
-	while (i < MBX_INPUT_ARRAY_LENGTH)
+	while (i < MBX_SCANCODES_LENGTH)
 	{
 		mbx->keys[i].press += mbx->delta_time;
 		mbx->keys[i].release += mbx->delta_time;
 		i++;
 	}
+	mbx->last_press += mbx->delta_time;
+	mbx->last_release += mbx->delta_time;
+	mbx->last_window_event += mbx->delta_time;
 	mbx->cursor_delta = vec2_zero();
 	mbx->scroll_delta = 0;
 }

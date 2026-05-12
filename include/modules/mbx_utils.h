@@ -49,6 +49,11 @@ double		fsign(double x);
 bool		is_integer(double x);
 
 /**
+ * Returns the fractional part of x.
+ */
+double		fract(double x);
+
+/**
  * Returns x rounded away from 0
  */
 double		trunc_up(double x);

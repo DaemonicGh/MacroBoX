@@ -16,9 +16,9 @@ void	key_down_hook(int key, void *param)
 {
 	t_mbx	*mbx;
 
-	key += MBX_INPUT_ARRAY_KEYBOARD_START;
-	if (key < MBX_INPUT_ARRAY_KEYBOARD_START
-		|| key > MBX_INPUT_ARRAY_KEYBOARD_END)
+	key += MBX_SCANCODES_KEYBOARD_START;
+	if (key < MBX_SCANCODES_KEYBOARD_START
+		|| key > MBX_SCANCODES_KEYBOARD_END)
 		return ;
 	mbx = param;
 	if (mbx_key_held(mbx, key))
@@ -30,9 +30,9 @@ void	key_up_hook(int key, void *param)
 {
 	t_mbx	*mbx;
 
-	key += MBX_INPUT_ARRAY_KEYBOARD_START;
-	if (key < MBX_INPUT_ARRAY_KEYBOARD_START
-		|| key > MBX_INPUT_ARRAY_KEYBOARD_END)
+	key += MBX_SCANCODES_KEYBOARD_START;
+	if (key < MBX_SCANCODES_KEYBOARD_START
+		|| key > MBX_SCANCODES_KEYBOARD_END)
 		return ;
 	mbx = param;
 	mbx_release_input(mbx, key);

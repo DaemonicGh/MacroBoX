@@ -14,11 +14,15 @@
 
 t_mbx_color	color_blend_quick(t_mbx_color bg, t_mbx_color fg)
 {
+	const double	fga = fg.a / 255.0;
+	const double	bga = bg.a / 255.0 * (1.0 - fga);
+	const double	blend = fga + bga;
+
 	return ((t_mbx_color){
-		.r = bg.r + (((fg.r - bg.r) * fg.a + 128) >> 8),
-		.g = bg.g + (((fg.g - bg.g) * fg.a + 128) >> 8),
-		.b = bg.b + (((fg.b - bg.b) * fg.a + 128) >> 8),
-		.a = fg.a + ((bg.a * (255 - fg.a) + 128) >> 8)
+		.r = (fg.r * fga + bg.r * bga) / blend,
+		.g = (fg.g * fga + bg.g * bga) / blend,
+		.b = (fg.b * fga + bg.b * bga) / blend,
+		.a = blend * 255
 	});
 }
 

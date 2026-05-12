@@ -16,7 +16,6 @@
 static void	set_subregion_upscaled(t_mbx_region *restrict region,
 	t_mbx_region *restrict src, t_vec2ix4 bounds, t_vec2 scale)
 {
-	const t_vec2i	scale_up = vec2i(trunc_up(scale.x), trunc_up(scale.y));
 	const int		incr_y = bounds.p4.y * src->size.x;
 	t_vec2			xy;
 	t_vec2i			uv;
@@ -29,7 +28,8 @@ static void	set_subregion_upscaled(t_mbx_region *restrict region,
 		uv.x = uv.y + bounds.p3.x;
 		while (xy.x < bounds.p2.x)
 		{
-			mbx_set_rect(region, vec2i_vd(xy), scale_up,
+			mbx_set_rect(region, vec2i_vd(xy),
+				vec2i_sub(vec2i_vd(vec2_add(scale, xy)), vec2i_vd(xy)),
 				mbx_get_pixel_unsafe_i(src, uv.x));
 			xy.x += scale.x;
 			uv.x += bounds.p4.x;

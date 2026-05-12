@@ -12,7 +12,6 @@
 
 #include "modules/mbx_handlers.h"
 #include "modules/mbx_scancodes.h"
-#include <stdio.h>
 
 static void	window_events_handler(t_mbx *mbx, int event)
 {
@@ -49,38 +48,52 @@ static void	special_key_handler(t_mbx *mbx, int key)
 			mbx->mlx, mbx->window.mlx,
 			mbx->window.is_fullscreen);
 	}
-	if (key >= MBX_INPUT_ARRAY_WINDOW_START
-		&& key <= MBX_INPUT_ARRAY_WINDOW_END)
+	if (key >= MBX_SCANCODES_WINDOW_START
+		&& key <= MBX_SCANCODES_WINDOW_END)
 		window_events_handler(mbx, key);
-}
-
-void	mbx_tap_input(t_mbx *mbx, int key)
-{
-	if (key < MBX_INPUT_ARRAY_START
-		|| key > MBX_INPUT_ARRAY_END)
-		return ;
-	mbx->keys[key].press = 0;
-	mbx->keys[key].release = 0;
-	mbx->last_press = mbx->now;
-	mbx->last_release = mbx->now;
-	special_key_handler(mbx, key);
 }
 
 void	mbx_press_input(t_mbx *mbx, int key)
 {
-	if (key < MBX_INPUT_ARRAY_START
-		|| key > MBX_INPUT_ARRAY_END)
+	if (key < MBX_SCANCODES_START
+		|| key > MBX_SCANCODES_END)
 		return ;
 	mbx->keys[key].press = 0;
-	mbx->last_press = mbx->now;
+	if (key >= MBX_SCANCODES_WINDOW_START
+		&& key <= MBX_SCANCODES_WINDOW_END)
+		mbx->last_window_event = 0;
+	else
+		mbx->last_press = 0;
 	special_key_handler(mbx, key);
 }
 
 void	mbx_release_input(t_mbx *mbx, int key)
 {
-	if (key < MBX_INPUT_ARRAY_START
-		|| key > MBX_INPUT_ARRAY_END)
+	if (key < MBX_SCANCODES_START
+		|| key > MBX_SCANCODES_END)
 		return ;
 	mbx->keys[key].release = 0;
-	mbx->last_release = mbx->now;
+	if (key >= MBX_SCANCODES_WINDOW_START
+		&& key <= MBX_SCANCODES_WINDOW_END)
+		mbx->last_window_event = 0;
+	else
+		mbx->last_release = 0;
+}
+
+void	mbx_tap_input(t_mbx *mbx, int key)
+{
+	if (key < MBX_SCANCODES_START
+		|| key > MBX_SCANCODES_END)
+		return ;
+	mbx->keys[key].press = 0;
+	mbx->keys[key].release = 0;
+	if (key >= MBX_SCANCODES_WINDOW_START
+		&& key <= MBX_SCANCODES_WINDOW_END)
+		mbx->last_window_event = 0;
+	else
+	{
+		mbx->last_press = 0;
+		mbx->last_release = 0;
+	}
+	special_key_handler(mbx, key);
 }
