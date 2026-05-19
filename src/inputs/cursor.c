@@ -26,9 +26,6 @@ void	mbx_warp_cursor(t_mbx *mbx, t_vec2i pos)
 
 void	mbx_move_cursor(t_mbx *mbx, t_vec2i pos)
 {
-	t_vec2i	prev;
-
-	prev = mbx->cursor;
 	mbx_warp_cursor(mbx, pos);
 	mbx->cursor_delta = vec2_add(mbx->cursor_delta,
 			vec2_vi(vec2i_sub(pos, mbx->cursor)));
