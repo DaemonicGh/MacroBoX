@@ -15,20 +15,28 @@
 
 NAMES					:=	libvec.so
 
-common_files			:=	\
-	add/add add/add_d															\
-	conv/to_vec conv/to_vec2 conv/to_veci										\
-	div/div div/div_d div/div_vd div/i_div_d div/truediv div/truediv_d			\
-	exec/exec exec/exec2 exec/exec3 exec/exec_xy exec/exec_xyz					\
-	groups/vecx2 groups/vecx2_xy groups/vecx3 groups/vecx4						\
-	linear/cross linear/dist linear/dot linear/length linear/normalize			\
-	linear/rotate																\
+vec_files				:=	\
+	algebra/dist algebra/dot algebra/length algebra/normalize					\
+	conv/conv																	\
+	create/create create/zero													\
+	exec/exec exec/exec2 exec/exec3 exec/exec_v									\
+	groups/vecx2 groups/vecx3 groups/vecx4										\
 	math/abs math/eq math/is_zero math/negative math/round math/square			\
-	mod/mod mod/mod_d mod/mod_i mod/mod_rd										\
-	mult/mult mult/mult_d mult/mult_vd											\
-	new/from_angle new/new new/new_i new/zero									\
-	print/print print/printi													\
-	sub/sub sub/sub_d sub/sub_rd												\
+	ops/add ops/div ops/div_d ops/mod ops/mod_d ops/mod_i ops/mult ops/mult_d	\
+	ops/sub ops/sub_d ops/truediv												\
+
+vec2_files				:=	$(vec_files) \
+	algebra/rotate conv/complex
+
+vec3_files				:=	$(vec_files) \
+	algebra/cross algebra/rotate
+
+vec4_files				:=	$(vec_files)
+
+common_files			:=	\
+	$(addprefix vec2/,$(vec2_files))\
+	$(addprefix vec3/,$(vec3_files))\
+	$(addprefix vec4/,$(vec4_files))												\
 
 LOCAL_LIBRARIES			:=
 OTHER_LIBRARIES			:=	m

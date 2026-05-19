@@ -13,8 +13,8 @@
 #pragma once
 
 #include <stdbool.h>
+#include <complex.h>
 
-#include "types/veclc_s_vec2i.h"
 #include "types/veclc_s_vec2.h"
 
 /**
@@ -204,21 +204,11 @@ t_vec2		vec2i_normalize(t_vec2i p);
 double		vec2i_dist(t_vec2i p1, t_vec2i p2);
 
 /**
- * Rotates a 2D vector by a given angle in radians.
- */
-t_vec2i		vec2i_rotate(t_vec2i p, double radians);
-
-/**
  * Returns the dot product of two 2D vectors.
  */
 double		vec2i_dot(t_vec2i p1, t_vec2i p2);
 
 /**
- * Prints a 2D vector to a file descriptor.
+ * Converts a 2D vector to a complex number.
  */
-int			vec2i_print(int fd, t_vec2i p);
-
-/**
- * Converts a 2D integer vector to a 2D double vector.
- */
-t_vec2		vec2_vi(t_vec2i p);
+complex int	vec2i_complex(t_vec2i p);

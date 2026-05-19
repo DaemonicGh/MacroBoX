@@ -35,8 +35,8 @@ libmbx.so_files				:=	\
 	utils/math/easing utils/math/easing_special									\
 	utils/math/fract utils/math/is_integer utils/math/lerp utils/math/minmax	\
 	utils/math/move_towards utils/math/sign utils/math/trunc utils/math/wrap	\
-	utils/vector/clamp utils/vector/len_clamp utils/vector/len_move_towards		\
-	utils/vector/sign															\
+	utils/vector/clamp utils/vector/color utils/vector/sign						\
+	utils/vector/len_clamp utils/vector/len_move_towards						\
 	_private/time
 
 libmbx.a_files				:=	$(libmbx.so_files)

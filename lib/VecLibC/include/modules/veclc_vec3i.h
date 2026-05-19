@@ -15,8 +15,6 @@
 #include <stdbool.h>
 
 #include "types/veclc_s_vec3.h"
-#include "types/veclc_s_vec3i.h"
-#include "types/veclc_s_vec2i.h"
 
 /**
  * Creates a new 3D vector containing zeros.
@@ -113,7 +111,7 @@ t_vec3		vec3i_truediv_rd(double d, t_vec3i p);
 /**
  * Returns the remainder of the division between two 3D vectors.
  */
-t_vec2i		vec2i_mod(t_vec2i p1, t_vec2i p2);
+t_vec3i		vec3i_mod(t_vec3i p1, t_vec3i p2);
 
 /**
  * Returns the remainder of the division between
@@ -218,23 +216,3 @@ double		vec3i_dot(t_vec3i p1, t_vec3i p2);
  * Returns the cross product of two 3D vectors.
  */
 t_vec3i		vec3i_cross(t_vec3i p1, t_vec3i p2);
-
-/**
- * Prints a 3D vector to a file descriptor.
- */
-int			vec3i_print(int fd, t_vec3i p);
-
-/**
- * Converts a 3D integer vector to a 3D double vector.
- */
-t_vec3		vec3_vi(t_vec3i p);
-
-/**
- * Converts a 3D vector to a 2D vector containing it's x and y components.
- */
-t_vec2i		vec3i_xy(t_vec3i p);
-
-/**
-* Converts a 3D vector to a 2D vector containing it's y and z components.
- */
-t_vec2i		vec3i_yz(t_vec3i p);

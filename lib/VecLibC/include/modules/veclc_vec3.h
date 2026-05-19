@@ -14,7 +14,7 @@
 
 #include <stdbool.h>
 
-#include "types/veclc_s_vecn.h"
+#include "types/veclc_s_vec3.h"
 
 /**
  * Creates a new 3D vector containing zeros.
@@ -30,7 +30,7 @@ t_vec3		vec3_d(double xyz);
  * Creates a new 3D vector based on a pitch and yaw value in radians.
  * the zero angle faces towards positive x
  */
-t_vec3		vec3_from_angle(t_vec2 pitch_yaw_rad);
+t_vec3		vec3_from_angle(double pitch_rad, double yaw_rad);
 
 /**
  * Adds two 3D vectors.
@@ -175,6 +175,16 @@ t_vec3		vec3_normalize(t_vec3 p);
 double		vec3_dist(t_vec3 p1, t_vec3 p2);
 
 /**
+ * Rotates a 3D vector around a given axis by a specified angle in radians.
+ */
+t_vec3		vec3_rotate_axis(t_vec3 p, t_vec3 axis, double radians);
+
+/**
+ * Rotates a 3D vector by a pitch and yaw value in radians.
+ */
+t_vec3		vec3_rotate(t_vec3 p, t_vec3 up, double pitch_rad, double yaw_rad);
+
+/**
  * Returns the dot product of two 3D vectors.
  */
 double		vec3_dot(t_vec3 p1, t_vec3 p2);
@@ -183,23 +193,3 @@ double		vec3_dot(t_vec3 p1, t_vec3 p2);
  * Returns the cross product of two 3D vectors.
  */
 t_vec3		vec3_cross(t_vec3 p1, t_vec3 p2);
-
-/**
- * Prints a 3D vector to a file descriptor.
- */
-int			vec3_print(int fd, t_vec3 p, int precision);
-
-/**
- * Converts a 3D double vector to a 3D integer vector.
- */
-t_vec3i		vec3i_vd(t_vec3 p);
-
-/**
- * Converts a 3D vector to a 2D vector containing it's x and y components.
- */
-t_vec2		vec3_xy(t_vec3 p);
-
-/**
-* Converts a 3D vector to a 2D vector containing it's y and z components.
- */
-t_vec2		vec3_yz(t_vec3 p);

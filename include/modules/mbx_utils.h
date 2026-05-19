@@ -17,6 +17,7 @@
 #include <math.h>
 
 #include "../lib/VecLibC/include/veclc.h"
+#include "types/mbx_s_color.h"
 
 /**
  * Returns the amount of seconds passed since the UNIX epoch.
@@ -215,6 +216,26 @@ t_vec3		vec3_clamp(t_vec3 p, t_vec3 low, t_vec3 high);
  * Returns a 3D vector with its respective components between low and high.
  */
 t_vec3i		vec3i_clamp(t_vec3i p, t_vec3i low, t_vec3i high);
+
+/**
+ * Converts a color to a normalized 4D vector.
+ */
+t_vec4		vec4_from_color(t_mbx_color	col);
+
+/**
+ * Converts a normalized 4D vector to a color.
+ */
+t_mbx_color	vec4_to_color(t_vec4 p);
+
+/**
+ * Converts a color to a 4D vector.
+ */
+t_vec4i		vec4i_from_color(t_mbx_color col);
+
+/**
+ * Converts a 4D vector to a color.
+ */
+t_mbx_color	vec4i_to_color(t_vec4i p);
 
 /**
  * Returns a 2D vector resized to have its length between low and high.
