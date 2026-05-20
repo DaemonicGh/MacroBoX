@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "modules/mbx_utils.h"
+
 int	lerp(int start, int end, double delta)
 {
-	return ((1 - delta) * start + delta * end);
+	return (floor((1 - delta) * start + delta * end));
 }
 
 double	flerp(double start, double end, double delta)

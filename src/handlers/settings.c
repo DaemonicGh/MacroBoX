@@ -10,16 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "modules/mbx_constants.h"
 #include "modules/mbx_handlers.h"
-#include "modules/mbx_utils.h"
+
+int	mbx_get_fps_cap(t_mbx *mbx)
+{
+	if (!mbx->window.mlx)
+		return (mbx->settings.fps_cap);
+	else if (mbx->window.is_minimized)
+		return (mbx->settings.fps_cap_minimized);
+	else if (!mbx->window.is_focused)
+		return (mbx->settings.fps_cap_unfocused);
+	else
+		return (mbx->settings.fps_cap);
+}
+
+void	refresh_mlx_fps_cap(t_mbx *mbx)
+{
+	int	goal;
+
+	if (!mbx->window.mlx)
+		goal = mbx->settings.fps_cap * MBX_MLX_FPS_CAP_RATIO;
+	else if (mbx->window.is_minimized)
+		goal = mbx->settings.fps_cap_minimized;
+	else if (!mbx->window.is_focused)
+		goal = mbx->settings.fps_cap_unfocused;
+	else
+		goal = mbx->settings.fps_cap * MBX_MLX_FPS_CAP_RATIO;
+	if (goal <= 0)
+		goal = INT_MAX;
+	mlx_set_fps_goal(mbx->mlx, goal);
+}
 
 void	mbx_refresh_settings(t_mbx *mbx)
 {
-	if (mbx->settings.fps_cap <= 0)
-		mlx_set_fps_goal(mbx->mlx, INT_MAX);
-	else
-		mlx_set_fps_goal(mbx->mlx,
-			mbx->settings.fps_cap * MBX_MLX_FPS_CAP_RATIO);
+	refresh_mlx_fps_cap(mbx);
 	if (mbx->settings.show_cursor)
 		mlx_mouse_show(mbx->mlx);
 	else
@@ -32,6 +57,8 @@ void	mbx_reset_settings(t_mbx *mbx)
 		= (t_mbx_viewport_render)MBX_DEFAULT_VIEWPORT_RENDER;
 	mbx->settings.background_color = color(MBX_DEFAULT_BACKGROUND_COLOR);
 	mbx->settings.fps_cap = MBX_DEFAULT_FPS_CAP;
+	mbx->settings.fps_cap_minimized = MBX_DEFAULT_FPS_CAP_MINIMIZED;
+	mbx->settings.fps_cap_unfocused = MBX_DEFAULT_FPS_CAP_UNFOCUSED;
 	mbx->settings.default_pipeline.get = &mbx_default_pipeline_get;
 	mbx->settings.default_pipeline.blend = &mbx_default_pipeline_blend;
 	mbx->settings.default_pipeline.set = &mbx_default_pipeline_set;

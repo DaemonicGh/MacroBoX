@@ -28,6 +28,7 @@ void	refresh_deltatime(t_mbx *mbx);
 
 void	enter_loop(t_mbx *mbx);
 void	exit_loop(t_mbx *mbx);
+void	refresh_mlx_fps_cap(t_mbx *mbx);
 void	refresh_cursor(t_mbx *mbx);
 void	reset_inputs(t_mbx *mbx);
 void	mbx_start_events(t_mbx *mbx);

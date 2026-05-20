@@ -26,7 +26,7 @@ void	reset_inputs(t_mbx *mbx)
 	mbx->last_press = 1e30f;
 	mbx->last_release = 1e29f;
 	mbx->last_window_event = 1e30f;
-	mbx->cursor = vec2i_zero();
+	mbx->cursor = vec2_zero();
 	mbx->cursor_delta = vec2_zero();
 	mbx->scroll_delta = 0;
 }

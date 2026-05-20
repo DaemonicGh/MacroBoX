@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/mbx_s_mbx.h"
+#include "../_private/mbx_internal.h"
 
 void	mbx_refresh_window(t_mbx *mbx, t_mbx_window *window)
 {
@@ -23,7 +23,7 @@ void	mbx_refresh_window(t_mbx *mbx, t_mbx_window *window)
 		mbx->mlx, window->mlx, &window->size.x, &window->size.y);
 	mlx_get_screen_size(
 		mbx->mlx, window->mlx, &window->screen_size.x, &window->screen_size.y);
-	mbx->cursor = vec2i_mult_vd(mbx->cursor,
+	mbx->cursor = vec2_mult(mbx->cursor,
 			vec2i_truediv(old_size, window->size));
 }
 
@@ -45,4 +45,5 @@ void	mbx_update_window(t_mbx *mbx, t_mbx_window *window)
 		mlx_maximise_window(mbx->mlx, window->mlx);
 	else
 		mlx_restore_window(mbx->mlx, window->mlx);
+	refresh_mlx_fps_cap(mbx);
 }

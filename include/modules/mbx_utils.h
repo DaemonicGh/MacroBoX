@@ -25,6 +25,25 @@
 double		mbx_get_timestamp(void);
 
 /**
+ * Seeds the random number generator with the given seed.
+ *
+ * Only the lower 48 bits of the seed are used.
+ * This is a wrapper of stdlib's random generator function
+ * and will affect generators globally.
+ */
+void		seedrand(unsigned long seed);
+
+/**
+ * Returns a random integer between min and max (inclusive).
+ */
+int			randi(int min, int max);
+
+/**
+ * Returns a random double between min and max (exclusive).
+ */
+double		randf(double min, double max);
+
+/**
  * Returns the minimum of two integers.
  */
 int			min(int x, int y);
@@ -216,26 +235,6 @@ t_vec3		vec3_clamp(t_vec3 p, t_vec3 low, t_vec3 high);
  * Returns a 3D vector with its respective components between low and high.
  */
 t_vec3i		vec3i_clamp(t_vec3i p, t_vec3i low, t_vec3i high);
-
-/**
- * Converts a color to a normalized 4D vector.
- */
-t_vec4		vec4_from_color(t_mbx_color	col);
-
-/**
- * Converts a normalized 4D vector to a color.
- */
-t_mbx_color	vec4_to_color(t_vec4 p);
-
-/**
- * Converts a color to a 4D vector.
- */
-t_vec4i		vec4i_from_color(t_mbx_color col);
-
-/**
- * Converts a 4D vector to a color.
- */
-t_mbx_color	vec4i_to_color(t_vec4i p);
 
 /**
  * Returns a 2D vector resized to have its length between low and high.

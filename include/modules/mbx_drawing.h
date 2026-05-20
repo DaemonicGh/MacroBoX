@@ -439,7 +439,7 @@ mbx_get_pixel_index_xy(
 	t_mbx_region *restrict region, int x, int y);
 
 /**
- * Blends two color together, respecting transparency.
+ * Blends two colors together, respecting transparency.
  *
  * @bg the background color.
  * @fg the foreground color.
@@ -449,7 +449,7 @@ color_blend(
 	t_mbx_color bg, t_mbx_color fg);
 
 /**
- * Blends two color together, respecting transparency.
+ * Blends two colors together, respecting transparency.
  *
  * @bg the background color.
  * @fg the foreground color.
@@ -462,7 +462,7 @@ color_blend_quick(
 	t_mbx_color bg, t_mbx_color fg);
 
 /**
- * Adds two color together, respecting transparency.
+ * Adds two colors together, respecting transparency.
  *
  * @bg the background color.
  * @fg the foreground color.
@@ -472,7 +472,7 @@ color_add(
 	t_mbx_color bg, t_mbx_color fg);
 
 /**
- * Subtracts two color together, respecting transparency.
+ * Subtracts two colors together, respecting transparency.
  *
  * @bg the background color.
  * @fg the foreground color.
@@ -482,7 +482,7 @@ color_sub(
 	t_mbx_color bg, t_mbx_color fg);
 
 /**
- * Mutiplies two color together.
+ * Mutiplies two colors together.
  *
  * @bg the background color.
  * @fg the foreground color.
@@ -492,7 +492,7 @@ color_mult(
 	t_mbx_color col1, t_mbx_color col2);
 
 /**
- * Average two color together.
+ * Average two colors together.
  *
  * @col1 the first color.
  * @col2 the second color.
@@ -500,6 +500,52 @@ color_mult(
 t_mbx_color
 color_average(
 	t_mbx_color col1, t_mbx_color col2);
+
+/**
+ * Average two colors together, with an optional weight.
+ *
+ * @col1 the first color.
+ * @col2 the second color.
+ * @weight_ratio the weight ratio of the second color.
+ *
+ * If weight_ratio is above 1, the result will favor col1, otherwise col2.
+ */
+t_mbx_color
+color_average_weighted(
+	t_mbx_color col1, t_mbx_color col2, double weight_ratio);
+
+/**
+ * Converts a color to a normalized 4D vector.
+ */
+t_vec4
+vec4_from_color(t_mbx_color	col);
+
+/**
+ * Converts a normalized 4D vector to a color.
+ */
+t_mbx_color
+vec4_to_color(t_vec4 p);
+
+/**
+ * Blends two vectorized colors together, respecting transparency.
+ *
+ * @bg the background color.
+ * @fg the foreground color.
+ *
+ * This version doesn't optimize if fg is fully opaque or transparent,
+ * use it when you know that fg isn't either.
+ */
+t_vec4
+vec4_blend_quick(t_vec4 bg, t_vec4 fg);
+
+/**
+ * Blends two vectorized colors together, respecting transparency.
+ *
+ * @bg the background color.
+ * @fg the foreground color.
+ */
+t_vec4
+vec4_blend(t_vec4 bg, t_vec4 fg);
 
 /**
  * Forces the rendering of the given region on the window.

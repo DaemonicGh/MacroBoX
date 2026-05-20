@@ -1,50 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   blend.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/09 00:46:09 by rprieur           #+#    #+#             */
+/*   Created: 2026/03/19 13:24:40 by rprieur           #+#    #+#             */
 /*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "modules/types/mbx_s_color.h"
 #include "modules/mbx_utils.h"
-#include "modules/mbx_handlers.h"
 
-bool	should_skip_frame(t_mbx *mbx)
+t_vec4	vec4_blend_quick(t_vec4 bg, t_vec4 fg)
 {
-	double	time;
+	const double	bga = bg.a * (1.0 - fg.a);
+	const double	blend = fg.a + bga;
 
-	time = mbx_get_timestamp();
-	if (time == -1)
-		return (false);
-	if (time < mbx->now
-		+ MBX_FRAME_SKIP_MARGIN_RATIO / mbx_get_fps_cap(mbx))
-	{
-		return (true);
-	}
-	return (false);
+	return ((t_vec4){
+		.r = (fg.r * fg.a + bg.r * bga) / blend,
+		.g = (fg.g * fg.a + bg.g * bga) / blend,
+		.b = (fg.b * fg.a + bg.b * bga) / blend,
+		.a = blend
+	});
 }
 
-void	update_time_values(t_mbx *mbx)
+t_vec4	vec4_blend(t_vec4 bg, t_vec4 fg)
 {
-	double	time;
-
-	time = mbx_get_timestamp();
-	if (time != -1)
-		mbx->seconds_per_frame = time - mbx->now;
-	mbx->frames_elapsed++;
-}
-
-void	refresh_deltatime(t_mbx *mbx)
-{
-	double	time;
-
-	time = mbx_get_timestamp();
-	if (time == -1)
-		return ;
-	mbx->delta_time = time - mbx->now;
-	mbx->now = time;
+	if (fg.a == 0)
+		return (bg);
+	if (fg.a == 1 || bg.a == 0)
+		return (fg);
+	return (vec4_blend_quick(bg, fg));
 }

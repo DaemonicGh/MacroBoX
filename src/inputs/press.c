@@ -11,19 +11,11 @@
 /* ************************************************************************** */
 
 #include "modules/mbx_handlers.h"
-#include "modules/mbx_scancodes.h"
+#include "../_private/mbx_internal.h"
 
 static void	window_events_handler(t_mbx *mbx, int event)
 {
-	if (event == MBX_WINDOW_MOVE)
-	{
-		mbx_refresh_window(mbx, &mbx->window);
-		if (mbx->window.pos.x != 0 && mbx->window.pos.y != 60)
-			mbx->window.is_maximized = false;
-	}
-	else if (event == MBX_WINDOW_RESIZE)
-		mbx_refresh_window(mbx, &mbx->window);
-	else if (event == MBX_WINDOW_MAXIMIZE)
+	if (event == MBX_WINDOW_MAXIMIZE)
 		mbx->window.is_maximized = true;
 	else if (event == MBX_WINDOW_MINIMIZE)
 		mbx->window.is_minimized = true;
@@ -34,6 +26,11 @@ static void	window_events_handler(t_mbx *mbx, int event)
 	}
 	else if (event == MBX_WINDOW_UNFOCUS)
 		mbx->window.is_focused = false;
+	mbx_refresh_window(mbx, &mbx->window);
+	if (event == MBX_WINDOW_MOVE
+		&& mbx->window.pos.x != 0 && mbx->window.pos.y != 60)
+		mbx->window.is_maximized = false;
+	refresh_mlx_fps_cap(mbx);
 }
 
 static void	special_key_handler(t_mbx *mbx, int key)

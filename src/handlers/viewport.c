@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "veclc.h"
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_handlers.h"
 #include "modules/mbx_utils.h"
@@ -23,7 +22,7 @@ bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
 	new = mbx_make_region_with_image(mbx, size);
 	if (!new)
 		return (false);
-	mbx->cursor = vec2i_mult_vd(mbx->cursor,
+	mbx->cursor = vec2_mult(mbx->cursor,
 			vec2i_truediv(size, mbx->viewport->size));
 	mbx_destroy_region(mbx, mbx->viewport);
 	mbx->viewport = new;
@@ -38,7 +37,7 @@ bool	mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size)
 	new = mbx_make_region_with_image(mbx, size);
 	if (!new)
 		return (false);
-	mbx->cursor = vec2i_mult_vd(mbx->cursor,
+	mbx->cursor = vec2_mult(mbx->cursor,
 			vec2i_truediv(size, mbx->viewport->size));
 	mbx_set_region_scaled(new, mbx->viewport, vec2i(0, 0),
 		vec2i_truediv(size, mbx->viewport->size));

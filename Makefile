@@ -19,6 +19,7 @@ libmbx.so_files				:=	\
 	app/exit app/init															\
 	app/loop/in_out app/loop/loop app/loop/start_end							\
 	color/blend color/math color/new											\
+	color/vec4/create color/vec4/blend											\
 	drawing/clear drawing/rect drawing/region drawing/subregion_scaled			\
 	drawing/line drawing/render drawing/text 									\
 	drawing/pixel/get drawing/pixel/get_raw drawing/pixel/get_unsafe			\
@@ -30,12 +31,12 @@ libmbx.so_files				:=	\
 	handlers/window handlers/window_extras										\
 	inputs/btn inputs/check inputs/cursor inputs/events inputs/press			\
 	inputs/events/keyboard inputs/events/mouse inputs/events/window				\
-	utils/time																	\
+	utils/random utils/time														\
 	utils/math/clamp utils/math/dist_to_range									\
 	utils/math/easing utils/math/easing_special									\
 	utils/math/fract utils/math/is_integer utils/math/lerp utils/math/minmax	\
 	utils/math/move_towards utils/math/sign utils/math/trunc utils/math/wrap	\
-	utils/vector/clamp utils/vector/color utils/vector/sign						\
+	utils/vector/clamp utils/vector/sign										\
 	utils/vector/len_clamp utils/vector/len_move_towards						\
 	_private/time
 

@@ -10,25 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "veclc.h"
 #include "modules/types/mbx_s_mbx.h"
 #include "modules/mbx_utils.h"
 
 void	mbx_warp_cursor(t_mbx *mbx, t_vec2i pos)
 {
+	t_vec2i	new_pos;
+
 	mlx_mouse_move(mbx->mlx, mbx->window.mlx,
 		round((double)pos.x * mbx->window.size.x / mbx->viewport->size.x),
 		round((double)pos.y * mbx->window.size.y / mbx->viewport->size.y));
-	mlx_mouse_get_pos(mbx->mlx, &mbx->cursor.x, &mbx->cursor.y);
-	mbx->cursor = vec2i_div(vec2i_mult(
-				mbx->cursor, mbx->viewport->size), mbx->window.size);
+	mlx_mouse_get_pos(mbx->mlx, &new_pos.x, &new_pos.y);
+	mbx->cursor = vec2_mult(vec2_vi(new_pos),
+			vec2i_truediv(mbx->viewport->size, mbx->window.size));
 }
 
 void	mbx_move_cursor(t_mbx *mbx, t_vec2i pos)
 {
 	mbx_warp_cursor(mbx, pos);
 	mbx->cursor_delta = vec2_add(mbx->cursor_delta,
-			vec2_vi(vec2i_sub(pos, mbx->cursor)));
+			vec2_sub(vec2_vi(pos), mbx->cursor));
 }
 
 void	mbx_center_cursor(t_mbx *mbx)
@@ -47,15 +48,14 @@ void	mbx_center_cursor(t_mbx *mbx)
 
 void	refresh_cursor(t_mbx *mbx)
 {
-	const t_vec2i	prev_pos = mbx->cursor;
-	t_vec2			pos;
+	const t_vec2	prev_pos = mbx->cursor;
+	t_vec2i			new_pos;
 
-	mlx_mouse_get_pos(mbx->mlx, &mbx->cursor.x, &mbx->cursor.y);
-	pos = vec2_mult(vec2_vi(mbx->cursor),
+	mlx_mouse_get_pos(mbx->mlx, &new_pos.x, &new_pos.y);
+	mbx->cursor = vec2_mult(vec2_vi(new_pos),
 			vec2i_truediv(mbx->viewport->size, mbx->window.size));
-	mbx->cursor = vec2i_vd(pos);
-	mbx->cursor_delta.x = pos.x - prev_pos.x;
-	mbx->cursor_delta.y = pos.y - prev_pos.y;
+	mbx->cursor_delta.x = mbx->cursor.x - prev_pos.x;
+	mbx->cursor_delta.y = mbx->cursor.y - prev_pos.y;
 	if (mbx->settings.lock_cursor && mbx->window.is_focused)
 		mbx_center_cursor(mbx);
 }

@@ -285,6 +285,18 @@ mbx_refresh_window(
 	t_mbx *mbx, t_mbx_window *window);
 
 /**
+ * Returns the fps cap currently applied to the main window.
+ *
+ * @mbx			the MacroBoX context.
+ *
+ * By default, the fps cap will lower if
+ * the main window is minimized or unfocused,
+ * those values can be changed in the settings.
+ */
+int
+mbx_get_fps_cap(t_mbx *mbx);
+
+/**
  * Resizes the viewport.
  *
  * @mbx		The MacroBoX context.

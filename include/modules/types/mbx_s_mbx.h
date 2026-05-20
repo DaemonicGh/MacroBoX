@@ -79,6 +79,8 @@ typedef struct s_mbx_context
 		t_mbx_viewport_render	viewport_render;
 		t_mbx_color				background_color;
 		int						fps_cap;
+		int						fps_cap_minimized;
+		int						fps_cap_unfocused;
 		t_mbx_region_pipeline	default_pipeline;
 		int						exit_key;
 		int						fullscreen_toggle_key;
@@ -89,7 +91,7 @@ typedef struct s_mbx_context
 	float				last_press;
 	float				last_release;
 	float				last_window_event;
-	t_vec2i				cursor;
+	t_vec2				cursor;
 	t_vec2				cursor_delta;
 	int					scroll_delta;
 	struct s_mbx_key_timestamp
