@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mbx_s_mbx.h                                        :+:      :+:    :+:   */
+/*   mbx_core.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:35:40 by rprieur           #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:43 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 #include <stdint.h>
 
-#include "modules/mbx_constants.h"
-#include "mbx_s_window.h"
-#include "mbx_s_region.h"
-#include "mbx_s_image.h"
-#include "modules/types/mbx_s_color.h"
+#include "mbx_structs.h"
 
 /**
  * The context structure for the MacroBoX application.
@@ -82,12 +78,14 @@ typedef struct s_mbx_context
 		int						fps_cap_minimized;
 		int						fps_cap_unfocused;
 		t_mbx_region_pipeline	default_pipeline;
+		t_mbx_alloc_flags		default_alloc_flags;
 		int						exit_key;
 		int						fullscreen_toggle_key;
 		bool					do_window_cross_exit;
 		bool					lock_cursor;
 		bool					show_cursor;
 	}					settings;
+	t_mbx_allocator		allocator;
 	float				last_press;
 	float				last_release;
 	float				last_window_event;
@@ -98,5 +96,5 @@ typedef struct s_mbx_context
 	{
 		float			press;
 		float			release;
-	}					keys[MBX_SCANCODES_LENGTH];
+	}					keys[MBX_SCANCODES_END - MBX_SCANCODES_START + 1];
 }	t_mbx;

@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 15:58:38 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:43 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <math.h>
 
 #include "../lib/VecLibC/include/veclc.h"
-#include "types/mbx_s_color.h"
+#include "mbx_structs.h"
 
 /**
  * Returns the amount of seconds passed since the UNIX epoch.

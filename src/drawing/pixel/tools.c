@@ -6,11 +6,11 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 03:28:19 by rprieur           #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/mbx_s_region.h"
+#include "modules/mbx_structs.h"
 
 bool	mbx_is_pixel_in_bounds_i(t_mbx_region *restrict region, int i)
 {

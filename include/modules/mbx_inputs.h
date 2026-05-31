@@ -6,13 +6,13 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:34:58 by rprieur           #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:43 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "types/mbx_s_mbx.h"
+#include "mbx_core.h"
 
 /**
  * Returns true if a key has just been pressed.

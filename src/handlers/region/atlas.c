@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create.c                                           :+:      :+:    :+:   */
+/*   atlas.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 00:43:48 by rprieur           #+#    #+#             */
-/*   Updated: 2026/05/19 00:43:48 by rprieur          ###   ########.fr       */
+/*   Created: 2026/04/15 12:37:59 by rprieur           #+#    #+#             */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/types/mbx_s_color.h"
-#include "modules/mbx_utils.h"
+#include "modules/mbx_structs.h"
 
-t_vec4	vec4_from_color(t_mbx_color	col)
+bool
+	mbx_is_atlas(t_mbx_region *region)
 {
-	return ((t_vec4){
-		.r = col.r / 255.0,
-		.g = col.g / 255.0,
-		.b = col.b / 255.0,
-		.a = col.a / 255.0
-	});
-}
-
-t_mbx_color	vec4_to_color(t_vec4 p)
-{
-	return ((t_mbx_color){
-		.r = p.r * 255.0,
-		.g = p.g * 255.0,
-		.b = p.b * 255.0,
-		.a = p.a * 255.0
-	});
+	return (region->subregion_size.x != 0 && region->subregion_size.y != 0);
 }

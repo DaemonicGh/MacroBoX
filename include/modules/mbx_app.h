@@ -6,13 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:03:51 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:43 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "types/mbx_s_mbx.h"
+#include "mbx_core.h"
 
 /**
  * Initialize the MacroLibX, creates and returns the MacroBoX context
@@ -59,7 +59,7 @@ t_mbx
  * This function is meant to be used along mbx_init_windowless
  */
 bool
-mbx_make_main_window(
+mbx_create_main_window(
 	t_mbx *mbx, t_vec2i viewport_size, char *win_title, unsigned int win_flags);
 
 /**

@@ -6,12 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:28:29 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "modules/mbx_constants.h"
 #include "modules/mbx_handlers.h"
+#include "modules/mbx_drawing.h"
 
 int	mbx_get_fps_cap(t_mbx *mbx)
 {
@@ -63,6 +64,8 @@ void	mbx_reset_settings(t_mbx *mbx)
 	mbx->settings.default_pipeline.blend = &mbx_default_pipeline_blend;
 	mbx->settings.default_pipeline.set = &mbx_default_pipeline_set;
 	mbx->settings.default_pipeline.data = mbx;
+	mbx->settings.default_alloc_flags
+		= (t_mbx_alloc_flags)MBX_DEFAULT_ALLOC_FLAGS;
 	mbx->settings.exit_key = MBX_DEFAULT_EXIT_KEY;
 	mbx->settings.fullscreen_toggle_key = MBX_DEFAULT_FULLSCREEN_TOGGLE_KEY;
 	mbx->settings.do_window_cross_exit = MBX_DEFAULT_DO_WINDOW_CROSS_EXIT;

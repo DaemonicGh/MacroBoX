@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:25:27 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:43 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,14 @@
 enum	e_mbx_scancode_section
 {
 	MBX_SCANCODES_START				= 0,
-	MBX_SCANCODES_END				= 559,
-	MBX_SCANCODES_LENGTH			= 560,
+	MBX_SCANCODES_END				= 255,
 	MBX_SCANCODES_KEYBOARD_START	= 0,
-	MBX_SCANCODES_KEYBOARD_END		= 511,
-	MBX_SCANCODES_MOUSE_START		= 512,
-	MBX_SCANCODES_MOUSE_END			= 527,
-	MBX_SCANCODES_WINDOW_START		= 528,
-	MBX_SCANCODES_WINDOW_END		= 559
+	MBX_SCANCODES_MOUSE_START		= 236,
+	MBX_SCANCODES_WINDOW_START		= 244,
 };
 
 // Simplified version of SLD2's scancodes
 // [https://wiki.libsdl.org/SDL2/SDL_Scancode]
-// Mouse and Window events are put after Keyboard ones
 
 enum	e_mbx_scancode
 {
@@ -137,18 +132,18 @@ enum	e_mbx_scancode
 	MBX_KEY_RSHIFT			= 229,
 	MBX_KEY_RALT			= 230,
 	MBX_KEY_RGUI			= 231,
-	MBX_MOUSE_LEFT			= 513,
-	MBX_MOUSE_MIDDLE		= 514,
-	MBX_MOUSE_RIGHT			= 515,
-	MBX_MOUSE_4				= 516,
-	MBX_MOUSE_5				= 517,
-	MBX_WINDOW_CLOSE		= 528,
-	MBX_WINDOW_MOVE			= 529,
-	MBX_WINDOW_MINIMIZE		= 530,
-	MBX_WINDOW_MAXIMIZE		= 531,
-	MBX_WINDOW_ENTER		= 532,
-	MBX_WINDOW_FOCUS		= 533,
-	MBX_WINDOW_LEAVE		= 534,
-	MBX_WINDOW_UNFOCUS		= 535,
-	MBX_WINDOW_RESIZE		= 536
+	MBX_MOUSE_LEFT			= 237,
+	MBX_MOUSE_MIDDLE		= 238,
+	MBX_MOUSE_RIGHT			= 239,
+	MBX_MOUSE_4				= 240,
+	MBX_MOUSE_5				= 241,
+	MBX_WINDOW_CLOSE		= 244,
+	MBX_WINDOW_MOVE			= 245,
+	MBX_WINDOW_MINIMIZE		= 246,
+	MBX_WINDOW_MAXIMIZE		= 247,
+	MBX_WINDOW_ENTER		= 248,
+	MBX_WINDOW_FOCUS		= 249,
+	MBX_WINDOW_LEAVE		= 250,
+	MBX_WINDOW_UNFOCUS		= 251,
+	MBX_WINDOW_RESIZE		= 252
 };

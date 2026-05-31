@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:43 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	reset_inputs(t_mbx *mbx)
 {
 	int		i;
 
-	i = 0;
-	while (i < MBX_SCANCODES_LENGTH)
+	i = MBX_SCANCODES_START;
+	while (i <= MBX_SCANCODES_END)
 	{
 		mbx->keys[i].press = 1e30f;
 		mbx->keys[i].release = 1e29f;
@@ -35,8 +35,8 @@ void	mbx_flush_inputs(t_mbx *mbx)
 {
 	int	i;
 
-	i = 0;
-	while (i < MBX_SCANCODES_LENGTH)
+	i = MBX_SCANCODES_START;
+	while (i <= MBX_SCANCODES_END)
 	{
 		mbx->keys[i].press += mbx->delta_time;
 		mbx->keys[i].release += mbx->delta_time;

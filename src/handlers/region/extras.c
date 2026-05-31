@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   region_extras.c                                    :+:      :+:    :+:   */
+/*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 20:55:02 by rprieur           #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_handlers.h"
-#include "modules/types/mbx_s_region.h"
 
 bool	mbx_resize_region(t_mbx *mbx, t_mbx_region **region, t_vec2i size)
 {
 	t_mbx_region	*new;
 
 	if ((*region)->image)
-		new = mbx_make_region_with_image(mbx, size);
+		new = mbx_create_region_with_image(mbx, size);
 	else
-		new = mbx_make_region(mbx, size);
+		new = mbx_create_region(mbx, size);
 	if (!new)
 		return (false);
 	new->pipeline = (*region)->pipeline;
@@ -37,9 +38,9 @@ bool	mbx_resize_region_with_content(
 	t_mbx_region	region_data;
 
 	if ((*region)->image)
-		new = mbx_make_region_with_image(mbx, size);
+		new = mbx_create_region_with_image(mbx, size);
 	else
-		new = mbx_make_region(mbx, size);
+		new = mbx_create_region(mbx, size);
 	if (!new)
 		return (false);
 	region_data = **region;
@@ -51,4 +52,26 @@ bool	mbx_resize_region_with_content(
 	new->size = size;
 	*region = new;
 	return (true);
+}
+
+bool	mbx_create_region_image(t_mbx *mbx, t_mbx_region *region)
+{
+	t_mbx_image	image;
+
+	image = mbx_create_image(mbx, region->size);
+	if (!image.mlx)
+		return (false);
+	region->image = image.mlx;
+	return (true);
+}
+
+void	mbx_destroy_region(t_mbx *mbx, t_mbx_region *region)
+{
+	if (!region)
+		return ;
+	if (region->image)
+		if (!mbx_free(mbx, region->image))
+			mlx_destroy_image(mbx->mlx, region->image);
+	if (!mbx_free(mbx, region))
+		free(region);
 }

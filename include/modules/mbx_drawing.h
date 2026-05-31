@@ -6,14 +6,14 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:32:17 by rprieur           #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:43 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "../../lib/VecLibC/include/veclc.h"
-#include "types/mbx_s_mbx.h"
+#include "mbx_core.h"
 
 /**
  * Clears the given region with the given color.
@@ -439,6 +439,40 @@ mbx_get_pixel_index_xy(
 	t_mbx_region *restrict region, int x, int y);
 
 /**
+ * Creates an opaque color from a hexadecimal value.
+ *
+ * @hex the hexadecimal value of the color.
+ *
+ * the hexadecimal value is expected to be in the format 0xRRGGBB.
+ */
+t_mbx_color
+color(
+	unsigned int hex);
+
+/**
+ * Creates a color from a hexadecimal value.
+ *
+ * @hex The hexadecimal value of the color.
+ *
+ * the hexadecimal value is expected to be in the format 0xRRGGBBAA.
+ */
+t_mbx_color
+color_rgba(
+	unsigned int hex);
+
+/**
+ * Creates a color from its four channels.
+ *
+ * @r	The red channel of the color.
+ * @g	The green channel of the color.
+ * @b	The blue channel of the color.
+ * @a	The alpha channel of the color.
+ */
+t_mbx_color
+color_r_g_b_a(
+	uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+
+/**
  * Blends two colors together, respecting transparency.
  *
  * @bg the background color.
@@ -552,9 +586,11 @@ vec4_blend(t_vec4 bg, t_vec4 fg);
  *
  * @mbx	the MacroBoX context.
  *
+ * If the given region doesn't have an assigned image, one will be created. This
+ * process can fail, then the function will return false.
  * Make sure to not destroy your region during the frame.
  */
-void
+bool
 mbx_render_region(
 	t_mbx *mbx, t_mbx_region *region, t_vec2i pos, t_vec2 scale);
 
@@ -563,8 +599,10 @@ mbx_render_region(
  *
  * @mbx	the MacroBoX context.
  *
+ * If the given region doesn't have an assigned image, one will be created. This
+ * process can fail, then the function will return false.
  * Make sure to not destroy your region during the frame.
  */
-void
+bool
 mbx_render_region_as_viewport(
 	t_mbx *mbx, t_mbx_region *region, t_mbx_viewport_render render_mode);

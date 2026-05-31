@@ -6,13 +6,13 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 20:50:15 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:53 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "modules/types/mbx_s_mbx.h"
+#include "modules/mbx_core.h"
 
 typedef struct s__mbxloopcontext
 {
@@ -25,15 +25,24 @@ double	get_sec_since_epoch(void);
 bool	should_skip_frame(t_mbx *mbx);
 void	update_time_values(t_mbx *mbx);
 void	refresh_deltatime(t_mbx *mbx);
+void	write_u32(int fd, uint32_t nbr);
 
-void	enter_loop(t_mbx *mbx);
-void	exit_loop(t_mbx *mbx);
+void	mbx_report(t_mbx *mbx, const char *str);
+void	mbx_report_nbr(t_mbx *mbx,
+			const char *pref, uint32_t nbr, const char *suf);
+void	mbx_report_mem(t_mbx *mbx, const char *pref, uint32_t nbr);
+
+void	init_values(t_mbx *mbx);
 void	refresh_mlx_fps_cap(t_mbx *mbx);
 void	refresh_cursor(t_mbx *mbx);
 void	reset_inputs(t_mbx *mbx);
 void	mbx_start_events(t_mbx *mbx);
 void	mbx_start_frame(t_mbx *mbx);
 void	mbx_end_frame(t_mbx *mbx);
+
+bool	create_allocator(t_mbx *mbx);
+void	free_alloc(t_mbx *mbx, t_mbx_alloc ptr);
+void	destroy_allocator(t_mbx *mbx);
 
 void	key_down_hook(int key, void *param);
 void	key_up_hook(int key, void *param);

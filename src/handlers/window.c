@@ -6,14 +6,28 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:33:36 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "modules/mbx_handlers.h"
-#include "modules/types/mbx_s_window.h"
+#include "modules/mbx_structs.h"
 
-t_mbx_window	mbx_make_window(t_mbx *mbx,
+static bool	final_window_setup(t_mbx *mbx, t_mbx_window *win)
+{
+	if (!mbx_add_alloc(mbx, win->mlx, MBX_ALLOC_TYPE_MLX_WINDOW
+			| MBX_ALLOC_GROUP_MBX | MBX_ALLOC_GROUP_MLX))
+	{
+		mlx_destroy_window(mbx->mlx, win->mlx);
+		return (false);
+	}
+	mbx_refresh_window(mbx, win);
+	win->limits = vec2ix2(vec2i_zero(), win->screen_size);
+	mbx_update_window(mbx, win);
+	return (true);
+}
+
+t_mbx_window	mbx_create_window(t_mbx *mbx,
 		t_vec2i size, char *title, t_mbx_window_flags flags)
 {
 	t_mbx_window	win;
@@ -29,27 +43,22 @@ t_mbx_window	mbx_make_window(t_mbx *mbx,
 	win.mlx = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
 			NULL, win.title, size.x, size.y,
 			win.is_fullscreen, win.is_resizable});
-	mbx_refresh_window(mbx, &win);
-	win.limits = vec2ix2(vec2i_zero(), win.screen_size);
-	mlx_set_window_min_size(
-		mbx->mlx, win.mlx, win.limits.p1.x, win.limits.p1.y);
-	mlx_set_window_max_size(
-		mbx->mlx, win.mlx, win.limits.p2.x, win.limits.p2.y);
-	if (win.is_minimized)
-		mlx_minimize_window(mbx->mlx, win.mlx);
+	if (!final_window_setup(mbx, &win))
+		return ((t_mbx_window){0});
 	return (win);
 }
 
-t_mbx_window	mbx_make_window_with_target(t_mbx *mbx,
+t_mbx_window	mbx_create_window_with_target(t_mbx *mbx,
 		t_vec2i size, char *title, t_mbx_window_flags flags)
 {
+	t_mbx_image		image;
 	t_mbx_window	win;
 
-	win.mlx_image = mlx_new_image(mbx->mlx, size.x, size.y);
-	if (!win.mlx_image)
+	image = mbx_create_image(mbx, size);
+	if (!image.mlx)
 		return ((t_mbx_window){0});
 	win = (t_mbx_window){
-		.mlx_image = win.mlx_image,
+		.mlx_image = image.mlx,
 		.size = size, .title = title,
 		.is_fullscreen = flags & MBX_WINDOW_FLAG_FULLSCREEN,
 		.is_resizable = false,
@@ -59,18 +68,12 @@ t_mbx_window	mbx_make_window_with_target(t_mbx *mbx,
 	win.mlx = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
 			win.mlx_image, win.title, win.size.x, win.size.y,
 			win.is_fullscreen, win.is_resizable});
-	mbx_refresh_window(mbx, &win);
-	win.limits = vec2ix2(vec2i_zero(), win.screen_size);
-	mlx_set_window_min_size(
-		mbx->mlx, win.mlx, win.limits.p1.x, win.limits.p1.y);
-	mlx_set_window_max_size(
-		mbx->mlx, win.mlx, win.limits.p2.x, win.limits.p2.y);
-	if (win.is_minimized)
-		mlx_minimize_window(mbx->mlx, win.mlx);
+	if (!final_window_setup(mbx, &win))
+		return ((t_mbx_window){0});
 	return (win);
 }
 
-t_mbx_window	mbx_make_window_target(t_mbx *mbx, t_mbx_image image)
+t_mbx_window	mbx_create_window_target(t_mbx *mbx, t_mbx_image image)
 {
 	t_mbx_window	win;
 
@@ -81,6 +84,12 @@ t_mbx_window	mbx_make_window_target(t_mbx *mbx, t_mbx_image image)
 	win.mlx = mlx_new_window(mbx->mlx, &(mlx_window_create_info){
 			win.mlx_image, win.title, win.size.x, win.size.y,
 			false, false});
+	if (!mbx_add_alloc(mbx, win.mlx, MBX_ALLOC_TYPE_MLX_WINDOW
+			| MBX_ALLOC_GROUP_MBX | MBX_ALLOC_GROUP_MLX))
+	{
+		mlx_destroy_window(mbx->mlx, win.mlx);
+		return ((t_mbx_window){0});
+	}
 	return (win);
 }
 
@@ -88,6 +97,9 @@ void	mbx_destroy_window(t_mbx *mbx, t_mbx_window *window)
 {
 	if (!window)
 		return ;
-	*window = (t_mbx_window){0};
-	mlx_destroy_window(mbx->mlx, window->mlx);
+	if (window->mlx_image)
+		if (!mbx_free(mbx, window->mlx_image))
+			mlx_destroy_image(mbx->mlx, window->mlx_image);
+	if (!mbx_free(mbx, window->mlx))
+		mlx_destroy_window(mbx->mlx, window->mlx);
 }

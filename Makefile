@@ -15,30 +15,39 @@
 
 NAMES						:=	libmbx.so libmbx.a
 
+app_files					:=	\
+	exit init/app init/values init/window										\
+	loop/loop loop/start_end													\
+
+drawing_files				:=	\
+	clear rect region subregion_scaled line render text							\
+	pixel/get pixel/get_raw pixel/get_unsafe									\
+	pixel/set pixel/set_raw pixel/set_unsafe pixel/tools						\
+	color/blend color/math color/new color/vec4/create color/vec4/blend			\
+
+handlers_files				:=	\
+	image screen settings viewport window window_extras							\
+	allocator/alloc allocator/extras allocator/free								\
+	region/atlas region/create region/create_ext region/extras region/pipeline	\
+
+inputs_files				:=	\
+	btn check cursor events press												\
+	events/keyboard events/mouse events/window									\
+
+utils_files					:=	\
+	random time																	\
+	math/clamp math/dist_to_range math/easing math/easing_special math/fract	\
+	math/is_integer math/lerp math/minmax math/move_towards math/sign			\
+	math/trunc math/wrap														\
+	vector/clamp vector/sign vector/len_clamp vector/len_move_towards			\
+
 libmbx.so_files				:=	\
-	app/exit app/init															\
-	app/loop/in_out app/loop/loop app/loop/start_end							\
-	color/blend color/math color/new											\
-	color/vec4/create color/vec4/blend											\
-	drawing/clear drawing/rect drawing/region drawing/subregion_scaled			\
-	drawing/line drawing/render drawing/text 									\
-	drawing/pixel/get drawing/pixel/get_raw drawing/pixel/get_unsafe			\
-	drawing/pixel/set drawing/pixel/set_raw drawing/pixel/set_unsafe			\
-	drawing/pixel/tools 														\
-	handlers/atlas handlers/image handlers/region handlers/region_extras		\
-	handlers/region_pipeline													\
-	handlers/screen handlers/settings handlers/viewport							\
-	handlers/window handlers/window_extras										\
-	inputs/btn inputs/check inputs/cursor inputs/events inputs/press			\
-	inputs/events/keyboard inputs/events/mouse inputs/events/window				\
-	utils/random utils/time														\
-	utils/math/clamp utils/math/dist_to_range									\
-	utils/math/easing utils/math/easing_special									\
-	utils/math/fract utils/math/is_integer utils/math/lerp utils/math/minmax	\
-	utils/math/move_towards utils/math/sign utils/math/trunc utils/math/wrap	\
-	utils/vector/clamp utils/vector/sign										\
-	utils/vector/len_clamp utils/vector/len_move_towards						\
-	_private/time
+	$(addprefix app/,		$(app_files))			\
+	$(addprefix drawing/,	$(drawing_files))		\
+	$(addprefix handlers/,	$(handlers_files))		\
+	$(addprefix inputs/,	$(inputs_files))		\
+	$(addprefix utils/,		$(utils_files))			\
+	_private/time _private/write_utils
 
 libmbx.a_files				:=	$(libmbx.so_files)
 
@@ -83,7 +92,7 @@ SILENT_NAMES				:=	libmbx.a
 COMPILER					=	cc
 COMPILER_FLAGS				=	-Wall -Wextra -Werror
 RELEASE_COMPILER_FLAGS		=	-O3 -flto -march=native -DNDEBUG
-DEBUG_COMPILER_FLAGS		=	-O1 -g
+DEBUG_COMPILER_FLAGS		=	-O1 -g -DMBX_DEBUG=1
 SANITIZE_COMPILER_FLAGS		=	-fsanitize=address -fsanitize=leak -fno-omit-frame-pointer
 
 LINKER_FLAGS				=

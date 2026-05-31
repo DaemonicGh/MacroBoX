@@ -6,71 +6,180 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 19:23:32 by rprieur           #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:43 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "types/mbx_s_mbx.h"
-#include <stdbool.h>
+#include "mbx_core.h"
+
+/**
+ * Allocates a new memory block and adds it to the memory manager.
+ *
+ * @mbx			The MacroBoX context.
+ * @alloc_size	The amount of bytes to allocate.
+ *
+ * This function can fail allocation, then the returned pointer will be NULL.
+ */
+void
+*mbx_alloc(
+	t_mbx *mbx, size_t alloc_size);
+
+/**
+ * Allocates a new memory block and adds it to the memory manager.
+ *
+ * @mbx			The MacroBoX context.
+ * @alloc_size	The amount of bytes to allocate.
+ * @data		Various flags telling how the memory should be handled.
+ *
+ * This function can fail allocation, then the returned pointer will be NULL.
+ */
+void
+*mbx_alloc_flags(
+	t_mbx *mbx, size_t alloc_size, t_mbx_alloc_flags data);
+
+/**
+ * Adds a pointer to the memory manager.
+ *
+ * @mbx		The MacroBoX context.
+ * @ptr		The pointer to add.
+ *
+ * This function can fail, then it will return false.
+ */
+bool
+mbx_add_alloc(
+	t_mbx *mbx, void *ptr, t_mbx_alloc_flags data);
+
+/**
+ * Returns the allocation in the memory manager that matches the given pointer.
+ *
+ * @mbx		The MacroBoX context.
+ * @ptr		The pointer to look for.
+ *
+ * If no instance of the pointer is found, or if the pointer is NULL, this
+ * function will return NULL.
+ */
+t_mbx_alloc
+*mbx_get_alloc(t_mbx *mbx, void *ptr);
+
+/**
+ * Changes the given pointer's flags.
+ *
+ * @mbx		The MacroBoX context.
+ * @ptr		The pointer to modify.
+ * @add		The flags to add to the pointer.
+ * @remove	The flags to remove to the pointer.
+ *
+ * If no instance of the pointer is found, or if the pointer is NULL, this
+ * function will return false.
+ */
+bool
+mbx_change_alloc_flags(
+	t_mbx *mbx, void *ptr, t_mbx_alloc_flags add, t_mbx_alloc_flags remove);
+
+/**
+ * Clears the given pointer from the memory manager and frees it.
+ *
+ * @mbx		The MacroBoX context.
+ * @ptr		The pointer to free and clear.
+ *
+ * If no instance of the pointer is found, or if the pointer is NULL, this
+ * function will return false and the pointer will not be freed.
+ * This function properly disposes of MacroLibX instances.
+ */
+bool
+mbx_free(t_mbx *mbx, void *ptr);
+
+/**
+* Clears all matching pointers from the memory manager and frees them.
+ *
+ * @mbx			The MacroBoX context.
+ * @whitelist	A mask of all the flags to free.
+ * @blacklist	A mask of all the flags to not free.
+ *
+ * To be freed, an allocation must not have any flag in the blacklist
+ * and must have at least one flag in the whitelist.
+ */
+void
+mbx_free_groups(
+	t_mbx *mbx, t_mbx_alloc_flags whitelist, t_mbx_alloc_flags blacklist);
 
 /**
  * Creates and returns a new region with the given size.
  *
- * @size	The size of the region to create.
- *
- * This function can fail allocation, then the returned region will NULL.
- */
-t_mbx_region
-*mbx_make_region(
-	t_mbx *mbx, t_vec2i size);
-
-/**
- * Creates and returns a new region with a linked image.
- *
- * @mbx		The macrobox context.
+ * @mbx		The MacroBoX context.
  * @size	The size of the region to create.
  *
  * This function can fail allocation, then the returned region will be NULL.
  */
 t_mbx_region
-*mbx_make_region_with_image(
-	t_mbx *mbx, t_vec2i size);
+*mbx_create_region(t_mbx *mbx, t_vec2i size);
 
 /**
- * Creates and returns a new region from the given image.
+ * Creates and returns a new region with a linked mlx image.
  *
- * @mbx		The macrobox context.
+ * @mbx		The MacroBoX context.
+ * @size	The size of the region to create.
+ *
+ * This function can fail allocation, then the returned region will be NULL.
+ */
+t_mbx_region
+*mbx_create_region_with_image(t_mbx *mbx, t_vec2i size);
+
+/**
+ * Creates and returns a new region from the given mlx image.
+ *
+ * @mbx		The MacroBoX context.
  * @image	The image to create the region from.
  *
  * This function can fail allocation, then the returned region will be NULL.
  */
 t_mbx_region
-*mbx_make_region_from_image(
-	t_mbx *mbx, t_mbx_image *image);
+*mbx_create_region_from_image(t_mbx *mbx, t_mbx_image *image);
 
 /**
- * Creates and returns a new region from the given image path.
+ * Creates and returns a new region initialized from the given image path.
  *
- * @mbx 		The macrobox context.
+ * @mbx 		The MacroBoX context.
  * @filename	The path to the image.
  *
  * This function can fail allocation, then the returned region will be NULL.
  */
 t_mbx_region
-*mbx_make_region_from_file(
-	t_mbx *mbx, char *filename);
+*mbx_create_region_from_file(t_mbx *mbx, char *filename);
+
+/**
+ * Creates and returns a new region with a linked mlx image, initialized
+ * from the given image path.
+ *
+ * @mbx 		The MacroBoX context.
+ * @filename	The path to the image.
+ *
+ * This function can fail allocation, then the returned region will be NULL.
+ */
+t_mbx_region
+*mbx_create_region_from_file_with_image(t_mbx *mbx, char *filename);
+
+/**
+ * Creates and assign an mlx image to the given region.
+ *
+ * @mbx 		The MacroBoX context.
+ * @region		The region to add the image to.
+ *
+ * This function can fail allocation, then the function will return false.
+ */
+bool
+mbx_create_region_image(t_mbx *mbx, t_mbx_region *region);
 
 /**
  * Destroys and frees the contents of the given region.
  *
- * @mbx 	The macrobox context.
+ * @mbx 	The MacroBoX context.
  * @region	The region to destroy.
  */
 void
-mbx_destroy_region(
-	t_mbx *mbx, t_mbx_region *region);
+mbx_destroy_region(t_mbx *mbx, t_mbx_region *region);
 
 /**
  * Resizes the given region.
@@ -106,6 +215,75 @@ mbx_resize_region_with_content(
  */
 bool
 mbx_is_atlas(t_mbx_region *region);
+
+/**
+ * Returns an allocated area with a new region of the given size at its end.
+ *
+ * @size		The size of the region to create.
+ * @struct_size	The size in bytes of the header (including the region's).
+ *
+ * This function is meant to be used to create custom region wrappers.
+ * This function can fail allocation, then the returned allocation will be NULL.
+ */
+void
+*mbx_create_region_ext(
+	t_mbx *mbx, t_vec2i size, size_t struct_size);
+
+/**
+ * Returns an allocated area with a new region of the given size
+ * and a linked mlx image at its end.
+ *
+ * @size		The size of the region to create.
+ * @struct_size	The size in bytes of the header (including the region's).
+ *
+ * This function is meant to be used to create custom region wrappers.
+ * This function can fail allocation, then the returned allocation will be NULL.
+ */
+void
+*mbx_create_region_ext_with_image(
+	t_mbx *mbx, t_vec2i size, size_t struct_size);
+
+/**
+ * Returns an allocated area with a new region at its end, initialized
+ * from the given mlx image.
+ *
+ * @size		The size of the region to create.
+ * @struct_size	The size in bytes of the header (including the region's).
+ *
+ * This function is meant to be used to create custom region wrappers.
+ * This function can fail allocation, then the returned allocation will be NULL.
+ */
+void
+*mbx_create_region_ext_from_image(
+	t_mbx *mbx, t_mbx_image *image, size_t struct_size);
+
+/**
+ * Returns an allocated area with a new region at its end, initialized
+ * from the given image path.
+ *
+ * @size		The size of the region to create.
+ * @struct_size	The size in bytes of the header (including the region's).
+ *
+ * This function is meant to be used to create custom region wrappers.
+ * This function can fail allocation, then the returned allocation will be NULL.
+ */
+void
+*mbx_create_region_ext_from_file(
+	t_mbx *mbx, char *filename, size_t struct_size);
+
+/**
+* Returns an allocated area with a new region and a linked mlx image
+*  at its end, initialized from the given image path.
+ *
+ * @size		The size of the region to create.
+ * @struct_size	The size in bytes of the header (including the region's).
+ *
+ * This function is meant to be used to create custom region wrappers.
+ * This function can fail allocation, then the returned allocation will be NULL.
+ */
+void
+*mbx_create_region_ext_from_file_with_image(
+	t_mbx *mbx, char *filename, size_t struct_size);
 
 /**
  * Default color getter function for regions.
@@ -175,7 +353,7 @@ mbx_default_pipeline_set(
  * @size	the size of the image.
  */
 t_mbx_image
-mbx_make_image(
+mbx_create_image(
 	t_mbx *mbx, t_vec2i size);
 
 /**
@@ -185,8 +363,7 @@ mbx_make_image(
  * @path	the path to the image file.
  */
 t_mbx_image
-mbx_make_image_from_file(
-	t_mbx *mbx, char *path);
+mbx_create_image_from_file(t_mbx *mbx, char *path);
 
 /**
  * Creates an returns a MacroBoX image from its MacroLibX equivalent.
@@ -196,8 +373,7 @@ mbx_make_image_from_file(
  * @size	the size of the image.
  */
 t_mbx_image
-mbx_make_image_from_mlx(
-	mlx_image image, t_vec2i size);
+mbx_create_image_from_mlx(t_mbx *mbx, mlx_image image, t_vec2i size);
 
 /**
  * Destroys and frees the content of a MacroBoX image.
@@ -206,8 +382,7 @@ mbx_make_image_from_mlx(
  * @image	the MacroBoX image to destroy.
  */
 void
-mbx_destroy_image(
-	t_mbx *mbx, t_mbx_image *image);
+mbx_destroy_image(t_mbx *mbx, t_mbx_image *image);
 
 /**
  * Creates and returns a MacroBoX window.
@@ -220,7 +395,7 @@ mbx_destroy_image(
  * This function can fail allocation, then the result will be 0 padded.
  */
 t_mbx_window
-mbx_make_window(
+mbx_create_window(
 	t_mbx *mbx, t_vec2i size, char *title, t_mbx_window_flags flags);
 
 /**
@@ -234,7 +409,7 @@ mbx_make_window(
  * This function can fail allocation, then the result will be 0 padded.
  */
 t_mbx_window
-mbx_make_window_with_target(
+mbx_create_window_with_target(
 	t_mbx *mbx, t_vec2i size, char *title, t_mbx_window_flags flags);
 
 /**
@@ -249,8 +424,7 @@ mbx_make_window_with_target(
  * This function can fail allocation, then the result will be 0 padded.
  */
 t_mbx_window
-mbx_make_window_target(
-	t_mbx *mbx, t_mbx_image image);
+mbx_create_window_target(t_mbx *mbx, t_mbx_image image);
 
 /**
  * Destroys and frees the contents of the given MacroBoX window.
@@ -259,8 +433,7 @@ mbx_make_window_target(
  * @window		the window to destroy.
  */
 void
-mbx_destroy_window(
-	t_mbx *mbx, t_mbx_window *window);
+mbx_destroy_window(t_mbx *mbx, t_mbx_window *window);
 
 /**
  * Refreshes the given window's properties to match its values.
@@ -271,8 +444,7 @@ mbx_destroy_window(
  * This function is very unstable and may result in unexpected behavior.
  */
 void
-mbx_update_window(
-	t_mbx *mbx, t_mbx_window *window);
+mbx_update_window(t_mbx *mbx, t_mbx_window *window);
 
 /**
  * Refreshes the given window to match its properties.
@@ -281,8 +453,7 @@ mbx_update_window(
  * @window		the window to update.
  */
 void
-mbx_refresh_window(
-	t_mbx *mbx, t_mbx_window *window);
+mbx_refresh_window(t_mbx *mbx, t_mbx_window *window);
 
 /**
  * Returns the fps cap currently applied to the main window.
@@ -305,8 +476,7 @@ mbx_get_fps_cap(t_mbx *mbx);
  * This function can fail allocation, then it will return false.
  */
 bool
-mbx_resize_viewport(
-	t_mbx *mbx, t_vec2i size);
+mbx_resize_viewport(t_mbx *mbx, t_vec2i size);
 
 /**
  * Resizes the viewport and its content.
@@ -318,8 +488,7 @@ mbx_resize_viewport(
  * The content of the viewport will stretch to fit the new size.
  */
 bool
-mbx_resize_viewport_with_content(
-	t_mbx *mbx, t_vec2i size);
+mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size);
 
 /**
  * Gets the size of the main screen without requiring an open window.
@@ -330,8 +499,7 @@ mbx_resize_viewport_with_content(
  * This function can fail allocation, then the result will be 0 padded.
  */
 t_vec2i
-mbx_get_screen_size_windowless(
-	t_mbx *mbx);
+mbx_get_screen_size_windowless(t_mbx *mbx);
 
 /**
  * Resets the settings to their default values.
@@ -339,8 +507,7 @@ mbx_get_screen_size_windowless(
  * @mbx the MacroBox context.
  */
 void
-mbx_reset_settings(
-	t_mbx *mbx);
+mbx_reset_settings(t_mbx *mbx);
 
 /**
  * Updates the elements affected by settings.
@@ -348,5 +515,4 @@ mbx_reset_settings(
  * @mbx the MacroBox context.
  */
 void
-mbx_refresh_settings(
-	t_mbx *mbx);
+mbx_refresh_settings(t_mbx *mbx);

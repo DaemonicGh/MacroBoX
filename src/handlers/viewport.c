@@ -6,7 +6,7 @@
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 17:56:25 by rprieur           #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	mbx_resize_viewport(t_mbx *mbx, t_vec2i size)
 	t_mbx_region	*new;
 
 	size = vec2i_clamp(size, vec2i_zero(), mbx->window.size);
-	new = mbx_make_region_with_image(mbx, size);
+	new = mbx_create_region_with_image(mbx, size);
 	if (!new)
 		return (false);
 	mbx->cursor = vec2_mult(mbx->cursor,
@@ -34,7 +34,7 @@ bool	mbx_resize_viewport_with_content(t_mbx *mbx, t_vec2i size)
 	t_mbx_region	*new;
 
 	size = vec2i_clamp(size, vec2i_zero(), mbx->window.size);
-	new = mbx_make_region_with_image(mbx, size);
+	new = mbx_create_region_with_image(mbx, size);
 	if (!new)
 		return (false);
 	mbx->cursor = vec2_mult(mbx->cursor,

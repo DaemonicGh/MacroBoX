@@ -6,7 +6,7 @@
 /*   By: daemo <daemo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 11:51:18 by daemo             #+#    #+#             */
-/*   Updated: 2026/04/24 16:11:15 by rprieur          ###   ########.fr       */
+/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	mouse_down_hook(int button, void *param)
 	t_mbx	*mbx;
 
 	button += MBX_SCANCODES_MOUSE_START;
-	if (button < MBX_SCANCODES_MOUSE_START
-		|| button > MBX_SCANCODES_MOUSE_END)
+	if (button < MBX_SCANCODES_START
+		|| button > MBX_SCANCODES_END)
 		return ;
 	mbx = param;
 	if (mbx_key_held(mbx, button))
@@ -31,8 +31,8 @@ void	mouse_up_hook(int button, void *param)
 	t_mbx	*mbx;
 
 	button += MBX_SCANCODES_MOUSE_START;
-	if (button < MBX_SCANCODES_MOUSE_START
-		|| button > MBX_SCANCODES_MOUSE_END)
+	if (button < MBX_SCANCODES_START
+		|| button > MBX_SCANCODES_END)
 		return ;
 	mbx = param;
 	mbx_release_input(mbx, button);
