@@ -19,10 +19,13 @@ void	reset_inputs(t_mbx *mbx)
 	i = MBX_SCANCODES_START;
 	while (i <= MBX_SCANCODES_END)
 	{
-		mbx->keys[i].press = 1e30f;
-		mbx->keys[i].release = 1e29f;
+		mbx->inputs[i].press = 1e30f;
+		mbx->inputs[i].release = 1e29f;
 		i++;
 	}
+	i = 0;
+	while (i < MBX_TEXT_INPUT_ARRAY_SIZE)
+		mbx->text_input[i++] = 0;
 	mbx->last_press = 1e30f;
 	mbx->last_release = 1e29f;
 	mbx->last_window_event = 1e30f;
@@ -38,10 +41,13 @@ void	mbx_flush_inputs(t_mbx *mbx)
 	i = MBX_SCANCODES_START;
 	while (i <= MBX_SCANCODES_END)
 	{
-		mbx->keys[i].press += mbx->delta_time;
-		mbx->keys[i].release += mbx->delta_time;
+		mbx->inputs[i].press += mbx->delta_time;
+		mbx->inputs[i].release += mbx->delta_time;
 		i++;
 	}
+	i = 0;
+	while (i < MBX_TEXT_INPUT_ARRAY_SIZE)
+		mbx->text_input[i++] = 0;
 	mbx->last_press += mbx->delta_time;
 	mbx->last_release += mbx->delta_time;
 	mbx->last_window_event += mbx->delta_time;

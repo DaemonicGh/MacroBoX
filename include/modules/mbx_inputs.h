@@ -75,6 +75,19 @@ bool	mbx_btn(t_mbx *mbx, int key);
 bool	mbx_btnr(t_mbx *mbx, int key);
 
 /**
+ * Processes and adds a key to the text input array.
+ *
+ * @mbx the MacroBoX context.
+ * @key the key to add.
+ *
+ * The resulting character is always ASCII
+ * and is affected by AltGr and Shift/Caps as well as the use_azerty setting.
+ * This function will return false if no character is mapped to the pressed key
+ * or if the text input array is full.
+ */
+bool	mbx_text_input_add(t_mbx *mbx, int key);
+
+/**
  * Forces the press of a key for one frame.
  *
  * @mbx the MacroBoX context.

@@ -12,6 +12,7 @@
 
 #include "modules/types/veclc_s_vec2.h"
 #include "modules/types/veclc_s_vec3.h"
+#include "modules/types/veclc_s_vec4.h"
 
 t_vec2	vec3_xy(t_vec3 p)
 {
@@ -26,5 +27,25 @@ t_vec2i	vec3i_xy(t_vec3i p)
 	return ((t_vec2i){
 		.x = p.x,
 		.y = p.y,
+	});
+}
+
+t_vec4	vec3_w(t_vec3 p, double w)
+{
+	return ((t_vec4){
+		.x = p.x,
+		.y = p.y,
+		.z = p.z,
+		.w = w
+	});
+}
+
+t_vec4i	vec3i_w(t_vec3i p, int w)
+{
+	return ((t_vec4i){
+		.x = p.x,
+		.y = p.y,
+		.z = p.z,
+		.w = w
 	});
 }

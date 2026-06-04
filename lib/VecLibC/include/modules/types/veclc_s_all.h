@@ -17,6 +17,16 @@
 #include "veclc_s_vec4xn.h"
 
 /**
+ * Converts a 2D vector and a z component to a 3D vector.
+ */
+t_vec3		vec2_z(t_vec2 p, double z);
+
+/**
+ * Converts a 2D vector and a z component to a 3D vector.
+ */
+t_vec3i		vec2i_z(t_vec2i p, int z);
+
+/**
  * Converts a 3D vector to a 2D vector containing it's x and y components.
  */
 t_vec2		vec3_xy(t_vec3 p);
@@ -25,6 +35,16 @@ t_vec2		vec3_xy(t_vec3 p);
  * Converts a 3D vector to a 2D vector containing it's x and y components.
  */
 t_vec2i		vec3i_xy(t_vec3i p);
+
+/**
+ * Converts a 3D vector and a w component to a 4D vector.
+ */
+t_vec4		vec3_w(t_vec3 p, double w);
+
+/**
+ * Converts a 3D vector and a w component to a 4D vector.
+ */
+t_vec4i		vec3i_w(t_vec3i p, int w);
 
 /**
  * Converts a 4D vector to a 2D vector containing it's x and y components.

@@ -31,7 +31,7 @@ handlers_files				:=	\
 	region/atlas region/create region/create_ext region/extras region/pipeline	\
 
 inputs_files				:=	\
-	btn check cursor events press												\
+	btn check cursor events keyboard press										\
 	events/keyboard events/mouse events/window									\
 
 utils_files					:=	\

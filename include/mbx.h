@@ -14,9 +14,6 @@
 
 #include "../lib/VecLibC/include/veclc.h"
 
-#include "modules/mbx_constants.h"
-#include "modules/mbx_scancodes.h"
-
 #include "modules/mbx_core.h"
 
 #include "modules/mbx_app.h"

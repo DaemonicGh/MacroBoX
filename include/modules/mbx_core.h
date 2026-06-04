@@ -19,82 +19,80 @@
 /**
  * The context structure for the MacroBoX application.
  *
- * @viewport/vp				the region where the application is rendered.
- * @window/win				the application window.
- * @mlx						the MacroLibX context.
- *
- * @keys					array containing each key's press/release timers.
- * @last_press				timestamp to last recorded key press.
- * @last_release			timestamp to last recorded key release.
- * @cursor					cursor position relative to the viewport.
- * @cursor_delta			cursor movement since last frame.
- * @scroll_delta			scroll wheel change since last frame.
- *
- * @delta_time/dt			seconds spent showing the last frame.
- * @seconds_per_frame/spf	seconds spent processing the last frame.
- * @frame_timestamp/now		timestamp of the start of the current frame.
- * @app_timestamp			timestamp of the start of the application.
- * @frames_elapsed			amount of frames processed since the app start.
- *
- * @settings				various modifiable values about the application.
- * @exiting					true if the application loop will stop next frame.
+ * This struct is allocated on the heap and should be freed by mbx_exit.
  */
 typedef struct s_mbx_context
 {
 	union
 	{
+		// Region where the application is rendered.
 		t_mbx_region	*viewport;
+		// Region where the application is rendered.
 		t_mbx_region	*vp;
 	};
 	union
 	{
+		// Application window.
 		t_mbx_window	window;
+		// Application window.
 		t_mbx_window	win;
 	};
-	mlx_context			mlx;
+	// MacroLibX context.
+	mlx_context		mlx;
 	union
 	{
+		// Seconds spent processing and displaying the last frame.
 		double			delta_time;
+		// Seconds spent processing and displaying the last frame.
 		double			dt;
 	};
 	union
 	{
+		// Seconds spent processing the last frame.
 		double			seconds_per_frame;
+		// Seconds spent processing the last frame.
 		double			spf;
 	};
 	union
 	{
+		// Timestamp of the start of the current frame.
 		double			frame_timestamp;
+		// Timestamp of the start of the current frame.
 		double			now;
 	};
-	double				app_timestamp;
-	unsigned long		frames_elapsed;
-	bool				exiting;
-	struct s_mbx_settings
+	// Timestamp of the start of the application.
+	double			app_timestamp;
+	// Amount of frames processed since the application start.
+	uint64_t		frames_elapsed;
+	// True if the application loop will stop next frame.
+	bool			exiting;
+	// Contains various modifiable values about the application.
+	t_mbx_settings	settings;
+	// The application's memory manager.
+	t_mbx_allocator	allocator;
+	// Seconds elapsed since the last recorded input press.
+	float			last_press;
+	// Seconds elapsed since the last recorded input release.
+	float			last_release;
+	// Seconds elapsed since the last recorded window event.
+	float			last_window_event;
+	// Cursor position relative to the viewport.
+	t_vec2			cursor;
+	// Cursor movement since last frame.
+	t_vec2			cursor_delta;
+	// Scroll wheel change since last frame.
+	int				scroll_delta;
+	// True if caps lock is enabled. Initial state might be incorrect.
+	bool			caps_lock_on;
+	// Array containing the characters typed this frame.
+	char			text_input[MBX_TEXT_INPUT_ARRAY_SIZE];
+	struct s_mbx_input_timestamp
 	{
-		t_mbx_viewport_render	viewport_render;
-		t_mbx_color				background_color;
-		int						fps_cap;
-		int						fps_cap_minimized;
-		int						fps_cap_unfocused;
-		t_mbx_region_pipeline	default_pipeline;
-		t_mbx_alloc_flags		default_alloc_flags;
-		int						exit_key;
-		int						fullscreen_toggle_key;
-		bool					do_window_cross_exit;
-		bool					lock_cursor;
-		bool					show_cursor;
-	}					settings;
-	t_mbx_allocator		allocator;
-	float				last_press;
-	float				last_release;
-	float				last_window_event;
-	t_vec2				cursor;
-	t_vec2				cursor_delta;
-	int					scroll_delta;
-	struct s_mbx_key_timestamp
-	{
+		// Seconds elapsed since the input's last press.
 		float			press;
+		// Seconds elapsed since the input's last release.
 		float			release;
-	}					keys[MBX_SCANCODES_END - MBX_SCANCODES_START + 1];
+	}
+	// Array containing each key's press/release timers.
+					inputs[MBX_SCANCODES_END - MBX_SCANCODES_START + 1];
 }	t_mbx;

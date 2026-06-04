@@ -17,7 +17,7 @@ NAMES					:=	libvec.so
 
 vec_files				:=	\
 	algebra/dist algebra/dot algebra/length algebra/normalize					\
-	conv/conv																	\
+	conv/conv conv/conv_v														\
 	create/create create/zero													\
 	exec/exec exec/exec2 exec/exec3 exec/exec_v									\
 	groups/vecx2 groups/vecx3 groups/vecx4										\

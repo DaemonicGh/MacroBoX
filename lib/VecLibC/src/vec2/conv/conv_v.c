@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   conv_v.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rprieur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/19 14:29:38 by rprieur           #+#    #+#             */
-/*   Updated: 2026/05/29 03:22:54 by rprieur          ###   ########.fr       */
+/*   Created: 2026/03/18 15:23:44 by rprieur           #+#    #+#             */
+/*   Updated: 2026/05/18 23:04:05 by rprieur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "modules/mbx_core.h"
+#include "modules/types/veclc_s_vec2.h"
+#include "modules/types/veclc_s_vec3.h"
 
-bool	mbx_key_pressed(t_mbx *mbx, int key)
+t_vec3	vec2_z(t_vec2 p, double z)
 {
-	return (mbx->inputs[key].press == 0);
+	return ((t_vec3){
+		.x = p.x,
+		.y = p.y,
+		.z = z
+	});
 }
 
-bool	mbx_key_held(t_mbx *mbx, int key)
+t_vec3i	vec2i_z(t_vec2i p, int z)
 {
-	return (mbx->inputs[key].press <= mbx->inputs[key].release);
-}
-
-bool	mbx_key_released(t_mbx *mbx, int key)
-{
-	return (mbx->inputs[key].release == 0);
+	return ((t_vec3i){
+		.x = p.x,
+		.y = p.y,
+		.z = z
+	});
 }

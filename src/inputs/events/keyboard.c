@@ -21,9 +21,9 @@ void	key_down_hook(int key, void *param)
 		|| key > MBX_SCANCODES_END)
 		return ;
 	mbx = param;
-	if (mbx_key_held(mbx, key))
-		return ;
-	mbx_press_input(mbx, key);
+	if (!mbx_key_held(mbx, key))
+		mbx_press_input(mbx, key);
+	mbx_text_input_add(mbx, key);
 }
 
 void	key_up_hook(int key, void *param)

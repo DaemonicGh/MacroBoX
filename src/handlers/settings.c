@@ -46,7 +46,7 @@ void	refresh_mlx_fps_cap(t_mbx *mbx)
 void	mbx_refresh_settings(t_mbx *mbx)
 {
 	refresh_mlx_fps_cap(mbx);
-	if (mbx->settings.show_cursor)
+	if (!mbx->settings.hide_cursor)
 		mlx_mouse_show(mbx->mlx);
 	else
 		mlx_mouse_hide(mbx->mlx);
@@ -70,6 +70,7 @@ void	mbx_reset_settings(t_mbx *mbx)
 	mbx->settings.fullscreen_toggle_key = MBX_DEFAULT_FULLSCREEN_TOGGLE_KEY;
 	mbx->settings.do_window_cross_exit = MBX_DEFAULT_DO_WINDOW_CROSS_EXIT;
 	mbx->settings.lock_cursor = MBX_DEFAULT_LOCK_CURSOR;
-	mbx->settings.show_cursor = MBX_DEFAULT_SHOW_CURSOR;
+	mbx->settings.hide_cursor = MBX_DEFAULT_HIDE_CURSOR;
+	mbx->settings.use_azerty = MBX_DEFAULT_USE_AZERTY;
 	mbx_refresh_settings(mbx);
 }
