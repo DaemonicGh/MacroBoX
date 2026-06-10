@@ -22,7 +22,7 @@ static bool	text_input_add_char(t_mbx *mbx, char c)
 	if (!c)
 		return (false);
 	i = 0;
-	while (i < MBX_TEXT_INPUT_ARRAY_SIZE)
+	while (i < MBX_TEXT_INPUT_ARRAY_SIZE - 1)
 	{
 		if (!mbx->text_input[i])
 		{
