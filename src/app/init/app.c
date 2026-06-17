@@ -16,6 +16,16 @@
 #include "modules/mbx_handlers.h"
 #include "../../_private/mbx_internal.h"
 
+static bool	common_init(t_mbx *mbx)
+{
+	mbx_reset_settings(mbx);
+	reset_inputs(mbx);
+	if (!init_values(mbx))
+		return (false);
+	mbx_report(mbx, "Successfully initialized in debug mode");
+	return (true);
+}
+
 t_mbx	*mbx_init_windowless(void)
 {
 	t_mbx	*mbx;
@@ -30,10 +40,12 @@ t_mbx	*mbx_init_windowless(void)
 		free(mbx);
 		return (NULL);
 	}
-	mbx_reset_settings(mbx);
-	reset_inputs(mbx);
-	init_values(mbx);
-	mbx_report(mbx, "Successfully initialized in debug mode");
+	if (!common_init(mbx))
+	{
+		mlx_destroy_context(mbx->mlx);
+		free(mbx);
+		return (NULL);
+	}
 	return (mbx);
 }
 
@@ -46,9 +58,11 @@ t_mbx	*mbx_init_from_mlx(mlx_context mlx)
 		return (NULL);
 	*mbx = (t_mbx){0};
 	mbx->mlx = mlx;
-	mbx_reset_settings(mbx);
-	reset_inputs(mbx);
-	init_values(mbx);
+	if (!common_init(mbx))
+	{
+		free(mbx);
+		return (NULL);
+	}
 	return (mbx);
 }
 
@@ -61,8 +75,7 @@ t_mbx	*mbx_init(t_vec2i viewport_size, char *win_title, unsigned int flags)
 		return (NULL);
 	if (!mbx_create_main_window(mbx, viewport_size, win_title, flags))
 	{
-		mlx_destroy_context(mbx->mlx);
-		free(mbx);
+		mbx_exit(mbx);
 		return (NULL);
 	}
 	return (mbx);

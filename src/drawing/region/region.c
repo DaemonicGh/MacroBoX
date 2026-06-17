@@ -12,7 +12,6 @@
 
 #include <stdlib.h>
 
-#include "veclc.h"
 #include "modules/mbx_drawing.h"
 #include "modules/mbx_utils.h"
 
@@ -58,4 +57,12 @@ void	mbx_set_region_scaled(t_mbx_region *restrict region,
 	mbx_set_subregion_scaled(region, src,
 		vec2ix3(pos, vec2i_zero(), src->size),
 		scale);
+}
+
+void	mbx_set_region_transformed(t_mbx_region *restrict region,
+	t_mbx_region *restrict src, t_vec2i pos, t_vec2x2 transform)
+{
+	mbx_set_subregion_transformed(region, src,
+		vec2ix3(pos, vec2i_zero(), src->size),
+		transform);
 }

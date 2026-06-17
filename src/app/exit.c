@@ -21,7 +21,7 @@ void	mbx_exit(t_mbx *mbx)
 	mlx_loop_end(mbx->mlx);
 	destroy_allocator(mbx);
 	mbx_report_nbr(mbx, "Cleared ", mbx->allocator.alloc_count,
-			" memory blocks upon exit");
+		" memory blocks upon exit");
 	mlx_destroy_context(mbx->mlx);
 	mbx_report(mbx, "Successfully exited");
 	free(mbx);

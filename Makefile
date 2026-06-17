@@ -20,9 +20,10 @@ app_files					:=	\
 	loop/loop loop/start_end													\
 
 drawing_files				:=	\
-	clear rect region subregion_scaled line render text							\
+	clear rect line render text													\
 	pixel/get pixel/get_raw pixel/get_unsafe									\
 	pixel/set pixel/set_raw pixel/set_unsafe pixel/tools						\
+	region/region region/scaled region/transformed								\
 	color/blend color/math color/new color/vec4/create color/vec4/blend			\
 
 handlers_files				:=	\
@@ -90,8 +91,8 @@ SILENT_NAMES				:=	libmbx.a
 # ***** FORMAT ****************
 
 COMPILER					=	cc
-COMPILER_FLAGS				=	-Wall -Wextra -Werror
-RELEASE_COMPILER_FLAGS		=	-O3 -flto -march=native -DNDEBUG
+COMPILER_FLAGS				=	-Wall -Wextra -Werror -DMBX_ROOT=\"$(ROOT_DIR)\"
+RELEASE_COMPILER_FLAGS		=	-O3 -flto -march=native
 DEBUG_COMPILER_FLAGS		=	-O1 -g -DMBX_DEBUG=1
 SANITIZE_COMPILER_FLAGS		=	-fsanitize=address -fsanitize=leak -fno-omit-frame-pointer
 
@@ -185,6 +186,8 @@ ifneq ($(reports),0)
 	$1_report_directory			:=	$$($1_build_directory)$$($1_report_subdirectory)
 endif
 endef
+
+ROOT_DIR					:=	$(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
 OBJECTS						:=
 DEPENDENCIES				:=

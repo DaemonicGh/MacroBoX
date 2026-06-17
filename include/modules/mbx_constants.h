@@ -20,6 +20,8 @@
 #  define MBX_DEBUG		0
 # endif
 
+// The MBX_ROOT constant is defined by the build system
+
 # define MBX_TEXT_LAYOUT_QWERTY					\
 	"abcdefghijklmnopqrstuvwxyz1234567890\n\0\b\t -=[]\\\0;'`,./"
 # define MBX_TEXT_LAYOUT_QWERTY_SHIFT			\

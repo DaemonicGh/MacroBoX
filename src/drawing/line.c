@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "veclc.h"
 #include "modules/mbx_drawing.h"
-#include "../_private/mbx_internal.h"
 
-static inline void	line_step(t_vec2i *step, int *err, t_vec2i d, t_vec2i s)
+static void	line_step(t_vec2i *step, int *err, t_vec2i d, t_vec2i s)
 {
 	const int	err2 = 2 * *err;
 

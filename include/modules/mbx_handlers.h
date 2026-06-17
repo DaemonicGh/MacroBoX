@@ -208,6 +208,18 @@ bool
 mbx_resize_region_with_content(
 	t_mbx *mbx, t_mbx_region **region, t_vec2i size);
 
+/*
+ * Transforms the given region to an atlas with the specified subregion size.
+ *
+ * @region			The region to transform.
+ * @subregion_size	The subregion size to of the new atlas.
+ *
+ * This function can be safely daisy-chained with region creation functions.
+ */
+t_mbx_atlas
+*mbx_atlas(
+	t_mbx_region *region, t_vec2i subregion_size);
+
 /**
  * Returns true if the given region is a valid atlas.
  *

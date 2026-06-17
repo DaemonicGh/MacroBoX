@@ -75,6 +75,8 @@ void	destroy_allocator(t_mbx *mbx)
 {
 	uint32_t	i;
 
+	if (!mbx->allocator.allocs)
+		return ;
 	i = 0;
 	while (i < mbx->allocator.capacity)
 	{

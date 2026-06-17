@@ -68,6 +68,13 @@ typedef struct s_mbx_context
 	bool			exiting;
 	// Contains various modifiable values about the application.
 	t_mbx_settings	settings;
+	// Contains pre-initialized assets ready for usage.
+	struct s_mbx_default_fonts
+	{
+		t_mbx_atlas		*font_small;
+		t_mbx_atlas		*font_large;
+		t_mbx_region	*placeholder;
+	}				assets;
 	// The application's memory manager.
 	t_mbx_allocator	allocator;
 	// Seconds elapsed since the last recorded input press.
