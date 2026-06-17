@@ -73,6 +73,9 @@ static	t_vec2ix3	get_bounds(t_mbx_region *restrict region,
 	t_vec2ix3 pos_uv_wh, t_vec2x2 transform)
 {
 	const t_vec2ix2	idx = get_bound_indices(transform);
+	const t_vec2i	uv = vec2i(
+			pos_uv_wh.p2.x * transform.p1.x + pos_uv_wh.p2.y * transform.p2.x,
+			pos_uv_wh.p2.x * transform.p1.y + pos_uv_wh.p2.y * transform.p2.y);
 	t_vec2ix4		points;
 	t_vec2ix3		bounds;
 
@@ -82,10 +85,10 @@ static	t_vec2ix3	get_bounds(t_mbx_region *restrict region,
 	points.p4 = vec2i_add(points.p2, points.p3);
 	bounds.p1.x = pos_uv_wh.p1.x + points.v[idx.p1.x].x;
 	bounds.p1.y = pos_uv_wh.p1.y + points.v[idx.p1.y].y;
-	bounds.p3.x = points.v[idx.p1.x].x - min(bounds.p1.x, 0);
-	bounds.p3.y = points.v[idx.p1.y].y - min(bounds.p1.y, 0);
-	bounds.p1.x = max(bounds.p1.x - pos_uv_wh.p2.x, 0);
-	bounds.p1.y = max(bounds.p1.y - pos_uv_wh.p2.y, 0);
+	bounds.p3.x = points.v[idx.p1.x].x + uv.x - min(bounds.p1.x, 0);
+	bounds.p3.y = points.v[idx.p1.y].y + uv.y - min(bounds.p1.y, 0);
+	bounds.p1.x = max(bounds.p1.x, 0);
+	bounds.p1.y = max(bounds.p1.y, 0);
 	bounds.p2.x = min(pos_uv_wh.p1.x + points.v[idx.p2.x].x, region->size.x);
 	bounds.p2.y = min(pos_uv_wh.p1.y + points.v[idx.p2.y].y, region->size.y);
 	return (bounds);
