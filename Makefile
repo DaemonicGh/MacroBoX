@@ -23,7 +23,8 @@ drawing_files				:=	\
 	clear rect region subregion_scaled line render text							\
 	pixel/get pixel/get_raw pixel/get_unsafe									\
 	pixel/set pixel/set_raw pixel/set_unsafe pixel/tools						\
-	color/blend color/math color/new color/vec4/create color/vec4/blend			\
+	color/average color/blend color/math color/new								\
+	color/vec4/create color/vec4/blend											\
 
 handlers_files				:=	\
 	image screen settings viewport window window_extras							\

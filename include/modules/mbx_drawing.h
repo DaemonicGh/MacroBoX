@@ -549,6 +549,20 @@ color_average_weighted(
 	t_mbx_color col1, t_mbx_color col2, double weight_ratio);
 
 /**
+ * Interpolates between two colors by t.
+ *
+ * @col1 the first color.
+ * @col2 the second color.
+ * @t	 the interpolation factor.
+ *
+ * If t is 0, returns start. If t is 1, returns end.
+ * Values of t outside the range [0, 1] give undefined results.
+ */
+t_mbx_color
+color_lerp(
+	t_mbx_color col1, t_mbx_color col2, double t);
+
+/**
  * Converts a color to a normalized 4D vector.
  */
 t_vec4
