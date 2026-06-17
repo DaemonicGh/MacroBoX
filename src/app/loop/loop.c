@@ -44,9 +44,9 @@ static void	exit_loop(t_mbx *mbx)
 
 	mbx_free_groups(mbx, MBX_ALLOC_FREE_ON_RUN_END, MBX_ALLOC_EMPTY);
 	mbx_report_nbr(mbx, "Cleared ", prev_allocs - mbx->allocator.alloc_count,
-			" memory blocks upon loop end");
+		" memory blocks upon loop end");
 	mbx_report_nbr(mbx, "Got ", mbx->allocator.alloc_count,
-			" memory blocks left upon loop end");
+		" memory blocks left upon loop end");
 }
 
 void	mbx_run(t_mbx *mbx,
