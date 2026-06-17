@@ -29,9 +29,9 @@ static void	set_alloc(
 	mbx_report_mem(mbx, "Assigning to memory block #", index);
 }
 
-static bool	append_alloc(t_mbx *mbx, void *ptr, t_mbx_alloc_flags flags)
+static bool	append_alloc(
+	t_mbx *mbx, void *ptr, t_mbx_alloc_flags flags, uint32_t new_capacity)
 {
-	const uint32_t	new_capacity = mbx->allocator.capacity * 2;
 	t_mbx_alloc		*new_allocs;
 	uint32_t		i;
 
@@ -84,7 +84,7 @@ bool	mbx_add_alloc(t_mbx *mbx, void *ptr, t_mbx_alloc_flags flags)
 		}
 		i++;
 	}
-	return (append_alloc(mbx, ptr, flags));
+	return (append_alloc(mbx, ptr, flags, mbx->allocator.capacity * 2));
 }
 
 void	*mbx_alloc_flags(t_mbx *mbx, size_t alloc_size, t_mbx_alloc_flags flags)

@@ -32,7 +32,7 @@ void	mbx_report_nbr(t_mbx *mbx,
 			const char *pref, uint32_t nbr, const char *suf);
 void	mbx_report_mem(t_mbx *mbx, const char *pref, uint32_t nbr);
 
-void	init_values(t_mbx *mbx);
+bool	init_values(t_mbx *mbx);
 void	refresh_mlx_fps_cap(t_mbx *mbx);
 void	refresh_cursor(t_mbx *mbx);
 void	reset_inputs(t_mbx *mbx);

@@ -340,8 +340,8 @@ mbx_set_text_scaled(
  * Draws a region on a region.
  *
  * @region	the region to draw on.
- * @pos 	the position of the region.
  * @src		the region to draw.
+ * @pos 	the position of the region.
  */
 void
 mbx_set_region(
@@ -351,9 +351,9 @@ mbx_set_region(
  * Draws a part of a region on a region.
  *
  * @region	the region to draw on.
+ * @src		the region to draw.
  * @pos 	the position of the subregion.
  * @uvwh	the uvwh of the subregion.
- * @src		the region to draw.
  */
 void
 mbx_set_subregion(
@@ -364,9 +364,9 @@ mbx_set_subregion(
  * Draws a scaled region on a region.
  *
  * @region	the region to draw on.
+ * @src		the region to draw.
  * @pos 	the position of the region.
  * @scale	the scale to use.
- * @src		the region to draw.
  */
 void
 mbx_set_region_scaled(
@@ -377,14 +377,44 @@ mbx_set_region_scaled(
  * Draws a scaled subregion on a region.
  *
  * @region	the region to draw on.
+ * @src		the region to draw.
  * @posuvwh	the position and uvwh of the subregion.
  * @scale	the scale to use.
- * @src		the region to draw.
  */
 void
 mbx_set_subregion_scaled(
 	t_mbx_region *restrict region, t_mbx_region *restrict src,
 	t_vec2ix3 posuvwh, t_vec2 scale);
+
+/**
+ * Draws a transformed region on a region.
+ *
+ * @region		the region to draw on.
+ * @src			the region to draw.
+ * @pos 		the position of the region.
+ * @transform	the transformation vectors to use.
+ *
+ * The transformation vectors correspond to an affine transformation matrix.
+ */
+void
+mbx_set_region_transformed(
+	t_mbx_region *restrict region, t_mbx_region *restrict src,
+	t_vec2i pos, t_vec2x2 transform);
+
+/**
+ * Draws a transformed subregion on a region.
+ *
+ * @region		the region to draw on.
+ * @src			the region to draw.
+ * @posuvwh		the position and uvwh of the subregion.
+ * @transform	the transformation vectors to use.
+ *
+ * The transformation vectors correspond to an affine transformation matrix.
+ */
+void
+mbx_set_subregion_transformed(
+	t_mbx_region *restrict region, t_mbx_region *restrict src,
+	t_vec2ix3 pos_uv_wh, t_vec2x2 transform);
 
 /**
  * Returns true if a pixel is within the bounds of a region.

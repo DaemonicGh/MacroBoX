@@ -21,7 +21,7 @@ void	mbx_start_frame(t_mbx *mbx)
 	refresh_deltatime(mbx);
 	refresh_cursor(mbx);
 	mlx_clear_window(mbx->mlx, mbx->window.mlx,
-			mbx->settings.background_color);
+		mbx->settings.background_color);
 }
 
 static void	update_allocs_lifetime(t_mbx *mbx)
@@ -32,7 +32,7 @@ static void	update_allocs_lifetime(t_mbx *mbx)
 	mbx_free_groups(mbx, MBX_ALLOC_FREE_THIS_FRAME, MBX_ALLOC_EMPTY);
 	if (pre_allocs < mbx->allocator.alloc_count)
 		mbx_report_nbr(mbx, "Freed ", mbx->allocator.alloc_count - pre_allocs,
-				" allocations this frame");
+			" allocations this frame");
 	i = 0;
 	while (i < mbx->allocator.capacity)
 	{
