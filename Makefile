@@ -93,7 +93,7 @@ SILENT_NAMES				:=	libmbx.a
 
 COMPILER					=	cc
 COMPILER_FLAGS				=	-Wall -Wextra -Werror -DMBX_ROOT=\"$(ROOT_DIR)\"
-RELEASE_COMPILER_FLAGS		=	-O3 -flto -march=native
+RELEASE_COMPILER_FLAGS		=	-O3 -flto -march=native -ffast-math
 DEBUG_COMPILER_FLAGS		=	-O1 -g -DMBX_DEBUG=1
 SANITIZE_COMPILER_FLAGS		=	-fsanitize=address -fsanitize=leak -fno-omit-frame-pointer
 

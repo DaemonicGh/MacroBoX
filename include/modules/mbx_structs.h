@@ -65,8 +65,13 @@ typedef struct s_mbx_region
 	mlx_image				image;
 	// The size of the region.
 	t_vec2i					size;
-	// The size of a subregion, used for atlases.
-	t_vec2i					subregion_size;
+	union
+	{
+		// The size of a subregion, used for atlases.
+		t_vec2i					subregion_size;
+		// The size of a subregion, used for atlases.
+		t_vec2i					subsize;
+	};
 	// The pipeline functions used by the region.
 	t_mbx_region_pipeline	pipeline;
 	// The array (FAM) containing the pixel data.
